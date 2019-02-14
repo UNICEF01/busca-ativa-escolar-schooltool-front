@@ -1,4 +1,4 @@
-# buscaativaescolar-escolas
+# Busca Ativa Escolar
 
 ## Project setup
 ```
