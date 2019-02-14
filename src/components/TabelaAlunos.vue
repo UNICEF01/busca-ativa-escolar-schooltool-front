@@ -9,13 +9,12 @@
         label="Pesquisar"
         single-line
         hide-details
-        :loading="loading"
       ></v-text-field>
     </v-card-title>
     <v-data-table
       :headers="headers"
       :items="alunos"
-      :search="search"
+      :loading="loading"
     >
       <v-progress-linear slot="progress" color="blue" indeterminate></v-progress-linear>
       <template slot="items" slot-scope="props">
@@ -24,7 +23,7 @@
         </td>
         <td class="text-xs-left">
           <v-text-field
-            v-model="props.item.place_cep" v-mask="'#####-###'" @change="searchCep(props.item.place_cep, props.index)"
+            v-model="props.item.place_cep" v-mask="'#####-###'" @keyup="searchCep(props.item.place_cep, props.index)"
             required
           ></v-text-field>
         </td>
@@ -35,10 +34,10 @@
           ></v-text-field>
         </td>
         <!--<td class="text-xs-left">-->
-          <!--<v-text-field-->
-            <!--v-model="props.item.numero"-->
-            <!--required-->
-          <!--&gt;</v-text-field>-->
+        <!--<v-text-field-->
+        <!--v-model="props.item.numero"-->
+        <!--required-->
+        <!--&gt;</v-text-field>-->
         <!--</td>-->
         <td class="text-xs-left">
           <v-text-field
@@ -63,7 +62,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       search: '',
       pagination: {},
@@ -75,12 +74,12 @@ export default {
           align: 'left',
           value: 'nome'
         },
-        { text: 'CEP', sortable: false, align: 'left', value: 'place_cep' },
-        { text: 'Logradouro / Endereço', sortable: false, align: 'left', value: 'place_address' },
+        {text: 'CEP', sortable: false, align: 'left', value: 'place_cep'},
+        {text: 'Logradouro / Endereço', sortable: false, align: 'left', value: 'place_address'},
         // { text: 'Número', sortable: false, align: 'left', value: 'numero' },
-        { text: 'Complemento', sortable: false, align: 'left', value: 'complemento' },
-        { text: 'Bairro', sortable: false, align: 'left', value: 'place_neighborhood' },
-        { text: 'Status', align: 'left', value: 'status' }
+        {text: 'Complemento', sortable: false, align: 'left', value: 'complemento'},
+        {text: 'Bairro', sortable: false, align: 'left', value: 'place_neighborhood'},
+        {text: 'Status', align: 'left', value: 'status'}
       ],
       alunos: []
     }
@@ -100,10 +99,9 @@ export default {
       })
     },
     searchCep: function (cep, i) {
-      console.log(this)
       let newValu = cep.replace(/[^A-Z0-9]/ig, '')
-      console.log(newValu)
       if (newValu.length === 8) {
+        this.loading = true
         this.$http.get(`https://viacep.com.br/ws/${newValu}/json/`).then(function (response) {
           console.log(response)
           this.alunos[i].place_address = response.body.logradouro
@@ -111,6 +109,7 @@ export default {
           this.alunos[i].complemento = response.body.complemento
           this.alunos[i].place_cep = response.body.cep
           this.alunos[i].place_neighborhood = response.body.bairro
+          this.loading = false
         })
           .catch(error => console.log(error))
       }
