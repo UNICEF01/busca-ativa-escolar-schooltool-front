@@ -29,7 +29,7 @@
         </td>
         <td class="text-xs-left">
           <v-text-field
-            v-model="alunos[props.index].place_address"
+            v-model="alunos[props.index].place_address" @blur="update(props.index, alunos[props.index].place_address)"
             required
           ></v-text-field>
         </td>
@@ -41,13 +41,15 @@
         <!--</td>-->
         <td class="text-xs-left">
           <v-text-field
-            v-model="props.item.complemento"
+            v-model="alunos[props.index].place_reference"
+            @blur="update(props.index, alunos[props.index].place_reference)"
             required
           ></v-text-field>
         </td>
         <td class="text-xs-left">
           <v-text-field
-            v-model="props.item.place_neighborhood"
+            v-model="alunos[props.index].place_neighborhood"
+            @blur="update(props.index, alunos[props.index].place_neighborhood)"
             required
           ></v-text-field>
         </td>
@@ -77,25 +79,30 @@ export default {
         {text: 'CEP', sortable: false, align: 'left', value: 'place_cep'},
         {text: 'Logradouro / Endereço', sortable: false, align: 'left', value: 'place_address'},
         // { text: 'Número', sortable: false, align: 'left', value: 'numero' },
-        {text: 'Complemento', sortable: false, align: 'left', value: 'complemento'},
+        {text: 'Complemento', sortable: false, align: 'left', value: 'place_reference'},
         {text: 'Bairro', sortable: false, align: 'left', value: 'place_neighborhood'},
         {text: 'Status', align: 'left', value: 'status'}
       ],
-      alunos: []
+      alunos: [],
+      school_id: '',
+      token: '',
+      url: 'http://localhost:3000/api/v1'
     }
   },
   created: function () {
-    this.getAlunos()
+    this.school_id = this.$route.params.school_id
+    this.token = this.$route.params.token
+    this.$nextTick(() => {
+      this.getAlunos()
+    })
   },
   methods: {
     getAlunos: function () {
-      // GET /someUrl
-      this.$http.get('/dados.json').then(response => {
-        // get body data
-        this.alunos = response.body.results
+      this.$http.get(this.url + '/alertas?school_last_id=' + this.school_id).then(response => {
+        this.alunos = response.body.data
         this.loading = false
       }, response => {
-        // error callback
+        console.log('Error on request')
       })
     },
     searchCep: function (cep, i) {
@@ -103,15 +110,27 @@ export default {
       if (newValu.length === 8) {
         this.loading = true
         this.$http.get(`https://viacep.com.br/ws/${newValu}/json/`).then(function (response) {
-          console.log(response)
           this.alunos[i].place_address = response.body.logradouro
           this.alunos[i].numero = response.body.numero
           this.alunos[i].complemento = response.body.complemento
           this.alunos[i].place_cep = response.body.cep
           this.alunos[i].place_neighborhood = response.body.bairro
           this.loading = false
+          this.update(i, true)
         })
           .catch(error => console.log(error))
+      }
+    },
+    update: function (index, value) {
+      console.log(index)
+      if (value) {
+        this.loading = true
+        let aluno = this.alunos[index]
+        this.$http.put(this.url + '/alertas/' + aluno.id, aluno).then(response => {
+          this.loading = false
+        }, response => {
+          console.log('Error on request')
+        })
       }
     }
   }
