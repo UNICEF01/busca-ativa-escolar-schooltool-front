@@ -90,7 +90,7 @@ export default {
     }
   },
   created: function () {
-    this.school_id = this.$route.params.school_id
+    this.school_id = 29069572
     this.token = this.$route.params.token
     this.$nextTick(() => {
       this.getAlunos()
