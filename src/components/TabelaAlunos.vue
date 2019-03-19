@@ -86,11 +86,11 @@ export default {
       alunos: [],
       school_id: '',
       token: '',
-      url: '//api.escolas.testes.buscaativaescolar.org.br/api/v1'
+      url: 'http://localhost:3000/api/v1'
     }
   },
   created: function () {
-    this.school_id = 29069572
+    this.school_id = this.$route.params.school_id
     this.token = this.$route.params.token
     this.$nextTick(() => {
       this.getAlunos()

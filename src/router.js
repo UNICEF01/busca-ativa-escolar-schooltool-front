@@ -13,8 +13,13 @@ export default new Router({
       component: Home
     },
     {
+      path: '/:school_id',
+      name: 'homeschool',
+      component: Home
+    },
+    {
       path: '/:school_id/:token',
-      name: 'homelink',
+      name: 'homeschooltoken',
       component: Home
     },
     {
