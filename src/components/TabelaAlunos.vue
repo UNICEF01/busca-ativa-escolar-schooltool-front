@@ -86,7 +86,7 @@ export default {
       alunos: [],
       school_id: '',
       token: '',
-      url: 'http://localhost:3000/api/v1'
+      url: 'http://api.escolas.testes.buscaativaescolar.org.br/api/v1'
     }
   },
   created: function () {
