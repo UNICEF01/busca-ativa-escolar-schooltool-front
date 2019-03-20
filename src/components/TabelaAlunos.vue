@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import constants from '../constants'
 export default {
   data() {
     return {
@@ -86,19 +87,19 @@ export default {
       alunos: [],
       school_id: '',
       token: '',
-      url: 'http://localhost:3000/api/v1'
+      url: constants.HOSTURL
     }
   },
   created: function () {
-    this.school_id = this.$route.params.school_id
-    this.token = this.$route.params.token
+    this.school_id = this.$route.query.id
+    this.token = this.$route.query.t
     this.$nextTick(() => {
       this.getAlunos()
     })
   },
   methods: {
     getAlunos: function () {
-      this.$http.get(this.url + '/alertas?school_last_id=' + this.school_id).then(response => {
+      this.$http.get(this.url + '/alertas?school_last_id=' + this.school_id + '&token=' + this.token).then(response => {
         this.alunos = response.body.data
         this.loading = false
       }, response => {
