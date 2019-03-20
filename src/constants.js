@@ -4,7 +4,7 @@ switch (hostname) {
   case 'localhost':
     url = hostname + ':3000'
     break
-  case 'escolas.testes.buscaativaescolar.org.br:':
+  case 'escolas.testes.buscaativaescolar.org.br':
     url = 'api.escolas.testes.buscaativaescolar.org.br'
     break
   default:
