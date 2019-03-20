@@ -2,7 +2,7 @@ let hostname = window.location.hostname
 let url = ''
 switch (hostname) {
   case 'localhost':
-    url = hostname
+    url = hostname + ':3000'
     break
   case 'escolas.testes.buscaativaescolar.org.br:':
     url = 'api.escolas.testes.buscaativaescolar.org.br'
@@ -12,5 +12,5 @@ switch (hostname) {
 }
 
 export default Object.freeze({
-  HOSTURL: '//' + url + ':3000/api/v1'
+  HOSTURL: '//' + url + '/api/v1'
 })
