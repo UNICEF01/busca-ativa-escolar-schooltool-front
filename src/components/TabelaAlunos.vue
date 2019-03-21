@@ -91,7 +91,7 @@ export default {
     }
   },
   created: function () {
-    this.school_id = this.$route.query.id
+    this.school_id = this.$route.query.i
     this.token = this.$route.query.t
     this.$nextTick(() => {
       this.getAlunos()
