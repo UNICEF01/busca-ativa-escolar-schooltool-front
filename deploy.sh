@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-cd escolas.testes.buscaativaescolar.org.br
+
 git checkout testing
 git pull origin testing
-npm install
-npm run build
+/home/forge/.nvm/versions/node/v8.15.1/bin/npm install
+/home/forge/.nvm/versions/node/v8.15.1/bin/npm run build
