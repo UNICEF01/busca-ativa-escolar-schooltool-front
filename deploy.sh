@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-nvm use 8
+cd escolas.testes.buscaativaescolar.org.br
+git checkout testing
+git pull origin testing
 npm install
 npm run build
