@@ -25,30 +25,29 @@
       <v-container grid-list-xl>
         <v-layout wrap>
           <v-flex xs12>
-            <div class="text-xs-center body-2 text-uppercase sidebar-filter">Sidebar Filters</div>
+            <div class="text-xs-center body-2 text-uppercase sidebar-filter">
+              Sidebar Filters
+            </div>
 
             <v-layout justify-center>
               <v-avatar
                 v-for="c in colors"
                 :key="c"
-                :class="[c === color ? 'color-active color-' + c: 'color-' + c]"
+                :class="[
+                  c === color ? 'color-active color-' + c : 'color-' + c
+                ]"
                 size="23"
-
                 @click="setColor(c)"
               />
             </v-layout>
-            <v-divider class="mt-3"/>
+            <v-divider class="mt-3" />
           </v-flex>
-          <v-flex
-            xs12
-          >
-            <div class="text-xs-center body-2 text-uppercase sidebar-filter">Images</div>
+          <v-flex xs12>
+            <div class="text-xs-center body-2 text-uppercase sidebar-filter">
+              Images
+            </div>
           </v-flex>
-          <v-flex
-            v-for="img in images"
-            :key="img"
-            xs3
-          >
+          <v-flex v-for="img in images" :key="img" xs3>
             <v-img
               :class="[image === img ? 'image-active' : '']"
               :src="img"
@@ -57,25 +56,25 @@
             />
           </v-flex>
           <!--<v-flex xs12>-->
-            <!--<v-btn-->
-              <!--href="https://www.creative-tim.com/product/vuetify-material-dashboard"-->
-              <!--target="_blank"-->
-              <!--color="success"-->
-              <!--block-->
-            <!--&gt;-->
-              <!--Free Download-->
-            <!--</v-btn>-->
+          <!--<v-btn-->
+          <!--href="https://www.creative-tim.com/product/vuetify-material-dashboard"-->
+          <!--target="_blank"-->
+          <!--color="success"-->
+          <!--block-->
+          <!--&gt;-->
+          <!--Free Download-->
+          <!--</v-btn>-->
           <!--</v-flex>-->
           <!--<v-flex xs12>-->
-            <!--<v-btn-->
-              <!--href="https://demos.creative-tim.com/vuetify-material-dashboard/documentation"-->
-              <!--target="_blank"-->
-              <!--class="white&#45;&#45;text"-->
-              <!--color="primary"-->
-              <!--block-->
-            <!--&gt;-->
-              <!--Documentation-->
-            <!--</v-btn>-->
+          <!--<v-btn-->
+          <!--href="https://demos.creative-tim.com/vuetify-material-dashboard/documentation"-->
+          <!--target="_blank"-->
+          <!--class="white&#45;&#45;text"-->
+          <!--color="primary"-->
+          <!--block-->
+          <!--&gt;-->
+          <!--Documentation-->
+          <!--</v-btn>-->
           <!--</v-flex>-->
           <v-flex xs12>
             <div class="text-xs-center body-2 text-uppercase">
@@ -117,47 +116,38 @@
 
 <script>
 // Utilities
-import {
-  mapMutations,
-  mapState
-} from 'vuex'
+import { mapMutations, mapState } from "vuex";
 
 export default {
   data: () => ({
-    colors: [
-      'primary',
-      'info',
-      'success',
-      'warning',
-      'danger'
-    ],
+    colors: ["primary", "info", "success", "warning", "danger"],
     images: [
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-1.23832d31.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-3.3a54f533.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-4.3b7e38ed.jpg'
+      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-1.23832d31.jpg",
+      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg",
+      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-3.3a54f533.jpg",
+      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-4.3b7e38ed.jpg"
     ]
   }),
 
   computed: {
-    ...mapState('app', ['image', 'color']),
-    color () {
-      return this.$store.state.app.color
+    ...mapState("app", ["image", "color"]),
+    color() {
+      return this.$store.state.app.color;
     }
   },
 
   methods: {
-    ...mapMutations('app', ['setImage']),
-    setColor (color) {
-      this.$store.state.app.color = color
+    ...mapMutations("app", ["setImage"]),
+    setColor(color) {
+      this.$store.state.app.color = color;
     }
   }
-}
+};
 </script>
 
 <style lang="scss">
-  .v-avatar,
-  .v-responsive {
-    cursor: pointer;
-  }
+.v-avatar,
+.v-responsive {
+  cursor: pointer;
+}
 </style>

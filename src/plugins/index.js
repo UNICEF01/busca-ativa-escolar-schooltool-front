@@ -1,4 +1,4 @@
-import './vueresource'
-import './chartist'
-import './vuetify'
-import './vuemask'
+import "./vueresource";
+import "./chartist";
+import "./vuetify";
+import "./vuemask";
