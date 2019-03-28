@@ -4,9 +4,8 @@ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | b
   source ~/.nvm/nvm.sh
   source ~/.profile
   source ~/.bashrc
-  nvm install 5.0
+  nvm install 8
   npm install
-  npm run front
+  npm run build
 fi
-npm install
-npm run build
+
