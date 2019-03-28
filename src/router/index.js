@@ -30,7 +30,7 @@ const router = new Router({
   mode: 'history',
   routes: paths
     .map(path => route(path.path, path.view, path.name))
-    .concat([{ path: '*', redirect: '/dashboard' }]),
+    .concat([{ path: '*', redirect: '/' }]),
   scrollBehavior (to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
