@@ -7,16 +7,16 @@
  */
 
 // Lib imports
-import Vue from "vue";
-import VueI18n from "vue-i18n";
-import messages from "@/lang";
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+import messages from '@/lang'
 
-Vue.use(VueI18n);
+Vue.use(VueI18n)
 
 const i18n = new VueI18n({
-  locale: "en",
-  fallbackLocale: "en",
+  locale: 'en',
+  fallbackLocale: 'en',
   messages
-});
+})
 
-export default i18n;
+export default i18n

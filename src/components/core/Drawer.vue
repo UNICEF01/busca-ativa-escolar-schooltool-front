@@ -9,10 +9,18 @@
     mobile-break-point="991"
     width="260"
   >
-    <v-img :src="image" height="100%">
-      <v-layout class="fill-height" tag="v-list" column>
+    <v-img
+      :src="image"
+      height="100%">
+      <v-layout
+        class="fill-height"
+        tag="v-list"
+        column>
         <v-list-tile avatar>
-          <v-img :src="logo" height="50" contain />
+          <v-img
+            :src="logo"
+            height="50"
+            contain />
         </v-list-tile>
         <v-divider />
         <v-list-tile v-if="responsive">
@@ -53,12 +61,12 @@
 
 <script>
 // Utilities
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   data: () => ({
     logo:
-      "https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png?1540573178",
+      'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png?1540573178',
     links: [
       // {
       //   to: '/dashboard',
@@ -71,45 +79,45 @@ export default {
       //   text: 'Sua escola'
       // },
       {
-        to: "/children",
-        icon: "mdi-clipboard-outline",
-        text: "Crianças"
+        to: '/children',
+        icon: 'mdi-clipboard-outline',
+        text: 'Crianças'
       }
     ],
     responsive: false
   }),
   computed: {
-    ...mapState("app", ["image", "color"]),
+    ...mapState('app', ['image', 'color']),
     inputValue: {
-      get() {
-        return this.$store.state.app.drawer;
+      get () {
+        return this.$store.state.app.drawer
       },
-      set(val) {
-        this.setDrawer(val);
+      set (val) {
+        this.setDrawer(val)
       }
     },
-    items() {
-      return this.$t("Layout.View.items");
+    items () {
+      return this.$t('Layout.View.items')
     }
   },
-  mounted() {
-    this.onResponsiveInverted();
-    window.addEventListener("resize", this.onResponsiveInverted);
+  mounted () {
+    this.onResponsiveInverted()
+    window.addEventListener('resize', this.onResponsiveInverted)
   },
-  beforeDestroy() {
-    window.removeEventListener("resize", this.onResponsiveInverted);
+  beforeDestroy () {
+    window.removeEventListener('resize', this.onResponsiveInverted)
   },
   methods: {
-    ...mapMutations("app", ["setDrawer", "toggleDrawer"]),
-    onResponsiveInverted() {
+    ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
+    onResponsiveInverted () {
       if (window.innerWidth < 991) {
-        this.responsive = true;
+        this.responsive = true
       } else {
-        this.responsive = false;
+        this.responsive = false
       }
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
