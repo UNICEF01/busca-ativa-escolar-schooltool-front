@@ -1,7 +1,10 @@
 <template>
   <v-container>
     <v-layout justify-center>
-      <v-flex xs12 sm10 md8>
+      <v-flex
+        xs12
+        sm10
+        md8>
         <material-card
           color="primary"
           title="Vue Material Dashboard PRO"
@@ -73,7 +76,7 @@
                     large
                     color="grey"
                     disabled
-                    >Current Version</v-btn
+                  >Current Version</v-btn
                   >
                 </td>
                 <td>
@@ -82,7 +85,7 @@
                     round
                     large
                     color="cyan"
-                    >Upgrade to Pro</v-btn
+                  >Upgrade to Pro</v-btn
                   >
                 </td>
               </tr>

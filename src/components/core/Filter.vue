@@ -47,7 +47,10 @@
               Images
             </div>
           </v-flex>
-          <v-flex v-for="img in images" :key="img" xs3>
+          <v-flex
+            v-for="img in images"
+            :key="img"
+            xs3>
             <v-img
               :class="[image === img ? 'image-active' : '']"
               :src="img"
@@ -116,33 +119,33 @@
 
 <script>
 // Utilities
-import { mapMutations, mapState } from "vuex";
+import { mapMutations, mapState } from 'vuex'
 
 export default {
   data: () => ({
-    colors: ["primary", "info", "success", "warning", "danger"],
+    colors: ['primary', 'info', 'success', 'warning', 'danger'],
     images: [
-      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-1.23832d31.jpg",
-      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg",
-      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-3.3a54f533.jpg",
-      "https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-4.3b7e38ed.jpg"
+      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-1.23832d31.jpg',
+      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
+      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-3.3a54f533.jpg',
+      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-4.3b7e38ed.jpg'
     ]
   }),
 
   computed: {
-    ...mapState("app", ["image", "color"]),
-    color() {
-      return this.$store.state.app.color;
+    ...mapState('app', ['image', 'color']),
+    color () {
+      return this.$store.state.app.color
     }
   },
 
   methods: {
-    ...mapMutations("app", ["setImage"]),
-    setColor(color) {
-      this.$store.state.app.color = color;
+    ...mapMutations('app', ['setImage']),
+    setColor (color) {
+      this.$store.state.app.color = color
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

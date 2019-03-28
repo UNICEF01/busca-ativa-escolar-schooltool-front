@@ -1,5 +1,8 @@
 <template>
-  <v-footer id="core-footer" absolute height="82">
+  <v-footer
+    id="core-footer"
+    absolute
+    height="82">
     <div class="footer-items">
       <!--<span-->
       <!--v-for="link in links"-->
@@ -14,9 +17,13 @@
     <span class="font-weight-light copyright">
       &copy;
       {{ new Date().getFullYear() }}
-      <a href="https://www.creative-tim.com/" target="_blank">UNICEF TEAM</a>,
-      made with
-      <v-icon color="tertiary" size="17">mdi-heart</v-icon>
+      <a
+        href="https://www.creative-tim.com/"
+        target="_blank">UNICEF TEAM</a>,
+        made with
+      <v-icon
+        color="tertiary"
+        size="17">mdi-heart</v-icon>
       for a better web
     </span>
   </v-footer>
@@ -26,13 +33,13 @@
 export default {
   data: () => ({
     links: [
-      { name: "Home", Link: "/dashboard" },
-      { name: "Creative Tim", Link: "https://www.creative-tim.com" },
-      { name: "About Us", Link: "https://creative-tim.com/presentation" },
-      { name: "Blog", Link: "https://blog.creative-tim.com" }
+      { name: 'Home', Link: '/dashboard' },
+      { name: 'Creative Tim', Link: 'https://www.creative-tim.com' },
+      { name: 'About Us', Link: 'https://creative-tim.com/presentation' },
+      { name: 'Blog', Link: 'https://blog.creative-tim.com' }
     ]
   })
-};
+}
 </script>
 
 <style>
