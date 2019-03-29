@@ -93,20 +93,20 @@ export default {
       },
       { text: 'CEP', sortable: false, align: 'left', value: 'place_cep' },
       {
-        text: 'Logradouro / Endereço',
+        text: 'Endereço*',
         sortable: false,
         align: 'left',
         value: 'place_address'
       },
       // { text: 'Número', sortable: false, align: 'left', value: 'numero' },
       {
-        text: 'Complemento',
+        text: 'Referência geográfica',
         sortable: false,
         align: 'left',
         value: 'place_reference'
       },
       {
-        text: 'Bairro',
+        text: 'Bairro*',
         sortable: false,
         align: 'left',
         value: 'place_neighborhood'
