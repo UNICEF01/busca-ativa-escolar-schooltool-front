@@ -26,7 +26,7 @@
         <v-layout wrap>
           <v-flex xs12>
             <div class="text-xs-center body-2 text-uppercase sidebar-filter">
-              Sidebar Filters
+              Temas
             </div>
 
             <v-layout justify-center>
@@ -44,7 +44,7 @@
           </v-flex>
           <v-flex xs12>
             <div class="text-xs-center body-2 text-uppercase sidebar-filter">
-              Images
+              Imagens
             </div>
           </v-flex>
           <v-flex
@@ -82,7 +82,7 @@
           <v-flex xs12>
             <div class="text-xs-center body-2 text-uppercase">
               <div class=" sidebar-filter">
-                Thank You for Sharing!
+                Redes sociais
               </div>
 
               <div>
@@ -142,10 +142,15 @@ export default {
   methods: {
     ...mapMutations('app', ['setImage']),
     setColor (color) {
-      if (color === 'info'){
-        this.$store.state.app.color = 'cyan'
-      }else {
-        this.$store.state.app.color = color
+      switch(color) {
+        case 'info':
+          this.$store.state.app.color = 'cyan'
+          break;
+        case 'danger':
+          this.$store.state.app.color = 'red'
+          break;
+        default:
+          this.$store.state.app.color = color
       }
     }
   }
