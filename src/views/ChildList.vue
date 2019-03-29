@@ -24,7 +24,7 @@
               slot="headerCell"
               slot-scope="{ header }">
               <span
-                class="subheading font-weight-light text-success text--darken-3"
+                class="subheading font-weight-light text--darken-3"
                 v-text="header.text"
               />
             </template>
@@ -91,10 +91,16 @@ export default {
     headers: [
       {
         text: 'Nome',
+        sortable: false,
         align: 'left',
         value: 'nome'
       },
-      { text: 'CEP', sortable: false, align: 'left', value: 'place_cep' },
+      {
+        text: 'CEP',
+        sortable: false,
+        align: 'left',
+        value: 'place_cep'
+      },
       {
         text: 'Endereço*',
         sortable: false,
@@ -114,7 +120,11 @@ export default {
         align: 'left',
         value: 'place_neighborhood'
       },
-      { text: 'Status', align: 'left', value: 'status' }
+      {
+        text: 'Status',
+        sortable: false,
+        align: 'left',
+        value: 'status' }
     ],
     alunos: [],
     search: '',
