@@ -7,9 +7,10 @@
     <v-layout
       justify-center
       wrap>
+      Bem vind@ {{school.name}} / {{school.city_name}} - {{school.uf}}
       <v-flex md12>
         <material-card
-          color="green"
+          :color="color"
           title="Lista de Crianças/Adolecentes"
           text="Por favor informar os endereços das crianças/adolecentes"
         >
@@ -73,7 +74,7 @@
         </material-card>
         <v-progress-linear
           :active="loading"
-          color="green"
+          :color="color"
           indeterminate
         />
       </v-flex>
@@ -83,6 +84,8 @@
 
 <script>
 import constants from '../constants'
+import { mapState } from 'vuex'
+
 export default {
   data: () => ({
     headers: [
@@ -120,8 +123,12 @@ export default {
     loading: true,
     school_id: '',
     token: '',
-    url: constants.HOSTURL
+    url: constants.HOSTURL,
+    school: ''
   }),
+  computed: {
+    ...mapState('app', ['image', 'color'])
+  },
   created: function () {
     this.school_id = this.$route.query.i
     this.token = this.$route.query.t
@@ -143,6 +150,7 @@ export default {
           response => {
             this.alunos = response.data.data
             this.loading = false
+            this.school = response.data.school
           },
           response => {
             console.log('Error on request')

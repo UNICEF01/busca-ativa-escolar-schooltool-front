@@ -10,7 +10,7 @@
         xs12
         md8>
         <material-card
-          color="green"
+          color="cyan"
           title="Edit Profile"
           text="Complete your profile"
         >

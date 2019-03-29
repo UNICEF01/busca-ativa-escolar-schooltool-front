@@ -7,7 +7,7 @@
       justify-center
       align-center>
       <v-flex xs12>
-        <material-card color="green">
+        <material-card color="cyan">
           <div slot="header">
             <div class="title font-weight-light mb-2">Notifications</div>
             <div class="category">

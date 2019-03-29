@@ -3,7 +3,7 @@
     fill-height
     fluid
     style="flex-wrap: wrap;">
-    <material-card color="green">
+    <material-card color="cyan">
       <div slot="header">
         <div class="title font-weight-light mb-2">Material Design Icons</div>
         <div class="category font-weight-thin">

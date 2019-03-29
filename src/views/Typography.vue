@@ -7,7 +7,7 @@
       align-center>
       <v-flex xs12>
         <material-card
-          color="green"
+          color="cyan"
           title="Material Dashboard Heading"
           text="Created using Roboto Font Family"
         >

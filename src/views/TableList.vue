@@ -8,7 +8,7 @@
       wrap>
       <v-flex md12>
         <material-card
-          color="green"
+          color="cyan"
           title="Simple Table"
           text="Here is a subtitle for this table"
         >
@@ -37,7 +37,7 @@
       </v-flex>
       <v-flex md12>
         <material-card
-          color="green"
+          color="cyan"
           flat
           full-width
           title="Table on Plain Background"

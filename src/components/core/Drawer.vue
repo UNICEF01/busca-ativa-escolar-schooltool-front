@@ -26,7 +26,7 @@
         <v-list-tile v-if="responsive">
           <v-text-field
             class="purple-input search-input"
-            label="Search..."
+            label="Pesquisar..."
             color="purple"
           />
         </v-list-tile>
@@ -36,15 +36,16 @@
           :to="link.to"
           :active-class="color"
           avatar
-          class="v-list-item"
+          :class="'v-list-item '+color"
         >
           <v-list-tile-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-title v-text="link.text" />
         </v-list-tile>
+
         <v-list-tile
-          active-class="primary"
+          :active-class="color"
           class="v-list-item v-list__tile--buy"
           href="http://buscaativaescolar.org.br"
           target="_blank"
@@ -66,7 +67,7 @@ import { mapMutations, mapState } from 'vuex'
 export default {
   data: () => ({
     logo:
-      'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png?1540573178',
+      'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png',
     links: [
       // {
       //   to: '/dashboard',

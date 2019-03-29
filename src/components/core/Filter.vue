@@ -125,10 +125,10 @@ export default {
   data: () => ({
     colors: ['primary', 'info', 'success', 'warning', 'danger'],
     images: [
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-1.23832d31.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-3.3a54f533.jpg',
-      'https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-4.3b7e38ed.jpg'
+      'img/1.jpg',
+      'img/2.jpg',
+      'img/3.jpg',
+      'img/4.jpg'
     ]
   }),
 
@@ -142,7 +142,11 @@ export default {
   methods: {
     ...mapMutations('app', ['setImage']),
     setColor (color) {
-      this.$store.state.app.color = color
+      if (color === 'info'){
+        this.$store.state.app.color = 'cyan'
+      }else {
+        this.$store.state.app.color = color
+      }
     }
   }
 }

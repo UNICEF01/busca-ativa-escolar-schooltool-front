@@ -17,7 +17,7 @@
           <h4 class="title font-weight-light">Daily Sales</h4>
           <p class="category d-inline-flex font-weight-light">
             <v-icon
-              color="green"
+              color="cyan"
               small>
               mdi-arrow-up
             </v-icon>
@@ -73,7 +73,7 @@
         <material-chart-card
           :data="dataCompletedTasksChart.data"
           :options="dataCompletedTasksChart.options"
-          color="green"
+          color="cyan"
           type="Line"
         >
           <h3 class="title font-weight-light">Completed Tasks</h3>
@@ -100,7 +100,7 @@
         md6
         lg3>
         <material-stats-card
-          color="green"
+          color="cyan"
           icon="mdi-store"
           title="Revenue"
           value="$34,245"
@@ -190,7 +190,7 @@
         lg6>
         <material-card
           class="card-tabs"
-          color="green">
+          color="cyan">
           <v-flex slot="header">
             <v-tabs
               v-model="tabs"
@@ -225,7 +225,7 @@
                   <v-list-tile-action>
                     <v-checkbox
                       :value="list[0]"
-                      color="green" />
+                      color="cyan" />
                   </v-list-tile-action>
                   <v-list-tile-title>
                     Sign contract for "What are conference organized afraid of?"
