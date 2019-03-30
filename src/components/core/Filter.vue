@@ -149,6 +149,9 @@ export default {
         case 'danger':
           this.$store.state.app.color = 'red'
           break;
+        case 'primary':
+          this.$store.state.app.color = 'purple'
+          break;
         default:
           this.$store.state.app.color = color
       }
