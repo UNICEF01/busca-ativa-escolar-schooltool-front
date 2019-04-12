@@ -68,7 +68,7 @@
                   "
                 />
               </td>
-              <td class="text-xs-left"><div v-if="alunos[props.index].place_address && alunos[props.index].place_neighborhood">Ok</div></td>
+              <td class="text-xs-left"><div v-if="alunos[props.index].place_address.length > 3 && alunos[props.index].place_neighborhood.length > 3">Ok</div></td>
             </template>
           </v-data-table>
         </material-card>
