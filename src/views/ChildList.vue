@@ -68,7 +68,7 @@
                   "
                 />
               </td>
-              <td class="text-xs-left">{{ props.item.status }}</td>
+              <td class="text-xs-left"><div v-if="alunos[props.index].place_address && alunos[props.index].place_neighborhood">Ok</div></td>
             </template>
           </v-data-table>
         </material-card>
