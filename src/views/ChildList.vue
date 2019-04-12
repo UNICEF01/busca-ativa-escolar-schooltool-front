@@ -7,7 +7,7 @@
     <v-layout
       justify-center
       wrap>
-      Bem vind@ {{school.name}} / {{school.city_name}} - {{school.uf}}
+      Bem vind@ {{ school.name }} / {{ school.city_name }} - {{ school.uf }}
       <v-flex md12>
         <material-card
           :color="color"
@@ -32,7 +32,7 @@
               slot="items"
               slot-scope="props">
               <td>
-                {{ props.item.name }}<br >
+                {{ props.item.name }}<br>
                 <small><b>Nome da mãe:</b> {{ props.item.mother_name }}</small>
               </td>
               <td class="text-xs-left">
@@ -68,7 +68,11 @@
                   "
                 />
               </td>
-              <td class="text-xs-left"><div v-if="alunos[props.index].place_address.length > 3 && alunos[props.index].place_neighborhood.length > 3">Ok</div></td>
+              <td class="text-lg-center">
+                <span
+                  v-if="alunos[props.index].place_address && alunos[props.index].place_neighborhood"
+                  title="Está ok"
+                  class="fa fa-thumbs-up size-lg text-size-md green--text"/></td>
             </template>
           </v-data-table>
         </material-card>
@@ -124,7 +128,8 @@ export default {
         text: 'Status',
         sortable: false,
         align: 'left',
-        value: 'status' }
+        value: 'status'
+      }
     ],
     alunos: [],
     search: '',
@@ -151,10 +156,10 @@ export default {
       this.$http
         .get(
           this.url +
-            '/alertas?school_last_id=' +
-            this.school_id +
-            '&token=' +
-            this.token
+          '/alertas?school_last_id=' +
+          this.school_id +
+          '&token=' +
+          this.token
         )
         .then(
           response => {
