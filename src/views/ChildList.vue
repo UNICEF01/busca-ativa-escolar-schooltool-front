@@ -14,11 +14,22 @@
           title="Lista de Crianças/Adolecentes"
           text="Por favor informar os endereços das crianças/adolecentes"
         >
+          <v-card-title>
+            <v-spacer/>
+            <v-text-field
+              v-model="search"
+              label="Pesquisar"
+              single-line
+              hide-details
+            />
+          </v-card-title>
           <v-data-table
             :headers="headers"
             :items="alunos"
             :loading="true"
-            hide-actions
+            :pagination.sync="pagination"
+            :search="search"
+            item-key="id"
           >
             <template
               slot="headerCell"
@@ -27,10 +38,12 @@
                 class="subheading font-weight-light text--darken-3"
                 v-text="header.text"
               />
+              <br>
+              <small>{{ header.description }}</small>
             </template>
             <template
               slot="items"
-              slot-scope="props">
+              scope="props">
               <td>
                 {{ props.item.name }}<br>
                 <small><b>Nome da mãe:</b> {{ props.item.mother_name }}</small>
@@ -40,37 +53,37 @@
                   v-mask="'#####-###'"
                   v-model="props.item.place_cep"
                   required
-                  @keyup="searchCep(props.item.place_cep, props.index)"
+                  @keyup="searchCep(props.item.place_cep, alunos.indexOf(props.item))"
                 />
               </td>
               <td class="text-xs-left">
                 <v-text-field
-                  v-model="alunos[props.index].place_address"
+                  v-model="alunos[alunos.indexOf(props.item)].place_address"
                   required
-                  @blur="update(props.index, alunos[props.index].place_address)"
+                  @blur="update(alunos.indexOf(props.item), alunos[alunos.indexOf(props.item)].place_address)"
                 />
               </td>
               <td class="text-xs-left">
                 <v-text-field
-                  v-model="alunos[props.index].place_reference"
+                  v-model="alunos[alunos.indexOf(props.item)].place_reference"
                   required
                   @blur="
-                    update(props.index, alunos[props.index].place_reference)
+                    update(alunos.indexOf(props.item), alunos[alunos.indexOf(props.item)].place_reference)
                   "
                 />
               </td>
               <td class="text-xs-left">
                 <v-text-field
-                  v-model="alunos[props.index].place_neighborhood"
+                  v-model="alunos[alunos.indexOf(props.item)].place_neighborhood"
                   required
                   @blur="
-                    update(props.index, alunos[props.index].place_neighborhood)
+                    update(alunos.indexOf(props.item), alunos[alunos.indexOf(props.item)].place_neighborhood)
                   "
                 />
               </td>
               <td class="text-lg-center">
                 <span
-                  v-if="alunos[props.index].place_address && alunos[props.index].place_neighborhood"
+                  v-if="alunos[alunos.indexOf(props.item)].place_address && alunos[alunos.indexOf(props.item)].place_neighborhood"
                   title="Está ok"
                   class="fa fa-thumbs-up size-lg text-size-md green--text"/></td>
             </template>
@@ -114,6 +127,7 @@ export default {
       // { text: 'Número', sortable: false, align: 'left', value: 'numero' },
       {
         text: 'Referência geográfica',
+        description: 'Ponto de referëncia',
         sortable: false,
         align: 'left',
         value: 'place_reference'
@@ -133,7 +147,7 @@ export default {
     ],
     alunos: [],
     search: '',
-    pagination: {},
+    pagination: { rowsPerPage: 5 },
     selected: [],
     loading: true,
     school_id: '',

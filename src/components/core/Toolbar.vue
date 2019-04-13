@@ -25,13 +25,13 @@
         align-center
         layout
         py-2>
-        <v-text-field
-          v-if="responsiveInput"
-          class="mr-4 mt-2 purple-input"
-          label="Pesquisar..."
-          hide-details
-          color="purple"
-        />
+        <!--<v-text-field-->
+          <!--v-if="responsiveInput"-->
+          <!--class="mr-4 mt-2 purple-input"-->
+          <!--label="Pesquisar..."-->
+          <!--hide-details-->
+          <!--color="purple"-->
+        <!--/>-->
         <!--<router-link-->
         <!--v-ripple-->
         <!--class="toolbar-items"-->

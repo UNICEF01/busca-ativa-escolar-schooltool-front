@@ -77,3 +77,11 @@ h2.title{
 .text-size-md {
   font-size: 24px;
 }
+/** Icons */
+.v-datatable__actions__range-controls .v-btn .v-btn__content .v-icon:before {
+  color: black;
+}
+.theme--light .v-btn.v-btn--disabled .v-btn__content .v-icon:before {
+  color: #B1B1B1 !important;
+}
+
