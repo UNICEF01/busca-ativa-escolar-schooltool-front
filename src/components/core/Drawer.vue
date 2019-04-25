@@ -53,7 +53,7 @@
           <v-list-tile-action>
             <v-icon>mdi-package-up</v-icon>
           </v-list-tile-action>
-          Conheça o projeto
+          Conheça a estratégia
         </v-list-tile>
       </v-layout>
     </v-img>
