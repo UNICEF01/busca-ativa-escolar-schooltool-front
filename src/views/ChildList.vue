@@ -48,7 +48,7 @@
                 {{ props.item.name }}<br>
                 <small><b>Nome da mãe:</b> {{ props.item.mother_name }}</small>
               </td>
-              <td class="text-xs-left">
+              <td class="text-xs-left with-input-xs">
                 <v-text-field
                   v-mask="'#####-###'"
                   v-model="props.item.place_cep"
@@ -222,3 +222,8 @@ export default {
   }
 }
 </script>
+<style lang="scss">
+  .with-input-xs {
+    width: 100px;
+  }
+</style>
