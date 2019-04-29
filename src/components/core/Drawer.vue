@@ -82,7 +82,7 @@ export default {
       {
         to: '/children',
         icon: 'mdi-clipboard-outline',
-        text: 'Crianças'
+        text: 'Crianças / Adolescentes'
       }
     ],
     responsive: false
