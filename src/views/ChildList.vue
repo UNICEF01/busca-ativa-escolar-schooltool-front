@@ -15,13 +15,13 @@
           text="Por favor informar os endereços das crianças/adolecentes"
         >
           <v-card-title>
-            <v-spacer/>
-            <v-text-field
-              v-model="search"
-              label="Pesquisar"
-              single-line
-              hide-details
-            />
+            <!--<v-spacer/>-->
+            <!--<v-text-field-->
+              <!--v-model="search"-->
+              <!--label="Pesquisar"-->
+              <!--single-line-->
+              <!--hide-details-->
+            <!--/>-->
           </v-card-title>
           <v-data-table
             :headers="headers"
