@@ -18,7 +18,7 @@
       &copy;
       {{ new Date().getFullYear() }}
       <a
-        href="https://www.creative-tim.com/"
+        href="https://www.unicef.org/brazil"
         target="_blank">UNICEF TEAM</a>,
         made with
       <v-icon
