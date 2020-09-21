@@ -20,6 +20,11 @@ export default [
     view: 'ChildList'
   },
   {
+    path: '/pesquisa',
+    name: 'Quest/Wash',
+    view: 'Quest'
+  },
+  {
     path: '/typography',
     view: 'Typography'
   },
