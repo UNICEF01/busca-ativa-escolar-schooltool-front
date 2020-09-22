@@ -6,9 +6,9 @@
     <v-layout
       justify-center
       wrap>
-      <v-flex
-        xs12
-        md8>
+      <v-flex v-if="!start"
+              xs12
+              md8>
         <material-card
           color="cyan"
           title="Pesquisa"
@@ -38,50 +38,70 @@
                     label="Telefone"
                     class="purple-input"/>
                 </v-flex>
-                <Estados v-on:childToParent="onChildClick"></Estados>
+                <Estados @childToParent="onChildClick"></Estados>
 
-                <v-autocomplete
-                  v-model="model"
-                  :items="items"
-                  :loading="isLoading"
-                  :search-input.sync="search"
-                  clearable
-                  hide-details
-                  hide-selected
-                  item-text="name"
-                  item-value="symbol"
-                  label="Nome da escola"
-                  solo
-                >
-                  <template v-slot:no-data>
-                    <v-list-item>
-                      <v-list-item-title>
-                        Escreva o nome da escola
-                      </v-list-item-title>
-                    </v-list-item>
-                  </template>
-                  <template v-slot:selection="{ attr, on, item, selected }">
-                    <span v-text="item.name"></span>
-                  </template>
-                  <template v-slot:item="{ item }">
-                    <v-list-item-avatar>
-                      {{ item.name.charAt(0) }}
-                    </v-list-item-avatar>
-                    <v-list-item-content>
-                      <v-list-item-title v-text="item.name"></v-list-item-title>
-                      <v-list-item-subtitle v-text="item.id"></v-list-item-subtitle>
-                    </v-list-item-content>
-                  </template>
-                </v-autocomplete>
+                <!--                <v-flex xs12 md12>-->
+                <!--                  <v-combobox-->
+                <!--                    v-model="escola"-->
+                <!--                    :items="items"-->
+                <!--                    label="Escolas"-->
+                <!--                    :search-input.sync="search"-->
+                <!--                    :item-text="name"-->
+
+                <!--                  ></v-combobox>-->
+                <!--                </v-flex>-->
+                <v-flex
+                  xs12
+                  md12>
+                  <v-autocomplete
+                    v-model="school_name"
+                    :items="items"
+                    :loading="isLoading"
+                    :search-input.sync="search"
+                    clearable
+                    hide-details
+                    hide-selected
+                    item-text="name"
+                    label="Nome da escola"
+                  >
+                    <template v-slot:no-data>
+                      <v-list-item>
+                        <v-list-item-title>
+                          Escreva o nome da escola
+                        </v-list-item-title>
+                      </v-list-item>
+                    </template>
+                    <template v-slot:selection="{ attr, on, item, selected }">
+                      <span v-text="item.name"></span>
+                    </template>
+                    <template v-slot:item="{ item }">
+                      <v-list-item-content>
+                        <v-list-item-title v-text="item.name"></v-list-item-title>
+                        -
+                        <v-list-item-subtitle v-text="item.city_name"></v-list-item-subtitle>
+                      </v-list-item-content>
+                    </template>
+                  </v-autocomplete>
+                </v-flex>
               </v-layout>
             </v-container>
           </v-form>
+          <v-flex
+            xs12
+            text-xs-right>
+            <v-btn @click="start = true"
+                   class="mx-0 font-weight-light"
+                   color="success">
+              Começar
+            </v-btn>
+          </v-flex>
         </material-card>
       </v-flex>
-      <v-flex
-        xs12
-        md8>
-        <material-card v-for="item in quest"
+
+      <v-flex v-if="start"
+              xs12
+              md8>
+        <material-card v-for="item in quest" :key="item.id"
                        class="card-tabs"
                        color="cyan">
           <v-flex slot="header">
@@ -95,7 +115,6 @@
               >
             </v-tabs>
           </v-flex>
-
 
           <v-radio-group v-model="item.selected">
             <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
@@ -135,13 +154,14 @@
       <!--          </v-card-text>-->
       <!--        </material-card>-->
       <!--      </v-flex>-->
-      {{uf}}
     </v-layout>
   </v-container>
 </template>
 
 <script>
   import Estados from "../components/core/CitySelect";
+  // import { db } from "../firebaseDb";
+
 
   export default {
     components: {Estados},
@@ -157,6 +177,9 @@
         count: null,
         uf: '',
         city: '',
+        value: '',
+        start: false,
+        school_name: '',
         states: [
           {
             "id": "1",
@@ -344,27 +367,30 @@
     },
     methods: {
       // Triggered when `childToParent` event is emitted by the child.
-      onChildClick (value) {
+      onChildClick(value) {
         console.log(value)
-        this.uf = value
+        this.uf = value.uf
+        this.city = value.city
       }
     },
 
     watch: {
-      model(val) {
-        if (val != null) this.tab = 0
-        else this.tab = null
+      school_name(val) {
+        if (val != null)
+          this.school_name = val;
+        console.log(val)
       },
       search(val) {
-        // Items have already been loaded
-        if (this.items.length > 0) return
+        //Items have already been loaded
+        if (val < 3) return
+
 
         this.isLoading = true
 
         const requestOptions = {
           method: "POST",
           headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({name: "", UF: ""})
+          body: JSON.stringify({name: val, $hide_loading_feedback: true})
         }
 
         // Lazily load input items

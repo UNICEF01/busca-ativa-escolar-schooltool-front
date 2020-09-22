@@ -1,13 +1,11 @@
 <template>
   <v-container class="pa-2">
     <v-layout>
-      <v-flex xs12 md6>
+      <v-flex xs12 md6 v-if="estados">
         <v-select
           v-model="estado"
           :items="estados"
-          :item-text="value"
           label="Estado"
-          @change="getCitys(estado)"
         ></v-select>
       </v-flex>
       <v-flex xs12 md6>
@@ -15,6 +13,7 @@
           v-model="cidade"
           :items="cidades"
           label="Município"
+          @change="emitToParent({uf: estado, city: cidade})"
         ></v-combobox>
       </v-flex>
     </v-layout>
@@ -30,9 +29,6 @@
 
   export default {
     name: "Estados",
-    props: {
-      parentData: Object
-    },
     data() {
       return {
         cidades: [],
@@ -71,18 +67,18 @@
         ]
       };
     },
-    // watch: {
-    //   'estado': function () {
-    //     this.cidades = brasil[this.estado].cidades
-    //   }
-    // },
-    methods: {
-      getCitys: function (event) {
+    watch: {
+      'estado': function () {
         this.cidades = brasil[this.estado].cidades
-
-      },
+      }
+    },
+    methods: {
+      // getCitys: function (event) {
+      //   this.cidades = brasil[this.estado].cidades
+      //
+      // },
       emitToParent (event) {
-        this.$emit('childToParent', this.childMessage)
+        this.$emit('childToParent', event)
       }
     }
   };
