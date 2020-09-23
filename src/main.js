@@ -17,15 +17,30 @@ import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
 
+import { auth } from './firebaseDb.js'
+
+
 // Sync store with router
 sync(store, router)
 
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-new Vue({
-  i18n,
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+// new Vue({
+//   i18n,
+//   router,
+//   store,
+//   render: h => h(App)
+// }).$mount('#app')
+
+let app
+auth.onAuthStateChanged(() => {
+  if (!app) {
+    app = new Vue({
+      i18n,
+      router,
+      store,
+      render: h => h(App)
+    }).$mount('#app')
+  }
+})
