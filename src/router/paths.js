@@ -25,6 +25,11 @@ export default [
     view: 'Quest'
   },
   {
+    path: '/pesquisa/wash',
+    name: 'Titulo da pesquisa...',
+    view: 'ResearchWash'
+  },
+  {
     path: '/typography',
     view: 'Typography'
   },

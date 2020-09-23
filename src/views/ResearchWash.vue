@@ -1,334 +1,59 @@
 <template>
-  <v-container
-    fill-height
-    fluid
-    grid-list-xl>
-    <v-layout
-      justify-center
-      wrap>
+
+  <v-container fill-height fluid grid-list-xl>
+
+    <v-layout justify-center wrap>
+
       <v-flex xs12 md8>
 
-        <material-card color="cyan" title="Pesquisa" text="Colocar Descrição">
+        <div v-if="logged">LOGADO</div>
 
-          <v-form ref="form_register" lazy-validation>
-            <v-container fluid>
-              <v-layout wrap>
+        <div v-for="group in quest">
 
-                <v-flex xs12 md4>
-                  <v-text-field label="Nome Completo" v-model="user.name" :rules="[rules.required]" />
-                </v-flex>
+          <h5 class="headline">{{group.group}}</h5>
 
-                <v-flex xs12 md4>
-                  <v-text-field class="purple-input" label="E-mail" v-model="user.email" :rules="[rules.required, rules.email]"/>
-                </v-flex>
+          <material-card v-for="item in group.questions" :key="item.id"
+                         class="card-tabs"
+                         color="cyan"
+                         elevation="3">
 
-                <v-flex xs12 md4>
-                  <v-text-field label="Telefone" class="purple-input" v-model="user.telefone" :rules="[rules.required]"/>
-                </v-flex>
+            <v-flex slot="header">
 
-                <v-flex xs12 md6>
-                  <v-text-field
-                    class="purple-input"
-                    label="Senha"
-                    v-model="user.password"
-                    :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
-                    :type="showPasword1 ? 'text' : 'password'"
-                    counter
-                    @click:append="showPasword1 = !showPasword1"/>
-                </v-flex>
+              <span
+                class="subheading font-weight-light mr-3"
+                style="align-self: center"
+                v-html="item.answer"
+              ></span>
 
-                <v-flex xs12 md6>
-                  <v-text-field
-                    class="purple-input"
-                    label="Confirme a senha"
-                    v-model="user.confirmPassword"
-                    :append-icon="showPasword2 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min, rules.passMatch]"
-                    :type="showPasword2 ? 'text' : 'password'"
-                    counter
-                    @click:append="showPasword2 = !showPasword2"/>
-                </v-flex>
-
-                <Estados @childToParent="onChildClick"></Estados>
-
-                <v-flex xs12 md12>
-
-                  <v-autocomplete
-                    v-model="school_name"
-                    :items="items"
-                    :loading="isLoading"
-                    :search-input.sync="search"
-                    clearable
-                    hide-details
-                    hide-selected
-                    item-text="name"
-                    label="Nome da escola"
-                  >
-                    <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Escreva o nome da escola
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-
-                    <template v-slot:selection="{ attr, on, item, selected }">
-                      <span v-text="item.name"></span>
-                    </template>
-
-                    <template v-slot:item="{ item }">
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
-                        -
-                        <v-list-item-subtitle v-text="item.city_name"></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </template>
-                  </v-autocomplete>
-
-                </v-flex>
-
-              </v-layout>
-
-            </v-container>
-
-            <v-flex xs12 text-xs-right>
-              <v-btn @click="start()" class="mx-0 font-weight-light" color="success">
-                Começar
-              </v-btn>
             </v-flex>
 
-          </v-form>
+            <v-radio-group v-model="item.selected">
+              <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
+            </v-radio-group>
 
-        </material-card>
+          </material-card>
 
-        <v-dialog v-model="dialog" width="500">
-
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" color="warning">
-              Continuar de onde parou
-            </v-btn>
-          </template>
-
-          <v-card>
-            <v-card-title class="headline grey lighten-2">
-              Forneça seus dados
-            </v-card-title>
-
-            <v-form>
-              <v-container fluid>
-                <v-flex xs12>
-                  <v-text-field label="Email" v-model="user.email"/>
-                </v-flex>
-
-                <v-flex xs12>
-                  <v-text-field label="Senha" v-model="user.password"/>
-                </v-flex>
-
-              </v-container>
-            </v-form>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="default" text @click="dialog = false">
-                Recuperar senha
-              </v-btn>
-              <v-btn color="default" text @click="dialog = false">
-                Fechar
-              </v-btn>
-              <v-btn color="success" text @click="login()">
-                Login
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-
-        </v-dialog>
+        </div>
 
       </v-flex>
 
     </v-layout>
   </v-container>
-
 </template>
 
 <script>
-  import Estados from "../components/core/CitySelect";
+
   import { db, auth, usersCollection } from "./../firebaseDb";
 
   export default {
-    components: {Estados},
+
+    created() {
+      console.log(auth.currentUser)
+    },
+
     data() {
       return {
-
-        user: {
-          email: '',
-          password: '',
-          confirmPassword: '',
-          error: '',
-          telefone: ''
-        },
-        showPasword1: false,
-        showPasword2: false,
-        rules: {
-          required: value => !!value || 'Obrigatório.',
-          min: v => v.length >= 8 || 'Mínimo 6 caracteres',
-          passMatch: v => v === this.user.password || 'As senhas não correspondem',
-          email: v => /.+@.+\..+/.test(v) || 'E-mail inválido',
-        },
-        formHasErrors: false,
-
-        dialog: false,
-        descriptionLimit: 60,
-        items: [],
-        isLoading: false,
-        stateSelected: null,
-        citySelected: null,
-        search: null,
-        model: null,
-        count: null,
-        uf: '',
-        city: '',
-        value: '',
-        school_name: '',
-        states: [
-          {
-            "id": "1",
-            "sigla": "AC",
-            "name": "Acre"
-          },
-          {
-            "id": "2",
-            "sigla": "AL",
-            "name": "Alagoas"
-          },
-          {
-            "id": "3",
-            "sigla": "AM",
-            "name": "Amazonas"
-          },
-          {
-            "id": "4",
-            "sigla": "AP",
-            "name": "Amapá"
-          },
-          {
-            "id": "5",
-            "sigla": "BA",
-            "name": "Bahia"
-          },
-          {
-            "id": "6",
-            "sigla": "CE",
-            "name": "Ceará"
-          },
-          {
-            "id": "7",
-            "sigla": "DF",
-            "name": "Distrito Federal"
-          },
-          {
-            "id": "8",
-            "sigla": "ES",
-            "name": "Espírito Santo"
-          },
-          {
-            "id": "9",
-            "sigla": "GO",
-            "name": "Goiás"
-          },
-          {
-            "id": "10",
-            "sigla": "MA",
-            "name": "Maranhão"
-          },
-          {
-            "id": "11",
-            "sigla": "MG",
-            "name": "Minas Gerais"
-          },
-          {
-            "id": "12",
-            "sigla": "MS",
-            "name": "Mato Grosso do Sul"
-          },
-          {
-            "id": "13",
-            "sigla": "MT",
-            "name": "Mato Grosso"
-          },
-          {
-            "id": "14",
-            "sigla": "PA",
-            "name": "Pará"
-          },
-          {
-            "id": "15",
-            "sigla": "PB",
-            "name": "Paraíba"
-          },
-          {
-            "id": "16",
-            "sigla": "PE",
-            "name": "Pernambuco"
-          },
-          {
-            "id": "17",
-            "sigla": "PI",
-            "name": "Piauí"
-          },
-          {
-            "id": "18",
-            "sigla": "PR",
-            "name": "Paraná"
-          },
-          {
-            "id": "19",
-            "sigla": "RJ",
-            "name": "Rio de Janeiro"
-          },
-          {
-            "id": "20",
-            "sigla": "RN",
-            "name": "Rio Grande do Norte"
-          },
-          {
-            "id": "21",
-            "sigla": "RO",
-            "name": "Rondônia"
-          },
-          {
-            "id": "22",
-            "sigla": "RR",
-            "name": "Roraima"
-          },
-          {
-            "id": "23",
-            "sigla": "RS",
-            "name": "Rio Grande do Sul"
-          },
-          {
-            "id": "24",
-            "sigla": "SC",
-            "name": "Santa Catarina"
-          },
-          {
-            "id": "25",
-            "sigla": "SE",
-            "name": "Sergipe"
-          },
-          {
-            "id": "26",
-            "sigla": "SP",
-            "name": "São Paulo"
-          },
-          {
-            "id": "27",
-            "sigla": "TO",
-            "name": "Tocantins"
-          }
-        ],
+        logged: false,
         quest: [
 
           {
@@ -994,61 +719,13 @@
         ]
       }
     },
+
     methods: {
-      // Triggered when `childToParent` event is emitted by the child.
-      onChildClick(value) {
-        console.log(value)
-        this.uf = value.uf
-        this.city = value.city
-      },
-
-      async start(){
-        if ( this.$refs.form_register.validate() ){
-          try {
-            const user = auth.createUserWithEmailAndPassword(this.user.email, this.user.password);
-            //console.log(user);
-            this.$router.push({path: '/pesquisa/wash'})
-          }catch (error) {
-            //console.log(error)
-          }
-        }
-      },
-
-      login(){
-        alert();
-      }
 
     },
 
     watch: {
-      school_name(val) {
-        if (val != null)
-          this.school_name = val;
-        console.log(val)
-      },
-      search(val) {
-        //Items have already been loaded
-        if (val < 3) return
 
-        this.isLoading = true
-
-        const requestOptions = {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({name: val, $hide_loading_feedback: true})
-        }
-
-        // Lazily load input items
-        fetch("http://api.busca-ativa-escolar.test/api/v1/open/schools", requestOptions)
-          .then(res => res.clone().json())
-          .then(res => {
-            this.items = res
-          })
-          .catch(err => {
-            console.log(err)
-          })
-          .finally(() => (this.isLoading = false))
-      },
     },
 
   }
