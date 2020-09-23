@@ -372,9 +372,7 @@
         this.uf = value.uf
         this.city = value.city
       },
-      createQuest()
-
-
+      createQuest(){}
     },
 
     watch: {
