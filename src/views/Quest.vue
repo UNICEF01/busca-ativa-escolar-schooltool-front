@@ -168,7 +168,7 @@
 
 <script>
   import Estados from "../components/core/CitySelect";
-  // import { db } from "../firebaseDb";
+  import { db } from "./../firebaseDb";
 
 
   export default {
@@ -997,7 +997,8 @@
         console.log(value)
         this.uf = value.uf
         this.city = value.city
-      }
+      },
+      createQuest(){}
     },
 
     watch: {

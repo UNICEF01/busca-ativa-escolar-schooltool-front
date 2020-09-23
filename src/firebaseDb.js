@@ -1,4 +1,6 @@
 import * as firebase from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/firestore'
 
 var firebaseConfig = {
   apiKey: "AIzaSyAd9mp0P5HdUGGJE575dpD5j8dqM26jNF8",
@@ -12,7 +14,7 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+//firebase.analytics(); -> é necessário?
 
 // utils
 const db = firebase.firestore()
