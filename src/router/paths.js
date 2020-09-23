@@ -21,7 +21,7 @@ export default [
   },
   {
     path: '/pesquisa',
-    name: 'Quest/Wash',
+    name: 'Titulo da pesquisa...',
     view: 'Quest'
   },
   {
