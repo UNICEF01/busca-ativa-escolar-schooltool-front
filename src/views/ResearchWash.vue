@@ -43,7 +43,7 @@
 
 <script>
 
-  import { db, auth, usersCollection } from "./../firebaseDb";
+  import { db, auth, usersCollection } from "./../firebase";
 
   export default {
 

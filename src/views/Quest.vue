@@ -50,6 +50,16 @@
                     @click:append="showPasword2 = !showPasword2"/>
                 </v-flex>
 
+
+                <v-flex md12>
+                  <label>Qual o tipo de relação você tem com a escola?</label>
+                  <v-radio-group v-model="user.relacao" row>
+                    <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
+                  </v-radio-group>
+                  <v-text-field md6 v-if="user.relacao === 'Outros'" label="Qual?" class="purple-input" v-model="user.relacao.outros" :rules="[rules.required]"/>
+
+                </v-flex>
+
                 <Estados @childToParent="onChildClick"></Estados>
 
                 <v-flex xs12 md12>
@@ -155,7 +165,7 @@
 
 <script>
   import Estados from "../components/core/CitySelect";
-  import { db, auth, usersCollection } from "./../firebaseDb";
+  import { db, auth, usersCollection } from "./../firebase";
 
   export default {
     components: {Estados},

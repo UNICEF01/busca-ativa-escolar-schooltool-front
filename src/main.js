@@ -17,7 +17,7 @@ import i18n from '@/i18n'
 import router from '@/router'
 import store from '@/store'
 
-import { auth } from './firebaseDb.js'
+import { auth } from './firebase.js'
 
 
 // Sync store with router
