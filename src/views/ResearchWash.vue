@@ -12,33 +12,51 @@
 
           <h5 class="headline">{{group.group}}</h5>
 
-          <material-card v-for="item in group.questions" :key="item.id"
-                         class="card-tabs"
-                         color="cyan"
-                         elevation="3">
+          <v-form ref="form_research" lazy-validation>
 
-            <v-flex slot="header">
+              <material-card v-for="item in group.questions" :key="item.id"
+                             class="card-tabs"
+                             color="cyan"
+                             elevation="3">
 
-              <span
-                class="subheading font-weight-light mr-3"
-                style="align-self: center"
-                v-html="item.answer"
-              ></span>
+                <v-flex slot="header">
 
-            </v-flex>
+                  <span
+                    class="subheading font-weight-light mr-3"
+                    style="align-self: center"
+                    v-html="item.answer"
+                  ></span>
 
-            <v-radio-group v-model="item.selected">
-              <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
-            </v-radio-group>
+                </v-flex>
 
-          </material-card>
+                <v-radio-group v-model="item.selected">
+                  <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
+                </v-radio-group>
+
+              </material-card>
+
+
+              <v-btn @click="save()" class="font-weight-light" color="success">
+                Salvar
+              </v-btn>
+
+          </v-form>
 
         </div>
+
+        <br/>
+        <br/>
+        <hr>
+
+        <v-btn @click="save()" class="font-weight-light" color="success" disabled>
+          Gerar relatório final
+        </v-btn>
 
       </v-flex>
 
     </v-layout>
   </v-container>
+
 </template>
 
 <script>
@@ -47,13 +65,10 @@
 
   export default {
 
-    created() {
-      console.log(auth.currentUser)
-    },
-
     data() {
       return {
         logged: false,
+        user: {},
         quest: [
 
           {
@@ -298,7 +313,6 @@
                   }
                 ]
               },
-
               {
                 id: 11,
                 answer: '<span>O piso, a maçaneta da porta, a área dos banheiros e sanitários são limpos pelo menos uma vez por dia com água e detergente, e são desinfectados com água sanitária.</span>',
@@ -321,7 +335,6 @@
                   }
                 ]
               },
-
               {
                 id: 12,
                 answer: '<span>Todos os banheiros têm um local para a lavagem de mãos com água e sabão em um raio mínimo de 5 metros.</span>',
@@ -344,7 +357,6 @@
                   }
                 ]
               },
-
               {
                 id: 13,
                 answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e sanitários e em locais estratégicos nas dependências da escola, e se recolhe diariamente o lixo de forma segura.</span>',
@@ -367,7 +379,6 @@
                   }
                 ]
               },
-
               {
                 id: 14,
                 answer: '<span>Os resíduos sólidos (lixo) da escola são descartados de forma segura.</span>',
@@ -389,8 +400,7 @@
                     value: 0,
                   }
                 ]
-              },
-
+              }
             ]
           },
 
@@ -419,7 +429,6 @@
                   }
                 ]
               },
-
               {
                 id: 16,
                 answer: '<span>Há pessoal designado e informado, professores, equipe de limpeza, funcionários, estudantes mais velhos, membros da comunidade ou associações que atuem no tema de água e saneamento e de Prevenção e Controle de Doenças Transmissíveis para supervisionar os locais de lavagem de mãos e banheiros (disponibilidade de água e sabão, manutenção, comportamento de lavagem de mãos e respeito às normas de distanciamento físico, etc).</span>',
@@ -442,7 +451,6 @@
                   }
                 ]
               },
-
               {
                 id: 17,
                 answer: '<span>Há um planejamento claro e detalhando para a limpeza de toda a dependência escolar, que é supervisionada e aplicada.</span>',
@@ -465,7 +473,6 @@
                   }
                 ]
               },
-
               {
                 id: 18,
                 answer: '<span>Estão disponíveis equipamentos de proteção individual (máscaras, luvas) para a equipe de limpeza, e materiais de limpeza apropriados e bem armazenados (detergente, esfregão, vassouras, baldes, etc.).</span>',
@@ -488,7 +495,6 @@
                   }
                 ]
               },
-
               {
                 id: 19,
                 answer: '<span>É respeitada a distância física entre os professores e os estudantes nas salas de aula (pelo menos 1,5 metro), e entre os estudantes.</span>',
@@ -533,7 +539,6 @@
                   }
                 ]
               },
-
               {
                 id: 21,
                 answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementado e respeitada.</span>',
@@ -556,7 +561,6 @@
                   }
                 ]
               },
-
               {
                 id: 22,
                 answer: '<span>A equipe da cozinha usa máscaras e dispõe de locais para a lavagem ou produtos desinfectantes para as mãos.</span>',
@@ -579,7 +583,6 @@
                   }
                 ]
               },
-
               {
                 id: 23,
                 answer: '<span>As salas de aulas têm uma boa ventilação natural.</span>',
@@ -598,7 +601,6 @@
                   }
                 ]
               },
-
               {
                 id: 24,
                 answer: '<span>Existe um protocolo para identificar os estudantes com sintomas e informar às autoridades sanitárias.</span>',
@@ -621,7 +623,6 @@
                   }
                 ]
               },
-
               {
                 id: 25,
                 answer: '<span>A escola dispõe de um espaço privado, designado para o isolamento de estudantes com sintomas de COVID -19, onde possam aguardar que seus responsáveis os busquem.</span>',
@@ -644,7 +645,6 @@
                   }
                 ]
               },
-
               {
                 id: 26,
                 answer: '<span>A escola tem uma reserva de máscaras para uso dos estudantes, que tenham sido identificados com sintomas de COVID, até que seus responsáveis os busquem.</span>',
@@ -667,7 +667,6 @@
                   }
                 ]
               },
-
               {
                 id: 27,
                 answer: '<span>Na escola onde se recomenda o uso de máscaras, todos os estudantes têm acesso a máscaras (em particular estudantes de famílias mais vulneráveis).</span>',
@@ -690,7 +689,6 @@
                   }
                 ]
               },
-
               {
                 id: 28,
                 answer: '<span>Há uma lista de controle para uso da equipe de limpeza e funcionários para monitorar os pontos críticos.</span>',
@@ -713,20 +711,70 @@
                   }
                 ]
               }
-
             ]
           }
         ]
       }
     },
 
+    created() {
+
+      var docRef = db.collection("users").doc(auth.currentUser.uid);
+
+      docRef.get().then(function(doc) {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+        } else {
+          //this.toast('error', 'Usuário não localizado');
+        }
+      }).catch(function(error) {
+        //this.toast('error', 'Usuário não localizado');
+      });
+
+    },
+
     methods: {
 
+      toast(type, message){
+
+          this.$toast.open({
+            message: message,
+            type: type,
+            position: 'top'
+          });
+
+      },
+
+      save(){
+
+        //Ainda precisa pegar o user completo para mandar junto ao form!
+
+        // db.collection("users")
+        //   .doc(auth.currentUser.uid)
+        //   .set(this.user)
+        //   .then(function () {
+        //       this.$toast.open({
+        //         message: 'Pesquisa atualizada com sucesso!',
+        //         type: 'success',
+        //         position: 'top'
+        //       });
+        //   })
+        //   .catch(function (error) {
+        //
+        //     this.$toast.open({
+        //       message: 'Erro ao atualizar a pesquisa!',
+        //       type: 'error',
+        //       position: 'top'
+        //     });
+        //
+        //   });
+
+      }
     },
 
     watch: {
 
-    },
+    }
 
   }
 
