@@ -15,15 +15,17 @@
               <v-layout wrap>
 
                 <v-flex xs12 md4>
-                  <v-text-field label="Nome Completo" v-model="user.name" :rules="[rules.required]" />
+                  <v-text-field label="Nome Completo" v-model="user.name" :rules="[rules.required]"/>
                 </v-flex>
 
                 <v-flex xs12 md4>
-                  <v-text-field class="purple-input" label="E-mail" v-model="user.email" :rules="[rules.required, rules.email]"/>
+                  <v-text-field class="purple-input" label="E-mail" v-model="user.email"
+                                :rules="[rules.required, rules.email]"/>
                 </v-flex>
 
                 <v-flex xs12 md4>
-                  <v-text-field label="Telefone" class="purple-input" v-model="user.telefone" :rules="[rules.required]"/>
+                  <v-text-field label="Telefone" class="purple-input" v-model="user.telefone"
+                                :rules="[rules.required]"/>
                 </v-flex>
 
                 <v-flex xs12 md6>
@@ -50,15 +52,6 @@
                     @click:append="showPasword2 = !showPasword2"/>
                 </v-flex>
 
-
-                <v-flex md12>
-                  <label>Qual o tipo de relação você tem com a escola?</label>
-                  <v-radio-group v-model="user.relacao" row>
-                    <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
-                  </v-radio-group>
-                  <v-text-field md6 v-if="user.relacao === 'Outros'" label="Qual?" class="purple-input" v-model="user.relacao.outros" :rules="[rules.required]"/>
-
-                </v-flex>
 
                 <Estados @childToParent="onChildClick"></Estados>
 
@@ -98,63 +91,78 @@
 
                 </v-flex>
 
+                <v-flex md12>
+                  <label>Qual o tipo de relação você tem com a escola?</label>
+                  <v-radio-group v-model="user.relation" row>
+                    <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
+                  </v-radio-group>
+                </v-flex>
+
+                <v-flex md12>
+                  <v-text-field md6 v-if="user.relation === 'Outros'" label="Qual?" class="purple-input"
+                                v-model="user.relation.outros" :rules="[rules.required]"/>
+                </v-flex>
+
               </v-layout>
 
             </v-container>
 
-            <v-flex xs12 text-xs-right>
-              <v-btn @click="start()" class="mx-0 font-weight-light" color="success">
+            <v-flex xs12 class="d-flex justify-space-between">
+              <v-dialog v-model="dialog" width="500">
+
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn v-bind="attrs" v-on="on" color="warning">
+                    Continuar de onde parou
+                  </v-btn>
+                </template>
+
+                <v-card>
+                  <v-card-title class="headline grey lighten-2">
+                    Forneça seus dados
+                  </v-card-title>
+
+                  <v-form>
+                    <v-container fluid>
+                      <v-flex xs12>
+                        <v-text-field label="Email" v-model="user.email"/>
+                      </v-flex>
+
+                      <v-flex xs12>
+                        <v-text-field label="Senha" v-model="user.password"/>
+                      </v-flex>
+
+                    </v-container>
+                  </v-form>
+
+                  <v-divider></v-divider>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="default" text @click="dialog = false">
+                      Recuperar senha
+                    </v-btn>
+                    <v-btn color="default" text @click="dialog = false">
+                      Fechar
+                    </v-btn>
+                    <v-btn color="success" text @click="login()">
+                      Login
+                    </v-btn>
+                  </v-card-actions>
+                </v-card>
+
+              </v-dialog>
+
+              <v-spacer></v-spacer>
+              <v-btn @click="start()" class="font-weight-light" color="success">
                 Começar
               </v-btn>
             </v-flex>
+
 
           </v-form>
 
         </material-card>
 
-        <v-dialog v-model="dialog" width="500">
-
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" color="warning">
-              Continuar de onde parou
-            </v-btn>
-          </template>
-
-          <v-card>
-            <v-card-title class="headline grey lighten-2">
-              Forneça seus dados
-            </v-card-title>
-
-            <v-form>
-              <v-container fluid>
-                <v-flex xs12>
-                  <v-text-field label="Email" v-model="user.email"/>
-                </v-flex>
-
-                <v-flex xs12>
-                  <v-text-field label="Senha" v-model="user.password"/>
-                </v-flex>
-
-              </v-container>
-            </v-form>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="default" text @click="dialog = false">
-                Recuperar senha
-              </v-btn>
-              <v-btn color="default" text @click="dialog = false">
-                Fechar
-              </v-btn>
-              <v-btn color="success" text @click="login()">
-                Login
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-
-        </v-dialog>
 
       </v-flex>
 
@@ -165,7 +173,7 @@
 
 <script>
   import Estados from "../components/core/CitySelect";
-  import { db, auth, usersCollection } from "./../firebase";
+  import {db, auth, usersCollection} from "./../firebase";
 
   export default {
     components: {Estados},
@@ -177,7 +185,9 @@
           password: '',
           confirmPassword: '',
           error: '',
-          telefone: ''
+          telefone: '',
+          uf: '',
+          city: ''
         },
         showPasword1: false,
         showPasword2: false,
@@ -1012,19 +1022,32 @@
         this.city = value.city
       },
 
-      async start(){
-        if ( this.$refs.form_register.validate() ){
+      async start() {
+        if (this.$refs.form_register.validate()) {
           try {
-            const user = auth.createUserWithEmailAndPassword(this.user.email, this.user.password);
-            //console.log(user);
-            this.$router.push({path: '/pesquisa/wash'})
-          }catch (error) {
-            //console.log(error)
+            const user = auth.createUserWithEmailAndPassword(this.user.email, this.user.password).then((user) => {
+
+              this.user.uid = user.user.uid
+              this.user.name = this.user.name.trim()
+              this.user.dt_create = new Date()
+
+              db.collection("users").doc(user.user.uid).set(this.user)
+                .then(function () {
+                  console.log("Document successfully written!");
+                })
+                .catch(function (error) {
+                  console.error("Error writing document: ", error);
+                });
+              //console.log(user);
+              this.$router.push({path: '/pesquisa/wash'})
+            })
+          } catch (error) {
+            console.log(error)
           }
         }
       },
 
-      login(){
+      login() {
         alert();
       }
 
