@@ -19,7 +19,7 @@
                 </v-flex>
 
                 <v-flex xs12 md4>
-                  <v-text-field class="purple-input" label="E-mail" v-model="user.email"
+                  <v-text-field class="purple-input" label="E-mail" v-model="login.email"
                                 :rules="[rules.required, rules.email]"/>
                 </v-flex>
 
@@ -32,7 +32,7 @@
                   <v-text-field
                     class="purple-input"
                     label="Senha"
-                    v-model="user.password"
+                    v-model="login.password"
                     :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="[rules.required, rules.min]"
                     :type="showPasword1 ? 'text' : 'password'"
@@ -44,7 +44,7 @@
                   <v-text-field
                     class="purple-input"
                     label="Confirme a senha"
-                    v-model="user.confirmPassword"
+                    v-model="login.confirmPassword"
                     :append-icon="showPasword2 ? 'mdi-eye' : 'mdi-eye-off'"
                     :rules="[rules.required, rules.min, rules.passMatch]"
                     :type="showPasword2 ? 'text' : 'password'"
@@ -111,7 +111,7 @@
               <v-dialog v-model="dialog" width="500">
 
                 <template v-slot:activator="{ on, attrs }">
-                  <v-btn v-bind="attrs" v-on="on" color="warning">
+                  <v-btn v-bind="attrs" v-on="on" color="warning" @click="checkAutenticate()">
                     Continuar de onde parou
                   </v-btn>
                 </template>
@@ -121,14 +121,22 @@
                     Forneça seus dados
                   </v-card-title>
 
-                  <v-form>
+                  <v-form ref="form_login" lazy-validation>
                     <v-container fluid>
                       <v-flex xs12>
-                        <v-text-field label="Email" v-model="user.email"/>
+                        <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
                       </v-flex>
 
                       <v-flex xs12>
-                        <v-text-field label="Senha" v-model="user.password"/>
+                        <v-text-field
+                          class="purple-input"
+                          label="Senha"
+                          v-model="login.password"
+                          :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
+                          :rules="[rules.required, rules.min]"
+                          :type="showPasword1 ? 'text' : 'password'"
+                          counter
+                          @click:append="showPasword1 = !showPasword1"/>
                       </v-flex>
 
                     </v-container>
@@ -144,7 +152,7 @@
                     <v-btn color="default" text @click="dialog = false">
                       Fechar
                     </v-btn>
-                    <v-btn color="success" text @click="login()">
+                    <v-btn color="success"  @click="loginUser()">
                       Login
                     </v-btn>
                   </v-card-actions>
@@ -179,12 +187,13 @@
     components: {Estados},
     data() {
       return {
-
-        user: {
+        login: {
           email: '',
           password: '',
           confirmPassword: '',
           error: '',
+        },
+        user: {
           telefone: '',
           uf: '',
           city: ''
@@ -1015,17 +1024,23 @@
       }
     },
     methods: {
+      checkAutenticate(){
+
+        if(auth.currentUser){
+          this.$router.push({path: '/wash'})
+        }
+
+      },
       // Triggered when `childToParent` event is emitted by the child.
       onChildClick(value) {
-        console.log(value)
-        this.uf = value.uf
-        this.city = value.city
+        this.user.uf = value.uf
+        this.user.city = value.city
       },
 
       async start() {
         if (this.$refs.form_register.validate()) {
           try {
-            const user = auth.createUserWithEmailAndPassword(this.user.email, this.user.password).then((user) => {
+            const user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
 
               this.user.uid = user.user.uid
               this.user.name = this.user.name.trim()
@@ -1033,22 +1048,30 @@
 
               db.collection("users").doc(user.user.uid).set(this.user)
                 .then(function () {
-                  console.log("Document successfully written!");
+                  console.log()
                 })
                 .catch(function (error) {
-                  console.error("Error writing document: ", error);
+                  console.error(error)
                 });
               //console.log(user);
-              this.$router.push({path: '/pesquisa/wash'})
+              this.$router.push({path: '/wash'})
             })
           } catch (error) {
             console.log(error)
           }
         }
       },
-
-      login() {
-        alert();
+      loginUser() {
+        if (this.$refs.form_login.validate()) {
+          try {
+            const user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+              //console.log(user);
+              this.$router.push({path: '/wash'})
+            })
+          } catch (error) {
+            console.log(error)
+          }
+        }
       }
 
     },

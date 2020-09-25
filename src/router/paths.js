@@ -20,14 +20,17 @@ export default [
     view: 'ChildList'
   },
   {
-    path: '/pesquisa',
+    path: '/quest',
     name: 'Titulo da pesquisa...',
     view: 'Quest'
   },
   {
-    path: '/pesquisa/wash',
+    path: '/wash',
     name: 'Titulo da pesquisa...',
-    view: 'ResearchWash'
+    view: 'ResearchWash',
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/typography',

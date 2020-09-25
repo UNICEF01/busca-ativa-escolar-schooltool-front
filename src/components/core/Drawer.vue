@@ -12,6 +12,7 @@
     <v-img
       :src="image"
       height="100%">
+
       <v-layout
         class="fill-height"
         tag="v-list"
@@ -20,9 +21,10 @@
           <v-img
             :src="logo"
             height="50"
-            contain />
+            contain/>
         </v-list-tile>
-        <v-divider />
+
+        <v-divider/>
         <v-list-tile v-if="responsive">
           <v-text-field
             class="purple-input search-input"
@@ -30,18 +32,18 @@
             color="purple"
           />
         </v-list-tile>
-        <v-list-tile
-          v-for="(link, i) in links"
-          :key="i"
-          :to="link.to"
-          :active-class="color"
-          avatar
-          :class="'v-list-item '+color"
+        <v-list-tile v-if="showButtom"
+                     v-for="(link, i) in links"
+                     :key="i"
+                     :to="link.to"
+                     :active-class="color"
+                     avatar
+                     :class="'v-list-item '+color"
         >
           <v-list-tile-action>
             <v-icon>{{ link.icon }}</v-icon>
           </v-list-tile-action>
-          <v-list-tile-title v-text="link.text" />
+          <v-list-tile-title v-text="link.text"/>
         </v-list-tile>
 
         <v-list-tile
@@ -61,86 +63,98 @@
 </template>
 
 <script>
-// Utilities
-import { mapMutations, mapState } from 'vuex'
+  // Utilities
+  import {mapMutations, mapState} from 'vuex'
+  import {auth} from './../../firebase.js'
 
-export default {
-  data: () => ({
-    logo:
-      'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png',
-    links: [
-      // {
-      //   to: '/dashboard',
-      //   icon: 'mdi-view-dashboard',
-      //   text: 'Dashboard'
-      // },
-      // {
-      //   to: '/user-profile',
-      //   icon: 'mdi-account',
-      //   text: 'Sua escola'
-      // },
-      {
-        to: '/children',
-        icon: 'mdi-clipboard-outline',
-        text: 'Crianças / Adolescentes'
-      }
-    ],
-    responsive: false
-  }),
-  computed: {
-    ...mapState('app', ['image', 'color']),
-    inputValue: {
-      get () {
-        return this.$store.state.app.drawer
+  export default {
+    data: () => ({
+      showButtom: false,
+      user: '',
+      logo:
+        'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png',
+      links: [
+        // {
+        //   to: '/dashboard',
+        //   icon: 'mdi-view-dashboard',
+        //   text: 'Dashboard'
+        // },
+        // {
+        //   to: '/user-profile',
+        //   icon: 'mdi-account',
+        //   text: 'Sua escola'
+        // },
+        {
+          to: '/children',
+          icon: 'mdi-clipboard-outline',
+          text: 'Crianças / Adolescentes'
+        }
+      ],
+      responsive: false
+    }),
+    computed: {
+      ...mapState('app', ['image', 'color']),
+      inputValue: {
+        get() {
+          return this.$store.state.app.drawer
+        },
+        set(val) {
+          this.setDrawer(val)
+        }
       },
-      set (val) {
-        this.setDrawer(val)
-      }
+      items() {
+        return this.$t('Layout.View.items')
+      },
     },
-    items () {
-      return this.$t('Layout.View.items')
-    }
-  },
-  mounted () {
-    this.onResponsiveInverted()
-    window.addEventListener('resize', this.onResponsiveInverted)
-  },
-  beforeDestroy () {
-    window.removeEventListener('resize', this.onResponsiveInverted)
-  },
-  methods: {
-    ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
-    onResponsiveInverted () {
-      if (window.innerWidth < 991) {
-        this.responsive = true
-      } else {
-        this.responsive = false
+    mounted() {
+
+      this.onResponsiveInverted()
+      window.addEventListener('resize', this.onResponsiveInverted)
+
+      this.user = auth.currentUser || '';
+
+      if (window.location.pathname === '/') {
+        this.showButtom = true;
+      }
+
+    },
+    beforeDestroy() {
+      window.removeEventListener('resize', this.onResponsiveInverted)
+
+    },
+    methods: {
+      ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
+      onResponsiveInverted() {
+        if (window.innerWidth < 991) {
+          this.responsive = true
+        } else {
+          this.responsive = false
+        }
       }
     }
   }
-}
 </script>
 
 <style lang="scss">
-#app-drawer {
-  .v-list__tile {
-    border-radius: 4px;
+  #app-drawer {
+    .v-list__tile {
+      border-radius: 4px;
 
-    &--buy {
-      margin-top: auto;
-      margin-bottom: 17px;
+      &--buy {
+        margin-top: auto;
+        margin-bottom: 17px;
+      }
+    }
+
+    .v-image__image--contain {
+      top: 9px;
+      height: 60%;
+    }
+
+    .search-input {
+      margin-bottom: 30px !important;
+      padding-left: 15px;
+      padding-right: 15px;
     }
   }
-
-  .v-image__image--contain {
-    top: 9px;
-    height: 60%;
-  }
-
-  .search-input {
-    margin-bottom: 30px !important;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
 </style>
