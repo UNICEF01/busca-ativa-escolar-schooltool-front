@@ -12,7 +12,6 @@
     <v-img
       :src="image"
       height="100%">
-
       <v-layout
         class="fill-height"
         tag="v-list"
@@ -23,6 +22,7 @@
             height="50"
             contain/>
         </v-list-tile>
+        Bem vindo(a) {{user.displayName}}
 
         <v-divider/>
         <v-list-tile v-if="responsive">
@@ -112,6 +112,8 @@
       window.addEventListener('resize', this.onResponsiveInverted)
 
       this.user = auth.currentUser || '';
+
+      console.log('aqui',this.user)
 
       if (window.location.pathname === '/') {
         this.showButtom = true;

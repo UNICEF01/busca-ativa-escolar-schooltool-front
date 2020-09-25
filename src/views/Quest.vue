@@ -202,8 +202,8 @@
         showPasword2: false,
         rules: {
           required: value => !!value || 'Obrigatório.',
-          min: v => v.length >= 8 || 'Mínimo 6 caracteres',
-          passMatch: v => v === this.user.password || 'As senhas não correspondem',
+          min: v => v.length >= 6 || 'Mínimo 6 caracteres',
+          passMatch: v => v === this.login.password || 'As senhas não correspondem',
           email: v => /.+@.+\..+/.test(v) || 'E-mail inválido',
         },
         formHasErrors: false,
@@ -1045,6 +1045,10 @@
               this.user.uid = user.user.uid
               this.user.name = this.user.name.trim()
               this.user.dt_create = new Date()
+
+              user.user.updateProfile({
+                displayName: this.user.name
+              })
 
               db.collection("users").doc(user.user.uid).set(this.user)
                 .then(function () {
