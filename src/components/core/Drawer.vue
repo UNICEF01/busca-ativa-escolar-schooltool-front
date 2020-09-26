@@ -27,17 +27,20 @@
           Bem Vindo(a)!
         </v-card-actions>
         <v-card-actions class="justify-center">
-         {{user.displayName}}
+          {{user.displayName}}
         </v-card-actions>
+        <v-btn v-if="user.uid !== undefined" @click="logout()" class="font-weight-light" :class="color">
+          Sair
+        </v-btn>
 
         <v-divider/>
-<!--        <v-list-tile v-if="responsive">-->
-<!--          <v-text-field-->
-<!--            class="purple-input search-input"-->
-<!--            label="Pesquisar..."-->
-<!--            color="purple"-->
-<!--          />-->
-<!--        </v-list-tile>-->
+        <!--        <v-list-tile v-if="responsive">-->
+        <!--          <v-text-field-->
+        <!--            class="purple-input search-input"-->
+        <!--            label="Pesquisar..."-->
+        <!--            color="purple"-->
+        <!--          />-->
+        <!--        </v-list-tile>-->
         <v-list-tile v-if="showButtom"
                      v-for="(link, i) in links"
                      :key="i"
@@ -119,8 +122,6 @@
 
       this.user = auth.currentUser || '';
 
-      console.log('aqui',this.user)
-
       if (window.location.pathname === '/') {
         this.showButtom = true;
       }
@@ -138,6 +139,13 @@
         } else {
           this.responsive = false
         }
+      },
+      logout() {
+        auth.signOut().then(function () {
+          alert('saiu')
+        }).catch(function (error) {
+          // An error happened.
+        });
       }
     }
   }

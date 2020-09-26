@@ -1068,7 +1068,7 @@
       loginUser() {
         if (this.$refs.form_login.validate()) {
           try {
-            const user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+            const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               //console.log(user);
               this.$router.push({path: '/wash'})
             })

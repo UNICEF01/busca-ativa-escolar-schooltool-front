@@ -16,7 +16,7 @@
 
             <material-card v-for="item in group.questions" :key="item.id"
                            class="card-tabs"
-                           color="cyan"
+                           :color="color"
                            elevation="3">
 
               <v-flex slot="header">
@@ -62,6 +62,7 @@
 <script>
 
   import {db, auth, usersCollection} from "./../firebase";
+  import {mapMutations, mapState} from 'vuex'
 
   export default {
 
@@ -717,6 +718,10 @@
       }
     },
 
+    computed: {
+      ...mapState('app', ['image', 'color'])
+    },
+
     created() {
 
       var docRef = db.collection("users").doc(auth.currentUser.uid);
@@ -750,7 +755,9 @@
         //Ainda precisa pegar o user completo para mandar junto ao form!
         let id = auth.currentUser.uid;
 
-        let checkSave = await db.collection("users").doc(id).update(Object.assign({}, this.quest)).then(function (resp) {
+        this.user.quest = this.quest;
+
+        let checkSave = await db.collection("users").doc(id).update(Object.assign({}, this.user)).then(function (resp) {
           return true;
         })
           .catch(function (error) {
