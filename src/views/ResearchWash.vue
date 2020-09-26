@@ -14,12 +14,12 @@
 
           <v-form ref="form_research" lazy-validation>
 
-              <material-card v-for="item in group.questions" :key="item.id"
-                             class="card-tabs"
-                             color="cyan"
-                             elevation="3">
+            <material-card v-for="item in group.questions" :key="item.id"
+                           class="card-tabs"
+                           color="cyan"
+                           elevation="3">
 
-                <v-flex slot="header">
+              <v-flex slot="header">
 
                   <span
                     class="subheading font-weight-light mr-3"
@@ -27,18 +27,18 @@
                     v-html="item.answer"
                   ></span>
 
-                </v-flex>
+              </v-flex>
 
-                <v-radio-group v-model="item.selected">
-                  <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
-                </v-radio-group>
+              <v-radio-group v-model="item.selected">
+                <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
+              </v-radio-group>
 
-              </material-card>
+            </material-card>
 
 
-              <v-btn @click="save()" class="font-weight-light" color="success">
-                Salvar
-              </v-btn>
+            <v-btn @click="save()" class="font-weight-light" color="success">
+              Salvar
+            </v-btn>
 
           </v-form>
 
@@ -61,7 +61,7 @@
 
 <script>
 
-  import { db, auth, usersCollection } from "./../firebase";
+  import {db, auth, usersCollection} from "./../firebase";
 
   export default {
 
@@ -721,13 +721,13 @@
 
       var docRef = db.collection("users").doc(auth.currentUser.uid);
 
-      docRef.get().then(function(doc) {
+      docRef.get().then(function (doc) {
         if (doc.exists) {
           console.log("Document data:", doc.data());
         } else {
           //this.toast('error', 'Usuário não localizado');
         }
-      }).catch(function(error) {
+      }).catch(function (error) {
         //this.toast('error', 'Usuário não localizado');
       });
 
@@ -735,46 +735,44 @@
 
     methods: {
 
-      toast(type, message){
+      toast(type, message) {
 
-          this.$toast.open({
-            message: message,
-            type: type,
-            position: 'top'
-          });
+        this.$toast.open({
+          message: message,
+          type: type,
+          position: 'top'
+        });
 
       },
 
-      save(){
+      async save() {
 
         //Ainda precisa pegar o user completo para mandar junto ao form!
+        let id = auth.currentUser.uid;
 
-        // db.collection("users")
-        //   .doc(auth.currentUser.uid)
-        //   .set(this.user)
-        //   .then(function () {
-        //       this.$toast.open({
-        //         message: 'Pesquisa atualizada com sucesso!',
-        //         type: 'success',
-        //         position: 'top'
-        //       });
-        //   })
-        //   .catch(function (error) {
-        //
-        //     this.$toast.open({
-        //       message: 'Erro ao atualizar a pesquisa!',
-        //       type: 'error',
-        //       position: 'top'
-        //     });
-        //
-        //   });
-
+        let checkSave = await db.collection("users").doc(id).update(Object.assign({}, this.quest)).then(function (resp) {
+          return true;
+        })
+          .catch(function (error) {
+            return false;
+          });
+        if (checkSave) {
+          this.$toast.open({
+            message: 'Pesquisa atualizada com sucesso!',
+            type: 'success',
+            position: 'top'
+          });
+        } else {
+          this.$toast.open({
+            message: 'Erro ao atualizar a pesquisa!',
+            type: 'error',
+            position: 'top'
+          });
+        }
       }
     },
 
-    watch: {
-
-    }
+    watch: {}
 
   }
 

@@ -22,16 +22,22 @@
             height="50"
             contain/>
         </v-list-tile>
-        Bem vindo(a) {{user.displayName}}
+
+        <v-card-actions class="justify-center">
+          Bem Vindo(a)!
+        </v-card-actions>
+        <v-card-actions class="justify-center">
+         {{user.displayName}}
+        </v-card-actions>
 
         <v-divider/>
-        <v-list-tile v-if="responsive">
-          <v-text-field
-            class="purple-input search-input"
-            label="Pesquisar..."
-            color="purple"
-          />
-        </v-list-tile>
+<!--        <v-list-tile v-if="responsive">-->
+<!--          <v-text-field-->
+<!--            class="purple-input search-input"-->
+<!--            label="Pesquisar..."-->
+<!--            color="purple"-->
+<!--          />-->
+<!--        </v-list-tile>-->
         <v-list-tile v-if="showButtom"
                      v-for="(link, i) in links"
                      :key="i"
