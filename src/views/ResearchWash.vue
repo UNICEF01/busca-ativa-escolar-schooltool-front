@@ -30,15 +30,15 @@
               </v-flex>
 
               <v-radio-group v-model="item.selected">
-                <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
+                <v-radio v-for="n in item.response" :label="n.name" :value="n.value" @change="save()"></v-radio>
               </v-radio-group>
 
             </material-card>
 
 
-            <v-btn @click="save()" class="font-weight-light" color="success">
-              Salvar
-            </v-btn>
+<!--            <v-btn @click="save()" class="font-weight-light" color="success">-->
+<!--              Salvar-->
+<!--            </v-btn>-->
 
           </v-form>
 
@@ -48,7 +48,7 @@
         <br/>
         <hr>
 
-        <v-btn @click="save()" class="font-weight-light" color="success" disabled>
+        <v-btn @click="save()" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
           Gerar relatório final
         </v-btn>
 
@@ -78,7 +78,7 @@
               {
                 id: 1,
                 answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -100,7 +100,7 @@
               {
                 id: 2,
                 answer: '<span>Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante, pelo menos, dois dias.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -122,7 +122,7 @@
               {
                 id: 3,
                 answer: '<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde [Portaria nº 2.914/2011 do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)] ou da Organização Mundial da Saúde (OMS).</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -150,7 +150,7 @@
               {
                 id: 4,
                 answer: '<span>Há locais para a lavagem de mãos com água e sabão na entrada da escola.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -172,7 +172,7 @@
               {
                 id: 5,
                 answer: '<span>Há locais para a lavagem de mãos com água e sabão na frente das salas de aula e a menos de 5 metros de cada banheiro.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -194,7 +194,7 @@
               {
                 id: 6,
                 answer: '<span>São organizadas atividades de lavagem de mãos para todos os estudantes pelo menos três vezes por dia na escola.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -223,7 +223,7 @@
                   '<br/> iv) cesto de lixo com tampa' +
                   '<br/> v) pias para lavagem das mãos perto dos banheiros.' +
                   '</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -251,7 +251,7 @@
               {
                 id: 8,
                 answer: '<span>A escola tem um número suficiente de banheiros ou vasos sanitários funcionando para uso dos estudantes.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -273,7 +273,7 @@
               {
                 id: 9,
                 answer: '<span>Os banheiros ou sanitários estão claramente separados para meninos e meninas.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -295,7 +295,7 @@
               {
                 id: 10,
                 answer: '<span>A escola tem um número suficiente de banheiros ou sanitários para os professores e funcionários.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -317,7 +317,7 @@
               {
                 id: 11,
                 answer: '<span>O piso, a maçaneta da porta, a área dos banheiros e sanitários são limpos pelo menos uma vez por dia com água e detergente, e são desinfectados com água sanitária.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -339,7 +339,7 @@
               {
                 id: 12,
                 answer: '<span>Todos os banheiros têm um local para a lavagem de mãos com água e sabão em um raio mínimo de 5 metros.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -361,7 +361,7 @@
               {
                 id: 13,
                 answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e sanitários e em locais estratégicos nas dependências da escola, e se recolhe diariamente o lixo de forma segura.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -383,7 +383,7 @@
               {
                 id: 14,
                 answer: '<span>Os resíduos sólidos (lixo) da escola são descartados de forma segura.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -411,7 +411,7 @@
               {
                 id: 15,
                 answer: '<span>Todas as salas de aula dispõem de material informativo sobre o COVID-19 e outras doenças infecciosas.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -433,7 +433,7 @@
               {
                 id: 16,
                 answer: '<span>Há pessoal designado e informado, professores, equipe de limpeza, funcionários, estudantes mais velhos, membros da comunidade ou associações que atuem no tema de água e saneamento e de Prevenção e Controle de Doenças Transmissíveis para supervisionar os locais de lavagem de mãos e banheiros (disponibilidade de água e sabão, manutenção, comportamento de lavagem de mãos e respeito às normas de distanciamento físico, etc).</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -455,7 +455,7 @@
               {
                 id: 17,
                 answer: '<span>Há um planejamento claro e detalhando para a limpeza de toda a dependência escolar, que é supervisionada e aplicada.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -477,7 +477,7 @@
               {
                 id: 18,
                 answer: '<span>Estão disponíveis equipamentos de proteção individual (máscaras, luvas) para a equipe de limpeza, e materiais de limpeza apropriados e bem armazenados (detergente, esfregão, vassouras, baldes, etc.).</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -499,7 +499,7 @@
               {
                 id: 19,
                 answer: '<span>É respeitada a distância física entre os professores e os estudantes nas salas de aula (pelo menos 1,5 metro), e entre os estudantes.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -521,7 +521,7 @@
               {
                 id: 20,
                 answer: '<span>É implementada a distância física entre os usuários dos locais de lavagem de mãos ou enquanto fazem fila para ir ao banheiro.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -543,7 +543,7 @@
               {
                 id: 21,
                 answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementado e respeitada.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -565,7 +565,7 @@
               {
                 id: 22,
                 answer: '<span>A equipe da cozinha usa máscaras e dispõe de locais para a lavagem ou produtos desinfectantes para as mãos.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -587,7 +587,7 @@
               {
                 id: 23,
                 answer: '<span>As salas de aulas têm uma boa ventilação natural.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -605,7 +605,7 @@
               {
                 id: 24,
                 answer: '<span>Existe um protocolo para identificar os estudantes com sintomas e informar às autoridades sanitárias.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -627,7 +627,7 @@
               {
                 id: 25,
                 answer: '<span>A escola dispõe de um espaço privado, designado para o isolamento de estudantes com sintomas de COVID -19, onde possam aguardar que seus responsáveis os busquem.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -649,7 +649,7 @@
               {
                 id: 26,
                 answer: '<span>A escola tem uma reserva de máscaras para uso dos estudantes, que tenham sido identificados com sintomas de COVID, até que seus responsáveis os busquem.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -671,7 +671,7 @@
               {
                 id: 27,
                 answer: '<span>Na escola onde se recomenda o uso de máscaras, todos os estudantes têm acesso a máscaras (em particular estudantes de famílias mais vulneráveis).</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -693,7 +693,7 @@
               {
                 id: 28,
                 answer: '<span>Há uma lista de controle para uso da equipe de limpeza e funcionários para monitorar os pontos críticos.</span>',
-                selected: '',
+                selected: null,
                 response: [
                   {
                     id: 0,
@@ -728,7 +728,7 @@
 
       docRef.get().then(function (doc) {
         if (doc.exists) {
-          console.log("Document data:", doc.data());
+          //console.log("Document data:", doc.data());
         } else {
           //this.toast('error', 'Usuário não localizado');
         }
@@ -752,7 +752,6 @@
 
       async save() {
 
-        //Ainda precisa pegar o user completo para mandar junto ao form!
         let id = auth.currentUser.uid;
 
         this.user.quest = this.quest;
@@ -763,19 +762,44 @@
           .catch(function (error) {
             return false;
           });
+
         if (checkSave) {
+
           this.$toast.open({
             message: 'Pesquisa atualizada com sucesso!',
             type: 'success',
             position: 'top'
           });
+
         } else {
+
           this.$toast.open({
             message: 'Erro ao atualizar a pesquisa!',
             type: 'error',
             position: 'top'
           });
+
         }
+
+      },
+
+      isDisabledToReport(){
+
+        var questions = [];
+        var blocked = false;
+
+        this.quest.map( function (group) {
+          group.questions.map( function (question) {
+            questions.push(question);
+          });
+        });
+
+        questions.map( function (question) {
+          if (question.selected == null) { blocked = true; }
+        });
+
+        return blocked;
+
       }
     },
 
