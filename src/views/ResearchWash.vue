@@ -6,8 +6,6 @@
 
       <v-flex xs12 md8>
 
-        <div v-if="logged">LOGADO</div>
-
         <div v-for="group in quest">
 
           <h5 class="headline">{{group.group}}</h5>
@@ -30,7 +28,7 @@
               </v-flex>
 
               <v-radio-group v-model="item.selected">
-                <v-radio v-for="n in item.response" :label="n.name" :value="n.value" @change="save()"></v-radio>
+                <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
               </v-radio-group>
 
             </material-card>
@@ -726,15 +724,33 @@
 
       var docRef = db.collection("users").doc(auth.currentUser.uid);
 
-      docRef.get().then(function (doc) {
-        if (doc.exists) {
-          //console.log("Document data:", doc.data());
-        } else {
-          //this.toast('error', 'Usuário não localizado');
-        }
-      }).catch(function (error) {
-        //this.toast('error', 'Usuário não localizado');
-      });
+      docRef.get()
+        .then( (doc) => {
+
+          if (doc.exists) {
+
+            this.user = doc.data();
+
+            if( this.user.hasOwnProperty('quest') ) { this.quest = this.user.quest; }
+
+          } else {
+
+            this.$toast.open({
+              message: 'Usuário não localizado!',
+              type: 'error',
+              position: 'top'
+            });
+
+          }
+        }).catch( (error) => {
+
+          this.$toast.open({
+            message: 'Erro ao retornar os dados do usuário',
+            type: 'error',
+            position: 'top'
+          });
+
+        });
 
     },
 
@@ -800,7 +816,12 @@
 
         return blocked;
 
-      }
+      },
+
+    },
+
+    updated() {
+      this.save();
     },
 
     watch: {}
