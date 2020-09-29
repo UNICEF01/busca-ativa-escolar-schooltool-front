@@ -6,80 +6,93 @@
 
       <v-flex xs12 md8>
 
-        <div v-for="group in quest">
+        <div v-if="isReportReady == false">
+          <div v-for="group in quest">
 
-          <h5 class="headline">{{group.group}}</h5>
+            <h5 class="headline">{{group.group}}</h5>
 
-          <v-form ref="form_research" lazy-validation>
+            <v-form ref="form_research" lazy-validation>
 
-            <material-card v-for="item in group.questions" :key="item.id"
-                           class="card-tabs"
-                           :color="color"
-                           elevation="3">
+              <material-card v-for="item in group.questions" :key="item.id"
+                             class="card-tabs"
+                             :color="color"
+                             elevation="3">
 
-              <v-flex slot="header">
+                <v-flex slot="header">
 
-                  <span
-                    class="subheading font-weight-light mr-3"
-                    style="align-self: center"
-                    v-html="item.answer"
-                  ></span>
+                    <span
+                      class="subheading font-weight-light mr-3"
+                      style="align-self: center"
+                      v-html="item.answer"
+                    ></span>
 
-              </v-flex>
+                </v-flex>
 
-              <v-radio-group v-model="item.selected">
-                <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
-              </v-radio-group>
-
-            </material-card>
-
-          </v-form>
-
-        </div>
-
-        <br/>
-        <br/>
-        <hr>
-
-        <v-btn @click="isReportReady=true" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
-          Gerar relatório final
-        </v-btn>
-
-        <br/><br/>
-
-        <div v-if="isReportReady">
-
-            <h5 class="headline">Relatório</h5>
-
-            <br/>
-
-            <v-alert type="success" value="true" style="font-size: 15px;">
-              Boa situação geral, pequenas melhorias podem ser necessárias em uma ou várias áreas
-            </v-alert>
-
-            <v-alert type="warning" color="#cabf10" value="true" style="font-size: 15px;">
-              Situação geral insuficiente, podem ser necessárias grandes melhorias em uma ou várias áreas
-            </v-alert>
-
-            <v-alert type="warning" color="orange" value="true" style="font-size: 15px;">
-              Situação geral muito inadequada, são necessárias grandes melhorias em várias áreas
-            </v-alert>
-
-            <v-alert type="error" value="true" style="font-size: 15px;">
-              Situação geral crítica, são necessárias grandes melhorias o mais rápido possível em todas as áreas
-            </v-alert>
-
-            <div v-for="group in quest">
-
-              <h5 class="headline">{{group.group}}</h5>
-
-              <material-card class="card-tabs" :color="color" elevation="3">
-
-                Recomendacoes
+                <v-radio-group v-model="item.selected">
+                  <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>
+                </v-radio-group>
 
               </material-card>
 
+            </v-form>
+
+          </div>
+
+          <v-btn @click="isReportReady=true" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
+            Gerar relatório final
+          </v-btn>
+
+        </div>
+
+        <br/><br/>
+
+        <div v-if="isReportReady == true">
+
+            <h5 class="headline">Relatório</h5>
+
+            <v-alert type="success" value="true" v-if="getPercentualAnswers() > 75" style="font-size: 15px;">
+              Boa situação geral, pequenas melhorias podem ser necessárias em uma ou várias áreas
+            </v-alert>
+
+            <v-alert type="warning" value="true" color="#cabf10" v-if="getPercentualAnswers() > 50 && getPercentualAnswers() <= 75" style="font-size: 15px;">
+              Situação geral insuficiente, podem ser necessárias grandes melhorias em uma ou várias áreas
+            </v-alert>
+
+            <v-alert type="warning" color="orange" value="true" v-if="getPercentualAnswers() > 25 && getPercentualAnswers() <= 50" style="font-size: 15px;">
+              Situação geral muito inadequada, são necessárias grandes melhorias em várias áreas
+            </v-alert>
+
+            <v-alert type="error" value="true" v-if="getPercentualAnswers() <= 25" style="font-size: 15px;">
+              Situação geral crítica, são necessárias grandes melhorias o mais rápido possível em todas as áreas
+            </v-alert>
+
+          <p class="paragraph_report">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non turpis id elit condimentum consectetur vitae nec dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin sagittis semper augue, vel venenatis neque laoreet vitae. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Etiam pretium sem vel leo pulvinar volutpat. Duis vehicula facilisis eros quis accumsan. Proin vitae volutpat nisi.</p>
+
+            <div v-for="group in quest">
+
+              <h5 class="headline">{{group.group}} - {{getSumAnswersOfGroup(group.id)}} (<small>pts</small>)</h5>
+
+              <material-card class="card-tabs" :color="color" elevation="3">
+                <div>
+                  <p class="recommendation" v-for="recommendation in group.recommendations" v-html="recommendation.text" v-if="isVisibleRecommendation(group.id, recommendation.id)"></p>
+                </div>
+              </material-card>
+
+              <br/>
+
+              <material-card class="card-tabs" :color="color" elevation="3" v-if="getSumAnswersOfGroup(group.id) <= group.limitForGroupRecommendation">
+                <div>
+                  <p class="recommendation" v-html="group.groupRecommendation"></p>
+                </div>
+              </material-card>
+
             </div>
+
+          <br/><br/>
+
+          <v-btn @click="isReportReady=false" class="font-weight-light" color="warning">
+            Responder novamente
+          </v-btn>
 
         </div>
 
@@ -100,11 +113,12 @@
 
     data() {
       return {
-        logged: false,
+        isReportReady: false,
         user: {},
         quest: [
 
           {
+            id: 0,
             group: "1. Água",
             questions: [
               {
@@ -181,16 +195,19 @@
               },
               {
                 id: 2,
-                text: "<span>Secretarias de Educação ou autoridades locais devem prover reservatórios complementares de armezanamento de água. Para escolas particulares, promova a aquisição de reservatórios de água pelos gestores.</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong> Secretarias de Educação ou autoridades locais devem prover reservatórios complementares de armezanamento de água. Para escolas particulares, promova a aquisição de reservatórios de água pelos gestores.</span>"
               },
               {
                 id: 3,
                 text: "<span>Secretarias de Educação devem orientar gestores escolares sobrecomo verificar o teor mínimo de cloro residual livre. [Manual Prático de Análise de Água http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf ] Para escolas com abastecimento de água, considere promover que o prestador de serviço de água e autoridades locais (Vigilância Ambiental ou Sanitátia) garantam que a água fornecida é clorada.</span>"
               }
-            ]
+            ],
+            limitForGroupRecommendation: 3,
+            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
           },
 
           {
+            id: 1,
             group: "2. Higiene das mãos e menstrual",
             questions: [
               {
@@ -288,10 +305,31 @@
                   }
                 ]
               }
-            ]
+            ],
+            recommendations: [
+              {
+                id: 4,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 5,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 6,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 7,
+                text: "<span>Recomendação</span>"
+              }
+            ],
+            limitForGroupRecommendation: 4,
+            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
           },
 
           {
+            id: 2,
             group: "3. Saneamento",
             questions: [
               {
@@ -448,10 +486,43 @@
                   }
                 ]
               }
-            ]
+            ],
+            recommendations: [
+              {
+                id: 8,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 9,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 10,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 11,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 12,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 13,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 14,
+                text: "<span>Recomendação</span>"
+              }
+            ],
+            limitForGroupRecommendation: 7,
+            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
           },
 
           {
+            id: 3,
             group: "4. Prevenção e controle de infecções",
             questions: [
               {
@@ -758,10 +829,69 @@
                   }
                 ]
               }
-            ]
+            ],
+            recommendations: [
+              {
+                id: 15,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 16,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 17,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 18,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 19,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 20,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 21,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 22,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 23,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 24,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 25,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 26,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 27,
+                text: "<span>Recomendação</span>"
+              },
+              {
+                id: 28,
+                text: "<span>Recomendação</span>"
+              }
+            ],
+            limitForGroupRecommendation: 14,
+            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
           }
-        ],
-        isReportReady: false
+        ]
       }
     },
 
@@ -867,6 +997,42 @@
 
       },
 
+      getPercentualAnswers(){
+        var sum = 0;
+        this.quest.map( function (group) {
+          group.questions.map( function (question) {
+            if (question.selected != null) { sum += question.selected; }
+          })
+        })
+        return ((sum*100)/56).toFixed(0);
+      },
+
+      getSumAnswersOfGroup(groupId){
+        var sum = 0;
+        this.quest.map( function (group) {
+          if (group.id === groupId) {
+            group.questions.map( function (question) {
+              sum += question.selected;
+            })
+          }
+        })
+        return sum;
+      },
+
+      isVisibleRecommendation(groupId, recommendationId){
+
+        var group = this.quest.filter( function (gp) {
+          return gp.id == groupId;
+        })[0];
+
+        var question = group.questions.filter( function (qt) {
+          return qt.id == recommendationId;
+        })[0];
+
+        if ( question.selected < 2 ) { return true; } else { return false; }
+
+      }
+
     },
 
     updated() {
@@ -878,3 +1044,16 @@
   }
 
 </script>
+
+<style>
+    .recommendation,
+    .recommendation strong{
+      font-size: 15px !important;
+    }
+    .paragraph_report {
+      font-size: 16px !important;
+      margin-bottom: 20px;
+      margin-top: 20px;
+    }
+</style>
+
