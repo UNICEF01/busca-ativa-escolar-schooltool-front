@@ -33,11 +33,6 @@
 
             </material-card>
 
-
-<!--            <v-btn @click="save()" class="font-weight-light" color="success">-->
-<!--              Salvar-->
-<!--            </v-btn>-->
-
           </v-form>
 
         </div>
@@ -46,9 +41,48 @@
         <br/>
         <hr>
 
-        <v-btn @click="save()" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
+        <v-btn @click="isReportReady=true" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
           Gerar relatório final
         </v-btn>
+
+        <br/><br/>
+
+        <div v-if="isReportReady">
+
+            <h5 class="headline">Relatório</h5>
+
+            <br/>
+
+            <v-alert type="success" value="true" style="font-size: 15px;">
+              Boa situação geral, pequenas melhorias podem ser necessárias em uma ou várias áreas
+            </v-alert>
+
+            <v-alert type="warning" color="#cabf10" value="true" style="font-size: 15px;">
+              Situação geral insuficiente, podem ser necessárias grandes melhorias em uma ou várias áreas
+            </v-alert>
+
+            <v-alert type="warning" color="orange" value="true" style="font-size: 15px;">
+              Situação geral muito inadequada, são necessárias grandes melhorias em várias áreas
+            </v-alert>
+
+            <v-alert type="error" value="true" style="font-size: 15px;">
+              Situação geral crítica, são necessárias grandes melhorias o mais rápido possível em todas as áreas
+            </v-alert>
+
+            <div v-for="group in quest">
+
+              <h5 class="headline">{{group.group}}</h5>
+
+              <material-card class="card-tabs" :color="color" elevation="3">
+
+                Recomendacoes
+
+              </material-card>
+
+            </div>
+
+        </div>
+
 
       </v-flex>
 
@@ -138,6 +172,20 @@
                     value: 0,
                   }
                 ]
+              }
+            ],
+            recommendations: [
+              {
+                id: 1,
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong> A Secretaria de Educação deverá fazer contato com o prestador de serviço de água local para verificar as soluções para o fornecimento mais regular da escola. Onde as escolas não estiverem conectadas ao sistema de abastecimento de água, considerar discussões com autoridades locais para ligação das escolas aos sistema serviço de abastecimento ou prover serviços móveis de abastecimento de água para a reabertura das escolas, enquanto mais soluções são estudadas.</span>"
+              },
+              {
+                id: 2,
+                text: "<span>Secretarias de Educação ou autoridades locais devem prover reservatórios complementares de armezanamento de água. Para escolas particulares, promova a aquisição de reservatórios de água pelos gestores.</span>"
+              },
+              {
+                id: 3,
+                text: "<span>Secretarias de Educação devem orientar gestores escolares sobrecomo verificar o teor mínimo de cloro residual livre. [Manual Prático de Análise de Água http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf ] Para escolas com abastecimento de água, considere promover que o prestador de serviço de água e autoridades locais (Vigilância Ambiental ou Sanitátia) garantam que a água fornecida é clorada.</span>"
               }
             ]
           },
@@ -712,7 +760,8 @@
               }
             ]
           }
-        ]
+        ],
+        isReportReady: false
       }
     },
 

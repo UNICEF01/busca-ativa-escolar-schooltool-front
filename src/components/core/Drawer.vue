@@ -142,7 +142,7 @@
       },
       logout() {
         auth.signOut().then(function () {
-          alert('saiu')
+          this.$router.push({path: '/quest'})
         }).catch(function (error) {
           // An error happened.
         });
