@@ -74,17 +74,26 @@
 
               <material-card class="card-tabs" :color="color" elevation="3">
                 <div>
+                  <p class="recommendation" v-html="group.headerRecommendation"></p>
+                </div>
+                <div>
                   <p class="recommendation" v-for="recommendation in group.recommendations" v-html="recommendation.text" v-if="isVisibleRecommendation(group.id, recommendation.id)"></p>
                 </div>
               </material-card>
 
               <br/>
 
-              <material-card class="card-tabs" :color="color" elevation="3" v-if="getSumAnswersOfGroup(group.id) <= group.limitForGroupRecommendation">
+              <material-card class="card-tabs" :color="color" elevation="3">
                 <div>
                   <p class="recommendation" v-html="group.groupRecommendation"></p>
                 </div>
               </material-card>
+
+<!--              <material-card class="card-tabs" :color="color" elevation="3" v-if="getSumAnswersOfGroup(group.id) <= group.limitForGroupRecommendation">-->
+<!--                <div>-->
+<!--                  <p class="recommendation" v-html="group.groupRecommendation"></p>-->
+<!--                </div>-->
+<!--              </material-card>-->
 
             </div>
 
@@ -203,7 +212,8 @@
               }
             ],
             limitForGroupRecommendation: 3,
-            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
+            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span> encoraje os gestores das escolas a discutirem as limitações no fornecimento de água e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -325,7 +335,8 @@
               }
             ],
             limitForGroupRecommendation: 4,
-            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
+            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem as limitações para a lavagem das mãos e higiene menstrual e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -518,7 +529,8 @@
               }
             ],
             limitForGroupRecommendation: 7,
-            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
+            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
+            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -889,8 +901,10 @@
               }
             ],
             limitForGroupRecommendation: 14,
-            groupRecommendation: "<span>Para escolas com pontuação de 0 a 3 em áreas com alta incidência de casos de Covid19, as Secretarias de Educação são encorajadas a discutir com seus gestores (diretores de escola, coordenadores de infraestrutura, coordenadores locais etc) sobre as limitações no fornecimetno de água e possíveis soluções que permitam a escola a melhorar sua pontuação antes da reabertura.</span>"
+            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem suas limitações, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           }
+
         ]
       }
     },
