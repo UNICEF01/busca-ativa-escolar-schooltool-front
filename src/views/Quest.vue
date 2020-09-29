@@ -117,9 +117,14 @@
                 </template>
 
                 <v-card>
-                  <v-card-title class="headline grey lighten-2">
+                  <v-card-title v-if="!recoverPassword" class="headline grey lighten-2">
                     Forneça seus dados
                   </v-card-title>
+
+                  <v-card-title v-if="recoverPassword" class="headline grey lighten-2">
+                    Recuperar senha
+                  </v-card-title>
+
 
                   <v-form ref="form_login" lazy-validation>
                     <v-container fluid>
@@ -127,7 +132,7 @@
                         <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
                       </v-flex>
 
-                      <v-flex xs12>
+                      <v-flex xs12 v-if="!recoverPassword">
                         <v-text-field
                           class="purple-input"
                           label="Senha"
@@ -146,14 +151,17 @@
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="default" text @click="dialog = false">
+                    <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
                       Recuperar senha
                     </v-btn>
-                    <v-btn color="default" text @click="dialog = false">
+                    <v-btn color="default" text @click="dialog = false,ecoverPassword = false">
                       Fechar
                     </v-btn>
-                    <v-btn color="success"  @click="loginUser()">
+                    <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
                       Login
+                    </v-btn>
+                    <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
+                      Enviar
                     </v-btn>
                   </v-card-actions>
                 </v-card>
@@ -193,6 +201,7 @@
           confirmPassword: '',
           error: '',
         },
+        recoverPassword: false,
         user: {
           telefone: '',
           uf: '',
@@ -1024,9 +1033,9 @@
       }
     },
     methods: {
-      checkAutenticate(){
+      checkAutenticate() {
 
-        if(auth.currentUser){
+        if (auth.currentUser) {
           this.$router.push({path: '/wash'})
         }
 
@@ -1076,6 +1085,16 @@
             console.log(error)
           }
         }
+      },
+      resetPassword() {
+        auth.sendPasswordResetEmail(this.login.email).then((user) => {
+          console.log(user)
+        });
+        this.$toast.open({
+          message: 'Um e-mail foi enviado para recuperar a senha!',
+          type: 'warning',
+          position: 'top'
+        });
       }
 
     },
