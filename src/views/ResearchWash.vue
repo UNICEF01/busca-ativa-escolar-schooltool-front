@@ -59,19 +59,19 @@
             <h5 class="headline">Relatório</h5>
 
             <v-alert type="success" value="true" v-if="getPercentualAnswers() > 75" style="font-size: 15px;">
-              Boa situação geral, pequenas melhorias podem ser necessárias em uma ou várias áreas
+              Boa situação geral, algumas melhorias podem ser necessárias em uma ou várias áreas.
             </v-alert>
 
             <v-alert type="warning" value="true" color="#cabf10" v-if="getPercentualAnswers() > 50 && getPercentualAnswers() <= 75" style="font-size: 15px;">
-              Situação geral insuficiente, podem ser necessárias grandes melhorias em uma ou várias áreas
+              Situação geral insuficiente, sugerem-se algumas melhorias em uma ou várias áreas.
             </v-alert>
 
             <v-alert type="warning" color="orange" value="true" v-if="getPercentualAnswers() > 25 && getPercentualAnswers() <= 50" style="font-size: 15px;">
-              Situação geral muito inadequada, são necessárias grandes melhorias em várias áreas
+              Situação geral inadequada, recomenda-se observar as melhorias necessárias em várias áreas.
             </v-alert>
 
             <v-alert type="error" value="true" v-if="getPercentualAnswers() <= 25" style="font-size: 15px;">
-              Situação geral crítica, são necessárias grandes melhorias o mais rápido possível em todas as áreas
+              Situação geral crítica, recomenda-se observar as melhorias necessárias em todas as áreas e o quanto antes possível.
             </v-alert>
 
             <p class="paragraph_report" v-if="getPercentualAnswers() == 100">
@@ -110,7 +110,7 @@
           <br/><br/>
 
           <v-btn @click="finish(false)" class="font-weight-light" color="warning">
-            Responder novamente
+            Retornar ao formulário
           </v-btn>
 
         </div>
