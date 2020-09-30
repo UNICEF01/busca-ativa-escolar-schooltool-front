@@ -52,7 +52,6 @@
                     @click:append="showPasword2 = !showPasword2"/>
                 </v-flex>
 
-
                 <Estados @childToParent="onChildClick"></Estados>
 
                 <v-flex xs12 md12>
@@ -67,6 +66,8 @@
                     hide-selected
                     item-text="name"
                     label="Nome da escola"
+                    return-object
+                    :rules="[rules.required]"
                   >
                     <template v-slot:no-data>
                       <v-list-item>
@@ -93,14 +94,14 @@
 
                 <v-flex md12>
                   <label>Qual o tipo de relação você tem com a escola?</label>
-                  <v-radio-group v-model="user.relation" row :rules="[rules.required]">
+                  <v-radio-group v-model="user.relation.name" row :rules="[rules.required]">
                     <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
                   </v-radio-group>
                 </v-flex>
 
                 <v-flex md12>
-                  <v-text-field md6 v-if="user.relation === 'Outros'" label="Qual?" class="purple-input"
-                                v-model="user.relation.outros" :rules="[rules.required]"/>
+                  <v-text-field md6 v-if="user.relation.name === 'Outros'" label="Qual?" class="purple-input"
+                                v-model="user.relation.other" :rules="[rules.required]"/>
                 </v-flex>
 
               </v-layout>
@@ -205,7 +206,7 @@
           telefone: '',
           uf: '',
           city: '',
-          relation: ''
+          relation: {name: '', other: ''}
         },
         showPasword1: false,
         showPasword2: false,
@@ -387,8 +388,7 @@
       async start() {
         if (this.$refs.form_register.validate()) {
           try {
-            let user = await auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
-              conssole.log('here', user)
+            let user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               this.user.uid = user.user.uid
               this.user.name = this.user.name.trim()
               this.user.dt_create = new Date()

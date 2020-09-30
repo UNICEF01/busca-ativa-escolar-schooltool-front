@@ -41,7 +41,6 @@
           required: value => !!value || 'Obrigatório.',
         },
         estados: [
-          {value: '', text: "Estado"},
           {value: "AC", text: "Acre"},
           {value: "AL", text: "Alagoas"},
           {value: "AP", text: "Amapá"},
