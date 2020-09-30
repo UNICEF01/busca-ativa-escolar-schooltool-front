@@ -21,12 +21,12 @@ export default [
   },
   {
     path: '/quest',
-    name: 'Titulo da pesquisa...',
+    name: 'Pesquisa Wash',
     view: 'Quest'
   },
   {
     path: '/wash',
-    name: 'Titulo da pesquisa...',
+    name: 'Pesquisa Wash',
     view: 'ResearchWash',
     meta: {
       requiresAuth: true

@@ -12,6 +12,13 @@
 
           <v-form ref="form_register" lazy-validation>
             <v-container fluid>
+
+<!--              <v-img-->
+<!--                lazy-src="img/covide_banner_wash.jpg"-->
+<!--                max-width="300"-->
+<!--                src="img/covide_banner_wash.jpg"-->
+<!--              ></v-img>-->
+
               <v-layout wrap>
 
                 <v-flex xs12 md4>
@@ -96,7 +103,7 @@
                 <v-flex md12>
                   <label>Qual o tipo de relação você tem com a escola?</label>
                   <v-radio-group v-model="user.relation.name" row :rules="[rules.required]">
-                    <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
+                    <v-radio v-for="n in ['Aluno(a)/ Família', 'Professor(a)', 'Equipe diretiva' , 'Outros']" :label="n" :value="n"></v-radio>
                   </v-radio-group>
                 </v-flex>
 
