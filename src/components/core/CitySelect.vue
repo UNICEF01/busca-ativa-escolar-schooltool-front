@@ -6,6 +6,7 @@
           v-model="estado"
           :items="estados"
           label="Estado"
+          :rules="[rules.required]"
         ></v-select>
       </v-flex>
       <v-flex xs12 md6>
@@ -13,6 +14,7 @@
           v-model="cidade"
           :items="cidades"
           label="Município"
+          :rules="[rules.required]"
           @change="emitToParent({uf: estado, city: cidade})"
         ></v-combobox>
       </v-flex>
@@ -35,8 +37,10 @@
         estado: '',
         cidade: '',
         brasil,
+        rules: {
+          required: value => !!value || 'Obrigatório.',
+        },
         estados: [
-          {value: '', text: "Estado"},
           {value: "AC", text: "Acre"},
           {value: "AL", text: "Alagoas"},
           {value: "AP", text: "Amapá"},
