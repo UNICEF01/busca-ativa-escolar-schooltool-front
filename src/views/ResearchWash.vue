@@ -132,7 +132,7 @@
             questions: [
               {
                 id: 1,
-                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade.</span>',
+                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade</span>',
                 selected: null,
                 response: [
                   {
@@ -154,7 +154,7 @@
               },
               {
                 id: 2,
-                answer: '<span>Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante, pelo menos, dois dias.</span>',
+                answer: '<span>Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante, pelo menos, dois dias</span>',
                 selected: null,
                 response: [
                   {
@@ -176,7 +176,7 @@
               },
               {
                 id: 3,
-                answer: '<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde [Portaria nº 2.914/2011 do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)] ou da Organização Mundial da Saúde (OMS).</span>',
+                answer: "<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde [Portaria nº 2.914/2011 do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)]  ou da Organização Mundial da Saúde (OMS)</span>",
                 selected: null,
                 response: [
                   {
@@ -200,15 +200,32 @@
             recommendations: [
               {
                 id: 1,
-                text: "<span><strong>[Condição essencial para reabertura segura]</strong> A Secretaria de Educação deverá fazer contato com o prestador de serviço de água local para verificar as soluções para o fornecimento mais regular da escola. Onde as escolas não estiverem conectadas ao sistema de abastecimento de água, considerar discussões com autoridades locais para ligação das escolas aos sistema serviço de abastecimento ou prover serviços móveis de abastecimento de água para a reabertura das escolas, enquanto mais soluções são estudadas.</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>entre em contato com o prestador de serviço de água local para verificar as soluções para o fornecimento mais regular na escola.</li>"
+                  +"<li>viabilize o serviço de abastecimento onde não houver ligação da escola ao sistema de abastecimento de água.</li>"
+                  +"<li>organize abastecimento móvel de água para a reabertura das escolas, enquanto mais soluções são estudadas.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 2,
-                text: "<span><strong>[Condição essencial para reabertura segura]</strong> Secretarias de Educação ou autoridades locais devem prover reservatórios complementares de armezanamento de água. Para escolas particulares, promova a aquisição de reservatórios de água pelos gestores.</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>providencie reservatórios complementares de armazenamento de água.</li>"
+                  +"<li>promova a aquisição de reservatórios de água pelos gestores de escolas particulares.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 3,
-                text: "<span>Secretarias de Educação devem orientar gestores escolares sobrecomo verificar o teor mínimo de cloro residual livre. [Manual Prático de Análise de Água http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf ] Para escolas com abastecimento de água, considere promover que o prestador de serviço de água e autoridades locais (Vigilância Ambiental ou Sanitátia) garantam que a água fornecida é clorada.</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>oriente gestores escolares sobre como verificar o teor mínimo de cloro residual livre."
+                  +"<br/>Manual Prático de Análise de Água http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf</li>"
+                  +"<li>verifique junto ao prestador de serviço de água que a água fornecida é clorada.</li>"
+                  +"</ul>"
+                  +"</span>"
               }
             ],
             limitForGroupRecommendation: 3,
@@ -222,7 +239,7 @@
             questions: [
               {
                 id: 4,
-                answer: '<span>Há locais para a lavagem de mãos com água e sabão na entrada da escola.</span>',
+                answer: "<span>Há locais para a lavagem de mãos com água e sabão na entrada da escola. </span>",
                 selected: null,
                 response: [
                   {
@@ -244,7 +261,7 @@
               },
               {
                 id: 5,
-                answer: '<span>Há locais para a lavagem de mãos com água e sabão na frente das salas de aula e a menos de 5 metros de cada banheiro.</span>',
+                answer: "<span>Há locais para a lavagem de mãos com água e sabão na frente das salas de aula e a menos de 5 metros de cada banheiro</span>",
                 selected: null,
                 response: [
                   {
@@ -266,7 +283,7 @@
               },
               {
                 id: 6,
-                answer: '<span>São organizadas atividades de lavagem de mãos para todos os estudantes pelo menos três vezes por dia na escola.</span>',
+                answer: '<span>São organizadas atividades de lavagem de mãos para todos os estudantes pelo menos três vezes por dia na escola</span>',
                 selected: null,
                 response: [
                   {
@@ -319,19 +336,37 @@
             recommendations: [
               {
                 id: 4,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>solicite e viabilize a instalação de locais para lavagem das mãos, com disponibilização de sabão, em todas as entradas da escola;</li>"
+                  +"<li>apoie as escolas para que disponham continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 5,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>solicite e viabilize a instalação de locais para lavagem das mãos, com disponibilização de sabão, nas proximidades de todos os banheiros.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 6,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova, juntamente com os gestores escolares, a realização de atividades de sensibilização e de lavagem de mãos em grupo, chamando a atenção de estudantes para a importância da higiene das mãos.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 7,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova a importância da higiene menstrual;</li>"
+                  +"<li>viabilize a existência de espaços e disponibilidade de materiais adequados e seguros para a prática da higiene menstrual.</li>"
+                  +"</ul>"
+                  +"</span>"
               }
             ],
             limitForGroupRecommendation: 4,
@@ -367,7 +402,7 @@
               },
               {
                 id: 9,
-                answer: '<span>Os banheiros ou sanitários estão claramente separados para meninos e meninas.</span>',
+                answer: '<span>Os banheiros ou sanitários estão claramente separados para meninos e meninas</span>',
                 selected: null,
                 response: [
                   {
@@ -411,7 +446,7 @@
               },
               {
                 id: 11,
-                answer: '<span>O piso, a maçaneta da porta, a área dos banheiros e sanitários são limpos pelo menos uma vez por dia com água e detergente, e são desinfectados com água sanitária.</span>',
+                answer: '<span>O piso, a maçaneta da porta, a área dos banheiros e sanitários são limpos pelo menos uma vez por dia com água e detergente, e são desinfectados com água sanitária</span>',
                 selected: null,
                 response: [
                   {
@@ -433,7 +468,7 @@
               },
               {
                 id: 12,
-                answer: '<span>Todos os banheiros têm um local para a lavagem de mãos com água e sabão em um raio mínimo de 5 metros.</span>',
+                answer: '<span>Todos os banheiros têm um local para a lavagem de mãos com água e sabão em um raio mínimo de 5 metros</span>',
                 selected: null,
                 response: [
                   {
@@ -455,7 +490,7 @@
               },
               {
                 id: 13,
-                answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e sanitários e em locais estratégicos nas dependências da escola, e se recolhe diariamente o lixo de forma segura.</span>',
+                answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e sanitários e em locais estratégicos nas dependências da escola, e se recolhe diariamente o lixo de forma segura</span>',
                 selected: null,
                 response: [
                   {
@@ -501,36 +536,67 @@
             recommendations: [
               {
                 id: 8,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>apoie e viabilize a instalação de mais banheiros, com vasos sanitários em quantidade suficiente, e/ou o reparo de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 9,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de ter banheiros separados para meninas e meninos, sinalizados claramente, requerendo a separação dos banheiros e sanitários quando necessário e o quanto antes.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 10,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>apoie e viabilize a instalação de mais banheiros, com vasos sanitários em quantidade suficiente, e/ou o reparo de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 11,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, criem orientações e rotinas diárias de limpeza e desinfecção nas escolas.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 12,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>apoie e viabilize a instalação de mais locais para lavagem das mãos, com disponibilização de sabão, próximos a cada grupo de banheiros.</li>"
+                  +"<li>apoie as escolas para que disponham continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 13,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>apoie e viabilize a instalação de lixeiras em cada sala de aula, nos banheiros e em locais estratégicos da escola.</li>"
+                  +"<li>apoie as escolas que não disponham de lixeiras para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 14,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de gerir e descartar resíduos sólidos adequadamente, com o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
+                  +"<li>garanta o recolhimento e destinação final adequada dos resíduos das escolas, com o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
+                  +"</ul>"
+                  +"</span>"
               }
             ],
             limitForGroupRecommendation: 7,
             headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
-            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -632,7 +698,7 @@
                 response: [
                   {
                     id: 0,
-                    name: 'Sim, os professores estão sempre conscientes e reforçam a distância física entre eles e os alunos.',
+                    name: 'Sim',
                     value: 2,
                   },
                   {
@@ -649,7 +715,7 @@
               },
               {
                 id: 20,
-                answer: '<span>É implementada a distância física entre os usuários dos locais de lavagem de mãos ou enquanto fazem fila para ir ao banheiro.</span>',
+                answer: '<span>É implementada a distância física entre os usuários dos locais de lavagem de mãos ou enquanto fazem fila para ir ao banheiro</span>',
                 selected: null,
                 response: [
                   {
@@ -671,7 +737,7 @@
               },
               {
                 id: 21,
-                answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementado e respeitada.</span>',
+                answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementado e respeitada</span>',
                 selected: null,
                 response: [
                   {
@@ -693,7 +759,7 @@
               },
               {
                 id: 22,
-                answer: '<span>A equipe da cozinha usa máscaras e dispõe de locais para a lavagem ou produtos desinfectantes para as mãos.</span>',
+                answer: '<span>A equipe da cozinha usa máscaras e dispõe de locais para a lavagem ou produtos desinfectantes para as mãos</span>',
                 selected: null,
                 response: [
                   {
@@ -715,7 +781,7 @@
               },
               {
                 id: 23,
-                answer: '<span>As salas de aulas têm uma boa ventilação natural.</span>',
+                answer: '<span>As salas de aulas têm uma boa ventilação natural</span>',
                 selected: null,
                 response: [
                   {
@@ -755,7 +821,7 @@
               },
               {
                 id: 25,
-                answer: '<span>A escola dispõe de um espaço privado, designado para o isolamento de estudantes com sintomas de COVID -19, onde possam aguardar que seus responsáveis os busquem.</span>',
+                answer: '<span>A escola dispõe de um espaço privado, designado para o isolamento de estudantes com sintomas de COVID -19, onde possam aguardar que seus responsáveis os busquem</span>',
                 selected: null,
                 response: [
                   {
@@ -777,7 +843,7 @@
               },
               {
                 id: 26,
-                answer: '<span>A escola tem uma reserva de máscaras para uso dos estudantes, que tenham sido identificados com sintomas de COVID, até que seus responsáveis os busquem.</span>',
+                answer: '<span>A escola tem uma reserva de máscaras para uso dos estudantes, que tenham sido identificados com sintomas de COVID, até que seus responsáveis os busquem</span>',
                 selected: null,
                 response: [
                   {
@@ -799,7 +865,7 @@
               },
               {
                 id: 27,
-                answer: '<span>Na escola onde se recomenda o uso de máscaras, todos os estudantes têm acesso a máscaras (em particular estudantes de famílias mais vulneráveis).</span>',
+                answer: '<span>Na escola onde se recomenda o uso de máscaras, todos os estudantes têm acesso a máscaras (em particular estudantes de famílias mais vulneráveis)</span>',
                 selected: null,
                 response: [
                   {
@@ -845,64 +911,124 @@
             recommendations: [
               {
                 id: 15,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>apoie e viabilize a colocação de cartazes sobre a prevenção e transmissão do COVID-19 em cada sala de aula, banheiros e em locais estratégicos da escola, facilitando a sua produção e obtenção de materiais educativos sobre COVID-19, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 16,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova junto aos gestores escolares (públicos e privados) a identificação de pessoas (incluindo da sociedade civil) para que se tornem pontos focais de água, esgotamento sanitário, higiene e saúde escolar, oferecendo informações e orientações, presenciais ou à distância.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 17,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>incentive que os gestores escolares (públicos e privados) elaborem um planejamento de limpeza e desinfecção das dependências das escolas.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 18,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>consulte os gestores escolares (públicos e privados) sobre a disponibilidade de equipamentos e materiais de limpeza e desinfecção e, se for o caso, viabilize-os antes da reabertura da escola.</li>"
+                  +"<li>apoie as escolas que não disponham de equipamentos ou materiais de limpeza e desinfecção ou dos recursos para sua aquisição para que os obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 19,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>discuta com gestores escolares (públicos e privados) como criar condições que permitam o distanciamento físico adequado ou quais as melhores alternativas: uso de máscara, turnos escolares etc.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 20,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, sinalizem o chão dos locais de lavagem de mãos e dos banheiros para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 21,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, sinalizem o chão dos locais das carteiras e das áreas do refeitório para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 22,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados) para que disponibilizem máscaras faciais e produtos desinfetantes para as mãos, para funcionários da cozinha.</li>"
+                  +"<li>apoie as escolas que não disponham de máscaras faciais e produtos desinfetantes para as mãos ou dos recursos para sua aquisição para que os obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 23,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de uma boa ventilação em todas as salas de aula e de buscar soluções para os espaços da escola que não têm ventilação suficiente.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 24,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova, com o apoio dos órgãos responsáveis pela Saúde, que os gestores escolares (públicos e privados) recebam orientações para a identificação de estudantes com sintomas de COVID-19.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 25,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova, com o apoio dos órgãos responsáveis pela Saúde, que os gestores escolares (públicos e privados) identifiquem um espaço privado com acesso à água potável e banheiro, designado para o isolamento de estudantes com sintomas de COVID -19.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 26,
-                text: "<span>Recomendação</span>"
+                text: "<span><strong>[Condição essencial para reabertura segura]</strong>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados) para que disponibilizem máscaras faciais para estudantes que apresentem sintomas de COVID-19.</li>"
+                  +"<li>apoie as escolas que não disponham de máscaras faciais ou dos recursos para sua aquisição para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 27,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>promova e apoie gestores escolares (públicos e privados), nos Estados e Municípios em que for recomendado, para que disponibilizem máscaras faciais para os estudantes, educadores e funcionários.</li>"
+                  +"<li>apoie as escolas que não disponham de máscaras faciais ou dos recursos para sua aquisição para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"</ul>"
+                  +"</span>"
               },
               {
                 id: 28,
-                text: "<span>Recomendação</span>"
+                text: "<span>"
+                  +"<ul>"
+                  +"<li>oriente e apoie gestores escolares (públicos e privados) para que elaborem listas de verificação que permitam acompanhar, ao menos semanalmente, o cumprimento das exigências de água, esgotamento sanitário, higiene e prevenção e controle de doenças transmissíveis.</li>"
+                  +"</ul>"
+                  +"</span>"
               }
             ],
             limitForGroupRecommendation: 14,
             headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span>encoraje os gestores das escolas a discutirem suas limitações, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            groupRecommendation: "<span>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, sinalizem o chão dos locais de lavagem de mãos e dos banheiros para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</span>"
           }
 
         ]
