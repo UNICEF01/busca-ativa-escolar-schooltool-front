@@ -58,7 +58,7 @@
                 <v-flex xs12 md12>
 
                   <v-autocomplete
-                    v-model="school_name"
+                    v-model="school"
                     :items="items"
                     :loading="isLoading"
                     :search-input.sync="search"
@@ -93,7 +93,7 @@
 
                 <v-flex md12>
                   <label>Qual o tipo de relação você tem com a escola?</label>
-                  <v-radio-group v-model="user.relation" row>
+                  <v-radio-group v-model="user.relation" row :rules="[rules.required]">
                     <v-radio v-for="n in ['Aluno(a)', 'Funcionário(a)' , 'Outros']" :label="n" :value="n"></v-radio>
                   </v-radio-group>
                 </v-flex>
@@ -107,69 +107,8 @@
 
             </v-container>
 
-            <v-flex xs12 class="d-flex justify-space-between">
-              <v-dialog v-model="dialog" width="500">
-
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn v-bind="attrs" v-on="on" color="warning" @click="checkAutenticate()">
-                    Continuar de onde parou
-                  </v-btn>
-                </template>
-
-                <v-card>
-                  <v-card-title v-if="!recoverPassword" class="headline grey lighten-2">
-                    Forneça seus dados
-                  </v-card-title>
-
-                  <v-card-title v-if="recoverPassword" class="headline grey lighten-2">
-                    Recuperar senha
-                  </v-card-title>
-
-
-                  <v-form ref="form_login" lazy-validation>
-                    <v-container fluid>
-                      <v-flex xs12>
-                        <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
-                      </v-flex>
-
-                      <v-flex xs12 v-if="!recoverPassword">
-                        <v-text-field
-                          class="purple-input"
-                          label="Senha"
-                          v-model="login.password"
-                          :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                          :rules="[rules.required, rules.min]"
-                          :type="showPasword1 ? 'text' : 'password'"
-                          counter
-                          @click:append="showPasword1 = !showPasword1"/>
-                      </v-flex>
-
-                    </v-container>
-                  </v-form>
-
-                  <v-divider></v-divider>
-
-                  <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
-                      Recuperar senha
-                    </v-btn>
-                    <v-btn color="default" text @click="dialog = false,ecoverPassword = false">
-                      Fechar
-                    </v-btn>
-                    <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
-                      Login
-                    </v-btn>
-                    <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
-                      Enviar
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-
-              </v-dialog>
-
-              <v-spacer></v-spacer>
-              <v-btn @click="start()" class="font-weight-light" color="success">
+            <v-flex class="d-flex">
+              <v-btn large @click="start()" class="font-weight-light" color="success">
                 Começar
               </v-btn>
             </v-flex>
@@ -178,6 +117,66 @@
           </v-form>
 
         </material-card>
+
+        <v-dialog v-model="dialog" width="500">
+
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn v-bind="attrs" v-on="on" color="warning" @click="checkAutenticate()">
+              Continuar de onde parou
+            </v-btn>
+          </template>
+
+          <v-card>
+            <v-card-title v-if="!recoverPassword" class="headline grey lighten-2">
+              Forneça seus dados
+            </v-card-title>
+
+            <v-card-title v-if="recoverPassword" class="headline grey lighten-2">
+              Recuperar senha
+            </v-card-title>
+
+
+            <v-form ref="form_login" lazy-validation>
+              <v-container fluid>
+                <v-flex xs12>
+                  <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
+                </v-flex>
+
+                <v-flex xs12 v-if="!recoverPassword">
+                  <v-text-field
+                    class="purple-input"
+                    label="Senha"
+                    v-model="login.password"
+                    :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
+                    :rules="[rules.required, rules.min]"
+                    :type="showPasword1 ? 'text' : 'password'"
+                    counter
+                    @click:append="showPasword1 = !showPasword1"/>
+                </v-flex>
+
+              </v-container>
+            </v-form>
+
+            <v-divider></v-divider>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
+                Recuperar senha
+              </v-btn>
+              <v-btn color="default" text @click="close()">
+                Fechar
+              </v-btn>
+              <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
+                Login
+              </v-btn>
+              <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
+                Enviar
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+
+        </v-dialog>
 
 
       </v-flex>
@@ -205,7 +204,8 @@
         user: {
           telefone: '',
           uf: '',
-          city: ''
+          city: '',
+          relation: ''
         },
         showPasword1: false,
         showPasword2: false,
@@ -229,7 +229,7 @@
         uf: '',
         city: '',
         value: '',
-        school_name: '',
+        school: '',
         states: [
           {
             "id": "1",
@@ -387,11 +387,12 @@
       async start() {
         if (this.$refs.form_register.validate()) {
           try {
-            const user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
-
+            let user = await auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+              conssole.log('here', user)
               this.user.uid = user.user.uid
               this.user.name = this.user.name.trim()
               this.user.dt_create = new Date()
+              this.user.school = this.school
 
               user.user.updateProfile({
                 displayName: this.user.name
@@ -399,16 +400,22 @@
 
               db.collection("users").doc(user.user.uid).set(this.user)
                 .then(function () {
-                  console.log()
+                  // console.log()
                 })
                 .catch(function (error) {
-                  console.error(error)
+                  // console.error(error)
                 });
               //console.log(user);
               this.$router.push({path: '/wash'})
             })
           } catch (error) {
-            console.log(error)
+            if (error.code === 'auth/email-already-in-use') {
+              this.$toast.open({
+                message: 'E-mail já cadastrado, clique em continuar de onde parou para fazer login',
+                type: 'error',
+                position: 'top'
+              });
+            }
           }
         }
       },
@@ -424,6 +431,10 @@
           }
         }
       },
+      close() {
+        this.dialog = false;
+        this.recoverPassword = false;
+      },
       resetPassword() {
         auth.sendPasswordResetEmail(this.login.email).then((user) => {
           console.log(user)
@@ -438,10 +449,9 @@
     },
 
     watch: {
-      school_name(val) {
+      school(val) {
         if (val != null)
-          this.school_name = val;
-        console.log(val)
+          this.school = val;
       },
       search(val) {
         //Items have already been loaded
