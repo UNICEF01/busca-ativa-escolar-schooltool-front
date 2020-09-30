@@ -46,7 +46,7 @@
 
           </div>
 
-          <v-btn @click="isReportReady=true" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
+          <v-btn @click="finish(true)" class="font-weight-light" color="success" :disabled="isDisabledToReport()">
             Gerar relatório final
           </v-btn>
 
@@ -80,8 +80,8 @@
               Sugerimos que cada gestor escolar mantenha um diálogo constante com autoridades e comunidade sobre as necessidades e dúvidas que possam surgir. Todos temos um papel importante para que as escolas sejam um sempre um ambiente acolhedor, seguro e saudável para todos.
             </p>
 
-            <p class="paragraph_report">
-              GERAL
+            <p class="paragraph_report" v-if="getPercentualAnswers() < 100">
+              Os resultados da sua autoavaliação indicam que existem aspectos importantes a serem observados antes da reabertura das escolas. Logo abaixo você encontrará orientações sobre como proceder e como organizar a estrutura, os suprimentos e quais medidas são necessárias para o caso específico da sua escola. Verifique cada um dos itens abaixo e explore os documentos de apoio. Agora é o momento para desenvolver e aprimorar estratégias para a reabertura segura das escolas.
             </p>
 
             <div v-for="group in quest">
@@ -109,12 +109,11 @@
 
           <br/><br/>
 
-          <v-btn @click="isReportReady=false" class="font-weight-light" color="warning">
+          <v-btn @click="finish(false)" class="font-weight-light" color="warning">
             Responder novamente
           </v-btn>
 
         </div>
-
 
       </v-flex>
 
@@ -240,8 +239,8 @@
               }
             ],
             limitForGroupRecommendation: 3,
-            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span> Encoraje os gestores das escolas a discutirem as limitações no fornecimento de água e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>Encoraje os gestores a discutirem as limitações no fornecimento de água em suas escolas e que conjuntamente com a Secretaria busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -381,8 +380,8 @@
               }
             ],
             limitForGroupRecommendation: 4,
-            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span>Encoraje os gestores das escolas a discutirem as limitações para a lavagem das mãos e higiene menstrual e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>Encoraje os gestores a discutirem as limitações para a lavagem das mãos e higiene menstrual em suas escolas e que conjuntamente com a Secretaria busquem e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -1038,8 +1037,8 @@
               }
             ],
             limitForGroupRecommendation: 14,
-            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span>Promova e apoie gestores escolares (públicos e privados) para que antes da reabertura, sinalizem o chão dos locais de lavagem de mãos e dos banheiros para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</span>"
+            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
+            groupRecommendation: "<span>Encoraje os gestores  a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos em suas escolas e que conjuntamente com a Secretaria busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           }
 
         ]
@@ -1102,9 +1101,12 @@
 
         this.user.quest = this.quest;
 
-        let checkSave = await db.collection("users").doc(id).update(Object.assign({}, this.user)).then(function (resp) {
-          return true;
-        })
+        let checkSave = await db.collection("users")
+          .doc(id)
+          .update(Object.assign({}, this.user))
+          .then(function (resp) {
+            return true;
+          })
           .catch(function (error) {
             return false;
           });
@@ -1126,6 +1128,8 @@
           });
 
         }
+
+        this.isUpdatingForm = false;
 
       },
 
@@ -1182,6 +1186,11 @@
 
         if ( question.selected < 2 ) { return true; } else { return false; }
 
+      },
+
+      finish(value){
+        window.scrollTo(0, 0);
+        this.isReportReady=value;
       }
 
     },
@@ -1205,6 +1214,13 @@
       font-size: 16px !important;
       margin-bottom: 20px;
       margin-top: 20px;
+    }
+
+    #update_bar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
     }
 </style>
 

@@ -38,8 +38,7 @@
 
                 <v-flex xs12 md4>
                   <v-text-field label="Telefone" class="purple-input" v-model="user.telefone" return-masked-value
-                                mask="(##)#####-####"
-                                :rules="[rules.required]"/>
+                                mask="(##)#####-####"/>
                 </v-flex>
 
                 <v-flex xs12 md6>
