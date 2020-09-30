@@ -474,7 +474,7 @@
         }
 
         // Lazily load input items
-        fetch("http://api.busca-ativa-escolar.test/api/v1/open/schools", requestOptions)
+        fetch("https://api.testes.buscaativaescolar.org.br/api/v1/open/schools", requestOptions)
           .then(res => res.clone().json())
           .then(res => {
             this.items = res
