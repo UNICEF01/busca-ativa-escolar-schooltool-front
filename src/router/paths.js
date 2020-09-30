@@ -21,12 +21,12 @@ export default [
   },
   {
     path: '/quest',
-    name: 'Pesquisa Wash',
+    name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
     view: 'Quest'
   },
   {
     path: '/wash',
-    name: 'Pesquisa Wash',
+    name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
     view: 'ResearchWash',
     meta: {
       requiresAuth: true

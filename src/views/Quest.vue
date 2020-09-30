@@ -8,7 +8,13 @@
       wrap>
       <v-flex xs12 md8>
 
-        <material-card color="cyan" title="Pesquisa" text="Colocar Descrição">
+        <h5 class="headline">Autoavaliação</h5>
+
+        <p>
+          Conhecer a estrutura de cada escola e saber quais aspectos precisam ser melhorados ou adaptados para o novo contexto de volta às aulas é muito importante. Criamos um questionário que poderá servir como referência e indicar onde e como os gestores devem atuar para garantir uma situação segura para estudantes, professores e funcionários.
+        </p>
+
+        <material-card color="cyan" title="Preencha o cadastro abaixo e responda o questionário a seguir com atenção. Conheça melhor a sua realidade." text="">
 
           <v-form ref="form_register" lazy-validation>
             <v-container fluid>
