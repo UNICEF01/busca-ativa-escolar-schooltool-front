@@ -13,11 +13,11 @@
           <v-form ref="form_register" lazy-validation>
             <v-container fluid>
 
-<!--              <v-img-->
-<!--                lazy-src="img/covide_banner_wash.jpg"-->
-<!--                max-width="300"-->
-<!--                src="img/covide_banner_wash.jpg"-->
-<!--              ></v-img>-->
+              <!--              <v-img-->
+              <!--                lazy-src="img/covide_banner_wash.jpg"-->
+              <!--                max-width="300"-->
+              <!--                src="img/covide_banner_wash.jpg"-->
+              <!--              ></v-img>-->
 
               <v-layout wrap>
 
@@ -63,7 +63,6 @@
                 <Estados @childToParent="onChildClick"></Estados>
 
                 <v-flex xs12 md12>
-
                   <v-autocomplete
                     v-model="school"
                     :items="items"
@@ -103,7 +102,8 @@
                 <v-flex md12>
                   <label>Qual o tipo de relação você tem com a escola?</label>
                   <v-radio-group v-model="user.relation.name" row :rules="[rules.required]">
-                    <v-radio v-for="n in ['Aluno(a)/ Família', 'Professor(a)', 'Equipe diretiva' , 'Outros']" :label="n" :value="n"></v-radio>
+                    <v-radio v-for="n in ['Aluno(a)/ Família', 'Professor(a)', 'Equipe diretiva' , 'Outros']" :label="n"
+                             :value="n"></v-radio>
                   </v-radio-group>
                 </v-flex>
 
@@ -239,156 +239,18 @@
         city: '',
         value: '',
         school: '',
-        states: [
-          {
-            "id": "1",
-            "sigla": "AC",
-            "name": "Acre"
-          },
-          {
-            "id": "2",
-            "sigla": "AL",
-            "name": "Alagoas"
-          },
-          {
-            "id": "3",
-            "sigla": "AM",
-            "name": "Amazonas"
-          },
-          {
-            "id": "4",
-            "sigla": "AP",
-            "name": "Amapá"
-          },
-          {
-            "id": "5",
-            "sigla": "BA",
-            "name": "Bahia"
-          },
-          {
-            "id": "6",
-            "sigla": "CE",
-            "name": "Ceará"
-          },
-          {
-            "id": "7",
-            "sigla": "DF",
-            "name": "Distrito Federal"
-          },
-          {
-            "id": "8",
-            "sigla": "ES",
-            "name": "Espírito Santo"
-          },
-          {
-            "id": "9",
-            "sigla": "GO",
-            "name": "Goiás"
-          },
-          {
-            "id": "10",
-            "sigla": "MA",
-            "name": "Maranhão"
-          },
-          {
-            "id": "11",
-            "sigla": "MG",
-            "name": "Minas Gerais"
-          },
-          {
-            "id": "12",
-            "sigla": "MS",
-            "name": "Mato Grosso do Sul"
-          },
-          {
-            "id": "13",
-            "sigla": "MT",
-            "name": "Mato Grosso"
-          },
-          {
-            "id": "14",
-            "sigla": "PA",
-            "name": "Pará"
-          },
-          {
-            "id": "15",
-            "sigla": "PB",
-            "name": "Paraíba"
-          },
-          {
-            "id": "16",
-            "sigla": "PE",
-            "name": "Pernambuco"
-          },
-          {
-            "id": "17",
-            "sigla": "PI",
-            "name": "Piauí"
-          },
-          {
-            "id": "18",
-            "sigla": "PR",
-            "name": "Paraná"
-          },
-          {
-            "id": "19",
-            "sigla": "RJ",
-            "name": "Rio de Janeiro"
-          },
-          {
-            "id": "20",
-            "sigla": "RN",
-            "name": "Rio Grande do Norte"
-          },
-          {
-            "id": "21",
-            "sigla": "RO",
-            "name": "Rondônia"
-          },
-          {
-            "id": "22",
-            "sigla": "RR",
-            "name": "Roraima"
-          },
-          {
-            "id": "23",
-            "sigla": "RS",
-            "name": "Rio Grande do Sul"
-          },
-          {
-            "id": "24",
-            "sigla": "SC",
-            "name": "Santa Catarina"
-          },
-          {
-            "id": "25",
-            "sigla": "SE",
-            "name": "Sergipe"
-          },
-          {
-            "id": "26",
-            "sigla": "SP",
-            "name": "São Paulo"
-          },
-          {
-            "id": "27",
-            "sigla": "TO",
-            "name": "Tocantins"
-          }
-        ],
         quest: []
       }
     },
     methods: {
       checkAutenticate() {
-
         if (auth.currentUser) {
           this.$router.push({path: '/wash'})
         }
-
       },
       // Triggered when `childToParent` event is emitted by the child.
       onChildClick(value) {
+        console.log(value)
         this.user.uf = value.uf
         this.user.city = value.city
       },
@@ -463,18 +325,26 @@
       },
       search(val) {
         //Items have already been loaded
-        if (val < 3) return
+        if (val.length < 3) return
 
         this.isLoading = true
 
         const requestOptions = {
           method: "POST",
           headers: {"Content-Type": "application/json"},
-          body: JSON.stringify({name: val, $hide_loading_feedback: true})
+          body: JSON.stringify(
+            {
+              name: val,
+              id: this.user.city.id,
+              uf: this.user.uf,
+              city_id: this.user.city.ibge_city_id,
+              $hide_loading_feedback: true
+            }
+          )
         }
 
-        // Lazily load input items
-        fetch("https://api.testes.buscaativaescolar.org.br/api/v1/open/schools", requestOptions)
+        // Lazily load input items ?XDEBUG_SESSION_START=PHPSTORM
+        fetch("http://api.busca-ativa-escolar.test/api/v1/open/schools", requestOptions)
           .then(res => res.clone().json())
           .then(res => {
             this.items = res

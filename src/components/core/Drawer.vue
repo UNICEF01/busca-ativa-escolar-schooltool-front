@@ -74,7 +74,7 @@
 <script>
   // Utilities
   import {mapMutations, mapState} from 'vuex'
-  import {auth} from './../../firebase.js'
+  import {db, auth} from './../../firebase.js'
 
   export default {
     data: () => ({
@@ -115,6 +115,15 @@
         return this.$t('Layout.View.items')
       },
     },
+    created: function () {
+      var docRef = db.collection("users").where('uid', '==', auth.currentUser.uid).onSnapshot(querySnapshot => {
+
+        console.log(querySnapshot)
+        // let values = []
+        // querySnapshot.forEach((doc) => {
+        //   values.push(doc.data())
+      })
+    },
     mounted() {
 
       this.onResponsiveInverted()
@@ -125,7 +134,6 @@
       if (window.location.pathname === '/') {
         this.showButtom = true;
       }
-
     },
     beforeDestroy() {
       window.removeEventListener('resize', this.onResponsiveInverted)
