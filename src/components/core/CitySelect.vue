@@ -28,7 +28,7 @@
           <template v-slot:no-data>
             <v-list-item>
               <v-list-item-title>
-                Escreva o nome da escola
+                Escreva o nome do município
               </v-list-item-title>
             </v-list-item>
           </template>

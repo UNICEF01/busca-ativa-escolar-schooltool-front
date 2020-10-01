@@ -353,7 +353,7 @@
         }
 
         // Lazily load input items ?XDEBUG_SESSION_START=PHPSTORM
-        fetch("http://api.busca-ativa-escolar.test/api/v1/open/schools", requestOptions)
+        fetch("https://api.buscaativaescolar.org.br", requestOptions)
           .then(res => res.clone().json())
           .then(res => {
             this.items = res
