@@ -11,8 +11,8 @@
           <h5 class="headline">Questionário de Autoavaliação</h5>
 
           <p class="paragraph_report">
-            As perguntas abaixo foram organizadas para que você conheça melhor a estrutura e o funcionamento da sua escola, no que se refere aos aspectos de água, higiene e saneamento. Além disso, são abordadas as condições para a prevenção e o controle de infecções, em resposta ao COVID-19.<br/>
-            Responda atentamente às perguntas de cada seção e receba orientações específicas para a sua situação.
+            As perguntas abaixo foram organizadas para que você conheça melhor a estrutura e o funcionamento da sua escola, no que se refere aos aspectos de água, higiene e saneamento. Além disso, são abordadas as condições para a prevenção e o controle de infecções, em resposta ao COVID-19.
+            <br/>Responda atentamente às perguntas de cada seção e receba orientações específicas para a sua situação.
           </p>
 
           <div v-for="group in quest">
@@ -75,13 +75,13 @@
             </v-alert>
 
             <p class="paragraph_report" v-if="getPercentualAnswers() == 100">
-              Parabéns, de acordo com as suas respostas ao questionário de autoavaliação a sua escola está apta a retornar às aulas e receber estudantes, professores e funcionários de maneira segura. <br/>
-              É importante que as condições necessárias sejam mantidas e avaliadas regularmente. <br/>
-              Sugerimos que cada gestor escolar mantenha um diálogo constante com autoridades e comunidade sobre as necessidades e dúvidas que possam surgir. Todos temos um papel importante para que as escolas sejam um sempre um ambiente acolhedor, seguro e saudável para todos.
+              Parabéns, de acordo com as suas respostas ao questionário de autoavaliação a sua escola está apta a retornar às aulas e receber estudantes, professores e funcionários de maneira segura.
+              <br/>É importante que as condições necessárias sejam mantidas e avaliadas regularmente.
+              <br/>Sugerimos que cada gestor escolar mantenha um diálogo constante com autoridades e comunidade sobre as necessidades e dúvidas que possam surgir. Todos temos um papel importante para que as escolas sejam um sempre um ambiente acolhedor, seguro e saudável para todos.
             </p>
 
             <p class="paragraph_report" v-if="getPercentualAnswers() < 100">
-              Os resultados da sua autoavaliação indicam que existem aspectos importantes a serem observados antes da reabertura das escolas. Logo abaixo você encontrará orientações sobre como proceder e como organizar a estrutura, os suprimentos e quais medidas são necessárias para o caso específico da sua escola. Verifique cada um dos itens abaixo e explore os documentos de apoio. Agora é o momento para desenvolver e aprimorar estratégias para a reabertura segura das escolas.
+              Os resultados da sua autoavaliação indicam que existem aspectos importantes a serem observados, antes mesmo da reabertura das escolas. Logo abaixo você encontrará orientações sobre como proceder e como organizar a estrutura, os suprimentos e quais medidas são necessárias para o caso específico da sua escola. Verifique cada um dos itens abaixo e explore os documentos de apoio. É o momento para desenvolver e aprimorar estratégias para a reabertura segura das escolas.
             </p>
 
             <div v-for="group in quest">

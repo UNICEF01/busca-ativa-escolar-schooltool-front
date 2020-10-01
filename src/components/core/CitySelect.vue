@@ -125,7 +125,7 @@
         }
 
         // Lazily load input items
-        fetch("https://api.testes.buscaativaescolar.org.br/api/v1/cities/search", requestOptions)
+        fetch("https://api.buscaativaescolar.org.br/api/v1/cities/search", requestOptions)
           .then(res => res.clone().json())
           .then(res => {
             this.items = res.results
