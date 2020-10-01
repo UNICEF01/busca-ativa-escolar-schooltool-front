@@ -353,7 +353,9 @@
         }
 
         // Lazily load input items ?XDEBUG_SESSION_START=PHPSTORM
-        fetch("https://api.buscaativaescolar.org.br", requestOptions)
+        //todo mudar para https://api.buscaativaescolar.org.br em produção
+
+        fetch("https://api.testes.buscaativaescolar.org.br", requestOptions)
           .then(res => res.clone().json())
           .then(res => {
             this.items = res
