@@ -1,7 +1,7 @@
 <template>
   <v-container class="pa-2">
     <v-layout>
-      <v-flex xs12 md6 v-if="estados">
+      <v-flex xs12 md6>
         <v-select
           v-model="estado"
           :items="estados"
@@ -9,14 +9,42 @@
           :rules="[rules.required]"
         ></v-select>
       </v-flex>
+
       <v-flex xs12 md6>
-        <v-combobox
+        <v-autocomplete
           v-model="cidade"
-          :items="cidades"
+          :items="items"
+          :loading="isLoading"
+          :search-input.sync="search"
+          clearable
+          hide-details
+          hide-selected
+          item-text="name"
           label="Município"
+          return-object
           :rules="[rules.required]"
           @change="emitToParent({uf: estado, city: cidade})"
-        ></v-combobox>
+        >
+          <template v-slot:no-data>
+            <v-list-item>
+              <v-list-item-title>
+                Escreva o nome da escola
+              </v-list-item-title>
+            </v-list-item>
+          </template>
+
+          <template v-slot:selection="{ attr, on, item, selected }">
+            <span v-text="item.name"></span>
+          </template>
+
+          <template v-slot:item="{ item }">
+            <v-list-item-content>
+              <v-list-item-title v-text="item.name"></v-list-item-title>
+              -
+              <v-list-item-subtitle v-text="item.uf"></v-list-item-subtitle>
+            </v-list-item-content>
+          </template>
+        </v-autocomplete>
       </v-flex>
     </v-layout>
   </v-container>
@@ -34,9 +62,11 @@
     data() {
       return {
         cidades: [],
+        items: [],
         estado: '',
         cidade: '',
-        brasil,
+        isLoading: false,
+        search: null,
         rules: {
           required: value => !!value || 'Obrigatório.',
         },
@@ -72,16 +102,42 @@
       };
     },
     watch: {
-      'estado': function () {
-        this.cidades = brasil[this.estado].cidades
-      }
+      cidade(val) {
+        if (val != null)
+          this.cidade = val;
+      },
+      search(val) {
+        //Items have already been loaded
+        if (val < 3) return
+
+        this.isLoading = true
+
+        const requestOptions = {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(
+            {
+              name: val,
+              uf: this.estado,
+              $hide_loading_feedback: true
+            }
+          )
+        }
+
+        // Lazily load input items
+        fetch("https://api.testes.buscaativaescolar.org.br/api/v1/cities/search", requestOptions)
+          .then(res => res.clone().json())
+          .then(res => {
+            this.items = res.results
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          .finally(() => (this.isLoading = false))
+      },
     },
     methods: {
-      // getCitys: function (event) {
-      //   this.cidades = brasil[this.estado].cidades
-      //
-      // },
-      emitToParent (event) {
+      emitToParent(event) {
         this.$emit('childToParent', event)
       }
     }
