@@ -282,6 +282,9 @@
                 });
               //console.log(user);
               this.$router.push({path: '/wash'})
+              setInterval(function () {
+                window.location.reload();
+              }, 1000);
             })
           } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -300,6 +303,9 @@
             const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               //console.log(user);
               this.$router.push({path: '/wash'})
+              setInterval(function () {
+                window.location.reload();
+              }, 1000);
             })
           } catch (error) {
             console.log(error)
