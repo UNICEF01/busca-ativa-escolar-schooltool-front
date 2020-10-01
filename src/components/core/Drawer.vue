@@ -118,7 +118,7 @@
     created: function () {
       var docRef = db.collection("users").where('uid', '==', auth.currentUser.uid).onSnapshot(querySnapshot => {
 
-        console.log(querySnapshot)
+        // console.log(querySnapshot)
         // let values = []
         // querySnapshot.forEach((doc) => {
         //   values.push(doc.data())
