@@ -113,6 +113,10 @@
             Retornar ao formulário
           </v-btn>
 
+          <v-btn @click="exportPDF()" class="font-weight-light" color="#5cb860" style="margin-left: 10px;">
+            Exportar PDF
+          </v-btn>
+
           <v-btn @click="print()" class="font-weight-light" color="#5cb860" style="margin-left: 10px;">
             Imprimir
           </v-btn>
@@ -132,6 +136,8 @@
   import {db, auth, usersCollection} from "./../firebase";
   import {mapMutations, mapState} from 'vuex';
   import Printd from 'printd';
+  import html2pdf from 'html2pdf.js';
+  import jsPDF from 'jspdf';
 
   export default {
 
@@ -1048,7 +1054,6 @@
 
         ],
         cssForPrintd: `
-
           .error{
             background-color: #f55a4e !important;
             font-family: sans-serif;
@@ -1056,7 +1061,6 @@
             color: #ffffff;
             padding: 20px;
           }
-
           .orange {
             background-color: #ff9800!important;
             font-family: sans-serif;
@@ -1064,7 +1068,6 @@
             color: #ffffff;
             padding: 20px;
           }
-
           .success{
             background-color: #5cb860 !important;
             font-family: sans-serif;
@@ -1072,7 +1075,6 @@
             color: #ffffff;
             padding: 20px;
           }
-
           .amarelo{
             background-color: rgb(202, 191, 16);
             font-family: sans-serif;
@@ -1080,12 +1082,10 @@
             color: #ffffff;
             padding: 20px;
           }
-
           .headline{
             font-family: sans-serif;
             font-size: 25px !important;
           }
-
           .recommendation,
           .recommendation strong{
             font-family: sans-serif;
@@ -1250,6 +1250,30 @@
       finish(value){
         window.scrollTo(0, 0);
         this.isReportReady=value;
+      },
+
+      exportPDF(){
+        html2pdf()
+          .from(document.getElementById('relatorio_wash'))
+          .set({
+            margin:       [30, 20, 30, 20],
+            filename:     'file.pdf',
+            image:        { type: 'jpeg',quality: 1.0 },
+            html2canvas:  { dpi: 300, scale: 2, scrollX: 0, scrollY: 0, backgroundColor: '#FFF' },
+            jsPDF:        { unit: 'pt', format: 'a4', orientation: 'p' },
+            pagebreak: { before: '.page-break', avoid: 'img' }
+          })
+          .toPdf()
+          .get('pdf').then(function (pdf) {
+          var totalPages = pdf.internal.getNumberOfPages();
+
+          for (let i = 1; i <= totalPages; i++) {
+            pdf.setPage(i);
+            pdf.setFontSize(10);
+            pdf.setTextColor(150);
+            pdf.text('Página ' + i + ' of ' + totalPages, pdf.internal.pageSize.getWidth() - 100, pdf.internal.pageSize.getHeight() - 10);
+          }
+        }).save();
       },
 
       print(){
