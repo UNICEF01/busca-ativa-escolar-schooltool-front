@@ -54,7 +54,7 @@
 
         <br/><br/>
 
-        <div v-if="isReportReady == true">
+        <div v-if="isReportReady == true" id="relatorio_wash">
 
             <h5 class="headline">Relatório</h5>
 
@@ -62,7 +62,7 @@
               Boa situação geral, algumas melhorias podem ser necessárias em uma ou várias áreas.
             </v-alert>
 
-            <v-alert type="warning" value="true" color="#cabf10" v-if="getPercentualAnswers() > 50 && getPercentualAnswers() <= 75" style="font-size: 15px;">
+            <v-alert type="warning" value="true" class="amarelo" color="#cabf10" v-if="getPercentualAnswers() > 50 && getPercentualAnswers() <= 75" style="font-size: 15px;">
               Situação geral insuficiente, sugerem-se algumas melhorias em uma ou várias áreas.
             </v-alert>
 
@@ -113,6 +113,10 @@
             Retornar ao formulário
           </v-btn>
 
+          <v-btn @click="print()" class="font-weight-light" color="#5cb860" style="margin-left: 10px;">
+            Imprimir
+          </v-btn>
+
         </div>
 
       </v-flex>
@@ -126,7 +130,8 @@
 <script>
 
   import {db, auth, usersCollection} from "./../firebase";
-  import {mapMutations, mapState} from 'vuex'
+  import {mapMutations, mapState} from 'vuex';
+  import Printd from 'printd';
 
   export default {
 
@@ -1041,7 +1046,59 @@
             groupRecommendation: "<span>Discuta as limitações e dificuldades na prevenção e controle de infecções em sua escola e conjuntamente com a Secretaria busque possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           }
 
-        ]
+        ],
+        cssForPrintd: `
+
+          .error{
+            background-color: #f55a4e !important;
+            font-family: sans-serif;
+            font-size: 25px !important;
+            color: #ffffff;
+            padding: 20px;
+          }
+
+          .orange {
+            background-color: #ff9800!important;
+            font-family: sans-serif;
+            font-size: 25px !important;
+            color: #ffffff;
+            padding: 20px;
+          }
+
+          .success{
+            background-color: #5cb860 !important;
+            font-family: sans-serif;
+            font-size: 25px !important;
+            color: #ffffff;
+            padding: 20px;
+          }
+
+          .amarelo{
+            background-color: rgb(202, 191, 16);
+            font-family: sans-serif;
+            font-size: 25px !important;
+            color: #ffffff;
+            padding: 20px;
+          }
+
+          .headline{
+            font-family: sans-serif;
+            font-size: 25px !important;
+          }
+
+          .recommendation,
+          .recommendation strong{
+            font-family: sans-serif;
+            font-size: 15px !important;
+          }
+          .paragraph_report {
+            font-family: sans-serif;
+            font-size: 15px !important;
+            font-size: 16px !important;
+            margin-bottom: 20px;
+            margin-top: 20px;
+          }
+        `
       }
     },
 
@@ -1084,6 +1141,8 @@
     },
 
     methods: {
+
+      ...mapMutations('app', ['setDrawer', 'toggleDrawer']),
 
       toast(type, message) {
 
@@ -1191,6 +1250,11 @@
       finish(value){
         window.scrollTo(0, 0);
         this.isReportReady=value;
+      },
+
+      print(){
+        const d = new Printd()
+        d.print( document.getElementById('relatorio_wash'), [this.cssForPrintd]);
       }
 
     },
@@ -1214,13 +1278,6 @@
       font-size: 16px !important;
       margin-bottom: 20px;
       margin-top: 20px;
-    }
-
-    #update_bar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      text-align: center;
     }
 </style>
 

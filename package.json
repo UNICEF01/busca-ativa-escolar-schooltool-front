@@ -13,6 +13,7 @@
     "chartist": "0.11.0",
     "firebase": "^7.21.0",
     "node-sass": "^4.9.3",
+    "printd": "^1.4.2",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.22",
     "vue-chartist": "^2.1.2",
