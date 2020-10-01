@@ -212,9 +212,9 @@
                 id: 1,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>entre em contato com o prestador de serviço de água local para verificar as soluções para o fornecimento mais regular na escola.</li>"
-                  +"<li>viabilize o serviço de abastecimento onde não houver ligação da escola ao sistema de abastecimento de água.</li>"
-                  +"<li>organize abastecimento móvel de água para a reabertura das escolas, enquanto mais soluções são estudadas.</li>"
+                  +"<li>Verifique com o prestador de serviço de água local as alternativas ou soluções para o fornecimento mais regular na escola.</li>"
+                  +"<li>Viabilize o serviço de abastecimento onde não houver ligação da escola ao sistema de abastecimento de água.</li>"
+                  +"<li>Providencie o abastecimento móvel de água para a reabertura das escolas, enquanto mais soluções são estudadas.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -222,8 +222,8 @@
                 id: 2,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>providencie reservatórios complementares de armazenamento de água.</li>"
-                  +"<li>promova a aquisição de reservatórios de água pelos gestores de escolas particulares.</li>"
+                  +"<li>Providencie reservatórios complementares de armazenamento de água.</li>"
+                  +"<li>Viabilize a aquisição de reservatórios de água, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -231,16 +231,16 @@
                 id: 3,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>oriente gestores escolares sobre como verificar o teor mínimo de cloro residual livre."
-                  +" <a href=\"http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf\" target=\"_blank\">Manual Prático de Análise de Água - Clique para baixar</a> </li>"
-                  +"<li>verifique junto ao prestador de serviço de água que a água fornecida é clorada.</li>"
+                  +"<li>Busque informações sobre como verificar o teor mínimo de cloro residual livre. <br/>"
+                  +" <a href=\"http://www.funasa.gov.br/site/wp-content/files_mf/manual_pratico_de_analise_de_agua_2.pdf\" target=\"_blank\">Clique para acessar o Manual Prático de Análise de Água</a> </li>"
+                  +"<li>Verifique junto ao prestador de serviço de água se a água fornecida à escola é adequadamente clorada.</li>"
                   +"</ul>"
                   +"</span>"
               }
             ],
             limitForGroupRecommendation: 3,
-            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span>Encoraje os gestores a discutirem as limitações no fornecimento de água em suas escolas e que conjuntamente com a Secretaria busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É recomendado que o gestor escolar, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>Discuta as limitações no fornecimento de água em sua escola e, conjuntamente com a Secretaria, busque possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -348,8 +348,8 @@
                 id: 4,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>solicite e viabilize a instalação de locais para lavagem das mãos, com disponibilização de sabão, em todas as entradas da escola;</li>"
-                  +"<li>apoie as escolas para que disponham continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Instale pias ou locais para lavagem das mãos, com disponibilidade de sabão, em todas as entradas da escola;</li>"
+                  +"<li>Certifique-se que a escola disponha continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -357,7 +357,7 @@
                 id: 5,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>solicite e viabilize a instalação de locais para lavagem das mãos, com disponibilização de sabão, nas proximidades de todos os banheiros.</li>"
+                  +"<li>Instale pias ou locais para lavagem das mãos, com disponibilidade de sabão, nas proximidades de todos os banheiros.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -365,7 +365,7 @@
                 id: 6,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova, juntamente com os gestores escolares, a realização de atividades de sensibilização e de lavagem de mãos em grupo, chamando a atenção de estudantes para a importância da higiene das mãos.</li>"
+                  +"<li>Promova, juntamente com a Secretaria e a comunidade escolar, a realização de atividades de sensibilização e de lavagem de mãos em grupo, chamando a atenção de estudantes para a importância da higiene das mãos.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -373,15 +373,15 @@
                 id: 7,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova a importância da higiene menstrual;</li>"
-                  +"<li>viabilize a existência de espaços e disponibilidade de materiais adequados e seguros para a prática da higiene menstrual.</li>"
+                  +"<li>Promova, juntamente com a Secretaria e a comunidade escolar, a importância da higiene menstrual;</li>"
+                  +"<li>Viabilize a existência de espaços e a disponibilidade de materiais adequados e seguros para a prática da higiene menstrual.</li>"
                   +"</ul>"
                   +"</span>"
               }
             ],
             limitForGroupRecommendation: 4,
-            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
-            groupRecommendation: "<span>Encoraje os gestores a discutirem as limitações para a lavagem das mãos e higiene menstrual em suas escolas e que conjuntamente com a Secretaria busquem e buscarem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É recomendado que o gestor escolar, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>Discuta as limitações para a lavagem das mãos e higiene menstrual em sua escola e conjuntamente com a Secretaria busque possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -548,7 +548,7 @@
                 id: 8,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>apoie e viabilize a instalação de mais banheiros, com vasos sanitários em quantidade suficiente, e/ou o reparo de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
+                  +"<li>Instale mais banheiros para estudantes, com vasos sanitários em quantidade suficiente, e/ou o repare de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -556,7 +556,7 @@
                 id: 9,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de ter banheiros separados para meninas e meninos, sinalizados claramente, requerendo a separação dos banheiros e sanitários quando necessário e o quanto antes.</li>"
+                  +"<li>Promova a importância de ter banheiros separados para meninas e meninos, sinalizados claramente. Viabilize a separação dos banheiros e sanitários quando necessário e o quanto antes.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -564,7 +564,7 @@
                 id: 10,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>apoie e viabilize a instalação de mais banheiros, com vasos sanitários em quantidade suficiente, e/ou o reparo de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
+                  +"<li>Instale mais banheiros para professores e funcionários, com vasos sanitários em quantidade suficiente, e/ou o repare de estruturas que não funcionem, excepcionalmente, providenciando banheiros químicos e sua manutenção regular e adequada.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -572,7 +572,7 @@
                 id: 11,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, criem orientações e rotinas diárias de limpeza e desinfecção nas escolas.</li>"
+                  +"<li>Crie, antes da reabertura, orientações e rotinas diárias de limpeza e desinfecção nas escolas.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -580,8 +580,8 @@
                 id: 12,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>apoie e viabilize a instalação de mais locais para lavagem das mãos, com disponibilização de sabão, próximos a cada grupo de banheiros.</li>"
-                  +"<li>apoie as escolas para que disponham continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Instale mais pias ou locais para lavagem das mãos, com disponibilidade de sabão, próximos a cada grupo de banheiros.</li>"
+                  +"<li>Certifique-se que a escola disponha continuamente de sabão, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -589,8 +589,8 @@
                 id: 13,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>apoie e viabilize a instalação de lixeiras em cada sala de aula, nos banheiros e em locais estratégicos da escola.</li>"
-                  +"<li>apoie as escolas que não disponham de lixeiras para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Instale lixeiras em cada sala de aula, nos banheiros e em locais estratégicos da escola. </li>"
+                  +"<li>Viabilize a aquisição de lixeiras, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -598,15 +598,15 @@
                 id: 14,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de gerir e descartar resíduos sólidos adequadamente, com o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
-                  +"<li>garanta o recolhimento e destinação final adequada dos resíduos das escolas, com o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
+                  +"<li>Promova a importância de gerir e descartar resíduos sólidos adequadamente, com a orientação e o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
+                  +"<li>Certifique-se de que ocorre o recolhimento e destinação final adequada dos resíduos da escola, com o apoio dos órgãos responsáveis pela prestação dos serviços de limpeza urbana e manejo dos resíduos sólidos.</li>"
                   +"</ul>"
                   +"</span>"
               }
             ],
             limitForGroupRecommendation: 7,
-            headerRecommendation: "<span><strong>É recomendado que a Secretaria de Educação, em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
-            groupRecommendation: "<span>Encoraje os gestores das escolas a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos, para que busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É recomendado que o gestor escolar, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
+            groupRecommendation: "<span>Discuta as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos em sua escola e conjuntamente com a Secretaria busque possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           },
 
           {
@@ -923,7 +923,7 @@
                 id: 15,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>apoie e viabilize a colocação de cartazes sobre a prevenção e transmissão do COVID-19 em cada sala de aula, banheiros e em locais estratégicos da escola, facilitando a sua produção e obtenção de materiais educativos sobre COVID-19, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Coloque cartazes sobre a prevenção e transmissão do COVID-19 em cada sala de aula, banheiros e em locais estratégicos da escola. Busque apoio para a produção e obtenção de materiais educativos sobre COVID-19, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -931,7 +931,7 @@
                 id: 16,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova junto aos gestores escolares (públicos e privados) a identificação de pessoas (incluindo da sociedade civil) para que se tornem pontos focais de água, esgotamento sanitário, higiene e saúde escolar, oferecendo informações e orientações, presenciais ou à distância.</li>"
+                  +"<li>Identifique pessoas (incluindo da comunidade escolar) para que se tornem pontos focais de água, esgotamento sanitário, higiene e saúde escolar, oferecendo informações e orientações, presenciais ou à distância.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -939,7 +939,7 @@
                 id: 17,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>incentive que os gestores escolares (públicos e privados) elaborem um planejamento de limpeza e desinfecção das dependências das escolas.</li>"
+                  +"<li>Elabore um planejamento de limpeza e desinfecção das dependências das escolas.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -947,8 +947,8 @@
                 id: 18,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>consulte os gestores escolares (públicos e privados) sobre a disponibilidade de equipamentos e materiais de limpeza e desinfecção e, se for o caso, viabilize-os antes da reabertura da escola.</li>"
-                  +"<li>apoie as escolas que não disponham de equipamentos ou materiais de limpeza e desinfecção ou dos recursos para sua aquisição para que os obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Verifique a disponibilidade de equipamentos e materiais de limpeza e desinfecção e, se for o caso, viabilize-os antes da reabertura da escola.</li>"
+                  +"<li>Viabilize a disponibilidade de equipamentos ou materiais de limpeza e desinfecção ou dos recursos para sua aquisição, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -956,7 +956,7 @@
                 id: 19,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>discuta com gestores escolares (públicos e privados) como criar condições que permitam o distanciamento físico adequado ou quais as melhores alternativas: uso de máscara, turnos escolares etc.</li>"
+                  +"<li>Crie condições que permitam o distanciamento físico adequado ou quais as melhores alternativas: uso de máscara, turnos escolares etc.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -964,7 +964,7 @@
                 id: 20,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, sinalizem o chão dos locais de lavagem de mãos e dos banheiros para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</li>"
+                  +"<li>Sinalize, antes da reabertura, o chão das pias ou dos locais de lavagem de mãos e dos banheiros para indicar a distância física entre os usuários. Assegure que o distanciamento seja respeitado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -972,7 +972,7 @@
                 id: 21,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados), para que antes da reabertura, sinalizem o chão dos locais das carteiras e das áreas do refeitório para indicar a distância física entre os usuários e assegurar que os estudantes a respeitem.</li>"
+                  +"<li>Sinalize, antes da reabertura, o chão dos locais das carteiras e das áreas do refeitório para indicar a distância física entre os usuários. Assegure que o distanciamento seja respeitado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -980,8 +980,8 @@
                 id: 22,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados) para que disponibilizem máscaras faciais e produtos desinfetantes para as mãos, para funcionários da cozinha.</li>"
-                  +"<li>apoie as escolas que não disponham de máscaras faciais e produtos desinfetantes para as mãos ou dos recursos para sua aquisição para que os obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Disponibilize máscaras faciais e produtos desinfetantes para as mãos, para funcionários da cozinha.</li>"
+                  +"<li>Viabilize a disponibilidade de máscaras faciais e produtos desinfetantes para as mãos ou dos recursos para sua aquisição, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -989,7 +989,7 @@
                 id: 23,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova junto aos gestores escolares (públicos e privados) a importância de uma boa ventilação em todas as salas de aula e de buscar soluções para os espaços da escola que não têm ventilação suficiente.</li>"
+                  +"<li>Promova a importância de uma boa ventilação em todas as salas de aula e busque soluções para os espaços da escola que não têm ventilação suficiente.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -997,7 +997,7 @@
                 id: 24,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova, com o apoio dos órgãos responsáveis pela Saúde, que os gestores escolares (públicos e privados) recebam orientações para a identificação de estudantes com sintomas de COVID-19.</li>"
+                  +"<li>Busque junto aos órgãos responsáveis pela Saúde, orientações para a pronta identificação de estudantes com sintomas de COVID-19.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -1005,7 +1005,7 @@
                 id: 25,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova, com o apoio dos órgãos responsáveis pela Saúde, que os gestores escolares (públicos e privados) identifiquem um espaço privado com acesso à água potável e banheiro, designado para o isolamento de estudantes com sintomas de COVID -19.</li>"
+                  +"<li>Reserve um espaço privado, com acesso à água potável e banheiro, para o isolamento de estudantes com sintomas de COVID -19, onde devem ficar até que os responsáveis venham buscá-los.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -1013,8 +1013,8 @@
                 id: 26,
                 text: "<span><strong>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados) para que disponibilizem máscaras faciais para estudantes que apresentem sintomas de COVID-19.</li>"
-                  +"<li>apoie as escolas que não disponham de máscaras faciais ou dos recursos para sua aquisição para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Disponibilize máscaras faciais para estudantes que apresentem sintomas de COVID-19.</li>"
+                  +"<li>Viabilize a disponibilidade de máscaras faciais ou dos recursos para sua aquisição, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span></strong>"
               },
@@ -1022,8 +1022,8 @@
                 id: 27,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>promova e apoie gestores escolares (públicos e privados), nos Estados e Municípios em que for recomendado, para que disponibilizem máscaras faciais para os estudantes, educadores e funcionários.</li>"
-                  +"<li>apoie as escolas que não disponham de máscaras faciais ou dos recursos para sua aquisição para que as obtenham, inclusive, se for o caso, com a colaboração do setor privado.</li>"
+                  +"<li>Disponibilize (nos Estados e Municípios em que for recomendado) máscaras faciais para os estudantes, educadores e funcionários.</li>"
+                  +"<li>Viabilize a disponibilidade de máscaras faciais ou dos recursos para sua aquisição, inclusive, se for o caso, com a colaboração do setor privado.</li>"
                   +"</ul>"
                   +"</span>"
               },
@@ -1031,14 +1031,14 @@
                 id: 28,
                 text: "<span>"
                   +"<ul>"
-                  +"<li>oriente e apoie gestores escolares (públicos e privados) para que elaborem listas de verificação que permitam acompanhar, ao menos semanalmente, o cumprimento das exigências de água, esgotamento sanitário, higiene e prevenção e controle de doenças transmissíveis.</li>"
+                  +"<li>Elabore listas de verificação que permitam acompanhar, ao menos semanalmente, o cumprimento das exigências de água, esgotamento sanitário, higiene e prevenção e controle de doenças transmissíveis.</li>"
                   +"</ul>"
                   +"</span>"
               }
             ],
             limitForGroupRecommendation: 14,
-            headerRecommendation: "<span><strong>É recomendado que os gestores escolares, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais, em especial os provedores de serviços de água e esgoto e de limpeza urbana e manejo dos resíduos sólidos:</strong></span>",
-            groupRecommendation: "<span>Encoraje os gestores  a discutirem as limitações dos serviços de água e esgoto e/ou de limpeza urbana e manejo dos resíduos sólidos em suas escolas e que conjuntamente com a Secretaria busquem possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
+            headerRecommendation: "<span><strong>É sugerido que o gestor escolar, em direta articulação com a Secretaria de Educação, e em coordenação com outras autoridades locais:</strong></span>",
+            groupRecommendation: "<span>Discuta as limitações e dificuldades na prevenção e controle de infecções em sua escola e conjuntamente com a Secretaria busque possíveis soluções para antes da reabertura, especialmente em locais de alta incidência de casos de COVID-19.</span>"
           }
 
         ]
