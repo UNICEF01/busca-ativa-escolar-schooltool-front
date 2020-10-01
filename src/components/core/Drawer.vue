@@ -131,6 +131,11 @@
 
       this.user = auth.currentUser || '';
 
+      if (this.user.displayName.length > 1) {
+        this.$router.push({path: '/wash'})
+
+      }
+
       if (window.location.pathname === '/') {
         this.showButtom = true;
       }
@@ -150,10 +155,15 @@
       },
       logout() {
         auth.signOut().then(function () {
-          this.$router.push({path: '/quest'})
+
         }).catch(function (error) {
           // An error happened.
         });
+        this.$router.push({path: '/quest'})
+        setInterval(function () {
+          window.location.reload();
+        }, 2000);
+
       }
     }
   }
