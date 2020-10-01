@@ -255,7 +255,6 @@
       },
       // Triggered when `childToParent` event is emitted by the child.
       onChildClick(value) {
-        console.log(value)
         this.user.uf = value.uf
         this.user.city = value.city
       },
@@ -318,7 +317,6 @@
       },
       resetPassword() {
         auth.sendPasswordResetEmail(this.login.email).then((user) => {
-          console.log(user)
         });
         this.$toast.open({
           message: 'Um e-mail foi enviado para recuperar a senha!',
