@@ -1294,11 +1294,11 @@
           name: auth.currentUser.email
         };
 
-        this.$http.post('/mailgun/send_mail.php', body_message)
+        this.$http.post('https://escolas.buscaativaescolar.org.br/mailgun/send_mail.php', body_message)
           .then( function (response) {
             this.toast('success', "Relatório encaminhado com sucesso");
           }, function (response) {
-            this.toast('error', "Erro no envio do relatório");
+            this.toast('error', "Erro no envio da mesagem");
           });
 
       },
