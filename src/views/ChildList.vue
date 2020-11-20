@@ -43,7 +43,7 @@
             </template>
             <template
               slot="items"
-              scope="props">
+              slot-scope="props">
               <td>
                 {{ props.item.name }}<br>
                 <small><b>Nome da mãe:</b> {{ props.item.mother_name }}</small>
