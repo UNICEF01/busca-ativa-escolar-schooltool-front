@@ -13,7 +13,7 @@
           color="cyan"
           icon="mdi-cloud-check"
           title="Respostas"
-          :value="users.length"
+          :value="responses"
           sub-icon="mdi-calendar"
           sub-text="Ultima resposta à 24h"
         />
@@ -63,8 +63,22 @@
           sub-text="Falta Água"
         />
       </v-flex>
+      <!--      <pre v-if="users.length > 1">-->
+      <!--      {{users}}-->
+      <!--        </pre>-->
 
       <v-flex md12>
+        <vue-excel-xlsx
+          :data="users"
+          :columns="headers"
+          :filename="'filename'"
+          :sheetname="'sheetname'"
+        >
+          <button type="button" class="font-weight-light v-btn v-btn--large theme--light success">
+            Download
+          </button>
+
+        </vue-excel-xlsx>
         <v-data-table
           :headers="headers"
           :items="users"
@@ -77,10 +91,10 @@
           <template
             slot="headerCell"
             slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text--darken-3"
-                v-text="header.text"
-              />
+                    <span
+                      class="subheading font-weight-light text--darken-3"
+                      v-text="header.text"
+                    />
             <br>
             <small>{{ header.description }}</small>
           </template>
@@ -94,13 +108,13 @@
               {{props.item.telefone ? props.item.telefone : 'NI'}}
             </td>
             <td class="text-xs-left with-input-xs">
-              {{props.item.city.name ? props.item.city.name : 'NI'}}
+              {{props.item.city }}
             </td>
             <td class="text-xs-left with-input-xs">
-              {{props.item.city.uf ? props.item.city.uf : 'NI'}}
+              {{props.item.uf}}
             </td>
             <td class="text-xs-left with-input-xs">
-              <span v-if="props.item.school">{{props.item.school.name}}</span>
+              <span v-if="props.item.school">{{props.item.school}}</span>
               <span v-else="props.item.school">Não Informado</span>
             </td>
           </template>
@@ -125,6 +139,7 @@
         loading: true,
         color: 'cyan',
         search: '',
+        responses: '',
         rowsPerPageItems: [20, 300, 400, 500],
         pagination: {
           rowsPerPage: 20
@@ -221,31 +236,41 @@
           {
             sortable: false,
             text: 'Nome',
-            value: 'name'
+            value: 'name',
+            field: 'name',
+            label: 'Nome'
           },
           {
             sortable: false,
             text: 'Telefone',
             value: 'telefone',
-            align: 'left'
+            align: 'left',
+            field: 'telefone',
+            label: 'Telefone'
           },
           {
             sortable: false,
             text: 'Cidade',
             value: 'city',
-            align: 'left'
+            align: 'left',
+            field: 'city',
+            label: 'Cidade'
           },
           {
             sortable: false,
             text: 'UF',
             value: 'UF',
-            align: 'left'
+            align: 'left',
+            field: 'uf',
+            label: 'UF'
           },
           {
             sortable: false,
             text: 'Escola',
-            value: 'school.name',
-            align: 'left'
+            value: 'school',
+            align: 'left',
+            field: 'school',
+            label: 'Escola'
           }
         ],
         // tabs: 0,
@@ -266,23 +291,38 @@
 
 
         let washData = await db.collection("users").get().then(function (querySnapshot) {
+
+          let values = querySnapshot.docs;
           let arrayData = [];
-          querySnapshot.forEach(function (doc) {
-            // doc.data() is never undefined for query doc snapshots
-            arrayData.push(doc.data());
-          });
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            obj.name = data.name;
+            obj.telefone = data.telefone;
+            obj.city = data.city ? data.city.name : 'NI';
+            obj.uf = data.city ? data.city.uf : 'NI';
+            obj.school = data.school ? data.school.name : 'NI';
+            arrayData.push(obj);
+          }
           return arrayData;
         });
 
+
         this.users = washData;
 
+        let responses = this.users.length;
+
+        this.responses = responses.toString();
+
         this.loading = false;
+
 
       },
 
     },
     created() {
       this.getData();
-    },
+    }
+    ,
   }
 </script>
