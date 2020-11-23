@@ -27,7 +27,7 @@
           color="orange"
           icon="mdi-city"
           title="Municípios"
-          value="20"
+          value="00"
           small-value=""
           sub-icon="mdi-alert"
           sub-icon-color="error"
@@ -44,7 +44,7 @@
           color="red"
           icon="mdi-school"
           title="Escolas"
-          value="75"
+          value="00"
           sub-icon="mdi-tag"
           sub-text="Tracked from Github"
         />
@@ -58,7 +58,7 @@
           color="info"
           icon="mdi-water-off"
           title="Abastecimento"
-          value="67%"
+          value="00%"
           sub-icon="mdi-update"
           sub-text="Falta Água"
         />
