@@ -250,7 +250,7 @@
     methods: {
       checkAutenticate() {
         if (auth.currentUser) {
-          this.$router.push({path: '/wash'})
+          this.$router.push({path: '/admin'})
         }
       },
       // Triggered when `childToParent` event is emitted by the child.
@@ -280,7 +280,7 @@
                   // console.error(error)
                 });
               //console.log(user);
-              this.$router.push({path: '/wash'})
+              this.$router.push({path: '/admin'})
               setInterval(function () {
                 window.location.reload();
               }, 1000);
@@ -301,7 +301,7 @@
           try {
             const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               //console.log(user);
-              this.$router.push({path: '/wash'})
+              this.$router.push({path: '/admin'})
               setInterval(function () {
                 window.location.reload();
               }, 1000);

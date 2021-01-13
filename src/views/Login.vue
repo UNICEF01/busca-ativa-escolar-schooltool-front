@@ -38,7 +38,7 @@
 <!--                </v-btn>-->
 
                 <v-btn color="success" @click="loginUser()">
-                  Login
+                  Entrar
                 </v-btn>
 <!--                <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">-->
 <!--                  Enviar-->
@@ -106,7 +106,7 @@
     methods: {
       checkAutenticate() {
         if (auth.currentUser) {
-          this.$router.push({path: '/wash'})
+          this.$router.push({path: '/admin'})
         }
       },
       // Triggered when `childToParent` event is emitted by the child.
@@ -135,11 +135,6 @@
                 .catch(function (error) {
                   // console.error(error)
                 });
-              //console.log(user);
-              this.$router.push({path: '/wash'})
-              setInterval(function () {
-                window.location.reload();
-              }, 1000);
             })
           } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -157,7 +152,7 @@
           try {
             const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               //console.log(user);
-              this.$router.push({path: '/wash'})
+              this.$router.push({path: '/admin'})
               setInterval(function () {
                 window.location.reload();
               }, 1000);
