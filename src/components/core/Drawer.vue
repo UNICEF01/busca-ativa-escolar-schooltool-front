@@ -133,11 +133,11 @@
 
       this.user = auth.currentUser || '';
 
-      if (this.user !== '') {
-        if (this.user.displayName.length > 1) {
-          this.$router.push({path: '/wash'})
-        }
-      }
+      // if (this.user !== '') {
+      //   if (this.user.displayName.length > 1) {
+      //     this.$router.push({path: '/wash'})
+      //   }
+      // }
 
       if (window.location.pathname === '/') {
         this.showButtom = true;

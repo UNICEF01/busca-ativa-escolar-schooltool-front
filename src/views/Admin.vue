@@ -3,226 +3,143 @@
     fill-height
     fluid
     grid-list-xl>
-    <v-layout
-      justify-center
-      wrap>
-      <v-flex xs12 md8>
-
-        <h5 class="headline">Autoavaliação</h5>
-
-        <p>
-          Conhecer a estrutura de cada escola e saber quais aspectos precisam ser melhorados ou adaptados para o novo contexto de volta às aulas é muito importante. Criamos um questionário que poderá servir como referência e indicar onde e como os gestores devem atuar para garantir uma situação segura para estudantes, professores e funcionários.
-        </p>
-
-        <material-card color="cyan" title="Preencha o cadastro abaixo e responda o questionário a seguir com atenção. Conheça melhor a sua realidade." text="">
-
-          <v-form ref="form_register" lazy-validation>
-            <v-container fluid>
-
-              <!--              <v-img-->
-              <!--                lazy-src="img/covide_banner_wash.jpg"-->
-              <!--                max-width="300"-->
-              <!--                src="img/covide_banner_wash.jpg"-->
-              <!--              ></v-img>-->
-
-              <v-layout wrap>
-
-                <v-flex xs12 md4>
-                  <v-text-field label="Nome Completo" v-model="user.name" :rules="[rules.required]"/>
-                </v-flex>
-
-                <v-flex xs12 md4>
-                  <v-text-field class="purple-input" label="E-mail" v-model="login.email"
-                                :rules="[rules.required, rules.email]"/>
-                </v-flex>
-
-                <v-flex xs12 md4>
-                  <v-text-field label="Telefone" class="purple-input" v-model="user.telefone" return-masked-value
-                                mask="(##)#####-####"/>
-                </v-flex>
-
-                <v-flex xs12 md6>
-                  <v-text-field
-                    class="purple-input"
-                    label="Senha"
-                    v-model="login.password"
-                    :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
-                    :type="showPasword1 ? 'text' : 'password'"
-                    counter
-                    @click:append="showPasword1 = !showPasword1"/>
-                </v-flex>
-
-                <v-flex xs12 md6>
-                  <v-text-field
-                    class="purple-input"
-                    label="Confirme a senha"
-                    v-model="login.confirmPassword"
-                    :append-icon="showPasword2 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min, rules.passMatch]"
-                    :type="showPasword2 ? 'text' : 'password'"
-                    counter
-                    @click:append="showPasword2 = !showPasword2"/>
-                </v-flex>
-
-                <Estados @childToParent="onChildClick"></Estados>
-
-                <v-flex xs12 md12>
-                  <v-autocomplete
-                    v-model="school"
-                    :items="items"
-                    :loading="isLoading"
-                    :search-input.sync="search"
-                    clearable
-                    hide-details
-                    hide-selected
-                    item-text="name"
-                    label="Nome da escola"
-                    return-object
-                    :rules="[rules.required]"
-                  >
-                    <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Escreva o nome da escola
-                        </v-list-item-title>
-                      </v-list-item>
-                    </template>
-
-                    <template v-slot:selection="{ attr, on, item, selected }">
-                      <span v-text="item.name"></span>
-                    </template>
-
-                    <template v-slot:item="{ item }">
-                      <v-list-item-content>
-                        <v-list-item-title v-text="item.name"></v-list-item-title>
-                        -
-                        <v-list-item-subtitle v-text="item.city_name"></v-list-item-subtitle>
-                      </v-list-item-content>
-                    </template>
-                  </v-autocomplete>
-
-                </v-flex>
-
-                <v-flex md12>
-                  <label>Qual o tipo de relação você tem com a escola?</label>
-                  <v-radio-group v-model="user.relation.name" row :rules="[rules.required]">
-                    <v-radio v-for="n in ['Aluno(a)/ Família', 'Professor(a)', 'Equipe diretiva' , 'Outros']" :label="n"
-                             :value="n"></v-radio>
-                  </v-radio-group>
-                </v-flex>
-
-                <v-flex md12>
-                  <v-text-field md6 v-if="user.relation.name === 'Outros'" label="Qual?" class="purple-input"
-                                v-model="user.relation.other" :rules="[rules.required]"/>
-                </v-flex>
-
-              </v-layout>
-
-            </v-container>
-
-            <v-flex class="d-flex">
-              <v-btn large @click="start()" class="font-weight-light" color="success">
-                Começar
-              </v-btn>
-            </v-flex>
-
-
-          </v-form>
-
-        </material-card>
-
-        <v-dialog v-model="dialog" width="500">
-
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-bind="attrs" v-on="on" color="warning" @click="checkAutenticate()">
-              Continuar de onde parou
-            </v-btn>
-          </template>
-
-          <v-card>
-            <v-card-title v-if="!recoverPassword" class="headline grey lighten-2">
-              Forneça seus dados
-            </v-card-title>
-
-            <v-card-title v-if="recoverPassword" class="headline grey lighten-2">
-              Recuperar senha
-            </v-card-title>
-
-
-            <v-form ref="form_login" lazy-validation>
-              <v-container fluid>
-                <v-flex xs12>
-                  <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
-                </v-flex>
-
-                <v-flex xs12 v-if="!recoverPassword">
-                  <v-text-field
-                    class="purple-input"
-                    label="Senha"
-                    v-model="login.password"
-                    :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                    :rules="[rules.required, rules.min]"
-                    :type="showPasword1 ? 'text' : 'password'"
-                    counter
-                    @click:append="showPasword1 = !showPasword1"/>
-                </v-flex>
-
-              </v-container>
-            </v-form>
-
-            <v-divider></v-divider>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
-                Recuperar senha
-              </v-btn>
-              <v-btn color="default" text @click="close()">
-                Fechar
-              </v-btn>
-              <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
-                Login
-              </v-btn>
-              <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
-                Enviar
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-
-        </v-dialog>
-
-
+    <v-layout wrap>
+      <v-flex
+        sm6
+        xs12
+        md6
+        lg3>
+        <material-stats-card
+          color="cyan"
+          icon="mdi-account"
+          title="Usuários"
+          :value="responses"
+          sub-text="Quantidade de usuários"
+        />
       </v-flex>
+      <!--      <pre v-if="users.length > 1">-->
+      <!--      {{users}}-->
+      <!--        </pre>-->
 
+      <v-flex md12>
+        <!--        <vue-excel-xlsx-->
+        <!--          :data="users"-->
+        <!--          :columns="headers"-->
+        <!--          :filename="'filename'"-->
+        <!--          :sheetname="'sheetname'"-->
+        <!--        >-->
+        <!--        </vue-excel-xlsx>-->
+
+        <div>
+          <v-toolbar flat color="white" class="marker mb-0">
+            <v-toolbar-title>Usuários</v-toolbar-title>
+            <v-spacer></v-spacer>
+            <v-dialog v-model="dialog" max-width="500px">
+              <template v-slot:activator="{ on }">
+                <v-btn color="cyan" dark class="mb-2" v-on="on">Adicionar</v-btn>
+              </template>
+              <v-form ref="form_register" lazy-validation>
+                <v-card>
+                  <v-card-title>
+                    <span class="headline">{{ formTitle }}</span>
+                  </v-card-title>
+
+                  <v-card-text>
+                    <v-layout wrap>
+                      <v-flex xs12 sm12 md12>
+                        <v-text-field v-model="editedItem.nome" label="Nome" :rules="[rules.required]"></v-text-field>
+                      </v-flex>
+                      <v-flex xs12 sm12 md12>
+                        <v-text-field v-model="editedItem.email" label="E-mail"
+                                      :rules="[rules.required, rules.email]"></v-text-field>
+                      </v-flex>
+                      <v-flex xs12 sm12 md12>
+                        <v-radio-group
+                          v-model="editedItem.perfil"
+                          row
+                          :rules="[rules.required]"
+                        >
+                          <v-radio
+                            label="Administrador"
+                            value="admin"
+                          ></v-radio>
+                          <v-radio
+                            label="Usuário"
+                            value="user"
+                          ></v-radio>
+                        </v-radio-group>
+                      </v-flex>
+                      <v-flex xs12 sm6 md6>
+                        <v-text-field v-model="editedItem.senha" label="Senha" :rules="[rules.required]"></v-text-field>
+                      </v-flex>
+                    </v-layout>
+                  </v-card-text>
+
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn color="blue darken-1" flat @click="close">Caneclar</v-btn>
+                    <v-btn color="blue darken-1" flat @click="start">Salvar</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-form>
+            </v-dialog>
+          </v-toolbar>
+          <v-data-table
+            :headers="headers"
+            :items="users"
+            :loading="true"
+            :search="search"
+            item-key="uid"
+            :items-per-page="100"
+            :hide-default-footer="true"
+          >
+            <template>
+              asdfasd
+              <v-toolbar
+                flat
+              >
+                <v-dialog v-model="dialogDelete" max-width="500px">
+                  <v-card>
+                    <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
+                    <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+                      <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
+                      <v-spacer></v-spacer>
+                    </v-card-actions>
+                  </v-card>
+                </v-dialog>
+              </v-toolbar>
+            </template>
+
+            <template
+              slot="items"
+              slot-scope="props">
+              <td>
+                <span v-if="props.item.name">{{ props.item.name}}</span>
+              </td>
+              <td class="text-xs-left with-input-xs">
+                {{props.item.perfil ? props.item.perfil : 'NI'}}
+              </td>
+            </template>
+          </v-data-table>
+          <v-progress-linear
+            :active="loading"
+            :color="color"
+            indeterminate
+          />
+        </div>
+      </v-flex>
     </v-layout>
   </v-container>
-
 </template>
 
 <script>
-  import Estados from "../components/core/CitySelect";
   import {db, auth, usersCollection} from "./../firebase";
 
   export default {
-    components: {Estados},
     data() {
       return {
-        login: {
-          email: '',
-          password: '',
-          confirmPassword: '',
-          error: '',
-        },
-        recoverPassword: false,
-        user: {
-          telefone: '',
-          uf: '',
-          city: '',
-          relation: {name: '', other: ''}
-        },
-        showPasword1: false,
-        showPasword2: false,
         rules: {
           required: value => !!value || 'Obrigatório.',
           min: v => v.length >= 6 || 'Mínimo 6 caracteres',
@@ -230,60 +147,229 @@
           email: v => /.+@.+\..+/.test(v) || 'E-mail inválido',
         },
         formHasErrors: false,
-
         dialog: false,
-        descriptionLimit: 60,
-        items: [],
-        isLoading: false,
-        stateSelected: null,
-        citySelected: null,
-        search: null,
-        model: null,
-        count: null,
-        uf: '',
-        city: '',
-        value: '',
-        school: '',
-        quest: []
+        desserts: [],
+        editedIndex: -1,
+        editedItem: {
+          nome: '',
+          email: '',
+          perfil: '',
+          senha: ''
+        },
+        defaultItem: {
+          nome: '',
+          email: '',
+          perfil: '',
+          senha: ''
+        },
+        users: '',
+        loading: true,
+        color: 'cyan',
+        search: '',
+        responses: '',
+        rowsPerPageItems: [20, 300, 400, 500],
+        pagination: {
+          rowsPerPage: 20
+        },
+        dailySalesChart: {
+          data: {
+            labels: ['M', 'T', 'W', 'T', 'F', 'S', 'S'],
+            series: [[12, 17, 7, 17, 23, 18, 38]]
+          },
+          options: {
+            lineSmooth: this.$chartist.Interpolation.cardinal({
+              tension: 0
+            }),
+            low: 0,
+            high: 50, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            chartPadding: {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0
+            }
+          }
+        },
+        dataCompletedTasksChart: {
+          data: {
+            labels: ['12am', '3pm', '6pm', '9pm', '12pm', '3am', '6am', '9am'],
+            series: [[230, 750, 450, 300, 280, 240, 200, 190]]
+          },
+          options: {
+            lineSmooth: this.$chartist.Interpolation.cardinal({
+              tension: 0
+            }),
+            low: 0,
+            high: 1000, // creative tim: we recommend you to set the high sa the biggest value + something for a better look
+            chartPadding: {
+              top: 0,
+              right: 0,
+              bottom: 0,
+              left: 0
+            }
+          }
+        },
+        emailsSubscriptionChart: {
+          data: {
+            labels: [
+              'Ja',
+              'Fe',
+              'Ma',
+              'Ap',
+              'Mai',
+              'Ju',
+              'Jul',
+              'Au',
+              'Se',
+              'Oc',
+              'No',
+              'De'
+            ],
+            series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
+          },
+          options: {
+            axisX: {
+              showGrid: false
+            },
+            low: 0,
+            high: 1000,
+            chartPadding: {
+              top: 0,
+              right: 5,
+              bottom: 0,
+              left: 0
+            }
+          },
+          responsiveOptions: [
+            [
+              'screen and (max-width: 640px)',
+              {
+                seriesBarDistance: 15,
+                axisX: {
+                  labelInterpolationFnc: function (value) {
+                    return value[0]
+                  }
+                }
+              }
+            ]
+          ]
+        },
+        headers: [
+          {
+            sortable: false,
+            text: 'Nome',
+            value: 'name',
+            field: 'name',
+            label: 'Nome'
+          },
+          {
+            sortable: false,
+            text: 'Perfil',
+            value: 'perfil',
+            field: 'perfil',
+            label: 'Perfil'
+          }
+        ]
       }
     },
-    methods: {
-      checkAutenticate() {
-        if (auth.currentUser) {
-          this.$router.push({path: '/admin'})
-        }
+    computed: {
+      formTitle() {
+        return this.editedIndex === -1 ? 'Novo' : 'Editar'
       },
-      // Triggered when `childToParent` event is emitted by the child.
-      onChildClick(value) {
-        this.user.uf = value.uf
-        this.user.city = value.city
+    },
+    methods: {
+      async getData() {
+        // const snapshot =  db.collection('users').get();
+        // snapshot.then(function (data) {
+        //   this.users = data;
+        //   console.log(this.users)
+        // })
+
+
+        let userList = await db.collection("admin-users").get().then(function (querySnapshot) {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            obj.name = data.nome;
+            obj.perfil = data.perfil;
+            arrayData.push(obj);
+          }
+          return arrayData;
+        });
+
+
+        this.users = userList;
+
+        let responses = this.users.length;
+
+        this.responses = responses.toString();
+
+        this.loading = false;
+
+
+      },
+      editItem(item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
       },
 
+      deleteItem(item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+      },
+
+      deleteItemConfirm() {
+        this.desserts.splice(this.editedIndex, 1)
+        this.closeDelete()
+      },
+
+      close() {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete() {
+        this.dialogDelete = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+      save() {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        } else {
+          this.desserts.push(this.editedItem)
+        }
+        this.close()
+      },
       async start() {
         if (this.$refs.form_register.validate()) {
           try {
-            let user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
-              this.user.uid = user.user.uid
-              this.user.name = this.user.name.trim()
-              this.user.dt_create = new Date()
-              this.user.school = this.school
+            let user = auth.createUserWithEmailAndPassword(this.editedItem.email, this.editedItem.senha).then((user) => {
+              this.editedItem.uid = user.user.uid
+              this.editedItem.nome = this.editedItem.nome.trim()
+              this.editedItem.dt_create = new Date()
 
               user.user.updateProfile({
-                displayName: this.user.name
+                displayName: this.editedItem.nome
               })
 
-              db.collection("users").doc(user.user.uid).set(this.user)
+              db.collection("admin-users").doc(user.user.uid).set(this.editedItem)
                 .then(function () {
                   // console.log()
                 })
                 .catch(function (error) {
                   // console.error(error)
                 });
-              //console.log(user);
-              this.$router.push({path: '/admin'})
-              setInterval(function () {
-                window.location.reload();
-              }, 1000);
             })
           } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
@@ -296,75 +382,16 @@
           }
         }
       },
-      loginUser() {
-        if (this.$refs.form_login.validate()) {
-          try {
-            const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
-              //console.log(user);
-              this.$router.push({path: '/admin'})
-              setInterval(function () {
-                window.location.reload();
-              }, 1000);
-            })
-          } catch (error) {
-            console.log(error)
-          }
-        }
-      },
-      close() {
-        this.dialog = false;
-        this.recoverPassword = false;
-      },
-      resetPassword() {
-        auth.sendPasswordResetEmail(this.login.email).then((user) => {
-        });
-        this.$toast.open({
-          message: 'Um e-mail foi enviado para recuperar a senha!',
-          type: 'warning',
-          position: 'top'
-        });
-      }
 
     },
-
-    watch: {
-      school(val) {
-        if (val != null)
-          this.school = val;
-      },
-      search(val) {
-        //Items have already been loaded
-        if (val.length < 3) return
-
-        this.isLoading = true
-
-        const requestOptions = {
-          method: "POST",
-          headers: {"Content-Type": "application/json"},
-          body: JSON.stringify(
-            {
-              name: val,
-              id: this.user.city.id,
-              uf: this.user.uf,
-              city_id: this.user.city.ibge_city_id,
-              $hide_loading_feedback: true
-            }
-          )
-        }
-
-        // Lazily load input items ?XDEBUG_SESSION_START=PHPSTORM
-        fetch("https://api.buscaativaescolar.org.br/api/v1/open/schools", requestOptions)
-          .then(res => res.clone().json())
-          .then(res => {
-            this.items = res
-          })
-          .catch(err => {
-            console.log(err)
-          })
-          .finally(() => (this.isLoading = false))
-      },
-    },
-
+    created() {
+      this.getData();
+    }
+    ,
   }
-
 </script>
+<style>
+  .v-toolbar__content {
+    margin-left: 0px !important;
+  }
+</style>
