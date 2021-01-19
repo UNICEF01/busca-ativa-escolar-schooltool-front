@@ -93,24 +93,6 @@
             :items-per-page="100"
             :hide-default-footer="true"
           >
-            <template>
-              asdfasd
-              <v-toolbar
-                flat
-              >
-                <v-dialog v-model="dialogDelete" max-width="500px">
-                  <v-card>
-                    <v-card-title class="headline">Are you sure you want to delete this item?</v-card-title>
-                    <v-card-actions>
-                      <v-spacer></v-spacer>
-                      <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
-                      <v-btn color="blue darken-1" text @click="deleteItemConfirm">OK</v-btn>
-                      <v-spacer></v-spacer>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-toolbar>
-            </template>
 
             <template
               slot="items"
@@ -119,7 +101,12 @@
                 <span v-if="props.item.name">{{ props.item.name}}</span>
               </td>
               <td class="text-xs-left with-input-xs">
-                {{props.item.perfil ? props.item.perfil : 'NI'}}
+                {{props.item.perfil ? ((props.item.perfil === 'user') ? 'Usuário' : 'Administrador') : 'NI'}}
+              </td>
+              <td class="text-xs-left with-input-xs">
+                <a @click="deleteItem(props.item.uid)"><i aria-hidden="true"
+                                                          class="v-icon mdi mdi-trash-can red--text"></i>
+                </a>
               </td>
             </template>
           </v-data-table>
@@ -154,7 +141,7 @@
           nome: '',
           email: '',
           perfil: '',
-          senha: ''
+          status: true
         },
         defaultItem: {
           nome: '',
@@ -268,6 +255,13 @@
             value: 'perfil',
             field: 'perfil',
             label: 'Perfil'
+          },
+          {
+            sortable: false,
+            text: 'Ações',
+            value: 'action',
+            field: 'action',
+            label: 'Ações'
           }
         ]
       }
@@ -286,13 +280,14 @@
         // })
 
 
-        let userList = await db.collection("admin-users").get().then(function (querySnapshot) {
+        let userList = await db.collection("admin-users").where("status", "==", true).get().then(function (querySnapshot) {
 
           let values = querySnapshot.docs;
           let arrayData = [];
           for (let i = 0; i < values.length; i++) {
             let obj = {}
             let data = values[i].data();
+            obj.uid = data.uid;
             obj.name = data.nome;
             obj.perfil = data.perfil;
             arrayData.push(obj);
@@ -317,14 +312,20 @@
         this.dialog = true
       },
 
-      deleteItem(item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialogDelete = true
-      },
+      deleteItem(uid) {
+        db.collection("admin-users").doc(uid).update({status: false});
+        this.$toast.open({
+          message: 'Excluido com sucesso!',
+          type: 'error',
+          position: 'top'
+        });
+
+        setInterval(function () {
+          window.location.reload();
+        }, 1000);      },
 
       deleteItemConfirm() {
-        this.desserts.splice(this.editedIndex, 1)
+        this.users.splice(this.editedIndex, 1)
         this.closeDelete()
       },
 
@@ -351,7 +352,7 @@
         }
         this.close()
       },
-      async start() {
+      start() {
         if (this.$refs.form_register.validate()) {
           try {
             let user = auth.createUserWithEmailAndPassword(this.editedItem.email, this.editedItem.senha).then((user) => {
@@ -363,14 +364,31 @@
                 displayName: this.editedItem.nome
               })
 
-              db.collection("admin-users").doc(user.user.uid).set(this.editedItem)
-                .then(function () {
-                  // console.log()
+              const uid = user.user.uid;
+              const email = user.user.email;
+
+              db.collection("admin-users").doc(uid).set(this.editedItem)
+                .then(function (response) {
+                  console.log('Salvo')
                 })
                 .catch(function (error) {
-                  // console.error(error)
+                  alert(error)
                 });
+
+              this.resetPassword(email);
+
+              this.$toast.open({
+                message: 'Salvo com sucesso!',
+                type: 'success',
+                position: 'top'
+              });
+              this.close();
+              setInterval(function () {
+                window.location.reload();
+              }, 2000);
             })
+
+
           } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
               this.$toast.open({
@@ -382,6 +400,12 @@
           }
         }
       },
+      resetPassword(email) {
+        console.log(email)
+        auth.sendPasswordResetEmail(email).then((user) => {
+          console.log(user)
+        });
+      }
 
     },
     created() {
