@@ -34,6 +34,18 @@ export default [
     }
   },
   {
+    path: '/login',
+    // Relative to /src/views,
+    name: 'Login',
+    view: 'Login'
+  },
+  {
+    path: '/admin',
+    // Relative to /src/views,
+    name: 'Admin',
+    view: 'Admin'
+  },
+  {
     path: '/typography',
     view: 'Typography'
   },
