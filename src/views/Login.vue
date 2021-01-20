@@ -14,7 +14,7 @@
                     <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
                   </v-flex>
 
-                  <v-flex xs12>
+                  <v-flex xs12 v-if="!recoverPassword">
                     <v-text-field
                       class="purple-input"
                       label="Senha"
@@ -33,16 +33,20 @@
 
               <v-card-actions>
                 <v-spacer></v-spacer>
-<!--                <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">-->
-<!--                  Recuperar senha-->
-<!--                </v-btn>-->
+                <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
+                  Recuperar senha
+                </v-btn>
 
-                <v-btn color="success" @click="loginUser()">
+                <v-btn v-if="recoverPassword" @click="recoverPassword = !recoverPassword"  color="default" text>
+                  Cancelar
+                </v-btn>
+
+                <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
                   Entrar
                 </v-btn>
-<!--                <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">-->
-<!--                  Enviar-->
-<!--                </v-btn>-->
+                <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
+                  Enviar
+                </v-btn>
               </v-card-actions>
 
         </material-card>
@@ -167,13 +171,17 @@
         this.recoverPassword = false;
       },
       resetPassword() {
-        auth.sendPasswordResetEmail(this.login.email).then((user) => {
-        });
-        this.$toast.open({
-          message: 'Um e-mail foi enviado para recuperar a senha!',
-          type: 'warning',
-          position: 'top'
-        });
+        if (this.$refs.form_login.validate()) {
+
+          auth.sendPasswordResetEmail(this.login.email).then((user) => {
+          });
+          this.$toast.open({
+            message: 'Um e-mail foi enviado para recuperar a senha!',
+            type: 'warning',
+            position: 'top'
+          });
+          this.recoverPassword = false;
+        }
       }
 
     },
