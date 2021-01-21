@@ -12,11 +12,29 @@
         <material-stats-card
           color="cyan"
           icon="mdi-cloud-check"
-          title="Respostas"
+          title="Brasil"
           :value="responses"
-          sub-icon="mdi-calendar"
-          sub-text="Ultima resposta à 24h"
         />
+
+        <v-data-table
+          :headers="headers1"
+          :items="items1"
+          hide-actions>
+          <template
+            slot="headerCell"
+            slot-scope="{ header }">
+              <span
+                class="subheading font-weight-light text-success text--darken-3"
+                v-text="header.text"
+              />
+          </template>
+          <template
+            slot="items"
+            slot-scope="{ item }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.salary }}</td>
+          </template>
+        </v-data-table>
       </v-flex>
       <v-flex
         sm6
@@ -28,12 +46,8 @@
           icon="mdi-city"
           title="Municípios"
           value="00"
-          small-value=""
-          sub-icon="mdi-alert"
-          sub-icon-color="error"
-          sub-text="Get More Space..."
-          sub-text-color="text-primary"
         />
+
       </v-flex>
       <v-flex
         sm6
@@ -45,8 +59,6 @@
           icon="mdi-school"
           title="Escolas"
           value="00"
-          sub-icon="mdi-tag"
-          sub-text="Tracked from Github"
         />
       </v-flex>
       <v-flex
@@ -59,8 +71,6 @@
           icon="mdi-water-off"
           title="Abastecimento"
           value="00%"
-          sub-icon="mdi-update"
-          sub-text="Falta Água"
         />
       </v-flex>
       <!--      <pre v-if="users.length > 1">-->
@@ -227,12 +237,57 @@
             ]
           ]
         },
+        headers1: [
+          {
+            sortable: false,
+            text: 'Regiões',
+            value: 'regioes'
+          },
+          {
+            sortable: false,
+            text: 'Total',
+            value: 'total'
+          }
+        ],
+        items1: [
+          {
+            name: 'Dakota Rice',
+            country: 'Niger',
+            city: 'Oud-Tunrhout',
+            salary: '$35,738'
+          },
+          {
+            name: 'Minerva Hooper',
+            country: 'Curaçao',
+            city: 'Sinaai-Waas',
+            salary: '$23,738'
+          },
+          {
+            name: 'Sage Rodriguez',
+            country: 'Netherlands',
+            city: 'Overland Park',
+            salary: '$56,142'
+          },
+          {
+            name: 'Philip Chanley',
+            country: 'Korea, South',
+            city: 'Gloucester',
+            salary: '$38,735'
+          },
+          {
+            name: 'Doris Greene',
+            country: 'Malawi',
+            city: 'Feldkirchen in Kārnten',
+            salary: '$63,542'
+          },
+          {
+            name: 'Mason Porter',
+            country: 'Chile',
+            city: 'Gloucester',
+            salary: '$78,615'
+          }
+        ],
         headers: [
-          // {
-          //   sortable: false,
-          //   text: 'ID',
-          //   value: 'id'
-          // },
           {
             sortable: false,
             text: 'Nome',
