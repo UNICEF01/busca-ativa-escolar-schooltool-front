@@ -1,8 +1,21 @@
 <template>
+  <!--  <v-container>-->
+  <!--    <vue-blob-json-csv-->
+  <!--      @success="handleSuccess"-->
+  <!--      @error="handleError"-->
+  <!--      tag-name="div"-->
+  <!--      file-type="json"-->
+  <!--      file-name="sample"-->
+  <!--      title="Backupt"-->
+  <!--      :data="users"-->
+  <!--      confirm="Do you want to download it?"-->
+  <!--    ></vue-blob-json-csv>-->
+  <!--  </v-container>-->
   <v-container
     fill-height
     fluid
     grid-list-xl>
+
     <v-layout wrap>
       <v-flex
         sm6
@@ -15,10 +28,9 @@
           title="Brasil"
           :value="responses"
         />
-
         <v-data-table
-          :headers="headers1"
-          :items="items1"
+          :headers="norte.headers"
+          :items="norte.items"
           hide-actions>
           <template
             slot="headerCell"
@@ -47,7 +59,25 @@
           title="Municípios"
           value="00"
         />
-
+        <v-data-table
+          :headers="nordeste.headers"
+          :items="nordeste.items"
+          hide-actions>
+          <template
+            slot="headerCell"
+            slot-scope="{ header }">
+              <span
+                class="subheading font-weight-light text-success text--darken-3"
+                v-text="header.text"
+              />
+          </template>
+          <template
+            slot="items"
+            slot-scope="{ item }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.salary }}</td>
+          </template>
+        </v-data-table>
       </v-flex>
       <v-flex
         sm6
@@ -60,6 +90,46 @@
           title="Escolas"
           value="00"
         />
+        <v-data-table
+          :headers="sudeste.headers"
+          :items="sudeste.items"
+          hide-actions>
+          <template
+            slot="headerCell"
+            slot-scope="{ header }">
+              <span
+                class="subheading font-weight-light text-success text--darken-3"
+                v-text="header.text"
+              />
+          </template>
+          <template
+            slot="items"
+            slot-scope="{ item }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.salary }}</td>
+          </template>
+        </v-data-table>
+        <v-data-table
+          :headers="centro_oeste.headers"
+          :items="centro_oeste.items"
+          hide-actions>
+          <template
+            slot="headerCell"
+            slot-scope="{ header }">
+              <span
+                class="subheading font-weight-light text-success text--darken-3"
+                v-text="header.text"
+              />
+          </template>
+          <template
+            slot="items"
+            slot-scope="{ item }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.salary }}</td>
+          </template>
+        </v-data-table>
+
+
       </v-flex>
       <v-flex
         sm6
@@ -72,69 +142,85 @@
           title="Abastecimento"
           value="00%"
         />
-      </v-flex>
-      <!--      <pre v-if="users.length > 1">-->
-      <!--      {{users}}-->
-      <!--        </pre>-->
-
-      <v-flex md12>
-        <vue-excel-xlsx
-          :data="users"
-          :columns="headers"
-          :filename="'filename'"
-          :sheetname="'sheetname'"
-        >
-          <button type="button" class="font-weight-light v-btn v-btn--large theme--light success">
-            Download
-          </button>
-
-        </vue-excel-xlsx>
         <v-data-table
-          :headers="headers"
-          :items="users"
-          :loading="true"
-          :search="search"
-          item-key="uid"
-          :items-per-page="100"
-          :hide-default-footer="true"
-        >
+          :headers="sul.headers"
+          :items="sul.items"
+          hide-actions>
           <template
             slot="headerCell"
             slot-scope="{ header }">
-                    <span
-                      class="subheading font-weight-light text--darken-3"
-                      v-text="header.text"
-                    />
-            <br>
-            <small>{{ header.description }}</small>
+              <span
+                class="subheading font-weight-light text-success text--darken-3"
+                v-text="header.text"
+              />
           </template>
           <template
             slot="items"
-            slot-scope="props">
-            <td>
-              <span v-if="props.item.name">{{ props.item.name}}</span>
-            </td>
-            <td class="text-xs-left with-input-xs">
-              {{props.item.telefone ? props.item.telefone : 'NI'}}
-            </td>
-            <td class="text-xs-left with-input-xs">
-              {{props.item.city }}
-            </td>
-            <td class="text-xs-left with-input-xs">
-              {{props.item.uf}}
-            </td>
-            <td class="text-xs-left with-input-xs">
-              <span v-if="props.item.school">{{props.item.school}}</span>
-              <span v-else="props.item.school">Não Informado</span>
-            </td>
+            slot-scope="{ item }">
+            <td>{{ item.name }}</td>
+            <td>{{ item.salary }}</td>
           </template>
         </v-data-table>
-        <v-progress-linear
-          :active="loading"
-          :color="color"
-          indeterminate
-        />
+
       </v-flex>
+      <!--      <v-flex md12>-->
+      <!--        <vue-excel-xlsx-->
+      <!--          :data="users"-->
+      <!--          :columns="headers"-->
+      <!--          :filename="'filename'"-->
+      <!--          :sheetname="'sheetname'"-->
+      <!--        >-->
+      <!--          <button type="button" class="font-weight-light v-btn v-btn&#45;&#45;large theme&#45;&#45;light success">-->
+      <!--            Download-->
+      <!--          </button>-->
+
+      <!--        </vue-excel-xlsx>-->
+      <!--        <v-data-table-->
+      <!--          :headers="headers"-->
+      <!--          :items="users"-->
+      <!--          :loading="true"-->
+      <!--          :search="search"-->
+      <!--          item-key="uid"-->
+      <!--          :items-per-page="100"-->
+      <!--          :hide-default-footer="true"-->
+      <!--        >-->
+      <!--          <template-->
+      <!--            slot="headerCell"-->
+      <!--            slot-scope="{ header }">-->
+      <!--                    <span-->
+      <!--                      class="subheading font-weight-light text&#45;&#45;darken-3"-->
+      <!--                      v-text="header.text"-->
+      <!--                    />-->
+      <!--            <br>-->
+      <!--            <small>{{ header.description }}</small>-->
+      <!--          </template>-->
+      <!--          <template-->
+      <!--            slot="items"-->
+      <!--            slot-scope="props">-->
+      <!--            <td>-->
+      <!--              <span v-if="props.item.name">{{ props.item.name}}</span>-->
+      <!--            </td>-->
+      <!--            <td class="text-xs-left with-input-xs">-->
+      <!--              {{props.item.telefone ? props.item.telefone : 'NI'}}-->
+      <!--            </td>-->
+      <!--            <td class="text-xs-left with-input-xs">-->
+      <!--              {{props.item.city }}-->
+      <!--            </td>-->
+      <!--            <td class="text-xs-left with-input-xs">-->
+      <!--              {{props.item.uf}}-->
+      <!--            </td>-->
+      <!--            <td class="text-xs-left with-input-xs">-->
+      <!--              <span v-if="props.item.school">{{props.item.school}}</span>-->
+      <!--              <span v-else="props.item.school">Não Informado</span>-->
+      <!--            </td>-->
+      <!--          </template>-->
+      <!--        </v-data-table>-->
+      <!--        <v-progress-linear-->
+      <!--          :active="loading"-->
+      <!--          :color="color"-->
+      <!--          indeterminate-->
+      <!--        />-->
+      <!--      </v-flex>-->
     </v-layout>
   </v-container>
 </template>
@@ -145,6 +231,7 @@
   export default {
     data() {
       return {
+        regions: [],
         users: '',
         loading: true,
         color: 'cyan',
@@ -237,56 +324,253 @@
             ]
           ]
         },
-        headers1: [
-          {
-            sortable: false,
-            text: 'Regiões',
-            value: 'regioes'
-          },
-          {
-            sortable: false,
-            text: 'Total',
-            value: 'total'
-          }
-        ],
-        items1: [
-          {
-            name: 'Dakota Rice',
-            country: 'Niger',
-            city: 'Oud-Tunrhout',
-            salary: '$35,738'
-          },
-          {
-            name: 'Minerva Hooper',
-            country: 'Curaçao',
-            city: 'Sinaai-Waas',
-            salary: '$23,738'
-          },
-          {
-            name: 'Sage Rodriguez',
-            country: 'Netherlands',
-            city: 'Overland Park',
-            salary: '$56,142'
-          },
-          {
-            name: 'Philip Chanley',
-            country: 'Korea, South',
-            city: 'Gloucester',
-            salary: '$38,735'
-          },
-          {
-            name: 'Doris Greene',
-            country: 'Malawi',
-            city: 'Feldkirchen in Kārnten',
-            salary: '$63,542'
-          },
-          {
-            name: 'Mason Porter',
-            country: 'Chile',
-            city: 'Gloucester',
-            salary: '$78,615'
-          }
-        ],
+        norte: {
+          id: 1,
+          headers: [
+            {
+              sortable: false,
+              text: 'Norte',
+              value: 'regioes'
+            },
+            {
+              sortable: false,
+              text: '450',
+              value: 'total'
+            }
+          ],
+          items: [
+            {
+              name: 'Rondônia',
+              country: 'Niger',
+              city: 'Oud-Tunrhout',
+              salary: '52'
+            },
+            {
+              name: 'Acre',
+              country: 'Curaçao',
+              city: 'Sinaai-Waas',
+              salary: '22'
+            },
+            {
+              name: 'Amazonas',
+              country: 'Netherlands',
+              city: 'Overland Park',
+              salary: '62'
+            },
+            {
+              name: 'Roraima',
+              country: 'Korea, South',
+              city: 'Gloucester',
+              salary: '15'
+            },
+            {
+              name: 'Pará',
+              country: 'Malawi',
+              city: 'Feldkirchen in Kārnten',
+              salary: '144'
+            },
+            {
+              name: 'Amapá',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '16'
+            },
+            {
+              name: 'Tocantins',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '139'
+            }
+          ],
+        },
+        nordeste: {
+          id: 2,
+          headers: [
+            {
+              sortable: false,
+              text: 'Nordeste',
+              value: 'nordeste'
+            },
+            {
+              sortable: false,
+              text: '450',
+              value: 'total'
+            }
+          ],
+          items: [
+            {
+              name: 'Maranhão',
+              country: 'Niger',
+              city: 'Oud-Tunrhout',
+              salary: '52'
+            },
+            {
+              name: 'Piauí',
+              country: 'Curaçao',
+              city: 'Sinaai-Waas',
+              salary: '22'
+            },
+            {
+              name: 'Ceará',
+              country: 'Netherlands',
+              city: 'Overland Park',
+              salary: '62'
+            },
+            {
+              name: 'Rio Grande do Norte',
+              country: 'Korea, South',
+              city: 'Gloucester',
+              salary: '15'
+            },
+            {
+              name: 'Paraíba',
+              country: 'Malawi',
+              city: 'Feldkirchen in Kārnten',
+              salary: '144'
+            },
+            {
+              name: 'Pernambuco',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '16'
+            },
+            {
+              name: 'Alagoas',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '139'
+            },
+            {
+              name: 'Sergipe',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '139'
+            },
+            {
+              name: 'Bahia',
+              country: 'Chile',
+              city: 'Gloucester',
+              salary: '139'
+            }
+          ],
+        },
+        sudeste: {
+          id: 3,
+          headers: [
+            {
+              sortable: false,
+              text: 'Sudeste',
+              value: 'regioes'
+            },
+            {
+              sortable: false,
+              text: '450',
+              value: 'total'
+            }
+          ],
+          items: [
+            {
+              name: 'Minas Gerais',
+              country: 'Niger',
+              city: 'Oud-Tunrhout',
+              salary: '52'
+            },
+            {
+              name: 'Espirito Santo',
+              country: 'Curaçao',
+              city: 'Sinaai-Waas',
+              salary: '22'
+            },
+            {
+              name: 'Rio de Janeiro',
+              country: 'Netherlands',
+              city: 'Overland Park',
+              salary: '62'
+            },
+            {
+              name: 'São Paulo',
+              country: 'Korea, South',
+              city: 'Gloucester',
+              salary: '15'
+            }
+          ],
+        },
+        sul: {
+          id: 4,
+          headers: [
+            {
+              sortable: false,
+              text: 'Sul',
+              value: 'regioes'
+            },
+            {
+              sortable: false,
+              text: '450',
+              value: 'total'
+            }
+          ],
+          items: [
+            {
+              name: 'Paraná',
+              country: 'Niger',
+              city: 'Oud-Tunrhout',
+              salary: '52'
+            },
+            {
+              name: 'Santa Catarina',
+              country: 'Curaçao',
+              city: 'Sinaai-Waas',
+              salary: '22'
+            },
+            {
+              name: 'Rio Grande do Sul',
+              country: 'Netherlands',
+              city: 'Overland Park',
+              salary: '62'
+            }
+          ],
+        },
+        centro_oeste: {
+          id: 5,
+          headers: [
+            {
+              sortable: false,
+              text: 'Centro Oeste',
+              value: 'regioes'
+            },
+            {
+              sortable: false,
+              text: '450',
+              value: 'total'
+            }
+          ],
+          items: [
+            {
+              name: 'Mato Grosso do Sul',
+              country: 'Niger',
+              city: 'Oud-Tunrhout',
+              salary: '52'
+            },
+            {
+              name: 'Mato Grosso',
+              country: 'Curaçao',
+              city: 'Sinaai-Waas',
+              salary: '22'
+            },
+            {
+              name: 'Goiás',
+              country: 'Netherlands',
+              city: 'Overland Park',
+              salary: '62'
+            },
+            {
+              name: 'Distrito Federal',
+              country: 'Korea, South',
+              city: 'Gloucester',
+              salary: '15'
+            }
+          ],
+        },
         headers: [
           {
             sortable: false,
@@ -337,13 +621,51 @@
       }
     },
     methods: {
-      async getData() {
-        // const snapshot =  db.collection('users').get();
-        // snapshot.then(function (data) {
-        //   this.users = data;
-        //   console.log(this.users)
-        // })
+      async getDataByRegion(regionId) {
 
+        let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then(function (querySnapshot) {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            // obj.name = data.name;
+            // obj.telefone = data.telefone;
+            // obj.city = data.city ? data.city.name : 'NI';
+            // obj.uf = data.city ? data.city.uf : 'NI';
+            // obj.school = data.school ? data.school.name : 'NI';
+            arrayData.push(data);
+          }
+          return arrayData;
+        });
+        return region;
+
+      },
+      async getData() {
+
+        let norte = await this.getDataByRegion('1').then(function (response) {
+          return response.length;
+        })
+        let nordeste = await this.getDataByRegion('2').then(function (response) {
+          return response.length;
+        })
+        let sudeste = await this.getDataByRegion('3').then(function (response) {
+          return response.length;
+        })
+        let sul = await this.getDataByRegion('4').then(function (response) {
+          return response.length;
+        })
+        let centro_oeste = await this.getDataByRegion('5').then(function (response) {
+          return response.length;
+        })
+
+
+        this.norte.headers[1].text = norte;
+        this.nordeste.headers[1].text = nordeste;
+        this.sudeste.headers[1].text = sudeste;
+        this.sul.headers[1].text = sul;
+        this.centro_oeste.headers[1].text = centro_oeste;
 
         let washData = await db.collection("users").get().then(function (querySnapshot) {
 
@@ -353,16 +675,12 @@
             let obj = {}
             let data = values[i].data();
             obj.name = data.name;
-            obj.telefone = data.telefone;
-            obj.city = data.city ? data.city.name : 'NI';
-            obj.uf = data.city ? data.city.uf : 'NI';
-            obj.school = data.school ? data.school.name : 'NI';
             arrayData.push(obj);
           }
           return arrayData;
         });
-
-
+        //
+        //
         this.users = washData;
 
         let responses = this.users.length;
