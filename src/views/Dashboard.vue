@@ -334,7 +334,7 @@
             },
             {
               sortable: false,
-              text: '450',
+              text: '',
               value: 'total'
             }
           ],
@@ -393,7 +393,7 @@
             },
             {
               sortable: false,
-              text: '450',
+              text: '',
               value: 'total'
             }
           ],
@@ -464,7 +464,7 @@
             },
             {
               sortable: false,
-              text: '450',
+              text: '',
               value: 'total'
             }
           ],
@@ -505,7 +505,7 @@
             },
             {
               sortable: false,
-              text: '450',
+              text: '',
               value: 'total'
             }
           ],
@@ -540,7 +540,7 @@
             },
             {
               sortable: false,
-              text: '450',
+              text: '',
               value: 'total'
             }
           ],
@@ -623,18 +623,13 @@
     methods: {
       async getDataByRegion(regionId) {
 
-        let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then(function (querySnapshot) {
+        let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then((querySnapshot) => {
 
           let values = querySnapshot.docs;
           let arrayData = [];
           for (let i = 0; i < values.length; i++) {
             let obj = {}
             let data = values[i].data();
-            // obj.name = data.name;
-            // obj.telefone = data.telefone;
-            // obj.city = data.city ? data.city.name : 'NI';
-            // obj.uf = data.city ? data.city.uf : 'NI';
-            // obj.school = data.school ? data.school.name : 'NI';
             arrayData.push(data);
           }
           return arrayData;
@@ -644,19 +639,19 @@
       },
       async getData() {
 
-        let norte = await this.getDataByRegion('1').then(function (response) {
+        let norte = await this.getDataByRegion('1').then((response) => {
           return response.length;
         })
-        let nordeste = await this.getDataByRegion('2').then(function (response) {
+        let nordeste = await this.getDataByRegion('2').then((response) => {
           return response.length;
         })
-        let sudeste = await this.getDataByRegion('3').then(function (response) {
+        let sudeste = await this.getDataByRegion('3').then((response) => {
           return response.length;
         })
-        let sul = await this.getDataByRegion('4').then(function (response) {
+        let sul = await this.getDataByRegion('4').then((response) => {
           return response.length;
         })
-        let centro_oeste = await this.getDataByRegion('5').then(function (response) {
+        let centro_oeste = await this.getDataByRegion('5').then((response) => {
           return response.length;
         })
 
@@ -674,13 +669,14 @@
           for (let i = 0; i < values.length; i++) {
             let obj = {}
             let data = values[i].data();
-            obj.name = data.name;
+            obj.quest = data.quest;
             arrayData.push(obj);
           }
           return arrayData;
         });
-        //
-        //
+
+        console.log(washData)
+
         this.users = washData;
 
         let responses = this.users.length;
