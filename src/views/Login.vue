@@ -8,49 +8,48 @@
       wrap>
       <v-flex xs12 md6>
         <material-card color="cyan" title="Login" text="">
-              <v-form ref="form_login" lazy-validation>
-                <v-container fluid>
-                  <v-flex xs12>
-                    <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
-                  </v-flex>
+          <v-form ref="form_login" lazy-validation>
+            <v-container fluid>
+              <v-flex xs12>
+                <v-text-field label="Email" v-model="login.email" :rules="[rules.required, rules.email]"/>
+              </v-flex>
 
-                  <v-flex xs12 v-if="!recoverPassword">
-                    <v-text-field
-                      class="purple-input"
-                      label="Senha"
-                      v-model="login.password"
-                      :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
-                      :rules="[rules.required, rules.min]"
-                      :type="showPasword1 ? 'text' : 'password'"
-                      counter
-                      @click:append="showPasword1 = !showPasword1"/>
-                  </v-flex>
+              <v-flex xs12 v-if="!recoverPassword">
+                <v-text-field
+                  class="purple-input"
+                  label="Senha"
+                  v-model="login.password"
+                  :append-icon="showPasword1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="showPasword1 ? 'text' : 'password'"
+                  counter
+                  @click:append="showPasword1 = !showPasword1"/>
+              </v-flex>
 
-                </v-container>
-              </v-form>
+            </v-container>
+          </v-form>
 
-              <v-divider></v-divider>
+          <v-divider></v-divider>
 
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
-                  Recuperar senha
-                </v-btn>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="default" v-if="!recoverPassword" text @click="recoverPassword = !recoverPassword">
+              Recuperar senha
+            </v-btn>
 
-                <v-btn v-if="recoverPassword" @click="recoverPassword = !recoverPassword"  color="default" text>
-                  Cancelar
-                </v-btn>
+            <v-btn v-if="recoverPassword" @click="recoverPassword = !recoverPassword" color="default" text>
+              Cancelar
+            </v-btn>
 
-                <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
-                  Entrar
-                </v-btn>
-                <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
-                  Enviar
-                </v-btn>
-              </v-card-actions>
+            <v-btn v-if="!recoverPassword" color="success" @click="loginUser()">
+              Entrar
+            </v-btn>
+            <v-btn v-if="recoverPassword" color="success" @click="resetPassword()">
+              Enviar
+            </v-btn>
+          </v-card-actions>
 
         </material-card>
-
 
 
       </v-flex>
@@ -151,19 +150,34 @@
           }
         }
       },
-      loginUser() {
+      async loginUser() {
         if (this.$refs.form_login.validate()) {
-          try {
-            const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
-              //console.log(user);
-              this.$router.push({path: '/admin'})
-              setInterval(function () {
-                window.location.reload();
-              }, 1000);
-            })
-          } catch (error) {
-            console.log(error)
+          var user = await auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+            return user;
+          })
+
+          var getUser = await db.collection("admin-users").where("uid", "==", user.user.uid).get().then(function (querySnapshot) {
+            let values = querySnapshot.docs;
+            let arrayData = [];
+            for (let i = 0; i < values.length; i++) {
+              let obj = {}
+              let data = values[i].data();
+              obj.uid = data.uid;
+              obj.name = data.nome;
+              obj.perfil = data.perfil;
+              arrayData.push(obj);
+            }
+            return arrayData;
+          });
+
+          if (getUser[0].perfil === 'admin') {
+            this.$router.push({path: '/admin'})
+          } else {
+            this.$router.push({path: '/dashboard'})
           }
+          setInterval(function () {
+            window.location.reload();
+          }, 1000);
         }
       },
       close() {
