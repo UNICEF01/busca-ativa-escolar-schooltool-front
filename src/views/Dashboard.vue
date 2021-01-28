@@ -164,6 +164,11 @@
 
 
       </v-flex>
+
+
+      <v-btn class="primary" @click="updateSchool">Atualizar School</v-btn>
+
+
       <div v-for="group in quest">
 
         <h5 class="headline">{{group.group}}</h5>
@@ -188,9 +193,9 @@
 
               <v-flex md4 v-for="n in item.response">
                 <v-card style="height: 130px"
-                  class="pa-3"
-                  outlined
-                  tile
+                        class="pa-3"
+                        outlined
+                        tile
                 >
                   {{n.name}}
                   <v-card-actions style="position: absolute; bottom: 0px; right: 0px">
@@ -1637,9 +1642,78 @@
       }
     },
     methods: {
-      async getDataByRegion(regionId) {
+      // async getDataByRegion(regionId) {
+      //
+      //   let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then((querySnapshot) => {
+      //
+      //     let values = querySnapshot.docs;
+      //     let arrayData = [];
+      //     for (let i = 0; i < values.length; i++) {
+      //       let obj = {}
+      //       let data = values[i].data();
+      //       arrayData.push(data);
+      //     }
+      //     return arrayData;
+      //   });
+      //   return region;
+      //
+      // },
+      // async getData() {
+      //
+      //   let norte = await this.getDataByRegion('1').then((response) => {
+      //     return response.length;
+      //   })
+      //   let nordeste = await this.getDataByRegion('2').then((response) => {
+      //     return response.length;
+      //   })
+      //   let sudeste = await this.getDataByRegion('3').then((response) => {
+      //     return response.length;
+      //   })
+      //   let sul = await this.getDataByRegion('4').then((response) => {
+      //     return response.length;
+      //   })
+      //   let centro_oeste = await this.getDataByRegion('5').then((response) => {
+      //     return response.length;
+      //   })
+      //
+      //
+      //   this.norte.headers[1].text = norte;
+      //   this.nordeste.headers[1].text = nordeste;
+      //   this.sudeste.headers[1].text = sudeste;
+      //   this.sul.headers[1].text = sul;
+      //   this.centro_oeste.headers[1].text = centro_oeste;
+      //
+      //   var washData = await db.collection("users").get().then(function (querySnapshot) {
+      //
+      //     let values = querySnapshot.docs;
+      //     let arrayData = [];
+      //     for (let i = 0; i < values.length; i++) {
+      //       let obj = {}
+      //       let data = values[i].data();
+      //       obj.quest = data.quest;
+      //       obj.school = data.school;
+      //       arrayData.push(obj);
+      //     }
+      //     return arrayData;
+      //   });
+      //
+      //
+      //   this.questions = washData;
+      //
+      //   let responses = this.users.length;
+      //
+      //   this.responses = responses.toString();
+      //
+      //   this.loading = false;
+      //
+      //
+      // },
 
-        let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then((querySnapshot) => {
+      async updateSchool() {
+
+        console.log('ola');
+
+        var region = await db.collection("users").get().then((querySnapshot) => {
 
           let values = querySnapshot.docs;
           let arrayData = [];
@@ -1650,63 +1724,37 @@
           }
           return arrayData;
         });
-        return region;
-
-      },
-      async getData() {
-
-        let norte = await this.getDataByRegion('1').then((response) => {
-          return response.length;
-        })
-        let nordeste = await this.getDataByRegion('2').then((response) => {
-          return response.length;
-        })
-        let sudeste = await this.getDataByRegion('3').then((response) => {
-          return response.length;
-        })
-        let sul = await this.getDataByRegion('4').then((response) => {
-          return response.length;
-        })
-        let centro_oeste = await this.getDataByRegion('5').then((response) => {
-          return response.length;
-        })
 
 
-        this.norte.headers[1].text = norte;
-        this.nordeste.headers[1].text = nordeste;
-        this.sudeste.headers[1].text = sudeste;
-        this.sul.headers[1].text = sul;
-        this.centro_oeste.headers[1].text = centro_oeste;
+        for (var i = 0; i < region.length; i++) {
 
-        var washData = await db.collection("users").get().then(function (querySnapshot) {
+          let uid = region[i].uid;
+          let school = region[i].school;
+          let city_id = region[i].city.ibge_city_id ? region[i].city.ibge_city_id : undefined;
 
-          let values = querySnapshot.docs;
-          let arrayData = [];
-          for (let i = 0; i < values.length; i++) {
-            let obj = {}
-            let data = values[i].data();
-            obj.quest = data.quest;
-            arrayData.push(obj);
+
+          if (undefined !== school) {
+            if ((undefined !== uid) && (undefined !== school.ibge_id)) {
+
+              fetch("https://servicodados.ibge.gov.br/api/v1/localidades/municipios/" + school.ibge_id, {
+                method: "GET",
+                headers: {"Content-Type": "application/json"}
+              })
+                .then(res => res.clone().json())
+                .then(res => {
+                  school.ibge = res
+                  db.collection("users").doc(uid).update({school: school})
+                    .then(function () {
+                      console.log("Document successfully updated!" + uid);
+                    });
+                })
+            }
           }
-          return arrayData;
-        });
-
-        console.log(washData)
-
-        this.questions = washData;
-
-        let responses = this.users.length;
-
-        this.responses = responses.toString();
-
-        this.loading = false;
-
-
-      },
-
+        }
+      }
     },
     created() {
-      this.getData();
+      // this.getData();
     }
     ,
   }
