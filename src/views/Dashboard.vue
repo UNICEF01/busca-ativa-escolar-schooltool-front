@@ -15,53 +15,26 @@
     fill-height
     fluid
     grid-list-xl>
-
     <v-layout wrap>
-      <v-flex
-        sm6
-        xs12
-        md6
-        lg3>
-        <material-stats-card
-          color="cyan"
-          icon="mdi-cloud-check"
-          title="Brasil"
-          :value="responses"
-        />
-        <v-data-table
-          :headers="norte.headers"
-          :items="norte.items"
-          hide-actions>
-          <template
-            slot="headerCell"
-            slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text-success text--darken-3"
-                v-text="header.text"
-              />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td>{{ item.name }}</td>
-            <td>{{ item.salary }}</td>
-          </template>
-        </v-data-table>
+      <v-flex xs12 md12 d-flex>
+        <v-select
+          v-model="territorioSelecioando"
+          :items="divisoesTerritoriais"
+          label="Selecione"
+          outline
+          item-text="nome"
+          item-value="id"
+          @change="selectItem(territorioSelecioando)"
+        ></v-select>
       </v-flex>
       <v-flex
         sm6
         xs12
-        md6
-        lg3>
-        <material-stats-card
-          color="orange"
-          icon="mdi-city"
-          title="Municípios"
-          value="00"
-        />
+        md12
+      >
         <v-data-table
-          :headers="nordeste.headers"
-          :items="nordeste.items"
+          :headers="headers"
+          :items="values"
           hide-actions>
           <template
             slot="headerCell"
@@ -74,203 +47,122 @@
           <template
             slot="items"
             slot-scope="{ item }">
-            <td>{{ item.name }}</td>
+            <td>{{ item.nome }}</td>
+            <td>{{ item.salary }}</td>
+            <td>{{ item.salary }}</td>
+            <td>{{ item.salary }}</td>
             <td>{{ item.salary }}</td>
           </template>
         </v-data-table>
       </v-flex>
-      <v-flex
-        sm6
-        xs12
-        md6
-        lg3>
-        <material-stats-card
-          color="red"
-          icon="mdi-school"
-          title="Escolas"
-          value="00"
-        />
-        <v-data-table
-          :headers="sudeste.headers"
-          :items="sudeste.items"
-          hide-actions>
-          <template
-            slot="headerCell"
-            slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text-success text--darken-3"
-                v-text="header.text"
-              />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td>{{ item.name }}</td>
-            <td>{{ item.salary }}</td>
-          </template>
-        </v-data-table>
-        <v-data-table
-          :headers="centro_oeste.headers"
-          :items="centro_oeste.items"
-          hide-actions>
-          <template
-            slot="headerCell"
-            slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text-success text--darken-3"
-                v-text="header.text"
-              />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td>{{ item.name }}</td>
-            <td>{{ item.salary }}</td>
-          </template>
-        </v-data-table>
 
 
-      </v-flex>
-      <v-flex
-        sm6
-        xs12
-        md6
-        lg3>
-        <material-stats-card
-          color="info"
-          icon="mdi-water-off"
-          title="Abastecimento"
-          value="00%"
-        />
-        <v-data-table
-          :headers="sul.headers"
-          :items="sul.items"
-          hide-actions>
-          <template
-            slot="headerCell"
-            slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text-success text--darken-3"
-                v-text="header.text"
-              />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td>{{ item.name }}</td>
-            <td>{{ item.salary }}</td>
-          </template>
-        </v-data-table>
+      <!--      <v-btn class="primary" @click="updateSchool">Atualiza Dados IBGE</v-btn>-->
+
+      <!--      <v-flex md9>-->
+      <!--        <div v-for="group in quest">-->
+
+      <!--          <h5 class="headline">{{group.group}}</h5>-->
+
+      <!--          <v-form ref="form_research" lazy-validation>-->
+
+      <!--            <material-card v-for="item in group.questions" :key="item.id"-->
+      <!--                           class="card-tabs"-->
+      <!--                           :color="color"-->
+      <!--                           elevation="3">-->
+
+      <!--              <v-flex slot="header">-->
+
+      <!--                    <span-->
+      <!--                      class="subheading font-weight-light mr-3"-->
+      <!--                      style="align-self: center"-->
+      <!--                      v-html="item.answer"-->
+      <!--                    ></span>-->
+
+      <!--              </v-flex>-->
+      <!--              <v-layout wrap>-->
+
+      <!--                <v-flex md4 v-for="n in item.response">-->
+      <!--                  <v-card style="height: 130px"-->
+      <!--                          class="pa-3"-->
+      <!--                          outlined-->
+      <!--                          tile-->
+      <!--                  >-->
+      <!--                    {{n.name}}-->
+      <!--                    <v-card-actions style="position: absolute; bottom: 0px; right: 0px">-->
+      <!--                      <p>548</p>-->
+      <!--                    </v-card-actions>-->
+      <!--                  </v-card>-->
+      <!--                </v-flex>-->
+      <!--              </v-layout>-->
 
 
-      </v-flex>
+      <!--              &lt;!&ndash;            <v-layout justify-center>&ndash;&gt;-->
+      <!--              &lt;!&ndash;              <v-flex>&ndash;&gt;-->
+
+      <!--              &lt;!&ndash;                <v-card>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                  <v-container&ndash;&gt;-->
+      <!--              &lt;!&ndash;                    fluid&ndash;&gt;-->
+      <!--              &lt;!&ndash;                    grid-list-md&ndash;&gt;-->
+      <!--              &lt;!&ndash;                  >&ndash;&gt;-->
+      <!--              &lt;!&ndash;                    <v-layout row wrap>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                      <v-flex v-for="n in item.response">&ndash;&gt;-->
+      <!--              &lt;!&ndash;                        <v-card>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            <v-container&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              fill-height&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              fluid&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              pa-2&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            >&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              <v-layout fill-height>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                <v-flex xs12 align-end flexbox>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                  <span class="headline white&#45;&#45;text">{{n.name}}</span>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                </v-flex>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              </v-layout>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            </v-container>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                          <v-card-actions>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            <v-spacer></v-spacer>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            <v-btn icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              <v-icon>favorite</v-icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            </v-btn>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            <v-btn icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              <v-icon>bookmark</v-icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            </v-btn>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            <v-btn icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              <v-icon>share</v-icon>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            </v-btn>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                          </v-card-actions>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                        </v-card>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                      </v-flex>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                    </v-layout>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                  </v-container>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                </v-card>&ndash;&gt;-->
+      <!--              &lt;!&ndash;              </v-flex>&ndash;&gt;-->
+      <!--              &lt;!&ndash;            </v-layout>&ndash;&gt;-->
 
 
-      <v-btn class="primary" @click="updateSchool">Atualizar School</v-btn>
+      <!--              &lt;!&ndash;                            <v-card v-for="n in item.response">&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              <v-card-title primary-title>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                <div>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                  <p> {{ n.name }} </p>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                  <div v-if="n.name === 'Sim'"></div>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                </div>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              </v-card-title>&ndash;&gt;-->
 
+      <!--              &lt;!&ndash;                              <v-card-actions>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                                100&ndash;&gt;-->
+      <!--              &lt;!&ndash;                              </v-card-actions>&ndash;&gt;-->
+      <!--              &lt;!&ndash;                            </v-card>&ndash;&gt;-->
 
-      <div v-for="group in quest">
+      <!--              &lt;!&ndash;            <v-radio-group v-model="item.selected">&ndash;&gt;-->
+      <!--              &lt;!&ndash;              <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>&ndash;&gt;-->
+      <!--              &lt;!&ndash;            </v-radio-group>&ndash;&gt;-->
 
-        <h5 class="headline">{{group.group}}</h5>
+      <!--            </material-card>-->
 
-        <v-form ref="form_research" lazy-validation>
+      <!--          </v-form>-->
 
-          <material-card v-for="item in group.questions" :key="item.id"
-                         class="card-tabs"
-                         :color="color"
-                         elevation="3">
-
-            <v-flex slot="header">
-
-                    <span
-                      class="subheading font-weight-light mr-3"
-                      style="align-self: center"
-                      v-html="item.answer"
-                    ></span>
-
-            </v-flex>
-            <v-layout wrap>
-
-              <v-flex md4 v-for="n in item.response">
-                <v-card style="height: 130px"
-                        class="pa-3"
-                        outlined
-                        tile
-                >
-                  {{n.name}}
-                  <v-card-actions style="position: absolute; bottom: 0px; right: 0px">
-                    <p>548</p>
-                  </v-card-actions>
-                </v-card>
-              </v-flex>
-            </v-layout>
-
-
-            <!--            <v-layout justify-center>-->
-            <!--              <v-flex>-->
-
-            <!--                <v-card>-->
-            <!--                  <v-container-->
-            <!--                    fluid-->
-            <!--                    grid-list-md-->
-            <!--                  >-->
-            <!--                    <v-layout row wrap>-->
-            <!--                      <v-flex v-for="n in item.response">-->
-            <!--                        <v-card>-->
-            <!--                            <v-container-->
-            <!--                              fill-height-->
-            <!--                              fluid-->
-            <!--                              pa-2-->
-            <!--                            >-->
-            <!--                              <v-layout fill-height>-->
-            <!--                                <v-flex xs12 align-end flexbox>-->
-            <!--                                  <span class="headline white&#45;&#45;text">{{n.name}}</span>-->
-            <!--                                </v-flex>-->
-            <!--                              </v-layout>-->
-            <!--                            </v-container>-->
-            <!--                          <v-card-actions>-->
-            <!--                            <v-spacer></v-spacer>-->
-            <!--                            <v-btn icon>-->
-            <!--                              <v-icon>favorite</v-icon>-->
-            <!--                            </v-btn>-->
-            <!--                            <v-btn icon>-->
-            <!--                              <v-icon>bookmark</v-icon>-->
-            <!--                            </v-btn>-->
-            <!--                            <v-btn icon>-->
-            <!--                              <v-icon>share</v-icon>-->
-            <!--                            </v-btn>-->
-            <!--                          </v-card-actions>-->
-            <!--                        </v-card>-->
-            <!--                      </v-flex>-->
-            <!--                    </v-layout>-->
-            <!--                  </v-container>-->
-            <!--                </v-card>-->
-            <!--              </v-flex>-->
-            <!--            </v-layout>-->
-
-
-            <!--                            <v-card v-for="n in item.response">-->
-            <!--                              <v-card-title primary-title>-->
-            <!--                                <div>-->
-            <!--                                  <p> {{ n.name }} </p>-->
-            <!--                                  <div v-if="n.name === 'Sim'"></div>-->
-            <!--                                </div>-->
-            <!--                              </v-card-title>-->
-
-            <!--                              <v-card-actions>-->
-            <!--                                100-->
-            <!--                              </v-card-actions>-->
-            <!--                            </v-card>-->
-
-            <!--            <v-radio-group v-model="item.selected">-->
-            <!--              <v-radio v-for="n in item.response" :label="n.name" :value="n.value"></v-radio>-->
-            <!--            </v-radio-group>-->
-
-          </material-card>
-
-        </v-form>
-
-      </div>
+      <!--        </div>-->
+      <!--      </v-flex>-->
 
       <!--      <v-flex md12>-->
       <!--        <vue-excel-xlsx-->
@@ -337,13 +229,188 @@
 <script>
   import {db, auth, usersCollection} from "./../firebase";
 
+  import municipios from "../municipios";
+
   export default {
     data() {
       return {
-        cards: [
-          {title: 'Favorite road trips', src: 'https://cdn.vuetifyjs.com/images/cards/road.jpg', flex: 6},
-          {title: 'Best airlines', src: 'https://cdn.vuetifyjs.com/images/cards/plane.jpg', flex: 6}
+        divisoesTerritoriais: [
+          {id: 1, nome: 'Municípios'},
+          {id: 2, nome: 'Estados'},
+          {id: 3, nome: 'Regiões'},
+          {id: 4, nome: 'Terrítórios UNICEF'},
         ],
+        territorioSelecioando: '',
+        values: '',
+        estados: [
+          {
+            "id": 11,
+            "sigla": "RO",
+            "nome": "Rondônia",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {"id": 12, "sigla": "AC", "nome": "Acre", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+            "id": 13,
+            "sigla": "AM",
+            "nome": "Amazonas",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {"id": 14, "sigla": "RR", "nome": "Roraima", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+            "id": 15,
+            "sigla": "PA",
+            "nome": "Pará",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {"id": 16, "sigla": "AP", "nome": "Amapá", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+            "id": 17,
+            "sigla": "TO",
+            "nome": "Tocantins",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {
+            "id": 21,
+            "sigla": "MA",
+            "nome": "Maranhão",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 22,
+            "sigla": "PI",
+            "nome": "Piauí",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 23,
+            "sigla": "CE",
+            "nome": "Ceará",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 24,
+            "sigla": "RN",
+            "nome": "Rio Grande do Norte",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 25,
+            "sigla": "PB",
+            "nome": "Paraíba",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 26,
+            "sigla": "PE",
+            "nome": "Pernambuco",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 27,
+            "sigla": "AL",
+            "nome": "Alagoas",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 28,
+            "sigla": "SE",
+            "nome": "Sergipe",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 29,
+            "sigla": "BA",
+            "nome": "Bahia",
+            "regiao": {"id": 2, "sigla": "NE", "nome": "Nordeste"}
+          },
+          {
+            "id": 31,
+            "sigla": "MG",
+            "nome": "Minas Gerais",
+            "regiao": {"id": 3, "sigla": "SE", "nome": "Sudeste"}
+          },
+          {
+            "id": 32,
+            "sigla": "ES",
+            "nome": "Espírito Santo",
+            "regiao": {"id": 3, "sigla": "SE", "nome": "Sudeste"}
+          },
+          {
+            "id": 33,
+            "sigla": "RJ",
+            "nome": "Rio de Janeiro",
+            "regiao": {"id": 3, "sigla": "SE", "nome": "Sudeste"}
+          },
+          {
+            "id": 35,
+            "sigla": "SP",
+            "nome": "São Paulo",
+            "regiao": {"id": 3, "sigla": "SE", "nome": "Sudeste"}
+          },
+          {"id": 41, "sigla": "PR", "nome": "Paraná", "regiao": {"id": 4, "sigla": "S", "nome": "Sul"}}, {
+            "id": 42,
+            "sigla": "SC",
+            "nome": "Santa Catarina",
+            "regiao": {"id": 4, "sigla": "S", "nome": "Sul"}
+          },
+          {
+            "id": 43,
+            "sigla": "RS",
+            "nome": "Rio Grande do Sul",
+            "regiao": {"id": 4, "sigla": "S", "nome": "Sul"}
+          },
+          {
+            "id": 50,
+            "sigla": "MS",
+            "nome": "Mato Grosso do Sul",
+            "regiao": {"id": 5, "sigla": "CO", "nome": "Centro-Oeste"}
+          },
+          {
+            "id": 51,
+            "sigla": "MT",
+            "nome": "Mato Grosso",
+            "regiao": {"id": 5, "sigla": "CO", "nome": "Centro-Oeste"}
+          },
+          {
+            "id": 52,
+            "sigla": "GO",
+            "nome": "Goiás",
+            "regiao": {"id": 5, "sigla": "CO", "nome": "Centro-Oeste"}
+          },
+          {
+            "id": 53,
+            "sigla": "DF",
+            "nome": "Distrito Federal",
+            "regiao": {"id": 5, "sigla": "CO", "nome": "Centro-Oeste"}
+          }
+        ],
+        municipios: municipios,
+        regioes: [
+          {
+            "id": 1,
+            "sigla": "N",
+            "nome": "Norte"
+          },
+          {
+            "id": 2,
+            "sigla": "NE",
+            "nome": "Nordeste"
+          },
+          {
+            "id": 3,
+            "sigla": "SE",
+            "nome": "Sudeste"
+          },
+          {
+            "id": 4,
+            "sigla": "S",
+            "nome": "Sul"
+          },
+          {
+            "id": 5,
+            "sigla": "CO",
+            "nome": "Centro-Oeste"
+          }
+        ],
+        territorios_unicef: '',
         quest: [
 
           {
@@ -1345,253 +1412,6 @@
             ]
           ]
         },
-        norte: {
-          id: 1,
-          headers: [
-            {
-              sortable: false,
-              text: 'Norte',
-              value: 'regioes'
-            },
-            {
-              sortable: false,
-              text: '',
-              value: 'total'
-            }
-          ],
-          items: [
-            {
-              name: 'Rondônia',
-              country: 'Niger',
-              city: 'Oud-Tunrhout',
-              salary: '52'
-            },
-            {
-              name: 'Acre',
-              country: 'Curaçao',
-              city: 'Sinaai-Waas',
-              salary: '22'
-            },
-            {
-              name: 'Amazonas',
-              country: 'Netherlands',
-              city: 'Overland Park',
-              salary: '62'
-            },
-            {
-              name: 'Roraima',
-              country: 'Korea, South',
-              city: 'Gloucester',
-              salary: '15'
-            },
-            {
-              name: 'Pará',
-              country: 'Malawi',
-              city: 'Feldkirchen in Kārnten',
-              salary: '144'
-            },
-            {
-              name: 'Amapá',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '16'
-            },
-            {
-              name: 'Tocantins',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '139'
-            }
-          ],
-        },
-        nordeste: {
-          id: 2,
-          headers: [
-            {
-              sortable: false,
-              text: 'Nordeste',
-              value: 'nordeste'
-            },
-            {
-              sortable: false,
-              text: '',
-              value: 'total'
-            }
-          ],
-          items: [
-            {
-              name: 'Maranhão',
-              country: 'Niger',
-              city: 'Oud-Tunrhout',
-              salary: '52'
-            },
-            {
-              name: 'Piauí',
-              country: 'Curaçao',
-              city: 'Sinaai-Waas',
-              salary: '22'
-            },
-            {
-              name: 'Ceará',
-              country: 'Netherlands',
-              city: 'Overland Park',
-              salary: '62'
-            },
-            {
-              name: 'Rio Grande do Norte',
-              country: 'Korea, South',
-              city: 'Gloucester',
-              salary: '15'
-            },
-            {
-              name: 'Paraíba',
-              country: 'Malawi',
-              city: 'Feldkirchen in Kārnten',
-              salary: '144'
-            },
-            {
-              name: 'Pernambuco',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '16'
-            },
-            {
-              name: 'Alagoas',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '139'
-            },
-            {
-              name: 'Sergipe',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '139'
-            },
-            {
-              name: 'Bahia',
-              country: 'Chile',
-              city: 'Gloucester',
-              salary: '139'
-            }
-          ],
-        },
-        sudeste: {
-          id: 3,
-          headers: [
-            {
-              sortable: false,
-              text: 'Sudeste',
-              value: 'regioes'
-            },
-            {
-              sortable: false,
-              text: '',
-              value: 'total'
-            }
-          ],
-          items: [
-            {
-              name: 'Minas Gerais',
-              country: 'Niger',
-              city: 'Oud-Tunrhout',
-              salary: '52'
-            },
-            {
-              name: 'Espirito Santo',
-              country: 'Curaçao',
-              city: 'Sinaai-Waas',
-              salary: '22'
-            },
-            {
-              name: 'Rio de Janeiro',
-              country: 'Netherlands',
-              city: 'Overland Park',
-              salary: '62'
-            },
-            {
-              name: 'São Paulo',
-              country: 'Korea, South',
-              city: 'Gloucester',
-              salary: '15'
-            }
-          ],
-        },
-        sul: {
-          id: 4,
-          headers: [
-            {
-              sortable: false,
-              text: 'Sul',
-              value: 'regioes'
-            },
-            {
-              sortable: false,
-              text: '',
-              value: 'total'
-            }
-          ],
-          items: [
-            {
-              name: 'Paraná',
-              country: 'Niger',
-              city: 'Oud-Tunrhout',
-              salary: '52'
-            },
-            {
-              name: 'Santa Catarina',
-              country: 'Curaçao',
-              city: 'Sinaai-Waas',
-              salary: '22'
-            },
-            {
-              name: 'Rio Grande do Sul',
-              country: 'Netherlands',
-              city: 'Overland Park',
-              salary: '62'
-            }
-          ],
-        },
-        centro_oeste: {
-          id: 5,
-          headers: [
-            {
-              sortable: false,
-              text: 'Centro Oeste',
-              value: 'regioes'
-            },
-            {
-              sortable: false,
-              text: '',
-              value: 'total'
-            }
-          ],
-          items: [
-            {
-              name: 'Mato Grosso do Sul',
-              country: 'Niger',
-              city: 'Oud-Tunrhout',
-              salary: '52'
-            },
-            {
-              name: 'Mato Grosso',
-              country: 'Curaçao',
-              city: 'Sinaai-Waas',
-              salary: '22'
-            },
-            {
-              name: 'Goiás',
-              country: 'Netherlands',
-              city: 'Overland Park',
-              salary: '62'
-            },
-            {
-              name: 'Distrito Federal',
-              country: 'Korea, South',
-              city: 'Gloucester',
-              salary: '15'
-            }
-          ],
-        },
         headers: [
           {
             sortable: false,
@@ -1602,7 +1422,7 @@
           },
           {
             sortable: false,
-            text: 'Telefone',
+            text: 'Totais de respostas',
             value: 'telefone',
             align: 'left',
             field: 'telefone',
@@ -1610,7 +1430,7 @@
           },
           {
             sortable: false,
-            text: 'Cidade',
+            text: 'Totais resposta 1',
             value: 'city',
             align: 'left',
             field: 'city',
@@ -1618,7 +1438,7 @@
           },
           {
             sortable: false,
-            text: 'UF',
+            text: 'Totais resposta 2',
             value: 'UF',
             align: 'left',
             field: 'uf',
@@ -1626,88 +1446,105 @@
           },
           {
             sortable: false,
-            text: 'Escola',
+            text: 'Totais resposta 3',
             value: 'school',
             align: 'left',
             field: 'school',
             label: 'Escola'
           }
         ],
-        // tabs: 0,
-        // list: {
-        //   0: false,
-        //   1: false,
-        //   2: false
-        // }
       }
     },
     methods: {
-      // async getDataByRegion(regionId) {
-      //
-      //   let region = await db.collection("users").where('city.ibge_region_id', '==', regionId).get().then((querySnapshot) => {
-      //
-      //     let values = querySnapshot.docs;
-      //     let arrayData = [];
-      //     for (let i = 0; i < values.length; i++) {
-      //       let obj = {}
-      //       let data = values[i].data();
-      //       arrayData.push(data);
-      //     }
-      //     return arrayData;
-      //   });
-      //   return region;
-      //
-      // },
-      // async getData() {
-      //
-      //   let norte = await this.getDataByRegion('1').then((response) => {
-      //     return response.length;
-      //   })
-      //   let nordeste = await this.getDataByRegion('2').then((response) => {
-      //     return response.length;
-      //   })
-      //   let sudeste = await this.getDataByRegion('3').then((response) => {
-      //     return response.length;
-      //   })
-      //   let sul = await this.getDataByRegion('4').then((response) => {
-      //     return response.length;
-      //   })
-      //   let centro_oeste = await this.getDataByRegion('5').then((response) => {
-      //     return response.length;
-      //   })
-      //
-      //
-      //   this.norte.headers[1].text = norte;
-      //   this.nordeste.headers[1].text = nordeste;
-      //   this.sudeste.headers[1].text = sudeste;
-      //   this.sul.headers[1].text = sul;
-      //   this.centro_oeste.headers[1].text = centro_oeste;
-      //
-      //   var washData = await db.collection("users").get().then(function (querySnapshot) {
-      //
-      //     let values = querySnapshot.docs;
-      //     let arrayData = [];
-      //     for (let i = 0; i < values.length; i++) {
-      //       let obj = {}
-      //       let data = values[i].data();
-      //       obj.quest = data.quest;
-      //       obj.school = data.school;
-      //       arrayData.push(obj);
-      //     }
-      //     return arrayData;
-      //   });
-      //
-      //
-      //   this.questions = washData;
-      //
-      //   let responses = this.users.length;
-      //
-      //   this.responses = responses.toString();
-      //
-      //   this.loading = false;
-      //
-      //
-      // },
+
+      selectItem(value) {
+        console.log(value)
+        switch (value) {
+          case 1:
+            this.values = this.municipios
+            break;
+          case 2:
+            this.values = this.estados
+            break;
+          case 3:
+            this.values = this.regioes
+            break;
+          case 4:
+            this.values = this.territorios_unicef
+            break;
+          default:
+            console.log(`Sorry, we are out of ${value}.`);
+        }
+      },
+      async getDataByRegion(regionId) {
+
+        let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', regionId).get().then((querySnapshot) => {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            arrayData.push(data);
+          }
+          console.log(arrayData)
+          return arrayData;
+        });
+        return region;
+      },
+
+      async getData() {
+
+        let norte = await this.getDataByRegion(1).then((response) => {
+          return response.length;
+        })
+        let nordeste = await this.getDataByRegion(2).then((response) => {
+          return response.length;
+        })
+        let sudeste = await this.getDataByRegion(3).then((response) => {
+          return response.length;
+        })
+        let sul = await this.getDataByRegion(4).then((response) => {
+          return response.length;
+        })
+        let centro_oeste = await this.getDataByRegion(5).then((response) => {
+          return response.length;
+        })
+
+        console.log(norte)
+
+
+        // this.norte.headers[1].text = norte;
+        // this.nordeste.headers[1].text = nordeste;
+        // this.sudeste.headers[1].text = sudeste;
+        // this.sul.headers[1].text = sul;
+        // this.centro_oeste.headers[1].text = centro_oeste;
+
+        var washData = await db.collection("users").get().then(function (querySnapshot) {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            obj.quest = data.quest;
+            obj.school = data.school;
+            arrayData.push(obj);
+          }
+          return arrayData;
+        });
+
+
+        this.questions = washData;
+
+        let responses = this.users.length;
+
+        this.responses = responses.toString();
+
+        this.loading = false;
+
+
+      },
 
       async updateSchool() {
 
@@ -1742,8 +1579,7 @@
               })
                 .then(res => res.clone().json())
                 .then(res => {
-                  school.ibge = res
-                  db.collection("users").doc(uid).update({school: school})
+                  db.collection("users").doc(uid).update({ibge: res})
                     .then(function () {
                       console.log("Document successfully updated!" + uid);
                     });
@@ -1754,7 +1590,7 @@
       }
     },
     created() {
-      // this.getData();
+      this.getData();
     }
     ,
   }
