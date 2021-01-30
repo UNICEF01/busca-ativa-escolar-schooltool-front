@@ -48,7 +48,7 @@
             slot="items"
             slot-scope="{ item }">
             <td>{{ item.nome }}</td>
-            <td>{{ item.salary }}</td>
+            <td>{{ item.count }}</td>
             <td>{{ item.salary }}</td>
             <td>{{ item.salary }}</td>
             <td>{{ item.salary }}</td>
@@ -228,18 +228,17 @@
 
 <script>
   import {db, auth, usersCollection} from "./../firebase";
-
   import municipios from "../municipios";
 
   export default {
     data() {
       return {
-        divisoesTerritoriais: [
-          {id: 1, nome: 'Municípios'},
-          {id: 2, nome: 'Estados'},
-          {id: 3, nome: 'Regiões'},
-          {id: 4, nome: 'Terrítórios UNICEF'},
-        ],
+        divisoesTerritoriais:
+          [
+            {id: 1, nome: 'Regiões'},
+            {id: 2, nome: 'Estados'},
+            {id: 3, nome: 'Terrítórios UNICEF'},
+          ],
         territorioSelecioando: '',
         values: '',
         estados: [
@@ -1319,7 +1318,6 @@
           }
 
         ],
-        regions: [],
         users: '',
         loading: true,
         color: 'cyan',
@@ -1461,24 +1459,76 @@
         console.log(value)
         switch (value) {
           case 1:
-            this.values = this.municipios
+            this.values = this.estados
+            this.getEstado();
             break;
           case 2:
             this.values = this.estados
             break;
           case 3:
-            this.values = this.regioes
-            break;
-          case 4:
-            this.values = this.territorios_unicef
+            this.values = ""
             break;
           default:
             console.log(`Sorry, we are out of ${value}.`);
         }
       },
-      async getDataByRegion(regionId) {
+      async getDataByRegion(id) {
 
-        let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', regionId).get().then((querySnapshot) => {
+        let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', 5).get().then((querySnapshot) => {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            arrayData.push(data);
+          }
+          console.log(arrayData)
+          return arrayData;
+        });
+
+        return region;
+      },
+
+      async getEstado() {
+
+        var data = [];
+
+        for (var i = 0; i < this.estados.length; i++) {
+
+          let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.id', '==', this.estados[i].id).get().then((querySnapshot) => {
+
+            let values = querySnapshot.docs;
+            let arrayData = [];
+            for (let i = 0; i < values.length; i++) {
+              var obj = {}
+              let data = values[i].data();
+              obj.responses = [];
+              if (data.quest != undefined) {
+                for (var i2 = 0; i2 < data.quest.length; i2++) {
+                  for (var i3 = 0; i3 < data.quest[i2].questions.length; i3++) {
+                    obj.responses.push(data.quest[i2].questions[i3].selected)
+                  }
+                }
+              }
+              // obj.dados = data;
+              arrayData.push(obj);
+
+            }
+            return {count: arrayData.length, respostas: arrayData};
+          });
+
+          this.estados[i].count = region.count;
+          this.estados[i].resp = region.respostas;
+
+          data.push(region)
+        }
+        console.log(this.estados)
+      },
+
+      async getDataByMunicipio(id) {
+
+        let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', id).get().then((querySnapshot) => {
 
           let values = querySnapshot.docs;
           let arrayData = [];
@@ -1494,31 +1544,6 @@
       },
 
       async getData() {
-
-        let norte = await this.getDataByRegion(1).then((response) => {
-          return response.length;
-        })
-        let nordeste = await this.getDataByRegion(2).then((response) => {
-          return response.length;
-        })
-        let sudeste = await this.getDataByRegion(3).then((response) => {
-          return response.length;
-        })
-        let sul = await this.getDataByRegion(4).then((response) => {
-          return response.length;
-        })
-        let centro_oeste = await this.getDataByRegion(5).then((response) => {
-          return response.length;
-        })
-
-        console.log(norte)
-
-
-        // this.norte.headers[1].text = norte;
-        // this.nordeste.headers[1].text = nordeste;
-        // this.sudeste.headers[1].text = sudeste;
-        // this.sul.headers[1].text = sul;
-        // this.centro_oeste.headers[1].text = centro_oeste;
 
         var washData = await db.collection("users").get().then(function (querySnapshot) {
 
@@ -1547,8 +1572,6 @@
       },
 
       async updateSchool() {
-
-        console.log('ola');
 
         var region = await db.collection("users").get().then((querySnapshot) => {
 
