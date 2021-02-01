@@ -32,6 +32,7 @@
         xs12
         md12
       >
+        <h1>Pergunta 1</h1>
         <v-data-table
           :headers="headers"
           :items="values"
@@ -57,7 +58,7 @@
       </v-flex>
 
 
-      <!--      <v-btn class="primary" @click="updateSchool">Atualiza Dados IBGE</v-btn>-->
+<!--            <v-btn class="primary" @click="updateSchool">Atualiza Dados IBGE</v-btn>-->
 
       <!--      <v-flex md9>-->
       <!--        <div v-for="group in quest">-->
@@ -248,19 +249,31 @@
             "nome": "Rondônia",
             "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
           },
-          {"id": 12, "sigla": "AC", "nome": "Acre", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+          {
+            "id": 12, "sigla": "AC",
+            "nome": "Acre",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {
             "id": 13,
             "sigla": "AM",
             "nome": "Amazonas",
             "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
           },
-          {"id": 14, "sigla": "RR", "nome": "Roraima", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+          {
+            "id": 14, "sigla": "RR", "nome": "Roraima",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          }, {
             "id": 15,
             "sigla": "PA",
             "nome": "Pará",
             "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
           },
-          {"id": 16, "sigla": "AP", "nome": "Amapá", "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}}, {
+          {
+            "id": 16, "sigla": "AP", "nome": "Amapá",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"}
+          },
+          {
             "id": 17,
             "sigla": "TO",
             "nome": "Tocantins",
@@ -344,7 +357,10 @@
             "nome": "São Paulo",
             "regiao": {"id": 3, "sigla": "SE", "nome": "Sudeste"}
           },
-          {"id": 41, "sigla": "PR", "nome": "Paraná", "regiao": {"id": 4, "sigla": "S", "nome": "Sul"}}, {
+          {
+            "id": 41, "sigla": "PR", "nome": "Paraná",
+            "regiao": {"id": 4, "sigla": "S", "nome": "Sul"}
+          }, {
             "id": 42,
             "sigla": "SC",
             "nome": "Santa Catarina",
@@ -1456,14 +1472,12 @@
     methods: {
 
       selectItem(value) {
-        console.log(value)
         switch (value) {
           case 1:
-            this.values = this.estados
             this.getEstado();
             break;
           case 2:
-            this.values = this.estados
+            this.getRegiao();
             break;
           case 3:
             this.values = ""
@@ -1472,22 +1486,28 @@
             console.log(`Sorry, we are out of ${value}.`);
         }
       },
-      async getDataByRegion(id) {
+      getAnswer (value) {
+        return value;
+      },
+      async getRegiao() {
 
-        let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', 5).get().then((querySnapshot) => {
+        for (var i = 0; i < this.regioes.length; i++) {
 
-          let values = querySnapshot.docs;
-          let arrayData = [];
-          for (let i = 0; i < values.length; i++) {
-            let obj = {}
-            let data = values[i].data();
-            arrayData.push(data);
-          }
-          console.log(arrayData)
-          return arrayData;
-        });
+          let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.regiao.id', '==', this.regioes[i].id).get().then((querySnapshot) => {
 
-        return region;
+            let values = querySnapshot.docs;
+            let arrayData = [];
+            for (let i = 0; i < values.length; i++) {
+              let data = values[i].data();
+              this.getAnswer(data)
+              arrayData.push(data);
+            }
+            return {count: arrayData.length};
+          });
+
+          this.regioes[i].count = region.count;
+        }
+        this.values = this.regioes
       },
 
       async getEstado() {
@@ -1500,14 +1520,48 @@
 
             let values = querySnapshot.docs;
             let arrayData = [];
+            let perguntas = [];
+            for (let i = 0; i < values.length; i++) {
+              let data = values[i].data();
+              perguntas.push(data.quest)
+              arrayData.push(data);
+            }
+            return {count: arrayData.length, pergunta:  perguntas, respostas: []};
+          });
+
+          this.estados[i].count = region.count;
+          this.estados[i].perguntas = region.pergunta;
+        }
+        console.log(this.estados)
+        this.values = this.estados
+      },
+      async getRespostasPorEstado() {
+
+        var data = [];
+
+        for (var i = 0; i < this.estados.length; i++) {
+
+          let region = await db.collection("users").where('ibge.regiao-imediata.regiao-intermediaria.UF.id', '==', this.estados[i].id).get().then((querySnapshot) => {
+
+            let values = querySnapshot.docs;
+            let arrayData = [];
             for (let i = 0; i < values.length; i++) {
               var obj = {}
               let data = values[i].data();
-              obj.responses = [];
+              obj.responses = {};
+              obj.responses.values = [];
+              obj.responses.answer = [];
               if (data.quest != undefined) {
-                for (var i2 = 0; i2 < data.quest.length; i2++) {
-                  for (var i3 = 0; i3 < data.quest[i2].questions.length; i3++) {
-                    obj.responses.push(data.quest[i2].questions[i3].selected)
+                for (var i2 = 0; i2 < data.quest.length; i2++) { // 4 grupos de questões
+                  for (var i3 = 0; i3 < data.quest[i2].questions.length; i3++) { // questões em si
+                    if (data.quest[i3]) {
+                      for (var i4 = 0; i4 < data.quest[i3].questions.length; i4++) {
+                        var answer = data.quest[i3].questions[i4].answer;
+                      }
+                    }
+
+                    obj.responses.answer = answer
+                    obj.responses.values.push(data.quest[i2].questions[i3].selected)
                   }
                 }
               }
@@ -1520,6 +1574,7 @@
 
           this.estados[i].count = region.count;
           this.estados[i].resp = region.respostas;
+          this.estados[i].estado = region.respostas.nome;
 
           data.push(region)
         }
