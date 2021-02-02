@@ -11,6 +11,7 @@
   <!--      confirm="Do you want to download it?"-->
   <!--    ></vue-blob-json-csv>-->
   <!--  </v-container>-->
+
   <v-container
     fill-height
     fluid
@@ -27,12 +28,21 @@
           @change="selectItem(territorioSelecioando)"
         ></v-select>
       </v-flex>
+      <v-flex md12>
+        <v-btn class="v-btn v-btn--small  cyan" @click="anterior">Anterior</v-btn>
+
+        <v-btn class="v-btn v-btn--small  cyan" @click="proximo">Próximo</v-btn>
+      </v-flex>
       <v-flex
-        sm6
-        xs12
-        md12
+        md3>
+      </v-flex>
+      <v-flex
+        md9>
+        {{perguntaAtual}}
+      </v-flex>
+      <v-flex
+        md3
       >
-        <h1>Pergunta 1</h1>
         <v-data-table
           :headers="headers"
           :items="values"
@@ -50,15 +60,39 @@
             slot-scope="{ item }">
             <td>{{ item.nome }}</td>
             <td>{{ item.count }}</td>
-            <td>{{ item.salary }}</td>
-            <td>{{ item.salary }}</td>
-            <td>{{ item.salary }}</td>
+          </template>
+        </v-data-table>
+      </v-flex>
+
+      <v-flex
+        md9
+      >
+        <v-data-table
+          :headers="headers_ask"
+          :items="retornaDados(values)"
+          hide-actions>
+          <!--            <template-->
+          <!--              slot="headerCell"-->
+          <!--              slot-scope="{ header }">-->
+          <!--              <span-->
+          <!--                class="subheading font-weight-light text-success text--darken-3"-->
+          <!--                v-text="header.text"-->
+          <!--              />-->
+          <!--            </template>-->
+          <template
+            slot="items"
+            slot-scope="{ item }">
+            <td>{{item.resposta1}}</td>
+            <td>{{item.resposta2}}</td>
+            <td>{{item.resposta3}}</td>
+
           </template>
         </v-data-table>
       </v-flex>
 
 
-<!--            <v-btn class="primary" @click="updateSchool">Atualiza Dados IBGE</v-btn>-->
+      <!--            <v-btn class="primary" @click="updateSchool">Atualiza Dados IBGE</v-btn>-->
+
 
       <!--      <v-flex md9>-->
       <!--        <div v-for="group in quest">-->
@@ -223,17 +257,26 @@
       <!--          indeterminate-->
       <!--        />-->
       <!--      </v-flex>-->
+      <v-flex>
+        <pre>{{values | json}}</pre>
+      </v-flex>
     </v-layout>
   </v-container>
+
+
 </template>
 
 <script>
   import {db, auth, usersCollection} from "./../firebase";
   import municipios from "../municipios";
+  import perguntas from "../perguntas"
 
   export default {
     data() {
       return {
+        indexAsk: 0,
+        answers: perguntas,
+        perguntaAtual: 'Nada Selecionado',
         divisoesTerritoriais:
           [
             {id: 1, nome: 'Regiões'},
@@ -1441,7 +1484,9 @@
             align: 'left',
             field: 'telefone',
             label: 'Telefone'
-          },
+          }
+        ],
+        headers_ask: [
           {
             sortable: false,
             text: 'Totais resposta 1',
@@ -1467,10 +1512,25 @@
             label: 'Escola'
           }
         ],
+
       }
     },
     methods: {
+      anterior(){
+        this.indexAsk--;
+      },
+      anterior(){
+        this.indexAsk++
+      },
 
+      retornaDados(dados) {
+        let arrayData = [];
+        for (let i = 0; i < dados.length; i++) {
+          arrayData.push(dados[i].perguntas[this.indexAsk])
+        }
+        this.perguntaAtual = arrayData[this.indexAsk] ? arrayData[this.indexAsk].pergunta : ''
+        return arrayData
+      },
       selectItem(value) {
         switch (value) {
           case 1:
@@ -1486,7 +1546,7 @@
             console.log(`Sorry, we are out of ${value}.`);
         }
       },
-      getAnswer (value) {
+      getAnswer(value) {
         return value;
       },
       async getRegiao() {
@@ -1526,14 +1586,21 @@
               perguntas.push(data.quest)
               arrayData.push(data);
             }
-            return {count: arrayData.length, pergunta:  perguntas, respostas: []};
+            return {count: arrayData.length, answer: '', respostas: []};
           });
 
+          // for (let i = 0; i < this.answers.length; i++) {
+          //   this.answers[i].pergunta = this.answers[i].pergunta + i;
+          // }
           this.estados[i].count = region.count;
-          this.estados[i].perguntas = region.pergunta;
+          this.estados[i].perguntas = this.answers;
         }
-        console.log(this.estados)
         this.values = this.estados
+
+      },
+      selecionaPergunta(value) {
+
+
       },
       async getRespostasPorEstado() {
 
