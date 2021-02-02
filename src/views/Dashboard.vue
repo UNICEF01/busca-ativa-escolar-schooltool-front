@@ -37,8 +37,8 @@
         md3>
       </v-flex>
       <v-flex
-        md9>
-        {{perguntaAtual}}
+        md9 style="text-align: center">
+        {{perguntaAtual}} {{indexAsk}}
       </v-flex>
       <v-flex
         md3
@@ -1516,11 +1516,14 @@
       }
     },
     methods: {
-      anterior(){
-        this.indexAsk--;
+      anterior() {
+        if (this.indexAsk === 0)
+          return
+        this.indexAsk = this.indexAsk - 1;
+
       },
-      anterior(){
-        this.indexAsk++
+      proximo() {
+        this.indexAsk = this.indexAsk + 1;
       },
 
       retornaDados(dados) {
