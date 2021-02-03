@@ -153,7 +153,7 @@
             questions: [
               {
                 id: 1,
-                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade</span>',
+                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade (banheiros, lavagem de mãos, preparação dos alimentos, beber)</span>',
                 selected: null,
                 response: [
                   {
