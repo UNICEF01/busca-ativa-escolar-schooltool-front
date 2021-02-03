@@ -17,7 +17,14 @@
     fluid
     grid-list-xl>
     <v-layout wrap>
-      <v-flex xs12 md12 d-flex>
+
+      <v-flex md12>
+        <v-btn class="v-btn v-btn--small  cyan" @click="anterior">Anterior</v-btn>
+
+        <v-btn class="v-btn v-btn--small  cyan" @click="proximo">Próximo</v-btn>
+      </v-flex>
+      <v-flex
+        md3>
         <v-select
           v-model="territorioSelecioando"
           :items="divisoesTerritoriais"
@@ -28,17 +35,16 @@
           @change="selectItem(territorioSelecioando)"
         ></v-select>
       </v-flex>
-      <v-flex md12>
-        <v-btn class="v-btn v-btn--small  cyan" @click="anterior">Anterior</v-btn>
-
-        <v-btn class="v-btn v-btn--small  cyan" @click="proximo">Próximo</v-btn>
-      </v-flex>
-      <v-flex
-        md3>
-      </v-flex>
       <v-flex
         md9 style="text-align: center">
-        {{perguntaAtual}} {{indexAsk}}
+        {{perguntaAtual}}<br><br>
+
+        <table class="theme--light">
+          <tr>
+            <td v-for="i in headers_ask" :width="i.width">{{i.text}}</td>
+          </tr>
+        </table>
+
       </v-flex>
       <v-flex
         md3
@@ -68,7 +74,6 @@
         md9
       >
         <v-data-table
-          :headers="headers_ask"
           :items="retornaDados(values)"
           hide-actions>
           <!--            <template-->
@@ -82,10 +87,9 @@
           <template
             slot="items"
             slot-scope="{ item }">
-            <td>{{item.resposta1}}</td>
-            <td>{{item.resposta2}}</td>
-            <td>{{item.resposta3}}</td>
-
+            <td>{{item.resposta1.valor}}</td>
+            <td>{{item.resposta2.valor}}</td>
+            <td>{{item.resposta3.valor}}</td>
           </template>
         </v-data-table>
       </v-flex>
@@ -1489,27 +1493,18 @@
         headers_ask: [
           {
             sortable: false,
-            text: 'Totais resposta 1',
-            value: 'city',
-            align: 'left',
-            field: 'city',
-            label: 'Cidade'
+            text: '',
+            width: '10%',
           },
           {
             sortable: false,
-            text: 'Totais resposta 2',
-            value: 'UF',
-            align: 'left',
-            field: 'uf',
-            label: 'UF'
+            text: '',
+            width: '45%',
           },
           {
             sortable: false,
-            text: 'Totais resposta 3',
-            value: 'school',
-            align: 'left',
-            field: 'school',
-            label: 'Escola'
+            text: '',
+            width: '45%',
           }
         ],
 
@@ -1532,6 +1527,9 @@
           arrayData.push(dados[i].perguntas[this.indexAsk])
         }
         this.perguntaAtual = arrayData[this.indexAsk] ? arrayData[this.indexAsk].pergunta : ''
+        this.headers_ask[0].text = arrayData[this.indexAsk] ? arrayData[this.indexAsk].resposta1.text : ''
+        this.headers_ask[1].text = arrayData[this.indexAsk] ? arrayData[this.indexAsk].resposta2.text : ''
+        this.headers_ask[2].text = arrayData[this.indexAsk] ? arrayData[this.indexAsk].resposta3.text : ''
         return arrayData
       },
       selectItem(value) {

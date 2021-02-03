@@ -1,62 +1,152 @@
 [
   {
     "pergunta": "A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade 1",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "SIM",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade 1\n",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de",
+      "valor": 30
+    }
   },
   {
     "pergunta": "Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante, pelo menos, dois dias",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 3",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 4",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 5",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 6",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 7",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 8",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 9",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    }
   },
   {
     "pergunta": "aksjdfkasdflkasdklfaslkdflasdflkasdfklasdklfasdasdkfaksd 10",
-    "resposta1": 10,
-    "resposta2": 20,
-    "resposta3": 30
+    "resposta1": {
+      "text": "aksdfkasdklf",
+      "valor": 30
+    },
+    "resposta2": {
+      "text": "aksdfkasdklf",
+      "valor": 20
+    },
+    "resposta3": {
+      "text": "aksdfkasdklf",
+      "valor": 10
+    }
   }
 ]
