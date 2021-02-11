@@ -39,6 +39,12 @@ export default [
     name: 'Login',
     view: 'Login'
   },
+{
+  path: '/home',
+  // Relative to /src/views,
+  name: 'Home',
+  view: 'Home'
+},
   {
     path: '/admin',
     // Relative to /src/views,
