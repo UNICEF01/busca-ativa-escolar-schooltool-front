@@ -317,7 +317,7 @@
   
 
               db.collection("users").doc(user.user.uid).set(this.user)
-              //db.collection("users").doc(user.user.uid).update({"school.territory":"TAM","school.uf":??????})
+              
                 .then(function () {
                   // console.log()
                 })
@@ -325,6 +325,7 @@
                   // console.error(error)
                 });
               //console.log(user);
+              
               this.$router.push({path: '/wash'})
               setInterval(function () {
                 window.location.reload();
