@@ -203,9 +203,20 @@
 <script>
   import Estados from "../components/core/CitySelect";
   import {db, auth, usersCollection} from "./../firebase";
+  import ibgeid from '../assets/territory.js';
+
+
+
+
 
   export default {
     components: {Estados},
+    methods:{
+      myFunction: function(){
+        return ibgeid
+      }
+    },
+
     data() {
       return {
         login: {
@@ -272,7 +283,41 @@
                 displayName: this.user.name
               })
 
+
+
+            //-------------NOVOS CAMPOS - INÍCIO
+           
+              var docRef = db.collection("users").doc(user.user.uid);
+
+              docRef.get().then(function(doc) {
+                if (doc.exists) {
+                    var name=doc.get('city.region');
+                    var uff=doc.get('city.uf');
+                    var ibge_city_id=doc.get('school.ibge_id');
+
+                  let region = [
+                    { value: "NO", text: "NORTE" },
+                    { value: "NE", text: "NORDESTE" },
+                    { value: "SU", text: "SUL" },
+                    { value: "SE", text: "SUDESTE" },
+                    { value: "CO", text: "CENTRO-OESTE" }
+                  ]
+
+                  let regionName = region.find(item => item.value == name);
+                  let territory = ibgeid.find(item => item.value == ibge_city_id);
+
+                  db.collection("users").doc(user.user.uid).update({"school.region_name": regionName.text})
+                  db.collection("users").doc(user.user.uid).update({"school.uf": uff})
+                  db.collection("users").doc(user.user.uid).update({"school.territory": territory.text})
+        
+                }
+              });
+
+              ////-------------NOVOS CAMPOS - FIM
+  
+
               db.collection("users").doc(user.user.uid).set(this.user)
+              //db.collection("users").doc(user.user.uid).update({"school.territory":"TAM","school.uf":??????})
                 .then(function () {
                   // console.log()
                 })

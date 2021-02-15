@@ -116,13 +116,15 @@
       },
     },
     created: function () {
-      var docRef = db.collection("users").where('uid', '==', auth.currentUser.uid).onSnapshot(querySnapshot => {
+      if (this.user !== '') {
+        var docRef = db.collection("users").where('uid', '==', auth.currentUser.uid).onSnapshot(querySnapshot => {
 
-        // console.log(querySnapshot)
-        // let values = []
-        // querySnapshot.forEach((doc) => {
-        //   values.push(doc.data())
-      })
+          // console.log(querySnapshot)
+          // let values = []
+          // querySnapshot.forEach((doc) => {
+          //   values.push(doc.data())
+        })
+      }
     },
     mounted() {
 
@@ -131,10 +133,11 @@
 
       this.user = auth.currentUser || '';
 
-      if (this.user.displayName.length > 1) {
-        this.$router.push({path: '/wash'})
-
-      }
+      // if (this.user !== '') {
+      //   if (this.user.displayName.length > 1) {
+      //     this.$router.push({path: '/wash'})
+      //   }
+      // }
 
       if (window.location.pathname === '/') {
         this.showButtom = true;

@@ -6,7 +6,8 @@
 export default [
   {
     path: '/dashboard',
-    // Relative to /src/views
+    // Relative to /src/views,
+    name: 'Dash Board',
     view: 'Dashboard'
   },
   {
@@ -31,6 +32,24 @@ export default [
     meta: {
       requiresAuth: true
     }
+  },
+  {
+    path: '/login',
+    // Relative to /src/views,
+    name: 'Login',
+    view: 'Login'
+  },
+{
+  path: '/updateQuest',
+  // Relative to /src/views,
+  name: 'updateQuest',
+  view: 'updateQuest'
+},
+  {
+    path: '/admin',
+    // Relative to /src/views,
+    name: 'Admin',
+    view: 'Admin'
   },
   {
     path: '/typography',

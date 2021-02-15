@@ -157,7 +157,7 @@
             questions: [
               {
                 id: 1,
-                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade</span>',
+                answer: '<span>A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade (banheiros, lavagem de mãos, preparação dos alimentos, beber)</span>',
                 selected: null,
                 response: [
                   {
@@ -201,7 +201,7 @@
               },
               {
                 id: 3,
-                answer: "<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovado e que segue as especificações do Ministério da Saúde [Portaria nº 2.914/2011 do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)]  ou da Organização Mundial da Saúde (OMS)</span>",
+                answer: "<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde ou da Organização Mundial da Saúde.  A Portaria de Consolidação nº 5, de 28/09/2017/Minist[erio da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede). </span>",
                 selected: null,
                 response: [
                   {
@@ -515,7 +515,7 @@
               },
               {
                 id: 13,
-                answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e sanitários e em locais estratégicos nas dependências da escola, e o lixo é recolhido de forma segura</span>',
+                answer: '<span>Há lixeiras em cada sala de aula, nos banheiros e ao lado dos vasos sanitários e em locais estratégicos, nas dependências da escola, e o o lixo é recolhido diariamente, de forma segura</span>',
                 selected: null,
                 response: [
                   {
@@ -537,7 +537,7 @@
               },
               {
                 id: 14,
-                answer: '<span>Os resíduos sólidos (lixo) da escola são descartados de forma segura.</span>',
+                answer: '<span>O lixo da escola  é descartado de forma segura (são ensacados e  separados parao o recolhimento do prestador de serviços)?</span>',
                 selected: null,
                 response: [
                   {
@@ -762,7 +762,7 @@
               },
               {
                 id: 21,
-                answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementado e respeitada</span>',
+                answer: '<span>Se há um refeitório escolar, a distância física entre os estudantes é implementada e respeitada</span>',
                 selected: null,
                 response: [
                   {
@@ -784,7 +784,7 @@
               },
               {
                 id: 22,
-                answer: '<span>A equipe da cozinha usa máscaras e dispõe de locais para a lavagem ou produtos desinfectantes para as mãos</span>',
+                answer: '<span>A equipe da cozinha usa máscaras faciais e dispõe de pias e locais para a lavagem das mãos ou de produtos desinfetantes para as mãos.</span>',
                 selected: null,
                 response: [
                   {
