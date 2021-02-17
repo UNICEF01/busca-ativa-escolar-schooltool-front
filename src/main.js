@@ -7,6 +7,9 @@ import Vue from 'vue'
 
 import JsonExcel from "vue-json-excel";
 
+import JwPagination from 'jw-vue-pagination';
+Vue.component('jw-pagination', JwPagination);
+
 
 // Components
 import './components'
