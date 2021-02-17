@@ -121,6 +121,10 @@
             Imprimir
           </v-btn>
 
+          <v-btn @click="sendToEmail()" class="font-weight-light" color="#5cb860" style="margin-left: 10px;">
+            Enviar para o email
+          </v-btn>
+
         </div>
 
       </v-flex>
@@ -1279,7 +1283,25 @@
       print(){
         const d = new Printd()
         d.print( document.getElementById('relatorio_wash'), [this.cssForPrintd]);
-      }
+      },
+
+      sendToEmail(){
+
+        var body_message = {
+          message: document.getElementById('relatorio_wash').innerHTML,
+          email: auth.currentUser.email,
+          subject: "Relatório de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola",
+          name: auth.currentUser.email
+        };
+
+        this.$http.post('https://escolas.buscaativaescolar.org.br/mailgun/send_mail.php', body_message)
+          .then( function (response) {
+            this.toast('success', "Relatório encaminhado com sucesso");
+          }, function (response) {
+            this.toast('error', "Erro no envio da mesagem");
+          });
+
+      },
 
     },
 

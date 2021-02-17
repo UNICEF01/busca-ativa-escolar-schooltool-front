@@ -205,6 +205,10 @@
   import {db, auth, usersCollection} from "./../firebase";
   import ibgeid from '../assets/territory.js';
 
+
+
+
+
   export default {
     components: {Estados},
     methods:{
@@ -283,7 +287,6 @@
 
             //-------------NOVOS CAMPOS - INÍCIO
            
-             
               var docRef = db.collection("users").doc(user.user.uid);
 
               docRef.get().then(function(doc) {
@@ -300,9 +303,6 @@
                     { value: "CO", text: "CENTRO-OESTE" }
                   ]
 
-        
-
-
                   let regionName = region.find(item => item.value == name);
                   let territory = ibgeid.find(item => item.value == ibge_city_id);
 
@@ -312,11 +312,12 @@
         
                 }
               });
+
               ////-------------NOVOS CAMPOS - FIM
   
 
               db.collection("users").doc(user.user.uid).set(this.user)
-              //db.collection("users").doc(user.user.uid).update({"school.territory":"TAM","school.uf":??????})
+              
                 .then(function () {
                   // console.log()
                 })
@@ -324,6 +325,7 @@
                   // console.error(error)
                 });
               //console.log(user);
+              
               this.$router.push({path: '/wash'})
               setInterval(function () {
                 window.location.reload();

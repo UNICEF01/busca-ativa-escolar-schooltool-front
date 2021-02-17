@@ -50,10 +50,10 @@ export default [
     view: 'Login'
   },
 {
-  path: '/home',
+  path: '/updateQuest',
   // Relative to /src/views,
-  name: 'Home',
-  view: 'Home'
+  name: 'updateQuest',
+  view: 'updateQuest'
 },
   {
     path: '/admin',
