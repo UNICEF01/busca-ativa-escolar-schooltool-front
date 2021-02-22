@@ -204,10 +204,8 @@
   import Estados from "../components/core/CitySelect";
   import {db, auth, usersCollection} from "./../firebase";
   import ibgeid from '../assets/territory.js';
-
-
-
-
+  import Vue from 'vue';
+  //if(auth.currentUser == null){self.location='/login'}
 
   export default {
     components: {Estados},
@@ -260,9 +258,9 @@
     },
     methods: {
       checkAutenticate() {
-        if (auth.currentUser) {
-          this.$router.push({path: '/wash'})
-        }
+      if (auth.currentUser) {
+         this.$router.push({path: '/wash'})
+      }
       },
       // Triggered when `childToParent` event is emitted by the child.
       onChildClick(value) {
@@ -272,7 +270,7 @@
 
       async start() {
         if (this.$refs.form_register.validate()) {
-          try {
+         
             let user = auth.createUserWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               this.user.uid = user.user.uid
               this.user.name = this.user.name.trim()
@@ -331,16 +329,19 @@
                 window.location.reload();
               }, 1000);
             })
-          } catch (error) {
-            if (error.code === 'auth/email-already-in-use') {
-              this.$toast.open({
-                message: 'E-mail já cadastrado, clique em continuar de onde parou para fazer login',
+          
+         . catch (function (err) {
+            if(err.code === "auth/email-already-in-use") {
+              Vue.$toast.open({
+                message: 'E-mail já cadastrado, clique em CONTINUAR DE ONDE PAROU para fazer login',
                 type: 'error',
                 position: 'top'
               });
             }
-          }
+
+          });
         }
+
       },
       loginUser() {
         if (this.$refs.form_login.validate()) {

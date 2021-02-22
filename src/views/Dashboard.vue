@@ -22,6 +22,7 @@
         xs12
         md6
         lg3>
+
         <material-stats-card
           color="cyan"
           icon="mdi-cloud-check"
@@ -331,6 +332,7 @@
 
 <script>
   import {db, auth, usersCollection} from "./../firebase";
+  if(auth.currentUser == null){self.location='/login'}  
 
   export default {
     data() {

@@ -1,11 +1,26 @@
 <template>
-  <v-toolbar
+<div
+style="
+  position: relative;
+  left: 265px;
+  width: 86%;
+  ">
+<v-toolbar
     id="core-toolbar"
-    flat
-    prominent
-    style="background: #eee;">
+        color="teal lighten-3"
+        dense
+        style="background: #eee;
+">
+ <h3 class="tertiary--text font-weight-light"
+         style="
+  position: absolute;
+  left: 10px;
+  width: 86%;
+  "    
+    >{{ title }}</h3>
     <div class="v-toolbar-title">
-      <v-toolbar-title class="tertiary--text font-weight-light">
+
+      <v-toolbar-title>   
         <v-btn
           v-if="responsive"
           class="default v-btn--simple"
@@ -15,11 +30,11 @@
         >
           <v-icon>mdi-view-list</v-icon>
         </v-btn>
-        {{ title }}
+    
       </v-toolbar-title>
+    
     </div>
 
-    <v-spacer />
     <v-toolbar-items>
       <v-flex
         align-center
@@ -84,7 +99,11 @@
         <!--</router-link>-->
       </v-flex>
     </v-toolbar-items>
+
+
   </v-toolbar>
+  
+</div>
 </template>
 
 <script>
@@ -142,5 +161,6 @@ export default {
 <style>
 #core-toolbar a {
   text-decoration: none;
+
 }
 </style>

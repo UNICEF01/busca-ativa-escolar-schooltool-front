@@ -62,6 +62,11 @@
 <script>
   import Estados from "../components/core/CitySelect";
   import {db, auth, usersCollection} from "./../firebase";
+  import Vue from 'vue';
+  import VueConfirmDialog from 'vue-confirm-dialog'
+  Vue.use(VueConfirmDialog)
+  Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
+
 
   export default {
     components: {Estados},
@@ -154,7 +159,19 @@
         if (this.$refs.form_login.validate()) {
           var user = await auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
             return user;
+
           })
+
+         . catch (function (err) {
+            if(err.code === "auth/user-not-found") {
+              Vue.$toast.open({
+                message: 'Usuário não encontrado.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+          });
+
 
           var getUser = await db.collection("admin-users").where("uid", "==", user.user.uid).get().then(function (querySnapshot) {
             let values = querySnapshot.docs;
@@ -164,14 +181,14 @@
               let data = values[i].data();
               obj.uid = data.uid;
               obj.name = data.nome;
-              obj.perfil = data.perfil;
+              //obj.perfil = data.perfil;
               arrayData.push(obj);
             }
             return arrayData;
           });
 
           if (getUser[0].perfil === 'admin') {
-            this.$router.push({path: '/admin'})
+            this.$router.push({path: '/dashboard'})
           } else {
             this.$router.push({path: '/dashboard'})
           }
@@ -185,16 +202,36 @@
         this.recoverPassword = false;
       },
       resetPassword() {
+        
         if (this.$refs.form_login.validate()) {
 
-          auth.sendPasswordResetEmail(this.login.email).then((user) => {
+          var user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+            return user;
+
+          })
+
+         . catch (function (err) {
+            if(err.code === "auth/user-not-found") {
+              Vue.$toast.open({
+                message: 'Usuário não encontrado.',
+                type: 'error',
+                position: 'top'
+              });
+
+            }
           });
-          this.$toast.open({
-            message: 'Um e-mail foi enviado para recuperar a senha!',
-            type: 'warning',
-            position: 'top'
-          });
-          this.recoverPassword = false;
+
+                auth.sendPasswordResetEmail(this.login.email).then((user) => {
+                });
+                this.$toast.open({
+                  message: 'Um e-mail foi enviado para recuperar a senha!',
+                  type: 'warning',
+                  position: 'top'
+                });
+                this.recoverPassword = false;
+
+
+
         }
       }
 
