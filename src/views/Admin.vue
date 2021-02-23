@@ -86,7 +86,7 @@
                         </v-radio-group>
                       </v-flex>
                       <v-flex xs12 sm6 md6>
-                        <v-text-field v-model="editedItem.senha" label="Senha" :rules="[rules.required]"></v-text-field>
+                        <v-text-field v-model="editedItem.senha" label="Senha" :rules="[rules.required]" :type="showPasword1 ? 'text' : 'password'"></v-text-field>
                       </v-flex>
                     </v-layout>
                   </v-card-text>
@@ -386,6 +386,7 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
 
 
+
       },
 
       deleteItem(uid) {
@@ -452,11 +453,16 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
       },
       start() {
 
+        
         if (this.$refs.form_register.validate()) {
 
 
         if (this.editedIndex == 0){
-          //auth.currentUser.delete()
+          this.editedIndex == 0
+          var user = auth.currentUser;
+          user.updatePassword(this.editedItem.senha);
+      
+
           db.collection("admin-users")
               .doc(this.editedItem.uid)
               .update({"nome":this.editedItem.nome,"perfil":this.editedItem.perfil,"senha":this.editedItem.senha})
@@ -472,8 +478,8 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
                     window.location.reload();
                   }, 2000);              })
         }else{
-
-
+            
+            this.editedIndex == -1
             let user = auth.createUserWithEmailAndPassword(this.editedItem.email, this.editedItem.senha).then((user) => {
               
               this.editedItem.uid = user.user.uid

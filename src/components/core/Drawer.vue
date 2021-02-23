@@ -142,6 +142,9 @@
                 this.editedIndex = perfil
           });      
           
+          
+
+
           /*var data = CircularJSON.stringify(response)
 
           if (~data.indexOf('"admin"')) {

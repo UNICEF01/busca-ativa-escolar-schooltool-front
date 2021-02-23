@@ -45,6 +45,12 @@ export default [
   name: 'updateQuest',
   view: 'updateQuest'
 },
+{
+path: '/updateQuestComplete',
+// Relative to /src/views,
+name: 'updateQuestComplete',
+view: 'updateQuestComplete'
+},
   {
     path: '/admin',
     // Relative to /src/views,

@@ -64,6 +64,7 @@
   import {db, auth, usersCollection} from "./../firebase";
   import Vue from 'vue';
   import VueConfirmDialog from 'vue-confirm-dialog'
+  import CircularJSON from 'circular-json'
   Vue.use(VueConfirmDialog)
   Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
@@ -115,6 +116,12 @@
       checkAutenticate() {
         if (auth.currentUser) {
           this.$router.push({path: '/admin'})
+        }else{
+          Vue.$toast.open({
+            message: 'Usuário não habilitado para este ambiente.',
+            type: 'error',
+            position: 'top'
+              });
         }
       },
       // Triggered when `childToParent` event is emitted by the child.
@@ -161,11 +168,22 @@
             return user;
 
           })
+//alert(CircularJSON.stringify(user))
+
+
 
          . catch (function (err) {
+
             if(err.code === "auth/user-not-found") {
               Vue.$toast.open({
                 message: 'Usuário não encontrado.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+            if(err.code === "auth/wrong-password") {
+              Vue.$toast.open({
+                message: 'Senha não confere.',
                 type: 'error',
                 position: 'top'
               });
@@ -181,11 +199,19 @@
               let data = values[i].data();
               obj.uid = data.uid;
               obj.name = data.nome;
-              //obj.perfil = data.perfil;
+              obj.perfil = data.perfil;
               arrayData.push(obj);
             }
             return arrayData;
           });
+
+            if(getUser == "") {
+              Vue.$toast.open({
+                message: 'Usuário não habilitado para este ambiente.',
+                type: 'error',
+                position: 'top'
+              });
+            }
 
           if (getUser[0].perfil === 'admin') {
             this.$router.push({path: '/dashboard'})
