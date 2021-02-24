@@ -172,6 +172,9 @@ admin.initializeApp({
   databaseURL: 'https://pesquisas-678f7.firebaseio.com'
 });
 
+
+
+
 //if(auth.currentUser == null){self.location='/login'}
 
 
@@ -409,19 +412,22 @@ admin.initializeApp({
         callback: (confirm) => {
           if (confirm ){
           //db.collection("admin-users").doc(uid).update({status: false});
-          //var user = auth.deleteUser(uid);
+
+          
           //user.delete(uid);
           //firebase.auth().currentUser.delete().
           
-          //db.collection("admin-users").doc(uid).delete()
-   
-admin.auth().deleteUser(uid)
-.then(function() {
-    alert("Successfully deleted user");
-})
-.catch(function(error) {
-    alert("Error deleting user:", error);
-});
+          db.collection("admin-users").doc(uid).delete()
+
+
+
+         /*admin.auth().deleteUser(uid)
+          .then(function() {
+              alert("Successfully deleted user");
+          })
+          .catch(function(error) {
+              alert("Error deleting user:", error);
+          });
           this.$toast.open({
             message: 'Usuário excluido com sucesso!',
             type: 'error',
@@ -429,7 +435,7 @@ admin.auth().deleteUser(uid)
           });
           setInterval(function () {
             window.location.reload();
-          }, 1000);           
+          }, 1000);           */
 
           }else{
             return false;
@@ -477,6 +483,7 @@ admin.auth().deleteUser(uid)
           this.editedIndex == 0
           var user = auth.currentUser;
           user.updatePassword(this.editedItem.senha);
+
       
 
           db.collection("admin-users")

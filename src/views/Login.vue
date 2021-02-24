@@ -163,13 +163,14 @@
         }
       },
       async loginUser() {
+
+        //var getUserAdmin = await db.collection("admin-users").doc(auth.currentUser.uid).get()
+        //alert(getUserAdmin)
+
         if (this.$refs.form_login.validate()) {
           var user = await auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
             return user;
-
           })
-//alert(CircularJSON.stringify(user))
-
 
 
          . catch (function (err) {
@@ -222,6 +223,8 @@
             window.location.reload();
           }, 1000);
         }
+
+
       },
       close() {
         this.dialog = false;
