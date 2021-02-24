@@ -345,7 +345,7 @@
       },
       loginUser() {
         if (this.$refs.form_login.validate()) {
-          try {
+      
             const user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
               //console.log(user);
               this.$router.push({path: '/wash'})
@@ -353,9 +353,15 @@
                 window.location.reload();
               }, 1000);
             })
-          } catch (error) {
-            console.log(error)
-          }
+          .catch (function (err) {
+            if(err.code === "auth/wrong-password") {
+              Vue.$toast.open({
+                message: 'Senha não confere.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+        });
         }
       },
       close() {

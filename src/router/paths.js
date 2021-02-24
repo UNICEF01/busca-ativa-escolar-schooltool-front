@@ -46,11 +46,18 @@ export default [
   view: 'updateQuest'
 },
 {
-path: '/updateQuestComplete',
-// Relative to /src/views,
-name: 'updateQuestComplete',
-view: 'updateQuestComplete'
+  path: '/updateQuestComplete',
+  // Relative to /src/views,
+  name: 'updateQuestComplete',
+  view: 'updateQuestComplete'
 },
+{
+  path: '/findQuestComplete',
+  // Relative to /src/views,
+  name: 'findQuestComplete',
+  view: 'findQuestComplete'
+},
+
   {
     path: '/admin',
     // Relative to /src/views,

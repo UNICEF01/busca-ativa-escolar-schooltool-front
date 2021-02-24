@@ -16,6 +16,7 @@
     "plugin"
   ],
   "dependencies": {
+    "admin": "^1.4.1",
     "babel-polyfill": "^6.26.0",
     "chartist": "0.11.0",
     "circular-json": "^0.5.9",

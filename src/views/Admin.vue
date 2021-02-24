@@ -161,12 +161,19 @@ import Vue from 'vue';
 import CircularJSON from 'circular-json'
 import VueToast from 'vue-toast-notification';
 import VueConfirmDialog from 'vue-confirm-dialog'
+import * as admin from "firebase-admin";
+const serviceAccount = require('./../serviceAccountKey.json');
+import * as functions from 'firebase-functions'
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://pesquisas-678f7.firebaseio.com'
+});
+
 //if(auth.currentUser == null){self.location='/login'}
 
-//alert(CircularJSON.stringify(auth.currentUser.uid))
 
   export default {
     data() {
@@ -391,8 +398,6 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
       deleteItem(uid) {
 
-
-
       this.$confirm({
         title: 'Deletar usuário',
         message: 'Confirmar exclusão do usuário?',
@@ -403,9 +408,20 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
         
         callback: (confirm) => {
           if (confirm ){
-          db.collection("admin-users").doc(uid).update({status: false});
-
-
+          //db.collection("admin-users").doc(uid).update({status: false});
+          //var user = auth.deleteUser(uid);
+          //user.delete(uid);
+          //firebase.auth().currentUser.delete().
+          
+          //db.collection("admin-users").doc(uid).delete()
+   
+admin.auth().deleteUser(uid)
+.then(function() {
+    alert("Successfully deleted user");
+})
+.catch(function(error) {
+    alert("Error deleting user:", error);
+});
           this.$toast.open({
             message: 'Usuário excluido com sucesso!',
             type: 'error',
