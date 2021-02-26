@@ -1252,6 +1252,16 @@
       },
 
       finish(value){
+
+        var docRef = db.collection("users").doc(auth.currentUser.uid);
+
+            docRef.get().then(function(doc) {
+              if (doc.exists) {
+
+                db.collection("users").doc(auth.currentUser.uid).update({"school.quest_complete": "S"})
+
+              }
+            });
         window.scrollTo(0, 0);
         this.isReportReady=value;
       },

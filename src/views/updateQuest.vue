@@ -45,7 +45,7 @@ var userId9 = ["q20urVAe2EX7S91224a1vsfHoBM2","q4JMBs3Ev4Pug6ZHADnvzAjxBJL2","qD
 
 
 
-userId9.forEach(myFunction); //MUDAR userid AQUI
+userIdx.forEach(myFunction); //MUDAR userid AQUI
 
 function myFunction(uid) {
 

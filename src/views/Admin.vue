@@ -1,8 +1,11 @@
+
 <template>
   <v-container
     fill-height
     fluid
-    grid-list-xl>
+    grid-list-xl
+    
+    >
     <v-layout wrap>
       <v-flex
         sm6
@@ -30,7 +33,20 @@
         <!--        >-->
         <!--        </vue-excel-xlsx>-->
 
+      <v-card-title>
+      
+      <v-spacer></v-spacer>
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Procurar"
+        single-line
+        hide-details
+      ></v-text-field>
+    </v-card-title>        
+
         <div>
+          <vue-confirm-dialog></vue-confirm-dialog>
           <v-toolbar flat color="white" class="marker mb-0">
             <v-toolbar-title>Usuários</v-toolbar-title>
             <v-spacer></v-spacer>
@@ -47,11 +63,11 @@
                   <v-card-text>
                     <v-layout wrap>
                       <v-flex xs12 sm12 md12>
-                        <v-text-field v-model="editedItem.nome" label="Nome" :rules="[rules.required]"></v-text-field>
+                       <v-text-field v-model="editedItem.nome" label="Nome" :rules="[rules.required]"></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
                         <v-text-field v-model="editedItem.email" label="E-mail"
-                                      :rules="[rules.required, rules.email]"></v-text-field>
+                                      :rules="[rules.required, rules.email]" :disabled="editedIndex == 0"></v-text-field>
                       </v-flex>
                       <v-flex xs12 sm12 md12>
                         <v-radio-group
@@ -70,21 +86,23 @@
                         </v-radio-group>
                       </v-flex>
                       <v-flex xs12 sm6 md6>
-                        <v-text-field v-model="editedItem.senha" label="Senha" :rules="[rules.required]"></v-text-field>
+                        <v-text-field v-model="editedItem.senha" label="Senha" :rules="[rules.required]" :type="showPasword1 ? 'text' : 'password'"></v-text-field>
                       </v-flex>
                     </v-layout>
                   </v-card-text>
 
                   <v-card-actions>
                     <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" flat @click="close">Caneclar</v-btn>
+                    <v-btn color="blue darken-1" flat @click="close">Cancelar</v-btn>
                     <v-btn color="blue darken-1" flat @click="start">Salvar</v-btn>
                   </v-card-actions>
                 </v-card>
               </v-form>
             </v-dialog>
           </v-toolbar>
+
           <v-data-table
+            dense
             :headers="headers"
             :items="users"
             :loading="true"
@@ -92,6 +110,8 @@
             item-key="uid"
             :items-per-page="100"
             :hide-default-footer="true"
+            loading-text="Carregando... aguarde por favor"
+
           >
 
             <template
@@ -107,7 +127,11 @@
                 <a @click="deleteItem(props.item.uid)"><i aria-hidden="true"
                                                           class="v-icon mdi mdi-trash-can red--text"></i>
                 </a>
+                <a @click="editItem(props.item.uid)"><i aria-hidden="true"
+                                                          class="v-icon mdi mdi-account-edit gray--text"></i>
+                </a>                
               </td>
+
             </template>
           </v-data-table>
           <v-progress-linear
@@ -116,15 +140,44 @@
             indeterminate
           />
         </div>
+
+
       </v-flex>
     </v-layout>
   </v-container>
+  
+
+
 </template>
 
-<script>
-  import {db, auth, usersCollection} from "./../firebase";
 
-  export default {
+
+
+<script>
+
+
+import {db, auth, usersCollection} from "./../firebase";
+import Vue from 'vue';
+import CircularJSON from 'circular-json'
+import VueToast from 'vue-toast-notification';
+import VueConfirmDialog from 'vue-confirm-dialog'
+import * as admin from "firebase-admin";
+const serviceAccount = require('./../serviceAccountKey.json');
+import * as functions from 'firebase-functions'
+Vue.use(VueConfirmDialog)
+Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://pesquisas-678f7.firebaseio.com'
+});
+
+let userAdmin = localStorage.getItem("admin");
+
+if (!userAdmin || auth.currentUser == null){self.location='/login'}
+
+
+export default {
     data() {
       return {
         rules: {
@@ -137,6 +190,8 @@
         dialog: false,
         desserts: [],
         editedIndex: -1,
+        showPasword1: false,
+        userNow: auth.currentUser,
         editedItem: {
           nome: '',
           email: '',
@@ -272,6 +327,12 @@
       },
     },
     methods: {
+      checkAutenticate() {
+        if (!auth.currentUser) {
+          this.$router.push({path: '/login'})
+        }
+      },
+
       async getData() {
         // const snapshot =  db.collection('users').get();
         // snapshot.then(function (data) {
@@ -306,23 +367,84 @@
 
 
       },
-      editItem(item) {
-        this.editedIndex = this.desserts.indexOf(item)
-        this.editedItem = Object.assign({}, item)
-        this.dialog = true
+      async editItem(item) {
+
+         this.editedIndex = 0
+
+
+         let userData = await db.collection("admin-users").where("uid", "==", item).get().then(function (querySnapshot) {
+
+          let values = querySnapshot.docs;
+
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            obj.uid = data.uid;
+            obj.name = data.nome;
+            obj.perfil = data.perfil;
+            obj.email = data.email;
+            obj.senha = data.senha
+            arrayData.push(obj);
+          }
+          return arrayData;
+        });
+
+
+
+      this.editedItem = Object.assign({nome: userData[0].name, email:userData[0].email,perfil:userData[0].perfil,senha:userData[0].senha,uid:userData[0].uid}, item)
+      this.dialog = true 
+
+
+
+
       },
 
       deleteItem(uid) {
-        db.collection("admin-users").doc(uid).update({status: false});
-        this.$toast.open({
-          message: 'Excluido com sucesso!',
-          type: 'error',
-          position: 'top'
-        });
 
-        setInterval(function () {
-          window.location.reload();
-        }, 1000);      },
+      this.$confirm({
+        title: 'Deletar usuário',
+        message: 'Confirmar exclusão do usuário?',
+        button: {
+          yes: 'Sim',
+          no: 'Não'
+        },
+        
+        callback: (confirm) => {
+          if (confirm ){
+          //db.collection("admin-users").doc(uid).update({status: false});
+
+          
+          //user.delete(uid);
+          //firebase.auth().currentUser.delete().
+          
+          db.collection("admin-users").doc(uid).delete()
+
+
+
+         /*admin.auth().deleteUser(uid)
+          .then(function() {
+              alert("Successfully deleted user");
+          })
+          .catch(function(error) {
+              alert("Error deleting user:", error);
+          });
+          this.$toast.open({
+            message: 'Usuário excluido com sucesso!',
+            type: 'error',
+            position: 'top'
+          });
+          setInterval(function () {
+            window.location.reload();
+          }, 1000);           */
+
+          }else{
+            return false;
+          }
+        }
+      })
+
+     },
 
       deleteItemConfirm() {
         this.users.splice(this.editedIndex, 1)
@@ -354,18 +476,46 @@
       },
       start() {
         if (this.$refs.form_register.validate()) {
-          try {
+
+        if (this.editedIndex == 0){
+          this.editedIndex == 0
+          var user = auth.currentUser;
+          user.updatePassword(this.editedItem.senha);
+     
+
+          db.collection("admin-users")
+              .doc(this.editedItem.uid)
+              .update({"nome":this.editedItem.nome,"perfil":this.editedItem.perfil,"senha":this.editedItem.senha})
+              .then(function() {
+
+                  Vue.$toast.open({
+                    message: 'Alterado com sucesso!',
+                    type: 'success',
+                    position: 'top'
+                  });  
+                   
+                  setInterval(function () {
+                    window.location.reload();
+                  }, 2000);              })
+        }else{
+            
+            this.editedIndex == -1
             let user = auth.createUserWithEmailAndPassword(this.editedItem.email, this.editedItem.senha).then((user) => {
+              
               this.editedItem.uid = user.user.uid
               this.editedItem.nome = this.editedItem.nome.trim()
               this.editedItem.dt_create = new Date()
 
+
               user.user.updateProfile({
-                displayName: this.editedItem.nome
+                displayName: this.userNow.displayName,
+                uid: this.storedUid
               })
+              
 
               const uid = user.user.uid;
               const email = user.user.email;
+             
 
               db.collection("admin-users").doc(uid).set(this.editedItem)
                 .then(function (response) {
@@ -382,34 +532,54 @@
                 type: 'success',
                 position: 'top'
               });
+
+
+
               this.close();
               setInterval(function () {
                 window.location.reload();
               }, 2000);
+    
+
             })
+   
 
 
-          } catch (error) {
-            if (error.code === 'auth/email-already-in-use') {
-              this.$toast.open({
-                message: 'E-mail já cadastrado, clique em continuar de onde parou para fazer login',
+         . catch (function (err) {
+            if(err.code === "auth/email-already-in-use") {
+              Vue.$toast.open({
+                message: 'E-mail já cadastrado. Escolha outro e-mail',
                 type: 'error',
                 position: 'top'
               });
             }
-          }
+            if(err.code === "auth/weak-password") {
+              Vue.$toast.open({
+                message: 'A senha deve ter mínimo 6 caracteres',
+                type: 'error',
+                position: 'top'
+              });
+            }
+
+          });
+
+
+        }
+
+
         }
       },
-      resetPassword(email) {
+
+
+        resetPassword(email) {
         console.log(email)
         auth.sendPasswordResetEmail(email).then((user) => {
           console.log(user)
         });
       }
-
     },
     created() {
-      this.getData();
+     this.getData();
     }
     ,
   }
@@ -419,3 +589,5 @@
     margin-left: 0px !important;
   }
 </style>
+
+

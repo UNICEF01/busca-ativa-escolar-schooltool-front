@@ -62,6 +62,12 @@
 <script>
   import Estados from "../components/core/CitySelect";
   import {db, auth, usersCollection} from "./../firebase";
+  import Vue from 'vue';
+  import VueConfirmDialog from 'vue-confirm-dialog'
+  import CircularJSON from 'circular-json'
+  Vue.use(VueConfirmDialog)
+  Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
+
 
   export default {
     components: {Estados},
@@ -110,6 +116,12 @@
       checkAutenticate() {
         if (auth.currentUser) {
           this.$router.push({path: '/admin'})
+        }else{
+          Vue.$toast.open({
+            message: 'Usuário não habilitado para este ambiente.',
+            type: 'error',
+            position: 'top'
+              });
         }
       },
       // Triggered when `childToParent` event is emitted by the child.
@@ -128,7 +140,9 @@
               this.user.school = this.school
 
               user.user.updateProfile({
-                displayName: this.user.name
+                displayName: this.user.name,
+                uid: user.user.uid
+
               })
 
               db.collection("users").doc(user.user.uid).set(this.user)
@@ -151,10 +165,36 @@
         }
       },
       async loginUser() {
+
+        //var getUserAdmin = await db.collection("admin-users").doc(auth.currentUser.uid).get()
+        //alert(getUserAdmin)
+
         if (this.$refs.form_login.validate()) {
           var user = await auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
             return user;
           })
+
+
+         . catch (function (err) {
+
+            if(err.code === "auth/user-not-found") {
+              Vue.$toast.open({
+                message: 'Usuário não encontrado.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+            if(err.code === "auth/wrong-password") {
+              Vue.$toast.open({
+                message: 'Senha não confere.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+          });
+
+          let uidInfo = user.user.uid
+          localStorage.setItem("uidInfo", uidInfo);
 
           var getUser = await db.collection("admin-users").where("uid", "==", user.user.uid).get().then(function (querySnapshot) {
             let values = querySnapshot.docs;
@@ -170,8 +210,19 @@
             return arrayData;
           });
 
-          if (getUser[0].perfil === 'admin') {
-            this.$router.push({path: '/admin'})
+            if(getUser == "") {
+              Vue.$toast.open({
+                message: 'Usuário não habilitado para este ambiente.',
+                type: 'error',
+                position: 'top'
+              });
+            }
+
+
+          localStorage.setItem("admin", getUser[0].perfil);
+          
+          if (getUser[0].perfil === 'admin') {            
+            this.$router.push({path: '/dashboard'})
           } else {
             this.$router.push({path: '/dashboard'})
           }
@@ -179,22 +230,44 @@
             window.location.reload();
           }, 1000);
         }
+
+
       },
       close() {
         this.dialog = false;
         this.recoverPassword = false;
       },
       resetPassword() {
+        
         if (this.$refs.form_login.validate()) {
 
-          auth.sendPasswordResetEmail(this.login.email).then((user) => {
+          var user = auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
+            return user;
+
+          })
+
+         . catch (function (err) {
+            if(err.code === "auth/user-not-found") {
+              Vue.$toast.open({
+                message: 'Usuário não encontrado.',
+                type: 'error',
+                position: 'top'
+              });
+
+            }
           });
-          this.$toast.open({
-            message: 'Um e-mail foi enviado para recuperar a senha!',
-            type: 'warning',
-            position: 'top'
-          });
-          this.recoverPassword = false;
+
+                auth.sendPasswordResetEmail(this.login.email).then((user) => {
+                });
+                this.$toast.open({
+                  message: 'Um e-mail foi enviado para recuperar a senha!',
+                  type: 'warning',
+                  position: 'top'
+                });
+                this.recoverPassword = false;
+
+
+
         }
       }
 

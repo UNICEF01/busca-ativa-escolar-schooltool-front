@@ -3,11 +3,11 @@
  * for more information on routes, see the
  * official documentation https://router.vuejs.org/en/
  */
+
 export default [
   {
     path: '/dashboard',
-    // Relative to /src/views,
-    name: 'Dash Board',
+    name: 'Painel de Resultados',
     view: 'Dashboard'
   },
   {
@@ -46,7 +46,7 @@ export default [
   {
     path: '/login',
     // Relative to /src/views,
-    name: 'Login',
+    name: 'Acesso',
     view: 'Login'
   },
 {
@@ -55,10 +55,23 @@ export default [
   name: 'updateQuest',
   view: 'updateQuest'
 },
+{
+  path: '/updateQuestComplete',
+  // Relative to /src/views,
+  name: 'updateQuestComplete',
+  view: 'updateQuestComplete'
+},
+{
+  path: '/findQuestComplete',
+  // Relative to /src/views,
+  name: 'findQuestComplete',
+  view: 'findQuestComplete'
+},
+
   {
     path: '/admin',
     // Relative to /src/views,
-    name: 'Admin',
+    name: 'Configurações de Usuários',
     view: 'Admin'
   },
   {

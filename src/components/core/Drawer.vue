@@ -29,9 +29,15 @@
         <v-card-actions class="justify-center">
           {{user.displayName}}
         </v-card-actions>
-        <v-btn v-if="user.uid !== undefined" @click="logout()" class="font-weight-light" :class="color">
-          Sair
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin' || editedIndex == 'user'" @click="dashboard()" class="font-weight-light" :class="color">
+          Painel
         </v-btn>
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="admin()" class="font-weight-light" :class="color">
+          Usuários
+        </v-btn>
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="quest()" class="font-weight-light" :class="color">
+          Questionário
+        </v-btn>        
 
         <v-divider/>
         <!--        <v-list-tile v-if="responsive">-->
@@ -54,13 +60,17 @@
           </v-list-tile-action>
           <v-list-tile-title v-text="link.text"/>
         </v-list-tile>
-
+        <v-btn depressed color="error" v-if="user.uid !== undefined" @click="logout(editedIndex)" class="font-weight-light" :class="color">
+          Sair
+        </v-btn>
         <v-list-tile
           :active-class="color"
           class="v-list-item v-list__tile--buy"
           href="http://buscaativaescolar.org.br"
           target="_blank"
         >
+
+        
           <v-list-tile-action>
             <v-icon>mdi-package-up</v-icon>
           </v-list-tile-action>
@@ -75,11 +85,14 @@
   // Utilities
   import {mapMutations, mapState} from 'vuex'
   import {db, auth} from './../../firebase.js'
+  import CircularJSON from 'circular-json'
 
   export default {
     data: () => ({
       showButtom: false,
       user: '',
+      editedIndex: 0,
+      perfilUser:'',
       logo:
         'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png',
       links: [
@@ -114,17 +127,39 @@
       items() {
         return this.$t('Layout.View.items')
       },
-    },
-    created: function () {
-      if (this.user !== '') {
-        var docRef = db.collection("users").where('uid', '==', auth.currentUser.uid).onSnapshot(querySnapshot => {
+      formPerfil() {
+        return this.perfilUser === "admin" ? 'Administrador ' : 'Usuário'
+      },
 
-          // console.log(querySnapshot)
-          // let values = []
-          // querySnapshot.forEach((doc) => {
-          //   values.push(doc.data())
-        })
-      }
+    },
+    created() {
+         let userData = db.collection("admin-users").doc(auth.currentUser.uid)
+          userData.get().then((response) => {
+                if (response.exists) {
+                    var perfil=response.get('perfil');
+                }
+               
+                this.editedIndex = perfil
+          });      
+
+      
+          
+        
+
+
+          /*var data = CircularJSON.stringify(response)
+
+          if (~data.indexOf('"admin"')) {
+            var perfil = 'admin';
+          } else if (~data.indexOf('"user"')) {
+            var perfil = 'user';
+          }
+         
+         this.editedIndex = perfil
+
+  
+        });*/
+
     },
     mounted() {
 
@@ -156,18 +191,40 @@
           this.responsive = false
         }
       },
-      logout() {
+      logout(item) {
+        if (item == undefined){
+          this.$router.push({path: '/quest'})
+          setInterval(function () {
+            window.location.reload();
+          }, 900);           
+          auth.signOut().then(function () {
+
+          }).catch(function (error) {
+            // An error happened.
+          });          
+        }else{
         auth.signOut().then(function () {
 
         }).catch(function (error) {
           // An error happened.
         });
+        this.$router.push({path: '/login'})
+          setInterval(function () {
+            window.location.reload();
+          }, 900); 
+        }         
+      },
+      dashboard(){
+        this.$router.push({path: '/dashboard'})
+      },
+      admin(){
+        this.$router.push({path: '/admin'})
+      },
+      quest(){
         this.$router.push({path: '/quest'})
-        setInterval(function () {
-          window.location.reload();
-        }, 2000);
-
       }
+
+
     }
   }
 </script>
