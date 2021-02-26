@@ -141,8 +141,10 @@
                
                 this.editedIndex = perfil
           });      
+
+      
           
-          
+        
 
 
           /*var data = CircularJSON.stringify(response)

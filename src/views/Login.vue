@@ -140,7 +140,9 @@
               this.user.school = this.school
 
               user.user.updateProfile({
-                displayName: this.user.name
+                displayName: this.user.name,
+                uid: user.user.uid
+
               })
 
               db.collection("users").doc(user.user.uid).set(this.user)
@@ -191,6 +193,8 @@
             }
           });
 
+          let uidInfo = user.user.uid
+          localStorage.setItem("uidInfo", uidInfo);
 
           var getUser = await db.collection("admin-users").where("uid", "==", user.user.uid).get().then(function (querySnapshot) {
             let values = querySnapshot.docs;
@@ -214,7 +218,10 @@
               });
             }
 
-          if (getUser[0].perfil === 'admin') {
+
+          localStorage.setItem("admin", getUser[0].perfil);
+          
+          if (getUser[0].perfil === 'admin') {            
             this.$router.push({path: '/dashboard'})
           } else {
             this.$router.push({path: '/dashboard'})

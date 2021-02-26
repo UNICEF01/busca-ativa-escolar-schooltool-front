@@ -172,13 +172,12 @@ admin.initializeApp({
   databaseURL: 'https://pesquisas-678f7.firebaseio.com'
 });
 
+let userAdmin = localStorage.getItem("admin");
+
+if (!userAdmin || auth.currentUser == null){self.location='/login'}
 
 
-
-//if(auth.currentUser == null){self.location='/login'}
-
-
-  export default {
+export default {
     data() {
       return {
         rules: {
@@ -191,6 +190,8 @@ admin.initializeApp({
         dialog: false,
         desserts: [],
         editedIndex: -1,
+        showPasword1: false,
+        userNow: auth.currentUser,
         editedItem: {
           nome: '',
           email: '',
@@ -474,17 +475,13 @@ admin.initializeApp({
         this.close()
       },
       start() {
-
-        
         if (this.$refs.form_register.validate()) {
-
 
         if (this.editedIndex == 0){
           this.editedIndex == 0
           var user = auth.currentUser;
           user.updatePassword(this.editedItem.senha);
-
-      
+     
 
           db.collection("admin-users")
               .doc(this.editedItem.uid)
@@ -509,14 +506,16 @@ admin.initializeApp({
               this.editedItem.nome = this.editedItem.nome.trim()
               this.editedItem.dt_create = new Date()
 
+
               user.user.updateProfile({
-                displayName: this.editedItem.nome
+                displayName: this.userNow.displayName,
+                uid: this.storedUid
               })
+              
 
               const uid = user.user.uid;
               const email = user.user.email;
-
-
+             
 
               db.collection("admin-users").doc(uid).set(this.editedItem)
                 .then(function (response) {
@@ -533,6 +532,8 @@ admin.initializeApp({
                 type: 'success',
                 position: 'top'
               });
+
+
 
               this.close();
               setInterval(function () {
@@ -569,6 +570,7 @@ admin.initializeApp({
         }
       },
 
+
         resetPassword(email) {
         console.log(email)
         auth.sendPasswordResetEmail(email).then((user) => {
@@ -577,7 +579,7 @@ admin.initializeApp({
       }
     },
     created() {
-      this.getData();
+     this.getData();
     }
     ,
   }
