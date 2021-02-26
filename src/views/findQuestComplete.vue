@@ -53,7 +53,7 @@ var userId9 = ["q20urVAe2EX7S91224a1vsfHoBM2","q4JMBs3Ev4Pug6ZHADnvzAjxBJL2","qD
 
 let myArray = [];
 
-userId9.forEach(myFunction); 
+userId1.forEach(myFunction); 
 
 function myFunction(uid) {
 
@@ -67,7 +67,7 @@ function myFunction(uid) {
 
           if (resp == undefined){
             let notFound = ('QUEST NÃO ENCONTRADO: '+uid)
-//alert(notFound)
+alert(notFound)
              myArray.push({notFound})
           }
 
