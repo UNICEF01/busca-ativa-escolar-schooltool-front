@@ -172,9 +172,9 @@ admin.initializeApp({
   databaseURL: 'https://pesquisas-678f7.firebaseio.com'
 });
 
-let userAdmin = localStorage.getItem("admin");
+//let userAdmin = localStorage.getItem("admin");
 
-if (!userAdmin || auth.currentUser == null){self.location='/login'}
+//if (!userAdmin || auth.currentUser == null){self.location='/login'}
 
 
 export default {
