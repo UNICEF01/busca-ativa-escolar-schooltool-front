@@ -32,7 +32,6 @@ export default [
   },
   {
     path: '/results',
-<<<<<<< HEAD
     name: 'Painel de Resultados',
     view: 'Results'
   },
@@ -44,12 +43,6 @@ export default [
 
 
   {
-=======
-    name: 'Visualização dos resultados',
-    view: 'Results'
-  },
-  {
->>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
     path: '/wash',
     name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
     view: 'ResearchWash',

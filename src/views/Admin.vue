@@ -161,31 +161,18 @@ import Vue from 'vue';
 import CircularJSON from 'circular-json'
 import VueToast from 'vue-toast-notification';
 import VueConfirmDialog from 'vue-confirm-dialog'
-import * as admin from "firebase-admin";
-const serviceAccount = require('./../serviceAccountKey.json');
+
 import * as functions from 'firebase-functions'
-<<<<<<< HEAD
 import { user } from 'firebase-functions/lib/providers/auth';
-=======
->>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://pesquisas-678f7.firebaseio.com'
-});
 
-<<<<<<< HEAD
+
 let userAdmin = localStorage.getItem("admin");
 
 
 //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
-=======
-//let userAdmin = localStorage.getItem("admin");
-
-//if (!userAdmin || auth.currentUser == null){self.location='/login'}
->>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
 
 
 export default {
@@ -424,15 +411,6 @@ export default {
         callback: (confirm) => {
           if (confirm ){
           //db.collection("admin-users").doc(uid).update({status: false});
-<<<<<<< HEAD
-=======
-
-          
-          //user.delete(uid);
-          //firebase.auth().currentUser.delete().
-          
-          db.collection("admin-users").doc(uid).delete()
->>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
 
           
           //user.delete(uid);
@@ -441,10 +419,6 @@ export default {
           db.collection("admin-users").doc(uid).delete()
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
          /*admin.auth().deleteUser(uid)
           .then(function() {
               alert("Successfully deleted user");
