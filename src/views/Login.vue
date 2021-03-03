@@ -140,7 +140,9 @@
               this.user.school = this.school
 
               user.user.updateProfile({
-                displayName: this.user.name
+                displayName: this.user.name,
+                uid: user.user.uid
+
               })
 
               db.collection("users").doc(user.user.uid).set(this.user)
@@ -163,13 +165,14 @@
         }
       },
       async loginUser() {
+
+        //var getUserAdmin = await db.collection("admin-users").doc(auth.currentUser.uid).get()
+        //alert(getUserAdmin)
+
         if (this.$refs.form_login.validate()) {
           var user = await auth.signInWithEmailAndPassword(this.login.email, this.login.password).then((user) => {
             return user;
-
           })
-//alert(CircularJSON.stringify(user))
-
 
 
          . catch (function (err) {
@@ -213,7 +216,10 @@
               });
             }
 
-          if (getUser[0].perfil === 'admin') {
+
+          localStorage.setItem("admin", getUser[0].perfil);
+          
+          if (getUser[0].perfil === 'admin') {            
             this.$router.push({path: '/dashboard'})
           } else {
             this.$router.push({path: '/dashboard'})
@@ -222,6 +228,8 @@
             window.location.reload();
           }, 1000);
         }
+
+
       },
       close() {
         this.dialog = false;

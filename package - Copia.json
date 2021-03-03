@@ -16,7 +16,6 @@
     "plugin"
   ],
   "dependencies": {
-    "@material/data-table": "^10.0.0",
     "admin": "^1.4.1",
     "babel-polyfill": "^6.26.0",
     "chartist": "0.11.0",
@@ -27,7 +26,6 @@
     "firesql": "^2.0.2",
     "handle-firebase-error": "^1.1.0",
     "html2pdf.js": "^0.9.0",
-    "jw-vue-pagination": "^1.0.3",
     "node-sass": "^4.9.3",
     "printd": "^1.4.2",
     "react": "*",
@@ -41,7 +39,6 @@
     "vue-excel-xlsx": "^1.0.11",
     "vue-json-excel": "^0.3.0",
     "vue-meta": "^1.5.2",
-    "vue-pagination-2": "^3.0.8",
     "vue-resource": "^1.5.1",
     "vue-session": "^1.0.0",
     "vue-the-mask": "^0.11.1",
@@ -54,7 +51,9 @@
     "@mdi/font": "^2.5.94",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-standard": "^4.0.0",
     "axios": "^0.21.1",
+    "eslint-loader": "^2.1.2",
     "material-design-icons-iconfont": "^3.0.3",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
