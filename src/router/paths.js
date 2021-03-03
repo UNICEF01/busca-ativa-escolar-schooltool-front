@@ -21,10 +21,27 @@ export default [
     view: 'ChildList'
   },
   {
+    path: '/tablelist',
+    name: 'Crianças/Adolecentes',
+    view: 'TableList'
+  },
+  {
     path: '/quest',
     name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
     view: 'Quest'
   },
+  {
+    path: '/results',
+    name: 'Painel de Resultados',
+    view: 'Results'
+  },
+  {
+    path: '/teste',
+    name: '',
+    view: 'teste'
+  },
+
+
   {
     path: '/wash',
     name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
@@ -46,11 +63,18 @@ export default [
   view: 'updateQuest'
 },
 {
-path: '/updateQuestComplete',
-// Relative to /src/views,
-name: 'updateQuestComplete',
-view: 'updateQuestComplete'
+  path: '/updateQuestComplete',
+  // Relative to /src/views,
+  name: 'updateQuestComplete',
+  view: 'updateQuestComplete'
 },
+{
+  path: '/findQuestComplete',
+  // Relative to /src/views,
+  name: 'findQuestComplete',
+  view: 'findQuestComplete'
+},
+
   {
     path: '/admin',
     // Relative to /src/views,

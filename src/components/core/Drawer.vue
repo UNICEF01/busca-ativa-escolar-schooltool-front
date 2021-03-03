@@ -68,6 +68,7 @@
           class="v-list-item v-list__tile--buy"
           href="http://buscaativaescolar.org.br"
           target="_blank"
+         
         >
 
         
@@ -141,8 +142,10 @@
                
                 this.editedIndex = perfil
           });      
+
+      
           
-          
+        
 
 
           /*var data = CircularJSON.stringify(response)
@@ -201,6 +204,7 @@
             // An error happened.
           });          
         }else{
+        localStorage.removeItem("admin");
         auth.signOut().then(function () {
 
         }).catch(function (error) {
@@ -213,7 +217,7 @@
         }         
       },
       dashboard(){
-        this.$router.push({path: '/dashboard'})
+        this.$router.push({path: '/results'})
       },
       admin(){
         this.$router.push({path: '/admin'})

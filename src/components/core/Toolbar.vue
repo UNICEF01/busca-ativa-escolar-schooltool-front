@@ -15,8 +15,9 @@ style="
          style="
   position: absolute;
   left: 10px;
-  width: 86%;
+  width: 86%;  
   "    
+  dense
     >{{ title }}</h3>
     <div class="v-toolbar-title">
 

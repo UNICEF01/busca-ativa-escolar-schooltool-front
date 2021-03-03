@@ -128,7 +128,7 @@
                                                           class="v-icon mdi mdi-trash-can red--text"></i>
                 </a>
                 <a @click="editItem(props.item.uid)"><i aria-hidden="true"
-                                                          class="v-icon mdi mdi-account-edit gray--text"></i>
+                                                          class="v-icon mdi mdi-account-edit green--text"></i>
                 </a>                
               </td>
 
@@ -161,14 +161,21 @@ import Vue from 'vue';
 import CircularJSON from 'circular-json'
 import VueToast from 'vue-toast-notification';
 import VueConfirmDialog from 'vue-confirm-dialog'
+import * as admin from "firebase-admin";
+
+import * as functions from 'firebase-functions'
+import { user } from 'firebase-functions/lib/providers/auth';
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
-//if(auth.currentUser == null){self.location='/login'}
 
-//alert(CircularJSON.stringify(auth.currentUser.uid))
+let userAdmin = localStorage.getItem("admin");
 
-  export default {
+
+//if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+
+
+export default {
     data() {
       return {
         rules: {
@@ -181,6 +188,8 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
         dialog: false,
         desserts: [],
         editedIndex: -1,
+        showPasword1: false,
+        userNow: auth.currentUser,
         editedItem: {
           nome: '',
           email: '',
@@ -391,8 +400,6 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
       deleteItem(uid) {
 
-
-
       this.$confirm({
         title: 'Deletar usuário',
         message: 'Confirmar exclusão do usuário?',
@@ -403,9 +410,23 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
         
         callback: (confirm) => {
           if (confirm ){
-          db.collection("admin-users").doc(uid).update({status: false});
+          //db.collection("admin-users").doc(uid).update({status: false});
+
+          
+          //user.delete(uid);
+          //firebase.auth().currentUser.delete().
+          
+          db.collection("admin-users").doc(uid).delete()
 
 
+
+         /*admin.auth().deleteUser(uid)
+          .then(function() {
+              alert("Successfully deleted user");
+          })
+          .catch(function(error) {
+              alert("Error deleting user:", error);
+          });
           this.$toast.open({
             message: 'Usuário excluido com sucesso!',
             type: 'error',
@@ -413,7 +434,7 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
           });
           setInterval(function () {
             window.location.reload();
-          }, 1000);           
+          }, 1000);           */
 
           }else{
             return false;
@@ -452,16 +473,13 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
         this.close()
       },
       start() {
-
-        
         if (this.$refs.form_register.validate()) {
-
 
         if (this.editedIndex == 0){
           this.editedIndex == 0
           var user = auth.currentUser;
           user.updatePassword(this.editedItem.senha);
-      
+     
 
           db.collection("admin-users")
               .doc(this.editedItem.uid)
@@ -486,14 +504,16 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
               this.editedItem.nome = this.editedItem.nome.trim()
               this.editedItem.dt_create = new Date()
 
+
               user.user.updateProfile({
-                displayName: this.editedItem.nome
+                displayName: this.userNow.displayName,
+                uid: this.storedUid
               })
+              
 
               const uid = user.user.uid;
               const email = user.user.email;
-
-
+             
 
               db.collection("admin-users").doc(uid).set(this.editedItem)
                 .then(function (response) {
@@ -510,6 +530,8 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
                 type: 'success',
                 position: 'top'
               });
+
+
 
               this.close();
               setInterval(function () {
@@ -546,6 +568,7 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
         }
       },
 
+
         resetPassword(email) {
         console.log(email)
         auth.sendPasswordResetEmail(email).then((user) => {
@@ -554,7 +577,7 @@ Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
       }
     },
     created() {
-      this.getData();
+     this.getData();
     }
     ,
   }
