@@ -16,7 +16,10 @@
     "plugin"
   ],
   "dependencies": {
+<<<<<<< HEAD
     "@material/data-table": "^10.0.0",
+=======
+>>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
     "admin": "^1.4.1",
     "babel-polyfill": "^6.26.0",
     "chartist": "0.11.0",

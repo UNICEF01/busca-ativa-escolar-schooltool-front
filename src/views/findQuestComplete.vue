@@ -14,7 +14,11 @@ export default {
 }   
  
 //BANCO TESTE
+<<<<<<< HEAD
 var userIdx = ["19VF563xbvPp5feRvHTdxuRjjRj2"];
+=======
+var userIdx = ["j3JJIJpn5shagtoFkuAHcRWCb7C2"];
+>>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
 
 
 
@@ -53,7 +57,11 @@ var userId9 = ["q20urVAe2EX7S91224a1vsfHoBM2","q4JMBs3Ev4Pug6ZHADnvzAjxBJL2","qD
 
 let myArray = [];
 
+<<<<<<< HEAD
 userIdx.forEach(myFunction); 
+=======
+userId1.forEach(myFunction); 
+>>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
 
 function myFunction(uid) {
 
@@ -67,7 +75,11 @@ function myFunction(uid) {
 
           if (resp == undefined){
             let notFound = ('QUEST NÃO ENCONTRADO: '+uid)
+<<<<<<< HEAD
 
+=======
+alert(notFound)
+>>>>>>> 99afb6f07bf1dc37e51edee614fe8987d6cad120
              myArray.push({notFound})
           }
 

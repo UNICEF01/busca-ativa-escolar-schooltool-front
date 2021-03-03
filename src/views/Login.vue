@@ -193,6 +193,8 @@
             }
           });
 
+          let uidInfo = user.user.uid
+          localStorage.setItem("uidInfo", uidInfo);
 
           var getUser = await db.collection("admin-users").where("uid", "==", user.user.uid).get().then(function (querySnapshot) {
             let values = querySnapshot.docs;
