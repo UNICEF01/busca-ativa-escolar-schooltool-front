@@ -14,7 +14,7 @@ export default {
 }   
  
 //BANCO TESTE
-var userIdx = ["j3JJIJpn5shagtoFkuAHcRWCb7C2"];
+var userIdx = ["19VF563xbvPp5feRvHTdxuRjjRj2"];
 
 
 
@@ -53,7 +53,7 @@ var userId9 = ["q20urVAe2EX7S91224a1vsfHoBM2","q4JMBs3Ev4Pug6ZHADnvzAjxBJL2","qD
 
 let myArray = [];
 
-userId1.forEach(myFunction); 
+userIdx.forEach(myFunction); 
 
 function myFunction(uid) {
 
@@ -67,7 +67,6 @@ function myFunction(uid) {
 
           if (resp == undefined){
             let notFound = ('QUEST NÃO ENCONTRADO: '+uid)
-alert(notFound)
              myArray.push({notFound})
           }
 

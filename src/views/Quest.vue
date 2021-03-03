@@ -346,6 +346,8 @@ export default {
                 var name = doc.get("city.region");
                 var uff = doc.get("city.uf");
                 var ibge_city_id = doc.get("school.ibge_id");
+                var ibge_region_id=doc.get('city.ibge_region_id');
+                var ibge_uf_id=doc.get('city.ibge_uf_id');                
 
                 let region = [
                   { value: "NO", text: "NORTE" },
@@ -356,19 +358,15 @@ export default {
                 ];
 
                 let regionName = region.find((item) => item.value == name);
-                let territory = ibgeid.find(
-                  (item) => item.value == ibge_city_id
-                );
+                let territory = ibgeid.find((item) => item.value == ibge_city_id);
 
-                db.collection("users")
-                  .doc(user.user.uid)
-                  .update({ "school.region_name": regionName.text });
-                db.collection("users")
-                  .doc(user.user.uid)
-                  .update({ "school.uf": uff });
-                db.collection("users")
-                  .doc(user.user.uid)
-                  .update({ "school.territory": territory.text });
+                db.collection("users").doc(user.user.uid).update({ "school.region_name": regionName.text });
+                db.collection("users").doc(user.user.uid).update({ "school.uf": uff });
+                db.collection("users").doc(user.user.uid).update({ "school.territory": territory.text });
+                db.collection("users").doc(user.user.uid).update({"school.ibge_region_id": ibge_region_id})
+                db.collection("users").doc(user.user.uid).update({"school.ibge_uf_id": ibge_uf_id})
+
+
               }
             });
 

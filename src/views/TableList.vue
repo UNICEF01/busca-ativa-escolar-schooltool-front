@@ -6,6 +6,18 @@
     <v-layout
       justify-center
       wrap>
+      
+       <v-col
+        class="d-flex"
+        cols="12"
+        sm="6"
+      >
+        <v-select
+          :items="items2"
+          label="Outlined style"
+        ></v-select>
+      </v-col>
+
       <v-flex md12>
         <material-card
           color="cyan"
@@ -75,6 +87,7 @@
 import constants from '../constants'
 export default {
   data: () => ({
+    items2: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     headers: [
       {
         sortable: false,

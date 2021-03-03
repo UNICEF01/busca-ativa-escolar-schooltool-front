@@ -36,9 +36,9 @@ export default [
     view: 'Results'
   },
   {
-    path: '/teste',
-    name: '',
-    view: 'teste'
+    path: '/updateSchool',
+    name: 'updateSchool',
+    view: 'updateSchool'
   },
 
 

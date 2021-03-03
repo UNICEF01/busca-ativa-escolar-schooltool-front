@@ -161,12 +161,12 @@ import Vue from 'vue';
 import CircularJSON from 'circular-json'
 import VueToast from 'vue-toast-notification';
 import VueConfirmDialog from 'vue-confirm-dialog'
-import * as admin from "firebase-admin";
 
 import * as functions from 'firebase-functions'
 import { user } from 'firebase-functions/lib/providers/auth';
 Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
+
 
 
 let userAdmin = localStorage.getItem("admin");
@@ -417,7 +417,6 @@ export default {
           //firebase.auth().currentUser.delete().
           
           db.collection("admin-users").doc(uid).delete()
-
 
 
          /*admin.auth().deleteUser(uid)
