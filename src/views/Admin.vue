@@ -168,11 +168,9 @@ Vue.use(VueConfirmDialog)
 Vue.component('vue-confirm-dialog', VueConfirmDialog.default)
 
 
-
 let userAdmin = localStorage.getItem("admin");
-
-
 //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+
 
 
 export default {

@@ -261,6 +261,8 @@ import ibgeid from "../assets/territory.js";
 import Vue from "vue";
 //if(auth.currentUser == null){self.location='/login'}
 
+
+
 export default {
   components: { Estados },
   methods: {

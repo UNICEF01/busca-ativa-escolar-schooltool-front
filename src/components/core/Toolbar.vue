@@ -3,22 +3,35 @@
 style="
   position: relative;
   left: 265px;
-  width: 86%;
-  ">
+  width: 86%;  
+  "
+  >
+
 <v-toolbar
     id="core-toolbar"
         color="teal lighten-3"
         dense
+        fixed
         style="background: #eee;
 ">
  <h3 class="tertiary--text font-weight-light"
          style="
   position: absolute;
-  left: 10px;
-  width: 86%;  
-  "    
-  dense
-    >{{ title }}</h3>
+  left: 270px;
+  width: 86%;
+   
+  " >
+
+
+  <i v-if="titulo == 'municipio'" class="mdi mdi-file-document"> {{title}} {{uf}} {{munic}}</i>
+  <i v-if="titulo == 'regiao'" class="mdi mdi-file-document"> {{title}}</i>
+  <i v-if="titulo == 'escola'" class="mdi mdi-file-document"> {{title}} {{uf}} {{munic}}</i>
+  <i v-if="titulo == 'questionario'" class="mdi mdi-checkbox-multiple-marked"> {{title}}</i>
+  <i v-if="titulo == 'admin'" class="mdi mdi-account-plus"> {{title}}</i> 
+
+    </h3>
+
+    
     <div class="v-toolbar-title">
 
       <v-toolbar-title>   
@@ -41,63 +54,6 @@ style="
         align-center
         layout
         py-2>
-        <!--<v-text-field-->
-          <!--v-if="responsiveInput"-->
-          <!--class="mr-4 mt-2 purple-input"-->
-          <!--label="Pesquisar..."-->
-          <!--hide-details-->
-          <!--color="purple"-->
-        <!--/>-->
-        <!--<router-link-->
-        <!--v-ripple-->
-        <!--class="toolbar-items"-->
-        <!--to="/"-->
-        <!--&gt;-->
-        <!--<v-icon color="tertiary">mdi-view-dashboard</v-icon>-->
-        <!--</router-link>-->
-        <!--<v-menu-->
-        <!--bottom-->
-        <!--left-->
-        <!--content-class="dropdown-menu"-->
-        <!--offset-y-->
-        <!--transition="slide-y-transition">-->
-        <!--<router-link-->
-        <!--v-ripple-->
-        <!--slot="activator"-->
-        <!--class="toolbar-items"-->
-        <!--to="/notifications"-->
-        <!--&gt;-->
-        <!--<v-badge-->
-        <!--color="error"-->
-        <!--overlap-->
-        <!--&gt;-->
-        <!--<template slot="badge">-->
-        <!--{{ notifications.length }}-->
-        <!--</template>-->
-        <!--<v-icon color="tertiary">mdi-bell</v-icon>-->
-        <!--</v-badge>-->
-        <!--</router-link>-->
-        <!--<v-card>-->
-        <!--<v-list dense>-->
-        <!--<v-list-tile-->
-        <!--v-for="notification in notifications"-->
-        <!--:key="notification"-->
-        <!--@click="onClick"-->
-        <!--&gt;-->
-        <!--<v-list-tile-title-->
-        <!--v-text="notification"-->
-        <!--/>-->
-        <!--</v-list-tile>-->
-        <!--</v-list>-->
-        <!--</v-card>-->
-        <!--</v-menu>-->
-        <!--<router-link-->
-        <!--v-ripple-->
-        <!--class="toolbar-items"-->
-        <!--to="/user-profile"-->
-        <!--&gt;-->
-        <!--<v-icon color="tertiary">mdi-account</v-icon>-->
-        <!--</router-link>-->
       </v-flex>
     </v-toolbar-items>
 
@@ -121,18 +77,25 @@ export default {
     ],
     title: null,
     responsive: false,
-    responsiveInput: false
+    responsiveInput: false,
+    titulo: null,
+    uf: null,
+    munic: null,
   }),
 
   watch: {
     $route (val) {
       this.title = val.name
+      this.titulo = localStorage.getItem("titulo")
+      this.uf = localStorage.getItem("estado")
+      this.munic = localStorage.getItem("munic")
+     
     }
   },
 
   mounted () {
     this.onResponsiveInverted()
-    window.addEventListener('resize', this.onResponsiveInverted)
+    window.addEventListener('resize', this.onResponsiveInverted)  
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.onResponsiveInverted)
@@ -162,6 +125,5 @@ export default {
 <style>
 #core-toolbar a {
   text-decoration: none;
-
 }
 </style>

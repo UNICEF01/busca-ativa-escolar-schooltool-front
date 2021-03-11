@@ -12,15 +12,10 @@
   <!--      confirm="Do you want to download it?"-->
   <!--    ></vue-blob-json-csv>-->
   <!--  </v-container>-->
-
-
-
-  
   <v-container
     fill-height
     fluid
     grid-list-xl>
-
 
     <v-layout wrap>
       <v-flex
@@ -29,20 +24,14 @@
         md4
         lg2>
 
-
-
-
         <div id="caixa" style="width: 110px; height: 200px;top: 150px;margin-left:1150px;align:center">
           <!--div class="tertiary--text font-weight-bold" style="margin-top:80px;margin-left: 10px" id="tituloPergunta">Pergunta: 1</div-->
           <a  id="next"  title="Próximo"  @click="setas('next')"></a>
           <a  id="prev"  title="Anterior" @click="setas('prev')"></a>
           <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
-        </div>        
+        </div>  
 
-
-
-
-        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
+        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div> 
 
       <!--  <material-stats-card
           color="cyan"
@@ -51,70 +40,7 @@
           :value="responses"
         /> -->
 
-
-
-
-
-        <template>
-
-            <div class="card text-center m-3">
-   
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-          
-
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:370px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
-                                
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9;">Norte</td>
-                                        <td style="padding:12px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',true,'1',0,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: '11', id: 22} }">Rondônia</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'11',13,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;"  @click="setUf(12)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 12 } }">Acre</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'12',14,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(13)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 13 } }">Amazonas</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'13',15,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(14)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 14 } }">Roraima</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'14',16,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(15)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 15 } }">Pará</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'15',17,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(16)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 16 } }">Amapá</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'16',18,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(17)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 17 } }">Tocatins</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'17',19,1)" /> </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-
-                        </v-form>
-
-                        
-                        </div>
-
-                </div>
-                
-            </div>
-
-        </template>
+        
         
       <!--  <v-data-table
           :headers="norte.headers"
@@ -145,218 +71,51 @@
         <br/>
 
         <template>
-
-
   
-     <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
+        <div class="card text-center m-3" style="margin-top:346px;width:100%;margin-left:-20px;width:247px">
 
-                        <v-form ref="form_research" lazy-validation>
+          <div class="card-body">
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                                
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Nordeste</td>
-                                        <td style="padding:12px 25px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'21',33,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(22)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 22 } }">Piauí</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'22',34,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(23)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 23 } }">Ceará</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'23',35,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(24)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 24 } }">Rio Grande do Norte</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'24',36,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(25)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 25 } }">Paraíba</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'25',37,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(26)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 26 } }">Pernambuco</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'26',38,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(27)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 27 } }">Alagoas</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'27',39,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(28)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 28 } }">Sergipe</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'28',40,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(29)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 29 } }">Bahia</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'29',41,1)" /> </td>
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
+          <v-data-table id="customers"
+              :headers="municipios.headers"
+              :items="municipios"
+              hide-actions
+              >
+              <template
+                slot="items"
+                slot-scope="{ item, index }">
 
-                        </v-form>
-                        </div>
+      <v-tooltip bottom>
+      <template v-slot:activator="{ on, attrs }" >
+        <span 
+          v-bind="attrs"
+          v-on="on">
+          <td  v-if="item.name.length > 21" style="padding-left:18px;padding-right:19px" class="texto"  width="0" height="0" valign="middle">{{ item.name.substring(0,21)}}</td>
+          <td  v-else style="padding-left:60px;padding-right:31px" class="texto"  width="0" height="0" valign="middle">{{ item.name}}</td>
 
-                </div>
-                
-            </div>
-
-        </template>
-
-        <br/>
-
-        <template>
-
-            <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
-
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                                
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:16px;color:white;color:white;background-color:#A9A9A9">Sudeste</td>
-                                        <td style="padding:12px 17px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'31',96,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(32)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 32 } }">Espírito Santo</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'32',97,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(33)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 33 } }">Rio de Janeiro</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'33',98,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(35)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 35 } }">São Paulo</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'35',99,1)" /> </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </v-form>
-                        </div>
-
-                </div>
-                
-            </div>
-
-        </template>
-
-        <br/>
-
-<template>
-
-            <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
-
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                                
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Centro Oeste</td>
-                                        <td style="padding:12px 23px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'50',181,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(51)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 51 } }">Mato Grosso</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'51',183,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(52)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 52 } }">Goiás</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'52',173,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(53)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 53 } }">Distrito Federal</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'53',176,1)" /> </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </v-form>
-                        </div>
-
-                </div>
-                
-            </div>
-
-        </template>
-      
         
+          <td  style="padding-left:18px;padding-right:19px" width="0" height="0" valign="middle" align="left"><div v-html="getResultMunicipiosResp(item.ibge_id,true,index,1)" /></td>
+        
+         
+         
+         </span>
+        
+      </template>
+      <span>{{ item.name }}</span>
+    </v-tooltip>
 
-      <br/>
-
-        <template>
-
-            <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
-
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                                
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Sul</td>
-                                        <td style="padding:12px 22px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'41',106,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(42)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 42 } }">Santa Catarina</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'42',107,1)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(43)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 43 } }">Rio Grande do Sul</router-link></td>
-                                        <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'43',108,1)" /> </td>
-                                    </tr>
-
-                                </tbody>
-                            </table>
-
-                        </v-form>
-                        </div>
-
-                </div>
                 
-            </div>
+               
+                
+              </template>
+            </v-data-table>
+            
+          </div>
+                
+        </div>
 
         </template>
+
       </v-flex>
 
       <v-flex
@@ -364,20 +123,15 @@
         xs12
         md8
         lg8>
- 
 
- 
         <template>
-
-
-
-
-       
-            <div class="card text-center m-3" style="position:fixed;width:1414px;top:107px;left:524px">
-
+        
+            <div class="card text-center m-3" style="position:fixed;width:1413px;top:107px;left:526px">
+        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
-                    
+
+                      <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                         <!--div v-html="'<b style=\'font-size:20px\'>Grupo '+(count+1)+'</b><br/><b style=\'font-size:18px\'>Pergunta '+group.id+':</b> '+group.answer" style="margin-top:-100px;position:absolute;font-size:18px;text-align: justify-all!important;"></div>
                         <br/><br/><br/><br/-->
@@ -390,7 +144,7 @@
                          elevation="3"
                          dense
                          fixed
-                         style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:85%"
+                         style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:84.9%"
                          >
             <v-flex slot="header"
             style="height: 140px;overflow-y:auto !important"
@@ -407,7 +161,7 @@
             <v-layout wrap>
 
               <v-flex md4 v-for="item in group.response">
-                <v-card style="height: 130px;width:398px"
+                <v-card style="height: 130px;width:397px"
                   class="pa-3"
                   outlined
                   tile                                
@@ -441,307 +195,31 @@
 
 
         <template>
+  
+        <div class="card text-center m-3" style="margin-top:370px;width:1200px">
 
-            <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
+          <div class="card-body">
 
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:274px;background-color:#fff;border-collapse:collapse;width:1200px;">
-                                
-                                <tbody>
-                                    <tr>
-                                
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'1',1,2)" /></td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'1',2,1)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'1',3,0)" /></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px"><div align="center" v-html="getResult('estado',false,'11',4,2)" /> </td>
-                                        <td style="padding:12px 8px"><div align="center" v-html="getResult('estado',false,'11',5,1)" /> </td>
-                                        <td style="padding:12px 8px"><div align="center" v-html="getResult('estado',false,'11',6,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'12',7,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'12',8,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'12',9,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'13',10,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'13',11,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'13',12,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'14',20,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'14',21,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'14',22,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'15',23,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'15',24,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'15',25,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'16',26,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'16',27,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'16',28,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'17',29,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'17',30,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'17',31,0)" /> </td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-
-                        </v-form>
-                        </div>
-
-                </div>
+          <v-data-table id="customers"
+              :headers="municipios.headers"
+              :items="municipios"
+              hide-actions>
+              <template
+                slot="items"
+                slot-scope="{ item, index }">
+                <td style="padding:12px 8px;"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+10),0)" /></td>
+                <td style="padding:12px 8px;"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+15),1)" /></td>
+                <td style="padding:12px 8px;"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+20),2)" /></td>
+              
+    
+              </template>
+            </v-data-table>
+            
+          </div>
                 
-            </div>
+        </div>
 
-        </template>
-        
-        <br/><br/><br/><br/><br/>
-        
-
-        <template>
-
-            <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                        
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:-116px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
-                                <thead>
-                                    <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                        <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'2',42,2)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'2',43,1)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'2',44,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'21',45,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'21',46,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'21',47,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'22',48,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'22',49,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'22',50,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'23',51,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'23',52,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'23',53,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:14px 8px;"><div align="center" v-html="getResult('estado',false,'24',54,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'24',55,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'24',56,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'25',57,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'25',58,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'25',59,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'26',60,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'26',61,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'26',62,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'27',63,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'27',64,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'27',65,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'28',66,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'28',67,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'28',68,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'29',69,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'29',70,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'29',71,0)" /> </td>
-
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </v-form>
-
-                    </div>
-                </div>
-
-                 <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                        
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:4px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
-                                <thead>
-                                    <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                        <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'3',80,2)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'3',81,1)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'3',82,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'31',83,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'31',84,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'31',85,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'32',86,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'32',87,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'32',88,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'33',89,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'33',90,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'33',91,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'35',92,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'35',93,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'35',94,0)" /> </td>
-
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-
-                        </v-form>
-
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                        
-                        <v-form ref="form_research" lazy-validation>
-
-                          <div v-html="setaGrupoPergunta(grupo,group.id)" />
-
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:4px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
-                                <thead>
-                                    <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                        <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'5',130,2)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'5',131,1)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'5',132,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:14px 8px;"><div align="center" v-html="getResult('estado',false,'50',113,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'50',114,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'50',115,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'51',116,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'51',117,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'51',118,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'52',119,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'52',120,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'52',121,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'53',142,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'53',143,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'53',144,0)" /> </td>
-
-                                    </tr>
-                                    
-                                </tbody>
-                            </table>
-
-                        </v-form>
-
-                    </div>
-                </div>
-
-                <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                        
-                        <v-form ref="form_research" lazy-validation>
-
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:5px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
-                                <thead>
-                                    <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                        <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'4',142,2)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'4',143,1)" /> </td>
-                                        <td style="padding:12px 8px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',false,'4',144,0)" /> </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'41',145,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'41',146,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'41',147,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'42',148,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'42',149,1)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'42',150,0)" /> </td>
-
-                                    </tr>
-                                    <tr>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'43',151,2)" /> </td>
-                                        <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'43',152,1)" /> </td>
-                                        <td style="padding:14px 8px;"><div align="center" v-html="getResult('estado',false,'43',153,0)" /> </td>
-
-                                    </tr>
-                                    
-                                    
-                                </tbody>
-                            </table>
-
-                        </v-form>
-
-                    </div>
-                </div>
+  
                 <!--div id="components-demo" style="position:fixed;botton:40px">
                   <button class="font-weight-light v-btn theme--dark blue" v-on:click="count=0">Grupo 1</button>
                   <button class="font-weight-light v-btn theme--dark blue" v-on:click="count=1">Grupo 2</button>
@@ -749,14 +227,13 @@
                   <button class="font-weight-light v-btn theme--dark blue" v-on:click="count=3">Grupo 4</button>
                 </div-->
                 
-                <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                 <p align="center">
-                <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" ></jw-pagination><br></p>
+                <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination><br></p>
                 
                 </div>
                <!-- <button v-on:click="setPage(3)">Click me</button>-->
             </div>
-
 
         </template>
 
@@ -890,17 +367,14 @@
 	
 <script>
 
-import {db, auth, usersCollection, fireSQL} from "./../firebase";
-import ufid from "../assets/estado.js";
-//const exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
+import {db, auth, usersCollection, fireSQL} from "../firebase";
 
-localStorage.removeItem("munic")
+//const exampleItems = [...Array(150).keys()].map(i => ({ id: (i+1), name: 'Item ' + (i+1) }));
 
 let userAdmin = localStorage.getItem("admin");
 
 //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
 
-localStorage.setItem("titulo", "regiao");
 
   export default {
     data() {
@@ -908,6 +382,8 @@ localStorage.setItem("titulo", "regiao");
         grupo: 0,
         pergunta: 0,
         index_pergunta: 0,
+        tmpValue: 0,
+        municipios: [],
         combined: [],
         pageOfItems: [],
         i_aux: [
@@ -2273,16 +1749,14 @@ localStorage.setItem("titulo", "regiao");
         // }
       }
     },
-
-
     methods: {
         myFunction() {
       // `this` inside methods point to the Vue instance
-
        this.current_page = 2;
     },
         onChangePage(pageOfItems) {
             // update page of items
+            this.getData();
             this.pageOfItems = pageOfItems;
             let i = 1;
             let tamanho = 1;
@@ -2293,26 +1767,13 @@ localStorage.setItem("titulo", "regiao");
                   $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
                   $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+j+'"}</style>').appendTo('head');
               }
-              if (this.grupo==1) {
-                  $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                  $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+3)+'"}</style>').appendTo('head');
-              }
-              if (this.grupo==2) {
-                  $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                  $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+7)+'"}</style>').appendTo('head');
-              }
-              if (this.grupo==3) {
-                  $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                  $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+14)+'"}</style>').appendTo('head');
-              }
+              
             }
             }
 
-            
            // $('.page-link2:after').css({content: 'whatever it is you want to add'});
         },
         setas(value){
-          //this.topFunction();
           if (value == 'prev'){
             $("a.page-link-previous")[0].click();
             var number = $("#pergunta").val()-1
@@ -2336,105 +1797,153 @@ localStorage.setItem("titulo", "regiao");
           document.body.scrollTop = 0;
           document.documentElement.scrollTop = 0;
         },
-        limpaPergunta(){
-         //$("#pergunta").text('kkkkk');
+        itemRowBackground: function () {
+            return 'style-1' 
         },
-        setUf(value){
-          let uf = ufid.find((item) => item.value == value);
-          setInterval(function () {
-            window.location.reload();
-            localStorage.setItem("estado", "("+uf.text+")");
-          }, 100); 
-            
-        },
+
         setaGrupoPergunta(leo,leo2)  {
           this.grupo = leo;
           this.pergunta = leo2;
        //   console.log('setou'+leo+leo2);
       },
-      getResult(tipo,geral,info,idx,resp) {
-
-        var filtroGeo;
-
-        let uf = ufid.find((item) => item.value == info);
-
-
-        switch (tipo) {
-          case 'regiao':
-          filtroGeo = '\`school.ibge_region_id\`';
-          break;
-          case 'estado':
-          filtroGeo = '\`school.ibge_uf_id\`';
-          break;
-          case 'municipio':
-          filtroGeo = '\`school.ibge_id\`';
-          break;
-          case 'escola':
-          filtroGeo = '\`school.id\`';
-          break;
-        }
-
-       // console.log(filtroGeo);
-
-        let users = fireSQL.query(`
-        SELECT \`quest\`
-        FROM users
-        WHERE `+filtroGeo+`='`+info+`'
-        `);
-        
-      //  console.log(users);
-
-      let i = 0;
-
-       users.then((users) => {
-        for (let user of users) {
-          if (!geral) {
-       
-          for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-            if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-          }
-          
-          ((user.quest[this.grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-       
-       // for (let y = 0; y < user.quest[grupo].questions.length; y++) {
-          
-
-      //   ((user.quest[grupo].questions[0].selected == resp)&&(user.quest[grupo].questions[0].selected != null)) ? i++ : '';
-
-          //CONSOLIDADO GERAL DE TODAS AS QUESTOES DE TODOS OS GRUPOS
-         /*   for (let x = 0; x < user.quest.length; x++) {
-              for (let y = 0; y < user.quest[x].questions.length; y++) {
-              ((user.quest[x].questions[y].selected == resp)&&(user.quest[x].questions[y].selected != null)) ? i++ : '';
-              }
-          } */ 
-
-          } else {
-
-            for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-            if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-          }
-          
-          ((user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-
-          //  ((user.quest[grupo].questions[0].selected == resp)&&(user.quest[grupo].questions[0].selected != null)) ? i++ : '';
-
-          //CONSOLIDADO GERAL DE TODAS AS QUESTOES DE TODOS OS GRUPOS
-          /*  for (let x = 0; x < user.quest.length; x++) {
-              for (let y = 0; y < user.quest[x].questions.length; y++) {
-              ((user.quest[x].questions[y].selected != null)) ? i++ : '';
-              }
-            } */
-
-          }
-        }
-        this.i_aux[idx].valor = i;
-        });
-
-       return(this.i_aux[idx].valor);     
+       getResult(tipo,geral,info,idx,resp) {
+       return(0);     
       //return ('grupo: '+this.grupo+' pergunta: '+this.index_pergunta);
 
       },
+       getResultMunicipiosResp(comunicipioibge,geral,idx,resp) {
+
+         let users = fireSQL.query(`
+        SELECT \`quest\`
+        FROM users
+        WHERE \`school.ibge_id\`='`+comunicipioibge+`'
+        `);
+        
+     //   console.log('aqui'+JSON.stringify(users));
+
+      let i = 0;
+      let tamanho = 0;
+      let grupo;
+
+       users.then((users) => {
+        for (let user of users) {
+          for(let j = 0; j<user.quest.length; j++) {
+            tamanho = j;
+            for (let y = 0; y < user.quest[j].questions.length; y++) {
+              if (user.quest[j].questions[y].id == this.pergunta) { this.grupo = j; }
+            }
+
+          }
+        }
+       });
+
+       users.then((users) => {
+        for (let user of users) {
+
+          console.log('grupo: '+this.grupo);
+          
+          if (!geral) {
+              for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
+                if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
+              }
+              
+              ((user.quest[this.grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+              this.i_aux[idx].valor = i;
+           } else {
+              for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
+                if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
+              }
+              
+              ((user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+              this.i_aux[idx].valor = i;
+           }
+
+        }
+     //   console.log('aqui'+ i);
+      //  this.i_aux[idx].valor = i;
+        });
+
+        //console.log('aqui'+ this.i_aux[idx].valor);
+        return(this.i_aux[idx].valor);
+      },
+      getResultMunicipios() {
+
+          var filtroGeo;
+          var info;
+
+          filtroGeo = '\`school.ibge_id\`';
+
+          info = this.$route.query.q;
+
+          let municipios = fireSQL.query(`
+          SELECT school
+          FROM users
+          WHERE `+filtroGeo+`='`+info+`'
+          `);
+
+         /* for (let i = 0; i < municipios.length; i++) {
+            let obj = {}
+            let data = municipios[i].data();
+            obj.school = data.school;
+            console.log(municipios.length);
+            (this.municipios).push(obj);
+          } */
+
+          var arr = [];
+
+          municipios.then((municipios) => {
+            for (let municipio of municipios) {
+
+            /*  for (let i=0;i<=municipios.length;i++){
+                if (first) { (this.municipios).push(municipio.school); }
+                if (municipio.school.ibge_id == municipios[i].school.ibge_id) { first = false; } else { first = true; }
+              } */
+              (this.municipios).push(municipio.school);
+            //  console.log('aqui porra: '+municipios.length);
+              }
+
+          this.removeDups(this.municipios, 'ibge_id');
+          //this.i_aux[idx].valor = i;
+          });
+
+
+       //   console.log('aquileo'+this.removeDups((this.municipios), 'school.ibge_id'));
+
+      },
+      removeDups(arr, prop) {
+
+        // Object to store title of visited members
+        var obj = {};
+        var val;
+
+        for (var i=0, iLen=arr.length; i<iLen; i++) {
+
+          // Store a reference to the current member
+          val = arr[i][prop];
+
+          // If have a match
+          if (obj.hasOwnProperty(val)) {
+
+            // Add the DIFF property to the previous instance
+            arr[obj[val]].DIFF += arr[i].DIFF;
+
+            // Remove from array
+            arr.splice(i, 1);
+
+            // Decrement counter and limit to account for removed member
+            --i;
+            --iLen;
+
+          // Otherwise, remember the property value and index of the member
+          } else {
+            obj[val] = i;
+          }
+        }
+        return arr;
+      },
       async getData() {
+
+        this.getResultMunicipios();
 
      /*  let norte = await this.getDataByRegion('1').then((response) => {
           return response.length;
@@ -2463,7 +1972,7 @@ localStorage.setItem("titulo", "regiao");
         this.sul.headers[1].text = sul;
         this.centro_oeste.headers[1].text = centro_oeste; */
 
-        var washData = await db.collection("users").get().then(function (querySnapshot) {
+      /*  var washData = await db.collection("users").get().then(function (querySnapshot) {
 
           let values = querySnapshot.docs;
           let arrayData = [];
@@ -2484,14 +1993,13 @@ localStorage.setItem("titulo", "regiao");
 
         this.responses = responses.toString();
 
-        this.loading = false;
+        this.loading = false; */
 
 
       },
 
     },
     created() {
-      //window.addEventListener('scroll', this.handleScroll);
       this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
       console.log((this.quest[0].questions).concat(this.quest[1].questions));
       this.getData();
@@ -2509,6 +2017,34 @@ localStorage.setItem("titulo", "regiao");
   }
 
 
+var wordLimit = 2;
+
+$(function() {
+  
+  //trata o conteúdo na inicialização da página
+  $('.show-summary').each(function() {
+    var post = $(this);
+    var text = post.text();
+    //encontra palavra limite
+    var re = /[\s]+/gm, results = null, count = 0;
+    while ((results = re.exec(text)) !== null && ++count < wordLimit) { }
+    //resume o texto e coloca o link
+    if (results !== null && count >= wordLimit) {
+      var summary = text.substring(0, re.lastIndex - results[0].length);
+      post.text(summary + '...');
+      post.data('original-text', text);
+      post.append('<br/><a href="#" class="read-more">Leia mais</a>');
+    }
+  });
+  
+  //ao clicar num link "Leia mais", mostra o conteúdo original
+  $('.read-more').on('click', function() {
+    var post = $(this).closest('.show-summary');
+    var text = post.data('original-text');
+    post.text(text);
+  });
+  
+});
 
 
 </script>
@@ -2598,7 +2134,7 @@ table tr td {
 
 #customers tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+#customers tr:hover {background-color: rgb(221, 221, 221);}
 
 #customers th {
   padding-top: 12px;
@@ -2663,21 +2199,62 @@ table tr td {
    content: url('https://api.iconify.design/mdi:arrow-up-bold-circle.svg?height=54&color=blue');
 }
 
-#meuMenu {
-    background:#345;
-    width:100%;
-    padding:20px;
-    margin-top: 100px;
+thead {
+  display:none;
 }
-.fixar {
-    position:fixed;
-    margin-top: 0px !important;
+
+
+
+.show-summary {
+  width: 300px;
+  margin: 5px;
+  float: left;
 }
+
+
+.mostrarmais p {
+  width:200px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin:5px 0 0 0;  
+}
+
+
+
+.mostrarmais input {
+  display:none;
+  position:absolute;
+  left:-1000px;
+}
+
+
+.mostrarmais input:checked + p {
+  white-space:normal;
+}
+
+.mostrarmais input:checked + p + label {
+  display:none;
+}
+
+label {
+  color:#fff;
+  background:#39f;
+  margin:0;
+}
+
+.texto {
+  max-width: 200px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 
 
 
 </style>
-
 
 
 

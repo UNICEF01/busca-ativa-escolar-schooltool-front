@@ -36,6 +36,8 @@ var userId7 = ["rT5q1s7p8geJxibqUiyrIIrzXop2","RWVQ89oYTkfRhAQxYTejXG5IkfC3","S0
 //BANCO PRODUÇÃO
 
 
+
+
 userId7.forEach(myFunction); //MUDAR userid AQUI
 
 function myFunction(uid) {

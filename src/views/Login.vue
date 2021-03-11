@@ -190,6 +190,13 @@
                 type: 'error',
                 position: 'top'
               });
+            }  
+            if(err.code === "auth/too-many-requests") {
+              Vue.$toast.open({
+                message: 'Excedido o número de requisições. Tente mais tarde.',
+                type: 'error',
+                position: 'top'
+              });
             }
           });
 
@@ -222,13 +229,13 @@
           localStorage.setItem("admin", getUser[0].perfil);
           
           if (getUser[0].perfil === 'admin') {            
-            this.$router.push({path: '/dashboard'})
+            this.$router.push({path: '/results'})
           } else {
-            this.$router.push({path: '/dashboard'})
+            this.$router.push({path: '/results'})
           }
           setInterval(function () {
             window.location.reload();
-          }, 1000);
+          }, 100);
         }
 
 

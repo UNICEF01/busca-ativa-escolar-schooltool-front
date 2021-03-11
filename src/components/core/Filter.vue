@@ -146,6 +146,9 @@ export default {
         case 'info':
           this.$store.state.app.color = 'cyan'
           break;
+        case 'success':
+          this.$store.state.app.color = 'green'
+          break;  
         case 'danger':
           this.$store.state.app.color = 'red'
           break;

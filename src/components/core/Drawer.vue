@@ -29,7 +29,7 @@
         <v-card-actions class="justify-center">
           {{user.displayName}}
         </v-card-actions>
-        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin' || editedIndex == 'user'" @click="dashboard()" class="font-weight-light" :class="color">
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin' || editedIndex == 'user'" @click="dashboard()" class="font-weight-light" :class="color" >
           Painel
         </v-btn>
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="admin()" class="font-weight-light" :class="color">
@@ -63,19 +63,20 @@
         <v-btn depressed color="error" v-if="user.uid !== undefined" @click="logout(editedIndex)" class="font-weight-light" :class="color">
           Sair
         </v-btn>
+  
         <v-list-tile
           :active-class="color"
           class="v-list-item v-list__tile--buy"
           href="http://buscaativaescolar.org.br"
-          target="_blank"
-         
+          target="_blank"        
+                
         >
 
         
           <v-list-tile-action>
-            <v-icon>mdi-package-up</v-icon>
+            <v-icon>mdi-package-up</v-icon>             
           </v-list-tile-action>
-          Conheça a estratégia
+        Conheça a estratégia
         </v-list-tile>
       </v-layout>
     </v-img>
@@ -94,6 +95,7 @@
       user: '',
       editedIndex: 0,
       perfilUser:'',
+
       logo:
         'https://buscaativaescolar.org.br/images/logo-busca-ativa-escolar.png',
       links: [
@@ -197,7 +199,7 @@
           this.$router.push({path: '/quest'})
           setInterval(function () {
             window.location.reload();
-          }, 900);           
+          }, 100);           
           auth.signOut().then(function () {
 
           }).catch(function (error) {
@@ -205,6 +207,8 @@
           });          
         }else{
         localStorage.removeItem("admin");
+        localStorage.removeItem("estado");
+        localStorage.removeItem("munic");
         auth.signOut().then(function () {
 
         }).catch(function (error) {
@@ -213,16 +217,23 @@
         this.$router.push({path: '/login'})
           setInterval(function () {
             window.location.reload();
-          }, 900); 
+          }, 100); 
         }         
       },
       dashboard(){
+        localStorage.setItem("estado","");
+        localStorage.setItem("munic","");        
+        localStorage.setItem("titulo", "regiao");
+        var uf =  localStorage.getItem("estado");
+        localStorage.setItem("estado", uf);  
         this.$router.push({path: '/results'})
       },
       admin(){
+        localStorage.setItem("titulo", "admin");
         this.$router.push({path: '/admin'})
       },
       quest(){
+        localStorage.setItem("titulo", "questionario");
         this.$router.push({path: '/quest'})
       }
 

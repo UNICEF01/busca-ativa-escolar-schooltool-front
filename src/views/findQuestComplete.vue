@@ -14,7 +14,7 @@ export default {
 }   
  
 //BANCO TESTE
-var userIdx = ["19VF563xbvPp5feRvHTdxuRjjRj2"];
+var userIdx = ["jRE05kP0LgR6FPH4cwGVTxOHHrt1"];
 
 
 
@@ -64,7 +64,10 @@ function myFunction(uid) {
     if (doc.exists) {
 
           var resp = doc.get('quest');
+          var ibge_region_id=doc.get('school.ibge_region_id');
+          var ibge_uf_id=doc.get('school.ibge_uf_id');
 
+alert(ibge_region_id+ " "+ibge_uf_id)
           if (resp == undefined){
             let notFound = ('QUEST NÃO ENCONTRADO: '+uid)
              myArray.push({notFound})

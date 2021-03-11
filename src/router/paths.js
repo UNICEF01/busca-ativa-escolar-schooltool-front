@@ -36,6 +36,22 @@ export default [
     view: 'Results'
   },
   {
+    path: '/ResultsMunicipio',
+    name: 'Painel de Resultados de Municípios',
+    view: 'ResultsMunicipio'
+  },
+  {
+    path: '/ResultsEscola',
+    name: 'Painel de Resultados de Escolas',
+    view: 'ResultsEscola'
+  },  
+  {
+    path: '/ResultsTerritorio',
+    name: 'Painel de Resultados de Territórios',
+    view: 'ResultsTerritorio'
+  },  
+
+  {
     path: '/updateSchool',
     name: 'updateSchool',
     view: 'updateSchool'
