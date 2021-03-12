@@ -31,7 +31,7 @@
           <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
         </div>  
 
-        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div> 
+        <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div> 
 
       <!--  <material-stats-card
           color="cyan"
@@ -69,10 +69,10 @@
           value="00"
         /> -->
         <br/>
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
   
-        <div class="card text-center m-3" style="margin-top:346px;width:100%;margin-left:-20px;width:247px">
+        <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:-20px;width:247px">
 
           <div class="card-body">
 
@@ -90,8 +90,8 @@
         <span 
           v-bind="attrs"
           v-on="on">
-          <td  v-if="item.name.length > 21" style="padding-left:18px;padding-right:19px" class="texto"  width="0" height="0" valign="middle">{{ item.name.substring(0,21)}}</td>
-          <td  v-else style="padding-left:60px;padding-right:31px" class="texto"  width="0" height="0" valign="middle">{{ item.name}}</td>
+          <td  v-if="item.name.length > 21" style="padding-left:18px;padding-right:29px" class="texto"  width="0" height="0" valign="middle">{{ item.name.substring(0,21)}}</td>
+          <td  v-else style="width:100%" class="texto"  width="0" height="0" valign="middle">{{ item.name}}</td>
 
         
           <td  style="padding-left:18px;padding-right:19px" width="0" height="0" valign="middle" align="left"><div v-html="getResultMunicipiosResp(item.ibge_id,true,index,1)" /></td>
@@ -126,7 +126,7 @@
 
         <template>
         
-            <div class="card text-center m-3" style="position:fixed;width:1413px;top:107px;left:526px">
+            <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
         <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
@@ -193,10 +193,10 @@
 
         </template>
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
   
-        <div class="card text-center m-3" style="margin-top:370px;width:1200px">
+        <div class="card text-center m-3" style="margin-top:auto;width:1200px">
 
           <div class="card-body">
 
@@ -233,7 +233,7 @@
                 
                 </div>
                <!-- <button v-on:click="setPage(3)">Click me</button>-->
-            </div>
+
 
         </template>
 

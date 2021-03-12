@@ -42,7 +42,7 @@
 
 
 
-        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
+        <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
 
       <!--  <material-stats-card
           color="cyan"
@@ -54,19 +54,17 @@
 
 
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
 
             <div class="card text-center m-3">
    
                 <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
+                    <div v-for="group in pageOfItems" :key="group.id">                                        
           
-
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:370px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
                                 
                                 <tbody>
                                     <tr>
@@ -74,7 +72,7 @@
                                         <td style="padding:12px;color:white;background-color:#A9A9A9;"><div align="center" v-html="getResult('regiao',true,'1',0,1)" /> </td>
                                     </tr>
                                     <tr>
-                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: '11', id: 22} }">Rondônia</router-link></td>
+                                        <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: '11'} }">Rondônia</router-link></td>
                                         <td style="padding:12px"><div align="center" v-html="getResult('estado',true,'11',13,1)" /> </td>
                                     </tr>
                                     <tr>
@@ -115,54 +113,22 @@
             </div>
 
         </template>
-        
-      <!--  <v-data-table
-          :headers="norte.headers"
-          :items="norte.items"
-          hide-actions>
-          <template
-            slot="headerCell"
-            slot-scope="{ header }">
-              <span
-                class="subheading font-weight-light text-success text--darken-3"
-                v-text="header.text"
-              />
-          </template>
-          <template
-            slot="items"
-            slot-scope="{ item }">
-            <td>{{ item.name }}</td>
-            <td><div v-html="getResult('regiao',true,'1',0,2)" /></td>
-          </template>
-        </v-data-table> -->
-
-      <!--  <material-stats-card
-          color="orange"
-          icon="mdi-city"
-          title="Municípios"
-          value="00"
-        /> -->
-        <br/>
-
-        <template>
-
+    
+    <template>
 
   
      <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
                                 
                                 <tbody>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Nordeste</td>
-                                        <td style="padding:12px 25px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
+                                        <td style="padding:12px 18px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
                                     </tr>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link></td>
@@ -203,35 +169,29 @@
                                     
                                 </tbody>
                             </table>
-
                         </v-form>
                         </div>
-
                 </div>
                 
             </div>
 
         </template>
 
-        <br/>
 
         <template>
 
             <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
+                    <div v-for="group in pageOfItems" :key="group.id">                                            
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
                                 
                                 <tbody>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:16px;color:white;color:white;background-color:#A9A9A9">Sudeste</td>
-                                        <td style="padding:12px 17px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
+                                        <td style="padding:12px 14px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
                                     </tr>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link></td>
@@ -254,7 +214,7 @@
                             </table>
 
                         </v-form>
-                        </div>
+                    </div>
 
                 </div>
                 
@@ -262,25 +222,20 @@
 
         </template>
 
-        <br/>
-
-<template>
+        <template>
 
             <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
-                    <div v-for="group in pageOfItems" :key="group.id">
-                                            
-                        <br/><br/><br/><br/>
+                    <div v-for="group in pageOfItems" :key="group.id">                                            
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0"> 
                                 
                                 <tbody>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Centro Oeste</td>
-                                        <td style="padding:12px 23px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
+                                        <td style="padding:12px 19px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
                                     </tr>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link></td>
@@ -311,9 +266,7 @@
 
         </template>
       
-        
 
-      <br/>
 
         <template>
 
@@ -322,16 +275,15 @@
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                                             
-                        <br/><br/><br/><br/>
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:-115px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
                                 
                                 <tbody>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Sul</td>
-                                        <td style="padding:12px 22px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
+                                        <td style="padding:12px 19px;color:white;background-color:#A9A9A9"><div align="center" v-html="getResult('regiao',true,'2',32,1)" /> </td>
                                     </tr>
                                     <tr>
                                         <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)"><router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link></td>
@@ -369,11 +321,7 @@
  
         <template>
 
-
-
-
-       
-            <div class="card text-center m-3" style="position:fixed;width:1414px;top:107px;left:524px">
+            <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
 
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
@@ -440,6 +388,8 @@
         </template>
 
 
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
 
             <div class="card text-center m-3">
@@ -447,11 +397,10 @@
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                                             
-                        <br/><br/><br/><br/>
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:274px;background-color:#fff;border-collapse:collapse;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;">
                                 
                                 <tbody>
                                     <tr>
@@ -509,21 +458,18 @@
                 
             </div>
 
-        </template>
-        
-        <br/><br/><br/><br/><br/>
+        </template>        
         
 
         <template>
 
             <div class="card text-center m-3">
-        <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:-116px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -595,13 +541,18 @@
 
                     </div>
                 </div>
+             </div>   
+        </template>
+      
+        <template>
 
+            <div class="card text-center m-3">
                  <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:4px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;" cellspacing="0" cellpadding="0">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -645,7 +596,10 @@
 
                     </div>
                 </div>
-
+            </div>    
+ </template>
+ <template>
+          <div class="card text-center m-3">
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                         
@@ -653,7 +607,7 @@
 
                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:4px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -692,18 +646,23 @@
                                     
                                 </tbody>
                             </table>
-
+                        
                         </v-form>
-
+                      </div>
                     </div>
                 </div>
+
+  </template> 
+
+  <template>
+    <div class="card text-center m-3">
 
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:5px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -730,7 +689,7 @@
                                     <tr>
                                         <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'43',151,2)" /> </td>
                                         <td style="padding:12px 8px;"><div align="center" v-html="getResult('estado',false,'43',152,1)" /> </td>
-                                        <td style="padding:14px 8px;"><div align="center" v-html="getResult('estado',false,'43',153,0)" /> </td>
+                                        <td style="padding:15px 8px;"><div align="center" v-html="getResult('estado',false,'43',153,0)" /> </td>
 
                                     </tr>
                                     
@@ -755,7 +714,7 @@
                 
                 </div>
                <!-- <button v-on:click="setPage(3)">Click me</button>-->
-            </div>
+         </div>
 
 
         </template>

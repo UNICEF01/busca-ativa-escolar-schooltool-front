@@ -7,11 +7,13 @@
     
     >
     <v-layout wrap>
+
       <v-flex
         sm6
         xs12
         md6
         lg3>
+       <br> <br> <br> <br>
         <material-stats-card
           color="cyan"
           icon="mdi-account"
@@ -20,6 +22,7 @@
           sub-text="Quantidade de usuários"
         />
       </v-flex>
+      
       <!--      <pre v-if="users.length > 1">-->
       <!--      {{users}}-->
       <!--        </pre>-->
@@ -34,7 +37,7 @@
         <!--        </vue-excel-xlsx>-->
 
       <v-card-title>
-      
+      <br><br><br><br>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

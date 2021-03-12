@@ -209,6 +209,7 @@
         localStorage.removeItem("admin");
         localStorage.removeItem("estado");
         localStorage.removeItem("munic");
+        localStorage.setItem("titulo","login");
         auth.signOut().then(function () {
 
         }).catch(function (error) {

@@ -28,6 +28,7 @@ style="
   <i v-if="titulo == 'escola'" class="mdi mdi-file-document"> {{title}} {{uf}} {{munic}}</i>
   <i v-if="titulo == 'questionario'" class="mdi mdi-checkbox-multiple-marked"> {{title}}</i>
   <i v-if="titulo == 'admin'" class="mdi mdi-account-plus"> {{title}}</i> 
+  <i v-if="titulo == 'login'" class="mdi mdi-account-key"> {{title}}</i> 
 
     </h3>
 

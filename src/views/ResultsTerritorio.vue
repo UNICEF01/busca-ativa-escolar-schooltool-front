@@ -32,7 +32,7 @@
         </div>  
 
 
-        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div> 
+        <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div> 
 
       <!--  <material-stats-card
           color="cyan"
@@ -71,7 +71,7 @@
         /> -->
         <br/>
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
 
             <div class="card text-center m-3" >
@@ -81,7 +81,7 @@
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top:346px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
                                 
                                 <tbody>
                                     <tr>
@@ -100,7 +100,7 @@
 
           </template>
 
-          <br/><br/><br/><br/>
+
 
           <template>
 
@@ -111,7 +111,7 @@
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top: -80px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
                                 
                                 <tbody>
                                     <tr>
@@ -130,8 +130,6 @@
 
           </template>
 
-          <br/><br/><br/><br/>
-
           <template>
 
             <div class="card text-center m-3">
@@ -141,7 +139,7 @@
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top: -80px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
                                 
                                 <tbody>
                                     <tr>
@@ -160,7 +158,6 @@
 
           </template>
 
-          <br/><br/><br/><br/>
 
           <template>
 
@@ -171,7 +168,7 @@
 
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="margin-top: -80px;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
+                            <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
                                 
                                 <tbody>
                                     <tr>
@@ -238,7 +235,7 @@
 
         <template>
         
-            <div class="card text-center m-3" style="position:fixed;width:1413px;top:107px;left:526px">
+            <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
         <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
@@ -305,17 +302,17 @@
 
         </template>
 
-
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
   
-        <div class="card text-center m-3" style="margin-top:290px;width:1200px">
+        <div class="card text-center m-3" style="margin-top:auto;width:1200px">
 
           <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:370px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -342,7 +339,7 @@
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:16px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -369,7 +366,7 @@
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:16px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -396,7 +393,7 @@
                         
                         <v-form ref="form_research" lazy-validation>
 
-                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:16px;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                            <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
                                 <thead>
                                     <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                         <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -433,7 +430,7 @@
                 
                 </div>
                <!-- <button v-on:click="setPage(3)">Click me</button>-->
-            </div>
+
 
         </template>
 

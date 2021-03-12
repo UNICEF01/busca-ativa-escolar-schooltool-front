@@ -7,6 +7,7 @@
       <v-flex xs12 md8>
 
         <div v-if="isReportReady == false">
+          <br><br><br>
 
           <h5 class="headline">Questionário de Autoavaliação</h5>
 

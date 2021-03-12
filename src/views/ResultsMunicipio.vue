@@ -31,7 +31,7 @@
           <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
         </div>  
 
-        <div id="user_content" style="position:fixed;height:390px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
+        <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
 
       <!--  <material-stats-card
           color="cyan"
@@ -68,12 +68,12 @@
           title="Municípios"
           value="00"
         /> -->
-        <br/>
-
+        
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
   
   
-        <div class="card text-center m-3" style="margin-top:346px;width:100%;margin-left:20px"  >
+        <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:20px"  >
 
           <div class="card-body" >
 
@@ -85,7 +85,6 @@
               
                           
               >
-
 
               <template
                 slot="items"
@@ -119,7 +118,7 @@
 
         <template>
         
-              <div class="card text-center m-3" style="position:fixed;width:1413px;top:107px;left:526px">
+              <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
         <!--      <h3 class="card-header">Vue.js Pagination Tutorial & Example</h3> -->
                 <div class="card-body">
                     <div v-for="group in pageOfItems" :key="group.id">
@@ -185,18 +184,18 @@
             </div>
 
         </template>
-
-
+        
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         <template>
   
-        <div class="card text-center m-3" style="margin-top:370px;width:1200px">
+        <div class="card text-center m-3" style="margin-top:auto;width:1200px">
 
           <div class="card-body">
-
           <v-data-table
               :headers="municipios.headers"
               :items="municipios"
               hide-actions id="customers" >
+
               <template
                 slot="items"
                 slot-scope="{ item, index }">
@@ -227,7 +226,6 @@
                 
                 </div>
                <!-- <button v-on:click="setPage(3)">Click me</button>-->
-            </div>
 
         </template>
 

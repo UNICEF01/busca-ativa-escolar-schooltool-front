@@ -6,7 +6,7 @@
     <v-layout
       justify-center
       wrap>
-      <v-flex xs12 md6>
+      <v-flex xs12 md6><br><br><br><br>
         <material-card color="cyan" title="Login" text="">
           <v-form ref="form_login" lazy-validation>
             <v-container fluid>
