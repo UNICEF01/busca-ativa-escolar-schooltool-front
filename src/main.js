@@ -7,6 +7,8 @@ import Vue from 'vue'
 
 import JsonExcel from "vue-json-excel";
 
+import VueApexCharts from 'vue-apexcharts';
+
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
 
@@ -34,8 +36,9 @@ import 'vue-toast-notification/dist/theme-default.css';
 Vue.use(VueToast);
 Vue.use(VueExcelXlsx);
 Vue.use(VueBlobJsonCsv);
+Vue.use(VueApexCharts);
 
-
+Vue.component('apexchart', VueApexCharts);
 Vue.component("downloadExcel", JsonExcel);
 
 //https://www.npmjs.com/package/vue-json-excel
