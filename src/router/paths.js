@@ -31,6 +31,11 @@ export default [
     view: 'Quest'
   },
   {
+    path: '/charts',
+    name: 'Gráficos',
+    view: 'Charts'
+  },
+  {
     path: '/results',
     name: 'Painel de Resultados',
     view: 'Results'
