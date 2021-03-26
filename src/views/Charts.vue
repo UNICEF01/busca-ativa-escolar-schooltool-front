@@ -149,10 +149,27 @@
                   endingShape: 'rounded'
                 },
             },
+            tooltip: {
+                enabled: false,
+                followCursor: true,
+                x: {
+                    format: 'dd MMM',
+                    formatter: undefined,
+                },
+
+                yaxis: {
+                    labels: {
+                        formatter: (value) => { return val + "%" },
+                    },
+                },
+
+            },
             xaxis: {
               categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
             },
             labels: ['1', '2', '3', '4', '5'],
+            dataLabels: {
+              enabled: false},
             legend: {
               show: true,
               showForSingleSeries: false,
