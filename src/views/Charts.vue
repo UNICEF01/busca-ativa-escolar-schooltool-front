@@ -42,6 +42,7 @@
                   </v-flex>
                </v-layout>
             </v-container>
+            
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
@@ -96,9 +97,15 @@
 
                <div class="card text-center m-3" style="margin-left:-224px!important">
                   <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
+                     <div v-for="group in pageOfItems" :key="group.id">  
                         <v-form ref="form_research" lazy-validation>
-                           <apexchart width="1500px" height="500px" type="bar" :options="chartOptions" :series="series"></apexchart>
+                           <apexchart
+                           width="1500px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series"
+                           :key="componentKey"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
                         </v-form>
                      </div>
@@ -137,7 +144,7 @@
             },
             plotOptions: {
                 bar: {
-                  horizontal: false,
+                  horizontal: true,
                   columnWidth: '55%',
                   endingShape: 'rounded'
                 },
@@ -145,7 +152,7 @@
             xaxis: {
               categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
             },
-            labels: ['1', '2', '3', '4'],
+            labels: ['1', '2', '3', '4', '5'],
             legend: {
               show: true,
               showForSingleSeries: false,
@@ -1604,7 +1611,8 @@
    
                this.getResult('regiao',true,'4',105,2);
                this.getResult('regiao',true,'4',143,1);
-               this.getResult('regiao',true,'4',144,0);              
+               this.getResult('regiao',true,'4',144,0);
+                             
 
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
@@ -1768,13 +1776,13 @@
            if (idx == 161) { this.series[1].data[2] = this.i; }
            if (idx == 105) { this.series[2].data[2] = this.i; }
 
-           if (idx == 161) { this.series[0].data[2] = this.i; }
-           if (idx == 131) { this.series[1].data[2] = this.i; }
-           if (idx == 132) { this.series[2].data[2] = this.i; }
+           if (idx == 161) { this.series[0].data[3] = this.i; }
+           if (idx == 131) { this.series[1].data[3] = this.i; }
+           if (idx == 132) { this.series[2].data[3] = this.i; }
 
-           if (idx == 105) { this.series[0].data[3] = this.i; }
-           if (idx == 143) { this.series[1].data[3] = this.i; }
-           if (idx == 144) { this.series[2].data[3] = this.i; }
+           if (idx == 105) { this.series[0].data[4] = this.i; }
+           if (idx == 143) { this.series[1].data[4] = this.i; }
+           if (idx == 144) { this.series[2].data[4] = this.i; }
 
    
            this.componentKey += 1;
