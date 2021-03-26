@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@material/data-table": "^10.0.0",
+    "apexcharts": "^3.26.0",
     "admin": "^1.4.1",
     "apexcharts": "^3.26.0",
     "babel-polyfill": "^6.26.0",
