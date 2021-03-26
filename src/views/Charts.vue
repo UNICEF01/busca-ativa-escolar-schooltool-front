@@ -149,6 +149,21 @@
                   endingShape: 'rounded'
                 },
             },
+            tooltip: {
+                enabled: false,
+                followCursor: true,
+                x: {
+                    format: 'dd MMM',
+                    formatter: undefined,
+                },
+
+                yaxis: {
+                    labels: {
+                        formatter: (value) => { return val + "%" },
+                    },
+                },
+
+            },
             xaxis: {
               categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
             },
