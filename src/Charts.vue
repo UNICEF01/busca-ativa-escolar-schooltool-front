@@ -11,11 +11,10 @@
             lg2>
             <div id="caixa" style="width: 110px; height: 200px;top: 150px;margin-left:1150px;align:center">
                <!--div class="tertiary--text font-weight-bold" style="margin-top:80px;margin-left: 10px" id="tituloPergunta">Pergunta: 1</div-->
-               <a  id="next"  title="Próximo"  @click="setas('next')"></a>
-               <a  id="prev"  title="Anterior" @click="setas('prev')"></a>
+               <a  id="next"  title="Próximo"  v-on:click="setas('next')"></a>
+               <a  id="prev"  title="Anterior" v-on:click="setas('prev')"></a>
                <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
             </div>
-            <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
             <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
                <component v-if="customLoader" v-bind:is="customLoader"></component>
                <div v-else>
@@ -23,8 +22,9 @@
                   <p class="loading-text">{{text}}</p>
                </div>
             </div>
+            <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
             <br>
-            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed;color:#fff">
+            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed">
                <v-layout row wrap>
                   <v-flex xs12>
                      <v-select                
@@ -42,45 +42,12 @@
                   </v-flex>
                </v-layout>
             </v-container>
+            
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-               <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:20px"  >
-               <div class="card-body" >
-                  <v-data-table id="customers"
-                     :headers="municipios.headers"
-                     :items="municipios"
-                     hide-actions
-                     >
-                     <template
-                        slot="items"
-                        slot-scope="{ item, index }"                 
-                        >
-                        <tr v-if="item.quest_complete == 'S'">
-                           <td style="padding:1px 8px;font-size:14px;" @click="setMunic(item.city_name)">
-                              <router-link :to="{ path: 'ResultsEscola', query: { q: item.ibge_id, } }" style="font-size:14px;">{{ item.city_name }}</router-link>
-                           </td>                           
-                           <td style="padding:12px">
-                              <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,true,index,1)" />
-                           </td>
-                        </tr>
-
-
-                     </template>
-                  </v-data-table>
-                  </div>
-               </div>
-            </template>
-         </v-flex>
-         <v-flex
-            sm8
-            xs12
-            md8
-            lg8>
-            <template>
-               <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
-               <div class="card-body">
-                  <div v-for="group in pageOfItems" :key="group.id">
-                     <div v-html="setaGrupoPergunta(grupo,group.id)" />
+               <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            <material-card 
                               class="card-tabs"
@@ -88,7 +55,7 @@
                               elevation="3"
                               dense
                               fixed
-                              style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:84.9%"
+                              style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:85%"
                               >
                               <v-flex slot="header"
                                  style="height: 140px;overflow-y:auto !important"
@@ -98,11 +65,11 @@
                                     style="align-self: center"
                                     v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+group.id+'</center><br></b>'+group.answer"
                                     ></span>
-                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id">
+                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id" :key="componentKey">
                               </v-flex>
                               <v-layout wrap>
                                  <v-flex md4 v-for="item in group.response">
-                                    <v-card style="height: 130px;width:397px"
+                                    <v-card style="height: 130px;width:398px"
                                        class="pa-3"
                                        outlined
                                        tile                                
@@ -117,34 +84,38 @@
                   </div>
                </div>
             </template>
+           
+         </v-flex>
+
+         <v-flex
+            sm8
+            xs12
+            md8
+            lg8>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-               <div class="card text-center m-3" style="margin-top:auto;width:1200px">
-               <div class="card-body">
-               <v-data-table
-                  :headers="municipios.headers"
-                  :items="municipios"
-                  hide-actions id="customers" >
-                  <template
-                     slot="items"
-                     slot-scope="{ item, index }">
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'">
-                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+10),0)" />
-                     </td>
-   
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'">
-                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+15),1)" />
-                     </td>
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+20),2)" /></td>
-                  </template>
-               </v-data-table>
-               </div>
-               </div>
-               <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
-                  <p align="center">
-                     <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" circle></jw-pagination>
-                     <br>
-                  </p>
+
+               <div class="card text-center m-3" style="margin-left:-224px!important">
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">  
+                        <v-form ref="form_research" lazy-validation>
+                           <apexchart
+                           width="1500px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series"
+                           :key="componentKey"/>
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                        </v-form>
+                     </div>
+                  </div>
+                  <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                     <p align="center">
+                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" ></jw-pagination>
+                        <br>
+                     </p>
+                  </div>
                </div>
             </template>
          </v-flex>
@@ -152,39 +123,101 @@
    </v-container>
 </template>
 <script>
-   import {db, auth, usersCollection, fireSQL} from "./../firebase";
+   import {db, auth, usersCollection, fireSQL} from "../firebase";
+   import ufid from "../assets/estado.js";
+   
+   localStorage.removeItem("munic")
    
    let userAdmin = localStorage.getItem("admin");
    
    //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
-   let uf = localStorage.getItem("estado");
    
-   localStorage.setItem("titulo", "municipio");
-   
+   localStorage.setItem("titulo", "regiao");
    
      export default {
        data() {
          return {
+           arrayTmp: [],
+           chartOptions: {
+            chart: {
+              id: 'vuechart-example'
+            },
+            plotOptions: {
+                bar: {
+                  horizontal: true,
+                  columnWidth: '55%',
+                  endingShape: 'rounded'
+                },
+            },
+            xaxis: {
+              categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
+            },
+            labels: ['1', '2', '3', '4', '5'],
+            legend: {
+              show: true,
+              showForSingleSeries: false,
+              showForNullSeries: true,
+              showForZeroSeries: true,
+              position: 'bottom',
+              horizontalAlign: 'center', 
+              floating: false,
+              fontSize: '12px',
+              fontFamily: 'Helvetica, Arial',
+              fontWeight: 400,
+              formatter: undefined,
+              inverseOrder: false,
+              width: undefined,
+              height: undefined,
+              tooltipHoverFormatter: undefined,
+              offsetX: 0,
+              offsetY: 0,
+              labels: {
+                  colors: undefined,
+                  useSeriesColors: false
+              },
+            markers: {
+                width: 12,
+                height: 12,
+                strokeWidth: 0,
+                strokeColor: '#000',
+                fillColors: undefined,
+                radius: 12,
+                customHTML: function() {
+                  return '<br/>'
+                },
+                onClick: undefined,
+                offsetX: 0,
+                offsetY: 0
+            }
+            }
+          },
+          series: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
            grupo: 0,
            pergunta: 0,
            index_pergunta: 0,
-           tmpValue: 0,
-           municipios: [],
            combined: [],
            pageOfItems: [],
-           myloadingvariable: true,
+           componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
              { report: 'Territórios', src: '/resultsterritorio' },
-             { report: 'Escola', src: '/resultsescola' },
-             { report: 'Região', src: '/results' },
-           ],   
-      text: 'Carregando',
-      dark: false,
-      classes: null,
-      loading: false,
-      background: null,
-      customLoader: null,               
+             { report: 'Estado', src: '/resultsescola' }
+           ],
+           text: 'Carregando',
+           dark: false,
+           classes: null,
+           loading: false,
+           background: null,
+           customLoader: null,
            i_aux: [
              {valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},
              {valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},{valor: '0'},
@@ -1540,41 +1573,69 @@
                label: 'Escola'
              }
            ],
-           // tabs: 0,
-           // list: {
-           //   0: false,
-           //   1: false,
-           //   2: false
-           // }
          }
        },
+   
+   
        methods: {
            myFunction() {
          // `this` inside methods point to the Vue instance
+   
           this.current_page = 2;
-       },
+         },
            changeRoute(a) {
              this.$router.push({path: a })
              console.log(a, this.select.src)
-           },    
+           },
            onChangePage(pageOfItems) {
                // update page of items
-               this.getData();
                this.pageOfItems = pageOfItems;
                let i = 1;
-               let tamanho = 1;  
+               let tamanho = 1;
+               
+               this.getResult('regiao',true,'1',180,2);
+               this.getResult('regiao',true,'1',185,1);
+               this.getResult('regiao',true,'1',190,0);
+   
+               this.getResult('regiao',true,'2',32,2);
+               this.getResult('regiao',true,'2',33,1);
+               this.getResult('regiao',true,'2',34,0);
+               
+               this.getResult('regiao',true,'3',95,2);
+               this.getResult('regiao',true,'3',81,1);
+               this.getResult('regiao',true,'3',82,0);
+               
+               this.getResult('regiao',true,'5',161,2);
+               this.getResult('regiao',true,'5',131,1);
+               this.getResult('regiao',true,'5',132,0);
+   
+               this.getResult('regiao',true,'4',105,2);
+               this.getResult('regiao',true,'4',143,1);
+               this.getResult('regiao',true,'4',144,0);
+                             
+
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
                    if (this.grupo==0) {
                      $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
                      $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+j+'"}</style>').appendTo('head');
                  }
-                 
+                 if (this.grupo==1) {
+                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
+                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+3)+'"}</style>').appendTo('head');
+                 }
+                 if (this.grupo==2) {
+                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
+                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+7)+'"}</style>').appendTo('head');
+                 }
+                 if (this.grupo==3) {
+                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
+                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+14)+'"}</style>').appendTo('head');
+                 }
                }
                }
    
            },
-   
            setas(value){
              if (value == 'prev'){
                $("a.page-link-previous")[0].click();
@@ -1583,8 +1644,7 @@
              }else{
                $("a.page-link-next")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
-               $("#tituloPergunta").text("Pergunta: "+
-               number)            
+               $("#tituloPergunta").text("Pergunta: "+number)            
              }
            },
            scrollFunction() {
@@ -1599,150 +1659,186 @@
              document.body.scrollTop = 0;
              document.documentElement.scrollTop = 0;
            },
-           setMunic(value){
+           setUf(value){
+             let uf = ufid.find((item) => item.value == value);
              setInterval(function () {
                window.location.reload();
-               localStorage.setItem("munic", "("+value+")"); 
-             }, 10); 
+               localStorage.setItem("estado", "("+uf.text+")");
+             }, 100); 
+               
            },
-   
-   
-   
-           setaGrupoPergunta(leo,leo2)  {
-             this.grupo = leo;
-             this.pergunta = leo2;
+           setaGrupoPergunta(grupo,pergunta)  {
+             this.grupo = grupo;
+             this.pergunta = pergunta;
          },
-          getResult(tipo,geral,info,idx,resp) {
-          return(0);     
-   
+         getResult2(tipo,geral,info,idx,resp) {
+           return(0);
          },
-          getResultMunicipiosResp(comunicipioibge,geral,idx,resp) {
+         async getResult(tipo,geral,info,idx,resp) {
    
-
+           var filtroGeo;
+   
+           let uf = ufid.find((item) => item.value == info);
+   
+           switch (tipo) {
+             case 'regiao':
+             filtroGeo = '\`school.ibge_region_id\`';
+             break;
+             case 'estado':
+             filtroGeo = '\`school.ibge_uf_id\`';
+             break;
+             case 'municipio':
+             filtroGeo = '\`school.ibge_id\`';
+             break;
+             case 'escola':
+             filtroGeo = '\`school.id\`';
+             break;
+           }
    
            let users = fireSQL.query(`
-           SELECT \`quest\`
+           SELECT *
            FROM users
-           WHERE \`school.ibge_id\`='`+comunicipioibge+`'
+           WHERE `+filtroGeo+`='`+info+`'
            `);
            
    
-         let i = 0;
-         let tamanho = 0;
-         let grupo;
+           let i = 0;
+           let flag = 0;
+           let tamanho = 0;
+           let grupo;
    
-          users.then((users) => {
+           users.then((users) => {
            for (let user of users) {
-             for(let j = 0; j<user.quest.length; j++) {
-               tamanho = j;
-               for (let y = 0; y < user.quest[j].questions.length; y++) {
-                 if (user.quest[j].questions[y].id == this.pergunta) { this.grupo = j; }
+   
+             if (typeof user.quest !== 'undefined') {
+               for(let j = 0; j<user.quest.length; j++) {
+                 tamanho = j;
+                 for (let y = 0; y < user.quest[j].questions.length; y++) {
+                   if (user.quest[j].questions[y].id == this.pergunta) { grupo = j; }
+                 }
+   
                }
-   
              }
-           }
-          });
-   
-          users.then((users) => {
-           for (let user of users) {
-   
-             console.log('grupo: '+this.grupo);
              
-             if (!geral) {
-                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-                 }
-                 
-                 ((user.quest[this.grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-                 this.i_aux[idx].valor = i;
-              } else {
-                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-                 }
-                 
-                 ((user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-                 this.i_aux[idx].valor = i;
-              }
-   
            }
            });
-           
-           this.loading = false;
-       
-           return(this.i_aux[idx].valor);
-         },
-
-          noDataError(nr){
-            this.loading = false;
-            $("#error"+nr).text("não há dados disponíveis")            
-          },
-
-         getResultMunicipios() {
    
-             var filtroGeo;
-             var info;
+           let query = await users.then((users) => {
+           for (let user of users) {
    
-             filtroGeo = '\`school.ibge_uf_id\`';
+           if (typeof user.quest == 'undefined') { flag = 1; } else { flag = 0; }
+           if (user.school.quest_complete == 'N') { flag = 1; } else { flag = 0; }
    
-             info = this.$route.query.q;
-   
-             let municipios = fireSQL.query(`
-             SELECT school
-             FROM users
-             WHERE `+filtroGeo+`='`+info+`'
-             `);
-   
-   
-             var arr = [];
-   
-             municipios.then((municipios) => {
-               for (let municipio of municipios) {
-   
-                 (this.municipios).push(municipio.school);
-                 }
-   
-             this.removeDups(this.municipios, 'ibge_id');
-             });
-   
-   
-         },
-         removeDups(arr, prop) {
-   
-           // Object to store title of visited members
-           var obj = {};
-           var val;
-   
-           for (var i=0, iLen=arr.length; i<iLen; i++) {
-   
-             // Store a reference to the current member
-             val = arr[i][prop];
-   
-             // If have a match
-             if (obj.hasOwnProperty(val)) {
-   
-               // Add the DIFF property to the previous instance
-               arr[obj[val]].DIFF += arr[i].DIFF;
-   
-               // Remove from array
-               arr.splice(i, 1);
-   
-               // Decrement counter and limit to account for removed member
-               --i;
-               --iLen;
-   
-             // Otherwise, remember the property value and index of the member
-             } else {
-               obj[val] = i;
+           if (typeof user.quest !== 'undefined') {
+            if (!geral) {
+               
+             for (let y = 0; y < user.quest[grupo].questions.length; y++) {
+               if (user.quest[grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
              }
-           }
-           return arr;
-         },
+             
+             if (flag == 0)  {
+             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+             } else {
+             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';  
+             }
+              this.i = i;
    
-         
+             } else {
+   
+               for (let y = 0; y < user.quest[grupo].questions.length; y++) {
+               if (user.quest[grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
+             }
+             
+             if (flag == 0)  {
+             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+             } else {
+             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';  
+             }
+   
+             this.i = i;
+   
+             }
+           }   
+           }
+           this.i_aux[idx].valor = this.i;
+   
+           this.arrayTmp[idx] = this.i;
+
+           if (idx == 180) { this.series[0].data[0] = this.i;}
+           if (idx == 185) { this.series[1].data[0] = this.i; }
+           if (idx == 190) { this.series[2].data[0] = this.i; }
+
+           if (idx == 32) { this.series[0].data[1] = this.i; }
+           if (idx == 33) { this.series[1].data[1] = this.i; }
+           if (idx == 34) { this.series[2].data[1] = this.i; }
+
+           if (idx == 95) { this.series[0].data[2] = this.i; }
+           if (idx == 161) { this.series[1].data[2] = this.i; }
+           if (idx == 105) { this.series[2].data[2] = this.i; }
+
+           if (idx == 161) { this.series[0].data[3] = this.i; }
+           if (idx == 131) { this.series[1].data[3] = this.i; }
+           if (idx == 132) { this.series[2].data[3] = this.i; }
+
+           if (idx == 105) { this.series[0].data[4] = this.i; }
+           if (idx == 143) { this.series[1].data[4] = this.i; }
+           if (idx == 144) { this.series[2].data[4] = this.i; }
+
+   
+           this.componentKey += 1;
+   
+           return(this.i);
+           });
+   
+           return (this.i);     
+   
+         },
          async getData() {
    
-           this.getResultMunicipios();
    
+               this.getResult('regiao',true,'1',180,2);
+               this.getResult('regiao',true,'1',185,1);
+               this.getResult('regiao',true,'1',190,0);
+   
+               this.getResult('regiao',true,'2',32,2);
+               this.getResult('regiao',true,'2',33,1);
+               this.getResult('regiao',true,'2',34,0);
+               
+               this.getResult('regiao',true,'3',95,2);
+               this.getResult('regiao',true,'3',81,1);
+               this.getResult('regiao',true,'3',82,0);
+               
+               this.getResult('regiao',true,'5',161,2);
+               this.getResult('regiao',true,'5',131,1);
+               this.getResult('regiao',true,'5',132,0);
+   
+               this.getResult('regiao',true,'4',105,2);
+               this.getResult('regiao',true,'4',143,1);
+               this.getResult('regiao',true,'4',144,0);
+               
+   
+           var washData = await db.collection("users").get().then(function (querySnapshot) {
+   
+             let values = querySnapshot.docs;
+             let arrayData = [];
+             for (let i = 0; i < values.length; i++) {
+               let obj = {}
+               let data = values[i].data();
+               obj.quest = data.quest;
+               arrayData.push(obj);
+             }
+             return arrayData;
+           });
+   
+           console.log(washData)
+   
+           this.questions = washData;
+   
+           let responses = this.users.length;
+   
+           this.responses = responses.toString();
+   
+           this.loading = false;
    
    
          },
@@ -1752,16 +1848,14 @@
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
-       },
-   
-   computed:{
-    bc(){
-     return this.background || (this.dark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)')
-    }
-   },
-   
-   
-       
+         this.componentKey += 1;
+       }
+       ,
+       computed:{
+         bc(){
+           return this.background || (this.dark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)')
+         }
+       },    
      }
    
      window.document.body.onscroll = function() {
@@ -1772,7 +1866,8 @@
          mybutton.style.display = "none";
        }
      }
-     
+   
+   
    
    
 </script>
@@ -1904,8 +1999,15 @@
    #myBtn:hover {
    content: url('https://api.iconify.design/mdi:arrow-up-bold-circle.svg?height=54&color=blue');
    }
-   thead {
-   display:none;
+   #meuMenu {
+   background:#345;
+   width:100%;
+   padding:20px;
+   margin-top: 100px;
+   }
+   .fixar {
+   position:fixed;
+   margin-top: 0px !important;
    }
    .loading-screen {
    display: flex;
