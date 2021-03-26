@@ -36,6 +36,11 @@ export default [
     view: 'Charts'
   },
   {
+    path: '/chartsestado',
+    name: 'Gráficos Estado',
+    view: 'ChartsEstado'
+  },
+  {
     path: '/results',
     name: 'Painel de Resultados',
     view: 'Results'

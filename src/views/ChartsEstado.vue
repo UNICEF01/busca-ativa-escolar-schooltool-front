@@ -100,8 +100,9 @@
                      <div v-for="group in pageOfItems" :key="group.id">  
                         <v-form ref="form_research" lazy-validation>
                            <apexchart
+                           ref="realtimeChart" 
                            width="1500px" 
-                           height="500px" 
+                           height="1500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series"
@@ -145,14 +146,17 @@
             plotOptions: {
                 bar: {
                   horizontal: true,
+                  dataLabels: {
+                  position: 'top',
+                  },
                   columnWidth: '55%',
                   endingShape: 'rounded'
                 },
             },
             xaxis: {
-              categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
+              categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia']
             },
-            labels: ['1', '2', '3', '4', '5'],
+            labels: ['1', '2', '3', '4'],
             legend: {
               show: true,
               showForSingleSeries: false,
@@ -1592,27 +1596,107 @@
                this.pageOfItems = pageOfItems;
                let i = 1;
                let tamanho = 1;
-               
-               this.getResult('regiao',true,'1',180,2);
-               this.getResult('regiao',true,'1',185,1);
-               this.getResult('regiao',true,'1',190,0);
    
-               this.getResult('regiao',true,'2',32,2);
-               this.getResult('regiao',true,'2',33,1);
-               this.getResult('regiao',true,'2',34,0);
-               
-               this.getResult('regiao',true,'3',95,2);
-               this.getResult('regiao',true,'3',81,1);
-               this.getResult('regiao',true,'3',82,0);
-               
-               this.getResult('regiao',true,'5',161,2);
-               this.getResult('regiao',true,'5',131,1);
-               this.getResult('regiao',true,'5',132,0);
+               this.getResult('estado',false,'11',4,2);
+               this.getResult('estado',false,'11',5,1);
+               this.getResult('estado',false,'11',6,0);
+
+               this.getResult('estado',false,'12',7,2);
+               this.getResult('estado',false,'12',8,1);
+               this.getResult('estado',false,'12',9,0);
+
+               this.getResult('estado',false,'13',10,2);
+               this.getResult('estado',false,'13',11,1);
+               this.getResult('estado',false,'13',12,0);
+
+               this.getResult('estado',false,'14',20,2);
+               this.getResult('estado',false,'14',21,1);
+               this.getResult('estado',false,'14',22,0);
+
+               this.getResult('estado',false,'15',23,2);
+               this.getResult('estado',false,'15',24,1);
+               this.getResult('estado',false,'15',25,0);
+
+               this.getResult('estado',false,'16',26,2);
+               this.getResult('estado',false,'16',27,1);
+               this.getResult('estado',false,'16',28,0);
+
+               this.getResult('estado',false,'17',29,2);
+               this.getResult('estado',false,'17',30,1);
+               this.getResult('estado',false,'17',31,0);
    
-               this.getResult('regiao',true,'4',105,2);
-               this.getResult('regiao',true,'4',143,1);
-               this.getResult('regiao',true,'4',144,0);
-                             
+
+               this.getResult('estado',false,'21',45,2);
+               this.getResult('estado',false,'21',46,1);
+               this.getResult('estado',false,'21',47,0);
+
+               this.getResult('estado',false,'22',48,2);
+               this.getResult('estado',false,'22',49,1);
+               this.getResult('estado',false,'22',50,0);
+
+               this.getResult('estado',false,'23',51,2);
+               this.getResult('estado',false,'23',52,1);
+               this.getResult('estado',false,'23',53,0);
+
+               this.getResult('estado',false,'24',54,2);
+               this.getResult('estado',false,'24',55,1);
+               this.getResult('estado',false,'24',56,0);
+
+               this.getResult('estado',false,'25',57,2);
+               this.getResult('estado',false,'25',58,1);
+               this.getResult('estado',false,'25',59,0);
+
+               this.getResult('estado',false,'26',60,2);
+               this.getResult('estado',false,'26',61,1);
+               this.getResult('estado',false,'26',62,0);
+
+               this.getResult('estado',false,'27',63,2);
+               this.getResult('estado',false,'27',64,1);
+               this.getResult('estado',false,'27',65,0);
+
+               this.getResult('estado',false,'28',66,2);
+               this.getResult('estado',false,'28',67,1);
+               this.getResult('estado',false,'28',68,0);
+
+               this.getResult('estado',false,'29',69,2);
+               this.getResult('estado',false,'29',70,1);
+               this.getResult('estado',false,'29',71,0);
+
+               this.getResult('estado',false,'31',83,2);
+               this.getResult('estado',false,'31',84,1);
+               this.getResult('estado',false,'31',85,0);
+               this.getResult('estado',false,'32',86,2);
+               this.getResult('estado',false,'32',87,1);
+               this.getResult('estado',false,'32',88,0);
+               this.getResult('estado',false,'33',89,2);
+               this.getResult('estado',false,'33',90,1);
+               this.getResult('estado',false,'33',91,0);
+               this.getResult('estado',false,'35',92,2);
+               this.getResult('estado',false,'35',93,1);
+               this.getResult('estado',false,'35',94,0);;
+
+               this.getResult('estado',false,'50',113,2);
+               this.getResult('estado',false,'50',114,1);
+               this.getResult('estado',false,'50',115,0);
+               this.getResult('estado',false,'51',116,2);
+               this.getResult('estado',false,'51',117,1);
+               this.getResult('estado',false,'51',118,0);
+               this.getResult('estado',false,'52',119,2);
+               this.getResult('estado',false,'52',120,1);
+               this.getResult('estado',false,'52',121,0);
+               this.getResult('estado',false,'53',162,2);
+               this.getResult('estado',false,'53',163,1);
+               this.getResult('estado',false,'53',164,0);
+   
+               this.getResult('estado',false,'41',145,2);
+               this.getResult('estado',false,'41',146,1);
+               this.getResult('estado',false,'41',147,0);
+               this.getResult('estado',false,'42',148,2);
+               this.getResult('estado',false,'42',149,1);
+               this.getResult('estado',false,'42',150,0);
+               this.getResult('estado',false,'43',151,2);
+               this.getResult('estado',false,'43',152,1);
+               this.getResult('estado',false,'43',153,0);           
 
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
@@ -1764,27 +1848,116 @@
    
            this.arrayTmp[idx] = this.i;
 
-           if (idx == 180) { this.series[0].data[0] = this.i;}
-           if (idx == 185) { this.series[1].data[0] = this.i; }
-           if (idx == 190) { this.series[2].data[0] = this.i; }
+           if (idx == 4) { this.series[0].data[0] = this.i;}
+           this.componentKey += 1;
+           if (idx == 5) { this.series[1].data[0] = this.i; }
+           this.componentKey += 1;
+           if (idx == 6) { this.series[2].data[0] = this.i; }
+           this.componentKey += 1;
 
-           if (idx == 32) { this.series[0].data[1] = this.i; }
-           if (idx == 33) { this.series[1].data[1] = this.i; }
-           if (idx == 34) { this.series[2].data[1] = this.i; }
+           if (idx == 7) { this.series[0].data[1] = this.i; }
+           this.componentKey += 1;
+           if (idx == 8) { this.series[1].data[1] = this.i; }
+           this.componentKey += 1;
+           if (idx == 9) { this.series[2].data[1] = this.i; }
+           this.componentKey += 1;
 
-           if (idx == 95) { this.series[0].data[2] = this.i; }
-           if (idx == 161) { this.series[1].data[2] = this.i; }
-           if (idx == 105) { this.series[2].data[2] = this.i; }
+           if (idx == 10) { this.series[0].data[2] = this.i; }
+           this.componentKey += 1;
+           if (idx == 11) { this.series[1].data[2] = this.i; }
+           this.componentKey += 1;
+           if (idx == 12) { this.series[2].data[2] = this.i; }
+           this.componentKey += 1;
+           
+           if (idx == 20) { this.series[0].data[3] = this.i; }
+           this.componentKey += 1;
+           if (idx == 21) { this.series[1].data[3] = this.i; }
+           this.componentKey += 1;
+           if (idx == 22) { this.series[2].data[3] = this.i; }
+           this.componentKey += 1;
 
-           if (idx == 161) { this.series[0].data[3] = this.i; }
-           if (idx == 131) { this.series[1].data[3] = this.i; }
-           if (idx == 132) { this.series[2].data[3] = this.i; }
+           if (idx == 23) { this.series[0].data[4] = this.i; }
+           this.componentKey += 1;
+           if (idx == 24) { this.series[1].data[4] = this.i; }
+           this.componentKey += 1;
+           if (idx == 25) { this.series[2].data[4] = this.i; }
+           this.componentKey += 1;
 
-           if (idx == 105) { this.series[0].data[4] = this.i; }
-           if (idx == 143) { this.series[1].data[4] = this.i; }
-           if (idx == 144) { this.series[2].data[4] = this.i; }
+           if (idx == 26) { this.series[0].data[5] = this.i; }
+           this.componentKey += 1;
+           if (idx == 27) { this.series[1].data[5] = this.i; }
+           this.componentKey += 1;
+           if (idx == 28) { this.series[2].data[5] = this.i; }
+           this.componentKey += 1;
 
-   
+           if (idx == 29) { this.series[0].data[6] = this.i; }
+           this.componentKey += 1;
+           if (idx == 30) { this.series[1].data[6] = this.i; }
+           this.componentKey += 1;
+           if (idx == 31) { this.series[2].data[6] = this.i; }
+           this.componentKey += 1;
+           
+           if (idx == 45) { this.series[0].data[7] = this.i; }
+           this.componentKey += 1;
+           if (idx == 46) { this.series[1].data[7] = this.i; }
+           this.componentKey += 1;
+           if (idx == 47) { this.series[2].data[7] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 48) { this.series[0].data[8] = this.i; }
+           this.componentKey += 1;
+           if (idx == 49) { this.series[1].data[8] = this.i; }
+           this.componentKey += 1;
+           if (idx == 50) { this.series[2].data[8] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 51) { this.series[0].data[9] = this.i; }
+           this.componentKey += 1;
+           if (idx == 52) { this.series[1].data[9] = this.i; }
+           this.componentKey += 1;
+           if (idx == 53) { this.series[2].data[9] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 54) { this.series[0].data[10] = this.i; }
+           this.componentKey += 1;
+           if (idx == 55) { this.series[1].data[10] = this.i; }
+           this.componentKey += 1;
+           if (idx == 56) { this.series[2].data[10] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 57) { this.series[0].data[11] = this.i; }
+           this.componentKey += 1;
+           if (idx == 58) { this.series[1].data[11] = this.i; }
+           this.componentKey += 1;
+           if (idx == 59) { this.series[2].data[11] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 60) { this.series[0].data[12] = this.i; }
+           this.componentKey += 1;
+           if (idx == 61) { this.series[1].data[12] = this.i; }
+           this.componentKey += 1;
+           if (idx == 62) { this.series[2].data[12] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 63) { this.series[0].data[13] = this.i; }
+           this.componentKey += 1;
+           if (idx == 64) { this.series[1].data[13] = this.i; }
+           this.componentKey += 1;
+           if (idx == 65) { this.series[2].data[13] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 66) { this.series[0].data[14] = this.i; }
+           this.componentKey += 1;
+           if (idx == 67) { this.series[1].data[14] = this.i; }
+           this.componentKey += 1;
+           if (idx == 68) { this.series[2].data[14] = this.i; }
+           this.componentKey += 1;
+
+           if (idx == 69) { this.series[0].data[15] = this.i; }
+           this.componentKey += 1;
+           if (idx == 70) { this.series[1].data[15] = this.i; }
+           this.componentKey += 1;
+           if (idx == 71) { this.series[2].data[15] = this.i; }
            this.componentKey += 1;
    
            return(this.i);

@@ -42,7 +42,6 @@
                   </v-flex>
                </v-layout>
             </v-container>
-            
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
@@ -65,7 +64,7 @@
                                     style="align-self: center"
                                     v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+group.id+'</center><br></b>'+group.answer"
                                     ></span>
-                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id" :key="componentKey">
+                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id">
                               </v-flex>
                               <v-layout wrap>
                                  <v-flex md4 v-for="item in group.response">
@@ -84,9 +83,203 @@
                   </div>
                </div>
             </template>
-           
+            <template >
+               <div class="card text-center m-3" >
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9;">Norte</td>
+                                    <td style="padding:12px;text-align:center;color:white;background-color:#A9A9A9;" :key="componentKey">{{ arrayTmp[180] }}  </td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: '11'} }">Rondônia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[13] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;"  @click="setUf(12)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 12 } }">Acre</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[14] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(13)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 13 } }">Amazonas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[15] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(14)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 14 } }">Roraima</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[182] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(15)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 15 } }">Pará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[17] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(16)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 16 } }">Amapá</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[18] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(17)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 17 } }">Tocatins</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[19] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Nordeste</td>
+                                    <td style="padding:12px 18px;;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[32] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[33] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(22)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 22 } }">Piauí</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[34] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(23)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 23 } }">Ceará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[35] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(24)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 24 } }">Rio Grande do Norte</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[36] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(25)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 25 } }">Paraíba</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[37] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(26)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 26 } }">Pernambuco</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[38] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(27)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 27 } }">Alagoas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[39] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(28)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 28 } }">Sergipe</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[40] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(29)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 29 } }">Bahia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[41] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;color:white;background-color:#A9A9A9">Sudeste</td>
+                                    <td style="padding:12px 17px;;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[95] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[96] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(32)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 32 } }">Espírito Santo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[97] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(33)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 33 } }">Rio de Janeiro</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[98] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(35)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 35 } }">São Paulo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[99] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Centro Oeste</td>
+                                    <td style="padding:12px 22px;;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[161] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[181] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(51)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 51 } }">Mato Grosso</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[183] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(52)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 52 } }">Goiás</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[173] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(53)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 53 } }">Distrito Federal</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[176] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Sul</td>
+                                    <td style="padding:12px 22px;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[105] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[106] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(42)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 42 } }">Santa Catarina</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[107] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(43)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 43 } }">Rio Grande do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center">{{ arrayTmp[108] }}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
+                  </div>
+               </div>
+            </template>
          </v-flex>
-
          <v-flex
             sm8
             xs12
@@ -94,19 +287,209 @@
             lg8>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-
-               <div class="card text-center m-3" style="margin-left:-224px!important">
+               <div class="card text-center m-3">
                   <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">  
+                     <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
-                           <apexchart
-                           width="1500px" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series"
-                           :key="componentKey"/>
-                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px">{{ arrayTmp[1] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[2] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9">{{ arrayTmp[3] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[4] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[5] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[6] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[7] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[8] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[9] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[10] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[11] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[12] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[20] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[21] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[22] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[23] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[24] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[25] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[26] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[27] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[28] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[29] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[30] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[31] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px">{{ arrayTmp[42] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[43] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[44] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[45] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[46] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[47] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[48] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[49] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[50] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[51] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[52] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[53] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center">{{ arrayTmp[54] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[55] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[56] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[57] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[58] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[59] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[60] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[61] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[62] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[63] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[64] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[65] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[66] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[67] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[68] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[69] }}</td>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[70] }}</td>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[71] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px">{{ arrayTmp[80] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[81] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[82] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[83] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[84] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[85] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[86] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[87] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[88] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[89] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[90] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[91] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[92] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[93] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[94] }}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
+               <div class="card-body">
+                  <div v-for="group in pageOfItems" :key="group.id">
+                     <v-form ref="form_research" lazy-validation>
+                        <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                              <thead>
+                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
+                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[130] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[130] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[132] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center">{{ arrayTmp[113] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[114] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[115] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[116] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[117] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[118] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[119] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[120] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[121] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[162] }}</td>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[163] }}</td>
+                                    <td style="padding:11px 8px;text-align:center">{{ arrayTmp[164] }}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                     </v-form>
+                     </div>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                              <thead>
+                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
+                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[160] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[143] }}</td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;">{{ arrayTmp[144] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[145] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[146] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[147] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[148] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[149] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[150] }}</td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center">{{ arrayTmp[151] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[152] }}</td>
+                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[160] }}</td>
+                                 </tr>
+                              </tbody>
+                           </table>
                         </v-form>
                      </div>
                   </div>
@@ -137,75 +520,12 @@
      export default {
        data() {
          return {
-           arrayTmp: [],
-           chartOptions: {
-            chart: {
-              id: 'vuechart-example'
-            },
-            plotOptions: {
-                bar: {
-                  horizontal: true,
-                  columnWidth: '55%',
-                  endingShape: 'rounded'
-                },
-            },
-            xaxis: {
-              categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
-            },
-            labels: ['1', '2', '3', '4', '5'],
-            legend: {
-              show: true,
-              showForSingleSeries: false,
-              showForNullSeries: true,
-              showForZeroSeries: true,
-              position: 'bottom',
-              horizontalAlign: 'center', 
-              floating: false,
-              fontSize: '12px',
-              fontFamily: 'Helvetica, Arial',
-              fontWeight: 400,
-              formatter: undefined,
-              inverseOrder: false,
-              width: undefined,
-              height: undefined,
-              tooltipHoverFormatter: undefined,
-              offsetX: 0,
-              offsetY: 0,
-              labels: {
-                  colors: undefined,
-                  useSeriesColors: false
-              },
-            markers: {
-                width: 12,
-                height: 12,
-                strokeWidth: 0,
-                strokeColor: '#000',
-                fillColors: undefined,
-                radius: 12,
-                customHTML: function() {
-                  return '<br/>'
-                },
-                onClick: undefined,
-                offsetX: 0,
-                offsetY: 0
-            }
-            }
-          },
-          series: [{
-              name: 'Sim',
-              data: []
-            }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
-              data: []
-            }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
-              data: []
-            }],
            grupo: 0,
            pergunta: 0,
            index_pergunta: 0,
            combined: [],
            pageOfItems: [],
+           arrayTmp: [],
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
@@ -1592,28 +1912,152 @@
                this.pageOfItems = pageOfItems;
                let i = 1;
                let tamanho = 1;
-               
-               this.getResult('regiao',true,'1',180,2);
-               this.getResult('regiao',true,'1',185,1);
-               this.getResult('regiao',true,'1',190,0);
+               this.getResult('regiao',true,'1',180,1);
+               this.getResult('estado',true,'11',13,1);
+               this.getResult('estado',true,'12',14,1);
+               this.getResult('estado',true,'13',15,1);
+               this.getResult('estado',true,'14',182,1);
+               this.getResult('estado',true,'15',17,1);
+               this.getResult('estado',true,'16',18,1);
+               this.getResult('estado',true,'17',19,1);
+               this.getResult('estado',true,'16',18,1);
+               this.getResult('estado',true,'17',19,1);
    
-               this.getResult('regiao',true,'2',32,2);
-               this.getResult('regiao',true,'2',33,1);
-               this.getResult('regiao',true,'2',34,0);
-               
-               this.getResult('regiao',true,'3',95,2);
-               this.getResult('regiao',true,'3',81,1);
-               this.getResult('regiao',true,'3',82,0);
-               
-               this.getResult('regiao',true,'5',161,2);
-               this.getResult('regiao',true,'5',131,1);
-               this.getResult('regiao',true,'5',132,0);
+               this.getResult('regiao',true,'2',32,1);
+               this.getResult('estado',true,'21',33,1);
+               this.getResult('estado',true,'22',34,1);
+               this.getResult('estado',true,'23',35,1);
+               this.getResult('estado',true,'23',35,1);
+               this.getResult('estado',true,'24',36,1);
+               this.getResult('estado',true,'25',37,1);
+               this.getResult('estado',true,'26',38,1);
+               this.getResult('estado',true,'27',39,1);
+               this.getResult('estado',true,'28',40,1);
+               this.getResult('estado',true,'29',41,1);
    
-               this.getResult('regiao',true,'4',105,2);
-               this.getResult('regiao',true,'4',143,1);
-               this.getResult('regiao',true,'4',144,0);
-                             
-
+               this.getResult('regiao',true,'3',95,1);
+               this.getResult('estado',true,'31',96,1);
+               this.getResult('estado',true,'32',97,1);
+               this.getResult('estado',true,'33',98,1);
+               this.getResult('estado',true,'35',99,1);
+   
+               this.getResult('regiao',true,'5',161,1);
+               this.getResult('estado',true,'50',181,1);
+               this.getResult('estado',true,'51',183,1);
+               this.getResult('estado',true,'52',173,1);
+               this.getResult('estado',true,'53',176,1);
+   
+               this.getResult('regiao',true,'4',105,1);
+               this.getResult('estado',true,'41',106,1);
+               this.getResult('estado',true,'42',107,1);
+               this.getResult('estado',true,'43',108,1);
+   
+               this.getResult('regiao',false,'1',1,2);
+               this.getResult('regiao',false,'1',2,1);
+               this.getResult('regiao',false,'1',3,0);
+   
+               this.getResult('estado',false,'11',4,2);
+               this.getResult('estado',false,'11',5,1);
+               this.getResult('estado',false,'11',6,0);
+   
+               this.getResult('estado',false,'12',7,2);
+               this.getResult('estado',false,'12',8,1);
+               this.getResult('estado',false,'12',9,0);
+   
+               this.getResult('estado',false,'13',10,2);
+               this.getResult('estado',false,'13',11,1);
+               this.getResult('estado',false,'13',12,0);
+   
+               this.getResult('estado',false,'14',20,2);
+               this.getResult('estado',false,'14',21,1);
+               this.getResult('estado',false,'14',22,0);
+   
+               this.getResult('estado',false,'15',23,2);
+               this.getResult('estado',false,'15',24,1);
+               this.getResult('estado',false,'15',25,0);
+   
+               this.getResult('estado',false,'16',26,2);
+               this.getResult('estado',false,'16',27,1);
+               this.getResult('estado',false,'16',28,0);
+   
+               this.getResult('estado',false,'17',29,2);
+               this.getResult('estado',false,'17',30,1);
+               this.getResult('estado',false,'17',31,0);
+   
+               this.getResult('regiao',false,'2',42,2);
+               this.getResult('regiao',false,'2',43,1);
+               this.getResult('regiao',false,'2',44,0);
+               this.getResult('estado',false,'21',45,2);
+               this.getResult('estado',false,'21',46,1);
+               this.getResult('estado',false,'21',47,0);
+               this.getResult('estado',false,'22',48,2);
+               this.getResult('estado',false,'22',49,1);
+               this.getResult('estado',false,'22',50,0);
+               this.getResult('estado',false,'23',51,2);
+               this.getResult('estado',false,'23',52,1);
+               this.getResult('estado',false,'23',53,0);
+               this.getResult('estado',false,'24',54,2);
+               this.getResult('estado',false,'24',55,1);
+               this.getResult('estado',false,'24',56,0);
+               this.getResult('estado',false,'25',57,2);
+               this.getResult('estado',false,'25',58,1);
+               this.getResult('estado',false,'25',59,0);
+               this.getResult('estado',false,'26',60,2);
+               this.getResult('estado',false,'26',61,1);
+               this.getResult('estado',false,'26',62,0);
+               this.getResult('estado',false,'27',63,2);
+               this.getResult('estado',false,'27',64,1);
+               this.getResult('estado',false,'27',65,0);
+               this.getResult('estado',false,'28',66,2);
+               this.getResult('estado',false,'28',67,1);
+               this.getResult('estado',false,'28',68,0);
+               this.getResult('estado',false,'29',69,2);
+               this.getResult('estado',false,'29',70,1);
+               this.getResult('estado',false,'29',71,0);
+               this.getResult('regiao',false,'3',80,2);
+               this.getResult('regiao',false,'3',81,1);
+               this.getResult('regiao',false,'3',82,0);
+               this.getResult('estado',false,'31',83,2);
+               this.getResult('estado',false,'31',84,1);
+               this.getResult('estado',false,'31',85,0);
+               this.getResult('estado',false,'32',86,2);
+               this.getResult('estado',false,'32',87,1);
+               this.getResult('estado',false,'32',88,0);
+               this.getResult('estado',false,'33',89,2);
+               this.getResult('estado',false,'33',90,1);
+               this.getResult('estado',false,'33',91,0);
+               this.getResult('estado',false,'35',92,2);
+               this.getResult('estado',false,'35',93,1);
+               this.getResult('estado',false,'35',94,0);
+               this.getResult('regiao',false,'5',130,2);
+               this.getResult('regiao',false,'5',131,1);
+               this.getResult('regiao',false,'5',132,0);
+               this.getResult('estado',false,'50',113,2);
+               this.getResult('estado',false,'50',114,1);
+               this.getResult('estado',false,'50',115,0);
+               this.getResult('estado',false,'51',116,2);
+               this.getResult('estado',false,'51',117,1);
+               this.getResult('estado',false,'51',118,0);
+               this.getResult('estado',false,'52',119,2);
+               this.getResult('estado',false,'52',120,1);
+               this.getResult('estado',false,'52',121,0);
+   
+               this.getResult('estado',false,'53',162,2);
+               this.getResult('estado',false,'53',163,1);
+               this.getResult('estado',false,'53',164,0);
+   
+               this.getResult('regiao',false,'4',160,2);
+               this.getResult('regiao',false,'4',143,1);
+               this.getResult('regiao',false,'4',144,0);
+               this.getResult('estado',false,'41',145,2);
+               this.getResult('estado',false,'41',146,1);
+               this.getResult('estado',false,'41',147,0);
+               this.getResult('estado',false,'42',148,2);
+               this.getResult('estado',false,'42',149,1);
+               this.getResult('estado',false,'42',150,0);
+               this.getResult('estado',false,'43',151,2);
+               this.getResult('estado',false,'43',152,1);
+               this.getResult('estado',false,'43',153,0);
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
                    if (this.grupo==0) {
@@ -1674,7 +2118,7 @@
          getResult2(tipo,geral,info,idx,resp) {
            return(0);
          },
-         async getResult(tipo,geral,info,idx,resp) {
+         getResult(tipo,geral,info,idx,resp) {
    
            var filtroGeo;
    
@@ -1723,7 +2167,7 @@
            }
            });
    
-           let query = await users.then((users) => {
+           users.then((users) => {
            for (let user of users) {
    
            if (typeof user.quest == 'undefined') { flag = 1; } else { flag = 0; }
@@ -1750,9 +2194,9 @@
              }
              
              if (flag == 0)  {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+             ((user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
              } else {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';  
+             ((user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';
              }
    
              this.i = i;
@@ -1763,29 +2207,9 @@
            this.i_aux[idx].valor = this.i;
    
            this.arrayTmp[idx] = this.i;
-
-           if (idx == 180) { this.series[0].data[0] = this.i;}
-           if (idx == 185) { this.series[1].data[0] = this.i; }
-           if (idx == 190) { this.series[2].data[0] = this.i; }
-
-           if (idx == 32) { this.series[0].data[1] = this.i; }
-           if (idx == 33) { this.series[1].data[1] = this.i; }
-           if (idx == 34) { this.series[2].data[1] = this.i; }
-
-           if (idx == 95) { this.series[0].data[2] = this.i; }
-           if (idx == 161) { this.series[1].data[2] = this.i; }
-           if (idx == 105) { this.series[2].data[2] = this.i; }
-
-           if (idx == 161) { this.series[0].data[3] = this.i; }
-           if (idx == 131) { this.series[1].data[3] = this.i; }
-           if (idx == 132) { this.series[2].data[3] = this.i; }
-
-           if (idx == 105) { this.series[0].data[4] = this.i; }
-           if (idx == 143) { this.series[1].data[4] = this.i; }
-           if (idx == 144) { this.series[2].data[4] = this.i; }
-
    
            this.componentKey += 1;
+   
    
            return(this.i);
            });
@@ -1795,27 +2219,152 @@
          },
          async getData() {
    
+               this.getResult('regiao',true,'1',180,1);
+               this.getResult('estado',true,'11',13,1);
+               this.getResult('estado',true,'12',14,1);
+               this.getResult('estado',true,'13',15,1);
+               this.getResult('estado',true,'14',182,1);
+               this.getResult('estado',true,'15',17,1);
+               this.getResult('estado',true,'16',18,1);
+               this.getResult('estado',true,'17',19,1);
+               this.getResult('estado',true,'16',18,1);
+               this.getResult('estado',true,'17',19,1);
    
-               this.getResult('regiao',true,'1',180,2);
-               this.getResult('regiao',true,'1',185,1);
-               this.getResult('regiao',true,'1',190,0);
+               this.getResult('regiao',true,'2',32,1);
+               this.getResult('estado',true,'21',33,1);
+               this.getResult('estado',true,'22',34,1);
+               this.getResult('estado',true,'23',35,1);
+               this.getResult('estado',true,'23',35,1);
+               this.getResult('estado',true,'24',36,1);
+               this.getResult('estado',true,'25',37,1);
+               this.getResult('estado',true,'26',38,1);
+               this.getResult('estado',true,'27',39,1);
+               this.getResult('estado',true,'28',40,1);
+               this.getResult('estado',true,'29',41,1);
    
-               this.getResult('regiao',true,'2',32,2);
-               this.getResult('regiao',true,'2',33,1);
-               this.getResult('regiao',true,'2',34,0);
-               
-               this.getResult('regiao',true,'3',95,2);
-               this.getResult('regiao',true,'3',81,1);
-               this.getResult('regiao',true,'3',82,0);
-               
-               this.getResult('regiao',true,'5',161,2);
-               this.getResult('regiao',true,'5',131,1);
-               this.getResult('regiao',true,'5',132,0);
+               this.getResult('regiao',true,'3',95,1);
+               this.getResult('estado',true,'31',96,1);
+               this.getResult('estado',true,'32',97,1);
+               this.getResult('estado',true,'33',98,1);
+               this.getResult('estado',true,'35',99,1);
    
-               this.getResult('regiao',true,'4',105,2);
-               this.getResult('regiao',true,'4',143,1);
-               this.getResult('regiao',true,'4',144,0);
-               
+               this.getResult('regiao',true,'5',161,1);
+               this.getResult('estado',true,'50',181,1);
+               this.getResult('estado',true,'51',183,1);
+               this.getResult('estado',true,'52',173,1);
+               this.getResult('estado',true,'53',176,1);
+   
+               this.getResult('regiao',true,'4',105,1);
+               this.getResult('estado',true,'41',106,1);
+               this.getResult('estado',true,'42',107,1);
+               this.getResult('estado',true,'43',108,1);
+   
+               this.getResult('regiao',false,'1',1,2);
+               this.getResult('regiao',false,'1',2,1);
+               this.getResult('regiao',false,'1',3,0);
+   
+               this.getResult('estado',false,'11',4,2);
+               this.getResult('estado',false,'11',5,1);
+               this.getResult('estado',false,'11',6,0);
+   
+               this.getResult('estado',false,'12',7,2);
+               this.getResult('estado',false,'12',8,1);
+               this.getResult('estado',false,'12',9,0);
+   
+               this.getResult('estado',false,'13',10,2);
+               this.getResult('estado',false,'13',11,1);
+               this.getResult('estado',false,'13',12,0);
+   
+               this.getResult('estado',false,'14',20,2);
+               this.getResult('estado',false,'14',21,1);
+               this.getResult('estado',false,'14',22,0);
+   
+               this.getResult('estado',false,'15',23,2);
+               this.getResult('estado',false,'15',24,1);
+               this.getResult('estado',false,'15',25,0);
+   
+               this.getResult('estado',false,'16',26,2);
+               this.getResult('estado',false,'16',27,1);
+               this.getResult('estado',false,'16',28,0);
+   
+               this.getResult('estado',false,'17',29,2);
+               this.getResult('estado',false,'17',30,1);
+               this.getResult('estado',false,'17',31,0);
+   
+               this.getResult('regiao',false,'2',42,2);
+               this.getResult('regiao',false,'2',43,1);
+               this.getResult('regiao',false,'2',44,0);
+               this.getResult('estado',false,'21',45,2);
+               this.getResult('estado',false,'21',46,1);
+               this.getResult('estado',false,'21',47,0);
+               this.getResult('estado',false,'22',48,2);
+               this.getResult('estado',false,'22',49,1);
+               this.getResult('estado',false,'22',50,0);
+               this.getResult('estado',false,'23',51,2);
+               this.getResult('estado',false,'23',52,1);
+               this.getResult('estado',false,'23',53,0);
+               this.getResult('estado',false,'24',54,2);
+               this.getResult('estado',false,'24',55,1);
+               this.getResult('estado',false,'24',56,0);
+               this.getResult('estado',false,'25',57,2);
+               this.getResult('estado',false,'25',58,1);
+               this.getResult('estado',false,'25',59,0);
+               this.getResult('estado',false,'26',60,2);
+               this.getResult('estado',false,'26',61,1);
+               this.getResult('estado',false,'26',62,0);
+               this.getResult('estado',false,'27',63,2);
+               this.getResult('estado',false,'27',64,1);
+               this.getResult('estado',false,'27',65,0);
+               this.getResult('estado',false,'28',66,2);
+               this.getResult('estado',false,'28',67,1);
+               this.getResult('estado',false,'28',68,0);
+               this.getResult('estado',false,'29',69,2);
+               this.getResult('estado',false,'29',70,1);
+               this.getResult('estado',false,'29',71,0);
+               this.getResult('regiao',false,'3',80,2);
+               this.getResult('regiao',false,'3',81,1);
+               this.getResult('regiao',false,'3',82,0);
+               this.getResult('estado',false,'31',83,2);
+               this.getResult('estado',false,'31',84,1);
+               this.getResult('estado',false,'31',85,0);
+               this.getResult('estado',false,'32',86,2);
+               this.getResult('estado',false,'32',87,1);
+               this.getResult('estado',false,'32',88,0);
+               this.getResult('estado',false,'33',89,2);
+               this.getResult('estado',false,'33',90,1);
+               this.getResult('estado',false,'33',91,0);
+               this.getResult('estado',false,'35',92,2);
+               this.getResult('estado',false,'35',93,1);
+               this.getResult('estado',false,'35',94,0);
+               this.getResult('regiao',false,'5',130,2);
+               this.getResult('regiao',false,'5',131,1);
+               this.getResult('regiao',false,'5',132,0);
+               this.getResult('estado',false,'50',113,2);
+               this.getResult('estado',false,'50',114,1);
+               this.getResult('estado',false,'50',115,0);
+               this.getResult('estado',false,'51',116,2);
+               this.getResult('estado',false,'51',117,1);
+               this.getResult('estado',false,'51',118,0);
+               this.getResult('estado',false,'52',119,2);
+               this.getResult('estado',false,'52',120,1);
+               this.getResult('estado',false,'52',121,0);
+   
+               this.getResult('estado',false,'53',162,2);
+               this.getResult('estado',false,'53',163,1);
+               this.getResult('estado',false,'53',164,0);
+   
+               this.getResult('regiao',false,'4',160,2);
+               this.getResult('regiao',false,'4',143,1);
+               this.getResult('regiao',false,'4',144,0);
+               this.getResult('estado',false,'41',145,2);
+               this.getResult('estado',false,'41',146,1);
+               this.getResult('estado',false,'41',147,0);
+               this.getResult('estado',false,'42',148,2);
+               this.getResult('estado',false,'42',149,1);
+               this.getResult('estado',false,'42',150,0);
+               this.getResult('estado',false,'43',151,2);
+               this.getResult('estado',false,'43',152,1);
+               this.getResult('estado',false,'43',153,0);
    
            var washData = await db.collection("users").get().then(function (querySnapshot) {
    
@@ -1849,6 +2398,7 @@
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
          this.componentKey += 1;
+         console.log('to aqui olha');
        }
        ,
        computed:{
