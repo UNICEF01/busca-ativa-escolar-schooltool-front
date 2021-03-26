@@ -185,7 +185,7 @@
                 customHTML: function() {
                   return '<br/>'
                 },
-                onClick: undefined,
+                //onClick: undefined,
                 offsetX: 0,
                 offsetY: 0
             }
