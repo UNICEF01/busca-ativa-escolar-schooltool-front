@@ -153,6 +153,21 @@
                   endingShape: 'rounded'
                 },
             },
+            tooltip: {
+                enabled: false,
+                followCursor: true,
+                x: {
+                    format: 'dd MMM',
+                    formatter: undefined,
+                },
+
+                yaxis: {
+                    labels: {
+                        formatter: (value) => { return val + "%" },
+                    },
+                },
+
+            },
             xaxis: {
               categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia']
             },
@@ -1807,7 +1822,7 @@
            }
            });
    
-           let query = await users.then((users) => {
+           users.then((users) => {
            for (let user of users) {
    
            if (typeof user.quest == 'undefined') { flag = 1; } else { flag = 0; }
@@ -1849,114 +1864,67 @@
            this.arrayTmp[idx] = this.i;
 
            if (idx == 4) { this.series[0].data[0] = this.i;}
-           this.componentKey += 1;
            if (idx == 5) { this.series[1].data[0] = this.i; }
-           this.componentKey += 1;
            if (idx == 6) { this.series[2].data[0] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 7) { this.series[0].data[1] = this.i; }
-           this.componentKey += 1;
            if (idx == 8) { this.series[1].data[1] = this.i; }
-           this.componentKey += 1;
            if (idx == 9) { this.series[2].data[1] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 10) { this.series[0].data[2] = this.i; }
-           this.componentKey += 1;
            if (idx == 11) { this.series[1].data[2] = this.i; }
-           this.componentKey += 1;
            if (idx == 12) { this.series[2].data[2] = this.i; }
-           this.componentKey += 1;
            
            if (idx == 20) { this.series[0].data[3] = this.i; }
-           this.componentKey += 1;
            if (idx == 21) { this.series[1].data[3] = this.i; }
-           this.componentKey += 1;
            if (idx == 22) { this.series[2].data[3] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 23) { this.series[0].data[4] = this.i; }
-           this.componentKey += 1;
            if (idx == 24) { this.series[1].data[4] = this.i; }
-           this.componentKey += 1;
            if (idx == 25) { this.series[2].data[4] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 26) { this.series[0].data[5] = this.i; }
-           this.componentKey += 1;
            if (idx == 27) { this.series[1].data[5] = this.i; }
-           this.componentKey += 1;
            if (idx == 28) { this.series[2].data[5] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 29) { this.series[0].data[6] = this.i; }
-           this.componentKey += 1;
            if (idx == 30) { this.series[1].data[6] = this.i; }
-           this.componentKey += 1;
            if (idx == 31) { this.series[2].data[6] = this.i; }
-           this.componentKey += 1;
            
            if (idx == 45) { this.series[0].data[7] = this.i; }
-           this.componentKey += 1;
            if (idx == 46) { this.series[1].data[7] = this.i; }
-           this.componentKey += 1;
            if (idx == 47) { this.series[2].data[7] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 48) { this.series[0].data[8] = this.i; }
-           this.componentKey += 1;
            if (idx == 49) { this.series[1].data[8] = this.i; }
-           this.componentKey += 1;
            if (idx == 50) { this.series[2].data[8] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 51) { this.series[0].data[9] = this.i; }
-           this.componentKey += 1;
            if (idx == 52) { this.series[1].data[9] = this.i; }
-           this.componentKey += 1;
            if (idx == 53) { this.series[2].data[9] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 54) { this.series[0].data[10] = this.i; }
-           this.componentKey += 1;
            if (idx == 55) { this.series[1].data[10] = this.i; }
-           this.componentKey += 1;
            if (idx == 56) { this.series[2].data[10] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 57) { this.series[0].data[11] = this.i; }
-           this.componentKey += 1;
            if (idx == 58) { this.series[1].data[11] = this.i; }
-           this.componentKey += 1;
            if (idx == 59) { this.series[2].data[11] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 60) { this.series[0].data[12] = this.i; }
-           this.componentKey += 1;
            if (idx == 61) { this.series[1].data[12] = this.i; }
-           this.componentKey += 1;
            if (idx == 62) { this.series[2].data[12] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 63) { this.series[0].data[13] = this.i; }
-           this.componentKey += 1;
            if (idx == 64) { this.series[1].data[13] = this.i; }
-           this.componentKey += 1;
            if (idx == 65) { this.series[2].data[13] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 66) { this.series[0].data[14] = this.i; }
-           this.componentKey += 1;
            if (idx == 67) { this.series[1].data[14] = this.i; }
-           this.componentKey += 1;
            if (idx == 68) { this.series[2].data[14] = this.i; }
-           this.componentKey += 1;
 
            if (idx == 69) { this.series[0].data[15] = this.i; }
-           this.componentKey += 1;
            if (idx == 70) { this.series[1].data[15] = this.i; }
-           this.componentKey += 1;
            if (idx == 71) { this.series[2].data[15] = this.i; }
            this.componentKey += 1;
    
