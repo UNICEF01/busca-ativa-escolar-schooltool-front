@@ -31,6 +31,11 @@ export default [
     view: 'Quest'
   },
   {
+    path: '/charts2',
+    name: 'Gráficos',
+    view: 'Charts2'
+  },
+  {
     path: '/charts',
     name: 'Gráficos',
     view: 'Charts'

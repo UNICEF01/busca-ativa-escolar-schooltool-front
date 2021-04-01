@@ -144,7 +144,7 @@
             },
             plotOptions: {
                 bar: {
-                  horizontal: true,
+                  horizontal: false,
                   columnWidth: '55%',
                   endingShape: 'rounded'
                 },
@@ -1781,7 +1781,7 @@
 
            if (idx == 180) { this.series[0].data[0] = this.i;}
            if (idx == 185) { this.series[1].data[0] = this.i; }
-           if (idx == 190) { this.series[2].data[0] = this.i; }
+           if (idx == 190) { this.series[2].data[0] = this.i;; }
 
            if (idx == 32) { this.series[0].data[1] = this.i; }
            if (idx == 33) { this.series[1].data[1] = this.i; }
@@ -1789,7 +1789,7 @@
 
            if (idx == 95) { this.series[0].data[2] = this.i; }
            if (idx == 161) { this.series[1].data[2] = this.i; }
-           if (idx == 105) { this.series[2].data[2] = this.i; }
+           if (idx == 105) { this.series[2].data[2] = this.i;; }
 
            if (idx == 161) { this.series[0].data[3] = this.i; }
            if (idx == 131) { this.series[1].data[3] = this.i; }
