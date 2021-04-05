@@ -2407,7 +2407,7 @@ let userAdmin = localStorage.getItem("admin");
           return arrayData;
         });
 
-        console.log(washData)
+        console.log(washData[0]);
 
         this.questions = washData;
 

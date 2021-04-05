@@ -42,7 +42,6 @@
                   </v-flex>
                </v-layout>
             </v-container>
-            
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
@@ -65,7 +64,7 @@
                                     style="align-self: center"
                                     v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+group.id+'</center><br></b>'+group.answer"
                                     ></span>
-                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id" :key="componentKey">
+                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id">
                               </v-flex>
                               <v-layout wrap>
                                  <v-flex md4 v-for="item in group.response">
@@ -84,9 +83,205 @@
                   </div>
                </div>
             </template>
-           
+            <template >
+               <div class="card text-center m-3" >
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                       <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9;">Norte</td>
+                                    <!--<td style="padding:12px;text-align:center;color:white;background-color:#A9A9A9;" :key="componentKey">{{ arrayTmp[180] }}  </td> -->
+                                    <td style="padding:12px;text-align:center;color:white;background-color:#A9A9A9;" :key="componentKey"><div v-html="consultaQtd('1',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: '11'} }">Rondônia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('11',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;"  @click="setUf(12)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 12 } }">Acre</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('12',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(13)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 13 } }">Amazonas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('13',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(14)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 14 } }">Roraima</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('14',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(15)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 15 } }">Pará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('15',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(16)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 16 } }">Amapá</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('16',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(17)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 17 } }">Tocatins</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('17',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Nordeste</td>
+                                    <td style="padding:12px 18px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('2',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('21',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(22)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 22 } }">Piauí</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('22',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(23)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 23 } }">Ceará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('23',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(24)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 24 } }">Rio Grande do Norte</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('24',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(25)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 25 } }">Paraíba</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('25',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(26)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 26 } }">Pernambuco</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('26',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(27)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 27 } }">Alagoas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('27',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(28)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 28 } }">Sergipe</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('28',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(29)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 29 } }">Bahia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('29',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;color:white;background-color:#A9A9A9">Sudeste</td>
+                                    <td style="padding:12px 17px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('3',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('31',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(32)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 32 } }">Espírito Santo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('32',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(33)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 33 } }">Rio de Janeiro</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('33',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(35)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 35 } }">São Paulo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('35',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Centro Oeste</td>
+                                    <td style="padding:12px 22px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('5',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('50',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(51)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 51 } }">Mato Grosso</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('51',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(52)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 52 } }">Goiás</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('52',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(53)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 53 } }">Distrito Federal</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('53',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Sul</td>
+                                    <td style="padding:12px 22px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('4',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('41',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(42)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 42 } }">Santa Catarina</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('42',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(43)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 43 } }">Rio Grande do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('43',pergunta,'total')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
+                  </div>
+               </div>
+            </template>
          </v-flex>
-
          <v-flex
             sm8
             xs12
@@ -94,33 +289,210 @@
             lg8>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-
-               <div class="card text-center m-3" style="margin-left:-224px!important">
+               <div class="card text-center m-3">
                   <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">  
+                     <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
-                           <div class="scrollmenu" style="text-align:center">
-                           <apexchart
-                           ref="realtimeChart" 
-                           width="3000px" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series"
-                           :key="componentKey"/>
-                           </div>
-                           <br/><br/>
-                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('1',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('2',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('2',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('2',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('3',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('3',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('3',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'2')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
                         </v-form>
                      </div>
-                     <apexchart
-                           ref="realtimeChart" 
-                           width="100%" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series"
-                           :key="componentKey"/>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
+               <div class="card-body">
+                  <div v-for="group in pageOfItems" :key="group.id">
+                     <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                              <thead>
+                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
+                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'2')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                     </v-form>
+                     </div>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                              <thead>
+                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
+                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'2')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
                   </div>
                   <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
@@ -149,93 +521,14 @@
      export default {
        data() {
          return {
-           arrayTmp: [],
-           chartOptions: {
-            chart: {
-              id: 'vuechart-example'
-            },
-            plotOptions: {
-                bar: {
-                  horizontal: false,
-                  dataLabels: {
-                  position: 'top',
-                  },
-                  columnWidth: '55%',
-                  endingShape: 'rounded'
-                },
-            },
-            tooltip: {
-                enabled: false,
-                followCursor: true,
-                x: {
-                    format: 'dd MMM',
-                    formatter: undefined,
-                },
-
-                yaxis: {
-                    labels: {
-                        formatter: (value) => { return val + "%" },
-                    },
-                },
-
-            },
-            xaxis: {
-              categories: ['RN', 'AC', 'AM', 'RR', 'PA', 'AM', 'TO', 'MA', 'PI', 'CE', 'RN', 'PR', 'PE', 'AL', 'SE', 'BA', 'MG', 'ES', 'RJ', 'SP', 'MS', 'MT', 'GO', 'DF', 'PR', 'SC', 'RS']
-            },
-            labels: ['1', '2', '3', '4'],
-            legend: {
-              show: true,
-              showForSingleSeries: false,
-              showForNullSeries: true,
-              showForZeroSeries: true,
-              position: 'bottom',
-              horizontalAlign: 'center', 
-              floating: false,
-              fontSize: '12px',
-              fontFamily: 'Helvetica, Arial',
-              fontWeight: 400,
-              formatter: undefined,
-              inverseOrder: false,
-              width: undefined,
-              height: undefined,
-              tooltipHoverFormatter: undefined,
-              offsetX: 0,
-              offsetY: 0,
-              labels: {
-                  colors: undefined,
-                  useSeriesColors: false
-              },
-            markers: {
-                width: 12,
-                height: 12,
-                strokeWidth: 0,
-                strokeColor: '#000',
-                fillColors: undefined,
-                radius: 12,
-                customHTML: function() {
-                  return '<br/>'
-                },
-                onClick: undefined,
-                offsetX: 0,
-                offsetY: 0
-            }
-            }
-          },
-          series: [{
-              name: 'Sim',
-              data: []
-            }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
-              data: []
-            }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
-              data: []
-            }],
            grupo: 0,
+           valObj: [],
+           results: [],
            pergunta: 0,
            index_pergunta: 0,
            combined: [],
            pageOfItems: [],
+           arrayTmp: [],
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
@@ -1608,6 +1901,44 @@
    
    
        methods: {
+         consultaQtd(info,idpergunta,resp) {
+           let valObj = [];
+           switch (resp) {
+             case '0':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_0);
+             }
+             break;
+             case '1':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_1);
+             }
+             break;
+             case '2':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_2);
+             }
+             break;
+             case 'total':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.total; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].total);
+             }
+            break;
+           }
+            
+         },
            myFunction() {
          // `this` inside methods point to the Vue instance
    
@@ -1622,147 +1953,7 @@
                this.pageOfItems = pageOfItems;
                let i = 1;
                let tamanho = 1;
-   
-               this.getResult('estado',false,'11',4,2);
-               this.getResult('estado',false,'11',5,1);
-               this.getResult('estado',false,'11',6,0);
-
-               this.getResult('estado',false,'12',7,2);
-               this.getResult('estado',false,'12',8,1);
-               this.getResult('estado',false,'12',9,0);
-
-               this.getResult('estado',false,'13',10,2);
-               this.getResult('estado',false,'13',11,1);
-               this.getResult('estado',false,'13',12,0);
-
-               this.getResult('estado',false,'14',20,2);
-               this.getResult('estado',false,'14',21,1);
-               this.getResult('estado',false,'14',22,0);
-
-               /*
-
-               this.getResult('estado',false,'15',23,2);
-               this.getResult('estado',false,'15',24,1);
-               this.getResult('estado',false,'15',25,0);
-
-               this.getResult('estado',false,'16',26,2);
-               this.getResult('estado',false,'16',27,1);
-               this.getResult('estado',false,'16',28,0);
-
-               this.getResult('estado',false,'17',29,2);
-               this.getResult('estado',false,'17',30,1);
-               this.getResult('estado',false,'17',31,0);
-   
-
-               this.getResult('estado',false,'21',45,2);
-               this.getResult('estado',false,'21',46,1);
-               this.getResult('estado',false,'21',47,0);
-
-               this.getResult('estado',false,'22',48,2);
-               this.getResult('estado',false,'22',49,1);
-               this.getResult('estado',false,'22',50,0);
-
-               this.getResult('estado',false,'23',51,2);
-               this.getResult('estado',false,'23',52,1);
-               this.getResult('estado',false,'23',53,0);
-
-               this.getResult('estado',false,'24',54,2);
-               this.getResult('estado',false,'24',55,1);
-               this.getResult('estado',false,'24',56,0);
-
-               this.getResult('estado',false,'25',57,2);
-               this.getResult('estado',false,'25',58,1);
-               this.getResult('estado',false,'25',59,0);
-
-               this.getResult('estado',false,'26',60,2);
-               this.getResult('estado',false,'26',61,1);
-               this.getResult('estado',false,'26',62,0);
-
-               this.getResult('estado',false,'27',63,2);
-               this.getResult('estado',false,'27',64,1);
-               this.getResult('estado',false,'27',65,0);
-
-               this.getResult('estado',false,'28',66,2);
-               this.getResult('estado',false,'28',67,1);
-               this.getResult('estado',false,'28',68,0);
-
-               this.getResult('estado',false,'29',69,2);
-               this.getResult('estado',false,'29',70,1);
-               this.getResult('estado',false,'29',71,0);
-
-               this.getResult('estado',false,'31',83,2);
-               this.getResult('estado',false,'31',84,1);
-               this.getResult('estado',false,'31',85,0);
-               this.getResult('estado',false,'32',86,2);
-               this.getResult('estado',false,'32',87,1);
-               this.getResult('estado',false,'32',88,0);
-               this.getResult('estado',false,'33',89,2);
-               this.getResult('estado',false,'33',90,1);
-               this.getResult('estado',false,'33',91,0);
-               this.getResult('estado',false,'35',92,2);
-               this.getResult('estado',false,'35',93,1);
-               this.getResult('estado',false,'35',94,0);;
-
-               this.getResult('estado',false,'50',113,2);
-               this.getResult('estado',false,'50',114,1);
-               this.getResult('estado',false,'50',115,0);
-               this.getResult('estado',false,'51',116,2);
-               this.getResult('estado',false,'51',117,1);
-               this.getResult('estado',false,'51',118,0);
-               this.getResult('estado',false,'52',119,2);
-               this.getResult('estado',false,'52',120,1);
-               this.getResult('estado',false,'52',121,0);
-               this.getResult('estado',false,'53',162,2);
-               this.getResult('estado',false,'53',163,1);
-               this.getResult('estado',false,'53',164,0);
-   
-               this.getResult('estado',false,'41',145,2);
-               this.getResult('estado',false,'41',146,1);
-               this.getResult('estado',false,'41',147,0);
-               this.getResult('estado',false,'42',148,2);
-               this.getResult('estado',false,'42',149,1);
-               this.getResult('estado',false,'42',150,0);
-               this.getResult('estado',false,'43',151,2);
-               this.getResult('estado',false,'43',152,1);
-               this.getResult('estado',false,'43',153,0);
                
-               
-              this.getResult('estado',false,'43',155,0);
-              this.getResult('estado',false,'43',156,0);
-              this.getResult('estado',false,'43',157,0);
-              this.getResult('estado',false,'43',158,0);
-              this.getResult('estado',false,'43',159,0);
-              this.getResult('estado',false,'43',160,0);
-              this.getResult('estado',false,'43',161,0);
-              this.getResult('estado',false,'43',162,0);
-              this.getResult('estado',false,'43',163,0);
-              this.getResult('estado',false,'43',164,0);
-              this.getResult('estado',false,'43',165,0);
-              this.getResult('estado',false,'43',166,0);
-              this.getResult('estado',false,'43',167,0);
-              this.getResult('estado',false,'43',168,0);
-              this.getResult('estado',false,'43',169,0);
-              this.getResult('estado',false,'43',170,0);
-              this.getResult('estado',false,'43',171,0);
-              this.getResult('estado',false,'43',172,0);
-              this.getResult('estado',false,'43',173,0);
-              this.getResult('estado',false,'43',174,0);
-              this.getResult('estado',false,'43',175,0);
-              this.getResult('estado',false,'43',176,0);
-              this.getResult('estado',false,'43',177,0);
-              this.getResult('estado',false,'43',178,0);
-              this.getResult('estado',false,'43',179,0);
-              this.getResult('estado',false,'43',180,0);
-              this.getResult('estado',false,'43',181,0);
-              this.getResult('estado',false,'43',182,0);
-              this.getResult('estado',false,'43',183,0);
-              this.getResult('estado',false,'43',184,0);
-              this.getResult('estado',false,'43',185,0);
-              this.getResult('estado',false,'43',186,0);
-              this.getResult('estado',false,'43',187,0); */
-
-              this.series[0].data[0] = this.arrayTmp[4];
-              
 
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
@@ -1824,251 +2015,148 @@
          getResult2(tipo,geral,info,idx,resp) {
            return(0);
          },
-         async getResult(tipo,geral,info,idx,resp) {
-   
-           var filtroGeo;
-   
-           let uf = ufid.find((item) => item.value == info);
-   
-           switch (tipo) {
-             case 'regiao':
-             filtroGeo = '\`school.ibge_region_id\`';
-             break;
-             case 'estado':
-             filtroGeo = '\`school.ibge_uf_id\`';
-             break;
-             case 'municipio':
-             filtroGeo = '\`school.ibge_id\`';
-             break;
-             case 'escola':
-             filtroGeo = '\`school.id\`';
-             break;
-           }
-   
-           let users = fireSQL.query(`
-           SELECT *
-           FROM users
-           WHERE `+filtroGeo+`='`+info+`'
-           `);
-           
-   
-           let i = 0;
-           let flag = 0;
-           let tamanho = 0;
-           let grupo;
-   
-           users.then((users) => {
-           for (let user of users) {
-   
-             if (typeof user.quest !== 'undefined') {
-               for(let j = 0; j<user.quest.length; j++) {
-                 tamanho = j;
-                 for (let y = 0; y < user.quest[j].questions.length; y++) {
-                   if (user.quest[j].questions[y].id == this.pergunta) { grupo = j; }
-                 }
-   
-               }
-             }
-             
-           }
-           });
-   
-           await users.then((users) => {
-           for (let user of users) {
-   
-           if (typeof user.quest == 'undefined') { flag = 1; } else { flag = 0; }
-           if (user.school.quest_complete == 'N') { flag = 1; } else { flag = 0; }
-   
-           if (typeof user.quest !== 'undefined') {
-            if (!geral) {
-               
-             for (let y = 0; y < user.quest[grupo].questions.length; y++) {
-               if (user.quest[grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-             }
-             
-             if (flag == 0)  {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-             } else {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';  
-             }
-              this.i = i;
-   
-             } else {
-   
-               for (let y = 0; y < user.quest[grupo].questions.length; y++) {
-               if (user.quest[grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-             }
-             
-             if (flag == 0)  {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-             } else {
-             ((user.quest[grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[grupo].questions[this.index_pergunta].selected != null)) ? i : '';  
-             }
-   
-             this.i = i;
-   
-             }
-           }   
-           }
-           this.i_aux[idx].valor = this.i;
-   
-           this.arrayTmp[idx] = this.i;
-
-           if (idx == 4) { this.arrayTmp[4] = Math.floor((Math.random()*2) + 1)}
-           if (idx == 5) { this.arrayTmp[5] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 6) { this.arrayTmp[6] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 7) { this.arrayTmp[7] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 8) { this.arrayTmp[8] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 9) { this.arrayTmp[9] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 10) { this.arrayTmp[10] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 11) { this.arrayTmp[11] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 12) { this.arrayTmp[12] = Math.floor((Math.random()*2) + 1) }
-           
-           if (idx == 20) { this.arrayTmp[20] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 21) { this.arrayTmp[21] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 22) { this.arrayTmp[22] = Math.floor((Math.random()*2) + 1) }
-
-        /*   if (idx == 23) { this.series[0].data[4] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 24) { this.series[1].data[4] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 25) { this.series[2].data[4] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 26) { this.series[0].data[5] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 27) { this.series[1].data[5] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 28) { this.series[2].data[5] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 29) { this.series[0].data[6] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 30) { this.series[1].data[6] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 31) { this.series[2].data[6] = Math.floor((Math.random()*2) + 1) }
-           
-           if (idx == 45) { this.series[0].data[7] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 46) { this.series[1].data[7] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 47) { this.series[2].data[7] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 48) { this.series[0].data[8] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 49) { this.series[1].data[8] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 50) { this.series[2].data[8] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 51) { this.series[0].data[9] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 52) { this.series[1].data[9] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 53) { this.series[2].data[9] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 54) { this.series[0].data[10] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 55) { this.series[1].data[10] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 56) { this.series[2].data[10] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 57) { this.series[0].data[11] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 58) { this.series[1].data[11] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 59) { this.series[2].data[11] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 60) { this.series[0].data[12] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 61) { this.series[1].data[12] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 62) { this.series[2].data[12] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 63) { this.series[0].data[13] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 64) { this.series[1].data[13] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 65) { this.series[2].data[13] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 66) { this.series[0].data[14] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 67) { this.series[1].data[14] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 68) { this.series[2].data[14] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 69) { this.series[0].data[15] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 70) { this.series[1].data[15] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 71) { this.series[2].data[15] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 155) { this.series[0].data[16] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 156) { this.series[1].data[16] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 157) { this.series[2].data[16] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 158) { this.series[0].data[17] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 159) { this.series[1].data[17] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 160) { this.series[2].data[17] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 161) { this.series[0].data[18] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 162) { this.series[1].data[18] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 163) { this.series[2].data[18] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 164) { this.series[0].data[19] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 165) { this.series[1].data[19] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 166) { this.series[2].data[19] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 167) { this.series[0].data[20] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 168) { this.series[1].data[20] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 169) { this.series[2].data[20] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 170) { this.series[0].data[21] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 171) { this.series[1].data[21] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 172) { this.series[2].data[21] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 173) { this.series[0].data[22] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 174) { this.series[1].data[22] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 175) { this.series[2].data[22] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 176) { this.series[0].data[23] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 177) { this.series[1].data[23] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 178) { this.series[2].data[23] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 179) { this.series[0].data[24] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 180) { this.series[1].data[24] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 181) { this.series[2].data[24] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 182) { this.series[0].data[25] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 183) { this.series[1].data[25] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 184) { this.series[2].data[25] = Math.floor((Math.random()*2) + 1) }
-
-           if (idx == 185) { this.series[0].data[26] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 186) { this.series[1].data[26] = Math.floor((Math.random()*2) + 1) }
-           if (idx == 187) { this.series[2].data[26] = Math.floor((Math.random()*2) + 1) }
-           */
-
-   
-           return(this.i);
-           });
-   
-           return (this.i);     
-   
-         },
          async getData() {
-   
-   
-               this.getResult('regiao',true,'1',180,2);
-               this.getResult('regiao',true,'1',185,1);
-               this.getResult('regiao',true,'1',190,0);
-   
-               this.getResult('regiao',true,'2',32,2);
-               this.getResult('regiao',true,'2',33,1);
-               this.getResult('regiao',true,'2',34,0);
-               
-               this.getResult('regiao',true,'3',95,2);
-               this.getResult('regiao',true,'3',81,1);
-               this.getResult('regiao',true,'3',82,0);
-               
-               this.getResult('regiao',true,'5',161,2);
-               this.getResult('regiao',true,'5',131,1);
-               this.getResult('regiao',true,'5',132,0);
-   
-               this.getResult('regiao',true,'4',105,2);
-               this.getResult('regiao',true,'4',143,1);
-               this.getResult('regiao',true,'4',144,0);
-               
-   
-           var washData = await db.collection("users").get().then(function (querySnapshot) {
-   
+          
+          /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
+           let geoParaConsulta = [
+            {filtroGeo: 'school.ibge_region_id', info: '1'},
+            {filtroGeo: 'school.ibge_uf_id', info: '11'},
+            {filtroGeo: 'school.ibge_uf_id', info: '12'},
+            {filtroGeo: 'school.ibge_uf_id', info: '13'},
+            {filtroGeo: 'school.ibge_uf_id', info: '14'},
+            {filtroGeo: 'school.ibge_uf_id', info: '15'},
+            {filtroGeo: 'school.ibge_uf_id', info: '16'},
+            {filtroGeo: 'school.ibge_uf_id', info: '17'},
+            {filtroGeo: 'school.ibge_region_id', info: '2'},
+            {filtroGeo: 'school.ibge_uf_id', info: '21'},
+            {filtroGeo: 'school.ibge_uf_id', info: '22'},
+            {filtroGeo: 'school.ibge_uf_id', info: '23'},
+            {filtroGeo: 'school.ibge_uf_id', info: '24'},
+            {filtroGeo: 'school.ibge_uf_id', info: '25'},
+            {filtroGeo: 'school.ibge_uf_id', info: '26'},
+            {filtroGeo: 'school.ibge_uf_id', info: '27'},
+            {filtroGeo: 'school.ibge_uf_id', info: '28'},
+            {filtroGeo: 'school.ibge_uf_id', info: '29'},
+            {filtroGeo: 'school.ibge_region_id', info: '3'},
+            {filtroGeo: 'school.ibge_uf_id', info: '31'},
+            {filtroGeo: 'school.ibge_uf_id', info: '32'},
+            {filtroGeo: 'school.ibge_uf_id', info: '33'},
+            {filtroGeo: 'school.ibge_uf_id', info: '35'},
+            {filtroGeo: 'school.ibge_region_id', info: '4'},
+            {filtroGeo: 'school.ibge_uf_id', info: '41'},
+            {filtroGeo: 'school.ibge_uf_id', info: '42'},
+            {filtroGeo: 'school.ibge_uf_id', info: '43'},
+            {filtroGeo: 'school.ibge_region_id', info: '5'},
+            {filtroGeo: 'school.ibge_uf_id', info: '50'},
+            {filtroGeo: 'school.ibge_uf_id', info: '51'},
+            {filtroGeo: 'school.ibge_uf_id', info: '52'},
+            {filtroGeo: 'school.ibge_uf_id', info: '53'}
+            ];
+
+           let results = [];
+            for (let geo of geoParaConsulta) {
+
+            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.info).get().then(function (querySnapshot) {
+
              let values = querySnapshot.docs;
              let arrayData = [];
+             let consolidadoTotal = 0;
+             let consolidado0 = 0;
+             let consolidado1 = 0;
+             let consolidado2 = 0;
+             let modelo = 0;
+             let idPergunta = '';
+
              for (let i = 0; i < values.length; i++) {
                let obj = {}
                let data = values[i].data();
                obj.quest = data.quest;
                arrayData.push(obj);
              }
-             return arrayData;
+
+             for (let i = 0; i < arrayData.length; i++) {
+                if (arrayData[i].quest != undefined) {
+                  modelo = i;
+                }
+             }
+
+             if (arrayData[modelo] != undefined) {
+
+             for (let j = 0; j < arrayData[modelo].quest.length; j++) {
+                  if (arrayData[modelo].quest[j].questions != undefined) { 
+                    for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
+
+                      for (let i = 0; i < arrayData.length; i++) {
+                        if (arrayData[i].quest != undefined) {
+                          ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected != null)) ? consolidadoTotal++ : '';
+                          ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
+                        }
+                    }
+                    results.push({info: geo.info, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
+                    qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+                    consolidado0 = 0;
+                    consolidado1 = 0;
+                    consolidado2 = 0;
+                    consolidadoTotal = 0;
+                    idPergunta = '';
+                    }
+                  }
+              }
+
+             }
+
+              console.log(results);
+
+       /*      for (let i = 0; i < arrayData.length; i++) {
+                if (arrayData[i].quest != undefined) {
+                  ((arrayData[i].quest[0].questions[0].selected == '0')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado0++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected == '1')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado1++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected == '2')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado2++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected != null)) ? consolidadoTotal++ : '';
+                }
+             }
+
+             results.push({tipo: 'estado', info: '53', grupo: '0', pergunta: '0', total: consolidadoTotal.toString(), 
+             qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+
+        */     
+
+      /*       for (let i = 0; i < arrayData.length; i++) {
+                if (arrayData[i].quest != undefined) {
+                  ((arrayData[i].quest[0].questions[0].selected == '0')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado0++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected == '1')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado1++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected == '2')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado2++ : '';
+                  ((arrayData[i].quest[0].questions[0].selected != null)) ? consolidadoTotal++ : '';
+                }
+             }
+        
+             results.push({tipo: 'estado', info: '53', grupo: '0', pergunta: '0', total: consolidadoTotal.toString(), 
+             qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+
+        */     
+
+         /*    for (let i = 0; i < arrayData.length; i++) {
+                if (arrayData[i].quest != undefined) { for (let j = 0; j < arrayData[i].quest.length; j++) {
+                    if (arrayData[i].quest[j].questions != undefined) { for (let k = 0; k < arrayData[i].quest[j].questions.length; k++) {
+                        ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? contador++ : '';
+                      }
+                    }
+                  }
+                }
+             } */
+
+            //  testeArray.push({uf: "sp", resposta: arrayData[0].quest[0].questions[0].selected});
+            //  console.log('olha aqui royce:'+JSON.stringify(testeArray))
+             return results;
            });
-   
-           console.log(washData)
-   
+
+            this.results = washData;
+
+            }
+          
            this.questions = washData;
    
            let responses = this.users.length;
@@ -2085,7 +2173,8 @@
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
-        // this.componentKey += 1;
+         this.componentKey += 1;
+         console.log('to aqui olha');
        }
        ,
        computed:{
@@ -2273,24 +2362,6 @@
    font-size: 12px;
    text-align: center;
    }
-
-  div.scrollmenu {
-    overflow: auto;
-    white-space: nowrap;
-  }
-
-  div.scrollmenu a {
-    display: inline-block;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    text-decoration: none;
-  }
-
-  div.scrollmenu a:hover {
-    background-color: #777;
-  }
-
    @keyframes circleanimation {
    from {
    transform: rotateZ(0deg);
