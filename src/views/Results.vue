@@ -2166,6 +2166,7 @@
            for (let user of users) {
    
              if (typeof user.quest !== 'undefined') {
+               
                for(let j = 0; j<user.quest.length; j++) {
                  tamanho = j;
                  for (let y = 0; y < user.quest[j].questions.length; y++) {
@@ -2173,6 +2174,8 @@
                  }
    
                }
+
+               
              }
              
            }

@@ -144,7 +144,7 @@
             },
             plotOptions: {
                 bar: {
-                  horizontal: true,
+                  horizontal: false,
                   columnWidth: '55%',
                   endingShape: 'rounded'
                 },

@@ -10,6 +10,9 @@ import JsonExcel from "vue-json-excel";
 import VueApexCharts from 'vue-apexcharts';
 
 import JwPagination from 'jw-vue-pagination';
+
+import VueCharts from 'vue-chartjs';
+
 Vue.component('jw-pagination', JwPagination);
 
 
@@ -39,6 +42,7 @@ Vue.use(VueBlobJsonCsv);
 Vue.use(VueApexCharts);
 
 Vue.component('apexchart', VueApexCharts);
+Vue.component('BarChart', VueCharts);
 Vue.component("downloadExcel", JsonExcel);
 
 //https://www.npmjs.com/package/vue-json-excel

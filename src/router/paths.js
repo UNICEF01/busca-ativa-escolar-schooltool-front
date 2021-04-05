@@ -31,6 +31,11 @@ export default [
     view: 'Quest'
   },
   {
+    path: '/charts2',
+    name: 'Gráficos',
+    view: 'Charts2'
+  },
+  {
     path: '/charts',
     name: 'Gráficos',
     view: 'Charts'
@@ -44,6 +49,21 @@ export default [
     path: '/results',
     name: 'Painel de Resultados',
     view: 'Results'
+  },
+  {
+    path: '/resultsv2',
+    name: 'Painel de Resultados',
+    view: 'ResultsV2'
+  },
+  {
+    path: '/chartsregiaov2',
+    name: 'Gráficos',
+    view: 'ChartsRegiaoV2'
+  },
+  {
+    path: '/chartsestadov2',
+    name: 'Gráficos Estado',
+    view: 'ChartsEstadoV2'
   },
   {
     path: '/ResultsMunicipio',
