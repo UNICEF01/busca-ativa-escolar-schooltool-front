@@ -95,7 +95,7 @@
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
 
-               <div class="card text-center m-3" style="margin-left:-224px!important">
+               <div class="card text-center m-3" style="margin-left:-224px!important;height: 440px;width:1550px">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">  
                         <v-form ref="form_research" lazy-validation>
@@ -140,7 +140,7 @@
            arrayTmp: [],
            chartOptions: {
             chart: {
-              id: 'vuechart-example'
+              id: 'grafico'
             },
             plotOptions: {
                 bar: {
@@ -1881,10 +1881,7 @@
          mybutton.style.display = "none";
        }
      }
-   
-   
-   
-   
+
 </script>
 <style>
    a
@@ -2005,7 +2002,7 @@
    font-size: 18px;
    border: none;
    outline: none;
-   margin-left:10px;
+   margin-left:70px;
    cursor: pointer;
    padding: 10px;
    border-radius: 4px;

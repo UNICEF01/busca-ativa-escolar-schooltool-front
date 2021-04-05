@@ -29,6 +29,7 @@ style="
   <i v-if="titulo == 'questionario'" class="mdi mdi-checkbox-multiple-marked"> {{title}}</i>
   <i v-if="titulo == 'admin'" class="mdi mdi-account-plus"> {{title}}</i> 
   <i v-if="titulo == 'login'" class="mdi mdi-account-key"> {{title}}</i> 
+  <i v-if="titulo == 'charts'" class="mdi mdi-chart-bar"> {{title}}</i> 
 
     </h3>
 
@@ -89,8 +90,7 @@ export default {
       this.title = val.name
       this.titulo = localStorage.getItem("titulo")
       this.uf = localStorage.getItem("estado")
-      this.munic = localStorage.getItem("munic")
-     
+      this.munic = localStorage.getItem("munic")     
     }
   },
 

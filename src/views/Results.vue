@@ -11,8 +11,8 @@
             lg2>
             <div id="caixa" style="width: 110px; height: 200px;top: 150px;margin-left:1150px;align:center">
                <!--div class="tertiary--text font-weight-bold" style="margin-top:80px;margin-left: 10px" id="tituloPergunta">Pergunta: 1</div-->
-               <a  id="next"  title="Próximo"  v-on:click="setas('next')"></a>
-               <a  id="prev"  title="Anterior" v-on:click="setas('prev')"></a>
+               <a  id="next"  title="Próximo"  @click="setas('next')"></a>
+               <a  id="prev"  title="Anterior" @click="setas('prev')"></a>
                <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
             </div>
             <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
@@ -291,7 +291,7 @@
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;">
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;margin-left:0px">
                               <tbody>
                                  <tr>
                                     <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px">{{ arrayTmp[1] }}</td>
@@ -419,7 +419,7 @@
                   <div v-for="group in pageOfItems" :key="group.id">
                      <v-form ref="form_research" lazy-validation>
                         <div v-html="setaGrupoPergunta(grupo,group.id)" />
-                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;margin-left:0px">
                               <thead>
                                  <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                     <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -461,7 +461,7 @@
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;margin-left:0px">
                               <thead>
                                  <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
                                     <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
@@ -513,10 +513,21 @@
    
    let userAdmin = localStorage.getItem("admin");
    
-   //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+   if (!userAdmin || auth.currentUser == null){self.location='/quest'}
    
    localStorage.setItem("titulo", "regiao");
    
+  var width = screen.width;
+  var height = screen.height;
+  if (width = 1920){
+      var resWidth = 0;
+
+  }
+    
+
+
+
+
      export default {
        data() {
          return {
@@ -2417,7 +2428,7 @@
        }
      }
    
-   
+    
    
    
 </script>
@@ -2594,4 +2605,53 @@
    transform: rotateZ(360deg);
    }
    }
+
+
+
+
+table {
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    font-family: arial;
+  }
+
+  .table {
+    border-bottom: #999999 solid 1px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .table th,
+  .table td {
+    border-right: #999999 solid 1px;
+    font-size: 12px;
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .table td:last-child {
+     border-right: 0;
+  }
+
+  .table thead th {
+    font-weight: normal;
+    background-color: #005dab;
+    color: #fff;
+    font-size: 15px;
+  }
+
+  .table tbody > tr:nth-child(odd) > td,
+  .table tbody > tr:nth-child(odd) > th {
+    background-color: #f8f8f8;
+  }
+
+
+
+
+
+
 </style>

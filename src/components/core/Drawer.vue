@@ -37,7 +37,10 @@
         </v-btn>
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="quest()" class="font-weight-light" :class="color">
           Questionário
-        </v-btn>        
+        </v-btn>
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="charts()" class="font-weight-light" :class="color">
+          Gráficos
+        </v-btn>                 
 
         <v-divider/>
         <!--        <v-list-tile v-if="responsive">-->
@@ -236,6 +239,10 @@
       quest(){
         localStorage.setItem("titulo", "questionario");
         this.$router.push({path: '/quest'})
+      },
+      charts(){
+        localStorage.setItem("titulo", "charts");
+        this.$router.push({path: '/charts'})
       }
 
 
