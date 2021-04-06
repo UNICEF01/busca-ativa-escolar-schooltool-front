@@ -39,7 +39,6 @@
                         v-on:input="changeRoute(`${select.src}`)"
                         :hint="`${select.src}`"
                         ></v-select>
-                        <a  id="myBtn2" title="Teste" v-on:click="remax()" >Teste</a>
                   </v-flex>
                </v-layout>
             </v-container>
@@ -1600,14 +1599,123 @@
    
        methods: {
          atualizarGrafico(pergunta) {
-       
+
+              this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
+               this.series[1].data[0] = this.consultaQtd('11',pergunta,'1');
+               this.series[2].data[0] = this.consultaQtd('11',pergunta,'2');
+
+               this.series[0].data[1] = this.consultaQtd('12',pergunta,'0');
+               this.series[1].data[1] = this.consultaQtd('12',pergunta,'1');
+               this.series[2].data[1] = this.consultaQtd('12',pergunta,'2');
+
+               this.series[0].data[2] = this.consultaQtd('13',pergunta,'0');
+               this.series[1].data[2] = this.consultaQtd('13',pergunta,'1');
+               this.series[2].data[2] = this.consultaQtd('13',pergunta,'2');
+
+               this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
+               this.series[1].data[3] = this.consultaQtd('14',pergunta,'1');
+               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2');
+
+               this.series[0].data[4] = this.consultaQtd('15',pergunta,'0');
+               this.series[1].data[4] = this.consultaQtd('15',pergunta,'1');
+               this.series[2].data[4] = this.consultaQtd('15',pergunta,'2');
+
+               this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
+               this.series[1].data[5] = this.consultaQtd('16',pergunta,'1');
+               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2');
+            
+               this.series[0].data[6] = this.consultaQtd('17',pergunta,'0');
+               this.series[1].data[6] = this.consultaQtd('17',pergunta,'1');
+               this.series[2].data[6] = this.consultaQtd('17',pergunta,'2');
+               
+               this.series[0].data[7] = this.consultaQtd('21',pergunta,'0');
+               this.series[1].data[7] = this.consultaQtd('21',pergunta,'1');
+               this.series[2].data[7] = this.consultaQtd('21',pergunta,'2');
+               
+               this.series[0].data[8] = this.consultaQtd('22',pergunta,'0');
+               this.series[1].data[8] = this.consultaQtd('22',pergunta,'1');
+               this.series[2].data[8] = this.consultaQtd('22',pergunta,'2');               
+            
+               this.series[0].data[9] = this.consultaQtd('23',pergunta,'0');
+               this.series[1].data[9] = this.consultaQtd('23',pergunta,'1');
+               this.series[2].data[9] = this.consultaQtd('23',pergunta,'2');
+               
+               this.series[0].data[10] = this.consultaQtd('24',pergunta,'0');
+               this.series[1].data[10] = this.consultaQtd('24',pergunta,'1');
+               this.series[2].data[10] = this.consultaQtd('24',pergunta,'2');
+
+               this.series[0].data[11] = this.consultaQtd('25',pergunta,'0');
+               this.series[1].data[11] = this.consultaQtd('25',pergunta,'1');
+               this.series[2].data[11] = this.consultaQtd('25',pergunta,'2');
+
+               this.series[0].data[12] = this.consultaQtd('26',pergunta,'0');
+               this.series[1].data[12] = this.consultaQtd('26',pergunta,'1');
+               this.series[2].data[12] = this.consultaQtd('26',pergunta,'2');
+               
+               this.series[0].data[13] = this.consultaQtd('27',pergunta,'0');
+               this.series[1].data[13] = this.consultaQtd('27',pergunta,'1');
+               this.series[2].data[13] = this.consultaQtd('27',pergunta,'2');
+               
+               this.series[0].data[14] = this.consultaQtd('28',pergunta,'0');
+               this.series[1].data[14] = this.consultaQtd('28',pergunta,'1');
+               this.series[2].data[14] = this.consultaQtd('28',pergunta,'2');
+               
+               this.series[0].data[15] = this.consultaQtd('29',pergunta,'0');
+               this.series[1].data[15] = this.consultaQtd('29',pergunta,'1');
+               this.series[2].data[15] = this.consultaQtd('29',pergunta,'2');               
+
+               this.series[0].data[16] = this.consultaQtd('31',pergunta,'0');
+               this.series[1].data[16] = this.consultaQtd('31',pergunta,'1');
+               this.series[2].data[16] = this.consultaQtd('31',pergunta,'2');
+               
+               this.series[0].data[17] = this.consultaQtd('32',pergunta,'0');
+               this.series[1].data[17] = this.consultaQtd('32',pergunta,'1');
+               this.series[2].data[17] = this.consultaQtd('32',pergunta,'2');    
+               
+               this.series[0].data[18] = this.consultaQtd('33',pergunta,'0');
+               this.series[1].data[18] = this.consultaQtd('33',pergunta,'1');
+               this.series[2].data[18] = this.consultaQtd('33',pergunta,'2');    
+               
+               this.series[0].data[19] = this.consultaQtd('35',pergunta,'0');
+               this.series[1].data[19] = this.consultaQtd('35',pergunta,'1');
+               this.series[2].data[19] = this.consultaQtd('35',pergunta,'2');    
+               
+               this.series[0].data[20] = this.consultaQtd('41',pergunta,'0');
+               this.series[1].data[20] = this.consultaQtd('41',pergunta,'1');
+               this.series[2].data[20] = this.consultaQtd('41',pergunta,'2');    
+               
+               this.series[0].data[21] = this.consultaQtd('42',pergunta,'0');
+               this.series[1].data[21] = this.consultaQtd('42',pergunta,'1');
+               this.series[2].data[21] = this.consultaQtd('42',pergunta,'2');    
+               
+               this.series[0].data[22] = this.consultaQtd('43',pergunta,'0');
+               this.series[1].data[22] = this.consultaQtd('43',pergunta,'1');
+               this.series[2].data[22] = this.consultaQtd('43',pergunta,'2');    
+               
+               this.series[0].data[23] = this.consultaQtd('50',pergunta,'0');
+               this.series[1].data[23] = this.consultaQtd('50',pergunta,'1');
+               this.series[2].data[23] = this.consultaQtd('50',pergunta,'2');    
+               
+               this.series[0].data[24] = this.consultaQtd('51',pergunta,'0');
+               this.series[1].data[24] = this.consultaQtd('51',pergunta,'1');
+               this.series[2].data[24] = this.consultaQtd('51',pergunta,'2');    
+               
+               this.series[0].data[25] = this.consultaQtd('52',pergunta,'0');
+               this.series[1].data[25] = this.consultaQtd('52',pergunta,'1');
+               this.series[2].data[25] = this.consultaQtd('52',pergunta,'2');
+               
+               this.series[0].data[26] = this.consultaQtd('53',pergunta,'0');
+               this.series[1].data[26] = this.consultaQtd('53',pergunta,'1');
+               this.series[2].data[26] = this.consultaQtd('53',pergunta,'2'); 
+
+       /*
             this.series = [{
               data: [this.consultaQtd('11',pergunta,'0'), 55, 41, 64, 22, 43, 21]
             }, {
               data: [this.consultaQtd('11',pergunta,'1'), 32, 33, 52, 13, 44, 32]
             }, {
               data: [this.consultaQtd('11',pergunta,'2'), 32, 33, 52, 13, 44, 32]
-            }];
+            }]; */
             
         },
         random(min, max) {
@@ -1668,123 +1776,14 @@
                this.pageOfItems = pageOfItems;
                this.atualizarGrafico(pageOfItems[0].id);
   
-
-            /*   this.series[0].data[0] = this.consultaQtd('11',this.pergunta,'0');
-               this.series[1].data[0] = this.consultaQtd('11',this.pergunta,'1');
-               this.series[2].data[0] = this.consultaQtd('11',this.pergunta,'2');
-
-               this.series[0].data[1] = this.consultaQtd('12',this.pergunta,'0');
-               this.series[1].data[1] = this.consultaQtd('12',this.pergunta,'1');
-               this.series[2].data[1] = this.consultaQtd('12',this.pergunta,'2');
-
-               this.series[0].data[2] = this.consultaQtd('13',this.pergunta,'0');
-               this.series[1].data[2] = this.consultaQtd('13',this.pergunta,'1');
-               this.series[2].data[2] = this.consultaQtd('13',this.pergunta,'2');
-
-               this.series[0].data[3] = this.consultaQtd('14',this.pergunta,'0');
-               this.series[1].data[3] = this.consultaQtd('14',this.pergunta,'1');
-               this.series[2].data[3] = this.consultaQtd('14',this.pergunta,'2');
-
-               this.series[0].data[4] = this.consultaQtd('15',this.pergunta,'0');
-               this.series[1].data[4] = this.consultaQtd('15',this.pergunta,'1');
-               this.series[2].data[4] = this.consultaQtd('15',this.pergunta,'2');
-
-               this.series[0].data[5] = this.consultaQtd('16',this.pergunta,'0');
-               this.series[1].data[5] = this.consultaQtd('16',this.pergunta,'1');
-               this.series[2].data[5] = this.consultaQtd('16',this.pergunta,'2');
-            
-               this.series[0].data[6] = this.consultaQtd('17',this.pergunta,'0');
-               this.series[1].data[6] = this.consultaQtd('17',this.pergunta,'1');
-               this.series[2].data[6] = this.consultaQtd('17',this.pergunta,'2');
-               
-               this.series[0].data[7] = this.consultaQtd('21',this.pergunta,'0');
-               this.series[1].data[7] = this.consultaQtd('21',this.pergunta,'1');
-               this.series[2].data[7] = this.consultaQtd('21',this.pergunta,'2');
-               
-               this.series[0].data[8] = this.consultaQtd('22',this.pergunta,'0');
-               this.series[1].data[8] = this.consultaQtd('22',this.pergunta,'1');
-               this.series[2].data[8] = this.consultaQtd('22',this.pergunta,'2');               
-            
-               this.series[0].data[9] = this.consultaQtd('23',this.pergunta,'0');
-               this.series[1].data[9] = this.consultaQtd('23',this.pergunta,'1');
-               this.series[2].data[9] = this.consultaQtd('23',this.pergunta,'2');
-               
-               this.series[0].data[10] = this.consultaQtd('24',this.pergunta,'0');
-               this.series[1].data[10] = this.consultaQtd('24',this.pergunta,'1');
-               this.series[2].data[10] = this.consultaQtd('24',this.pergunta,'2');
-
-               this.series[0].data[11] = this.consultaQtd('25',this.pergunta,'0');
-               this.series[1].data[11] = this.consultaQtd('25',this.pergunta,'1');
-               this.series[2].data[11] = this.consultaQtd('25',this.pergunta,'2');
-
-               this.series[0].data[12] = this.consultaQtd('26',this.pergunta,'0');
-               this.series[1].data[12] = this.consultaQtd('26',this.pergunta,'1');
-               this.series[2].data[12] = this.consultaQtd('26',this.pergunta,'2');
-               
-               this.series[0].data[13] = this.consultaQtd('27',this.pergunta,'0');
-               this.series[1].data[13] = this.consultaQtd('27',this.pergunta,'1');
-               this.series[2].data[13] = this.consultaQtd('27',this.pergunta,'2');
-               
-               this.series[0].data[14] = this.consultaQtd('28',this.pergunta,'0');
-               this.series[1].data[14] = this.consultaQtd('28',this.pergunta,'1');
-               this.series[2].data[14] = this.consultaQtd('28',this.pergunta,'2');
-               
-               this.series[0].data[15] = this.consultaQtd('29',this.pergunta,'0');
-               this.series[1].data[15] = this.consultaQtd('29',this.pergunta,'1');
-               this.series[2].data[15] = this.consultaQtd('29',this.pergunta,'2');               
-
-               this.series[0].data[16] = this.consultaQtd('31',this.pergunta,'0');
-               this.series[1].data[16] = this.consultaQtd('31',this.pergunta,'1');
-               this.series[2].data[16] = this.consultaQtd('31',this.pergunta,'2');
-               
-               this.series[0].data[17] = this.consultaQtd('32',this.pergunta,'0');
-               this.series[1].data[17] = this.consultaQtd('32',this.pergunta,'1');
-               this.series[2].data[17] = this.consultaQtd('32',this.pergunta,'2');    
-               
-               this.series[0].data[18] = this.consultaQtd('33',this.pergunta,'0');
-               this.series[1].data[18] = this.consultaQtd('33',this.pergunta,'1');
-               this.series[2].data[18] = this.consultaQtd('33',this.pergunta,'2');    
-               
-               this.series[0].data[19] = this.consultaQtd('35',this.pergunta,'0');
-               this.series[1].data[19] = this.consultaQtd('35',this.pergunta,'1');
-               this.series[2].data[19] = this.consultaQtd('35',this.pergunta,'2');    
-               
-               this.series[0].data[20] = this.consultaQtd('41',this.pergunta,'0');
-               this.series[1].data[20] = this.consultaQtd('41',this.pergunta,'1');
-               this.series[2].data[20] = this.consultaQtd('41',this.pergunta,'2');    
-               
-               this.series[0].data[21] = this.consultaQtd('42',this.pergunta,'0');
-               this.series[1].data[21] = this.consultaQtd('42',this.pergunta,'1');
-               this.series[2].data[21] = this.consultaQtd('42',this.pergunta,'2');    
-               
-               this.series[0].data[22] = this.consultaQtd('43',this.pergunta,'0');
-               this.series[1].data[22] = this.consultaQtd('43',this.pergunta,'1');
-               this.series[2].data[22] = this.consultaQtd('43',this.pergunta,'2');    
-               
-               this.series[0].data[23] = this.consultaQtd('50',this.pergunta,'0');
-               this.series[1].data[23] = this.consultaQtd('50',this.pergunta,'1');
-               this.series[2].data[23] = this.consultaQtd('50',this.pergunta,'2');    
-               
-               this.series[0].data[24] = this.consultaQtd('51',this.pergunta,'0');
-               this.series[1].data[24] = this.consultaQtd('51',this.pergunta,'1');
-               this.series[2].data[24] = this.consultaQtd('51',this.pergunta,'2');    
-               
-               this.series[0].data[25] = this.consultaQtd('52',this.pergunta,'0');
-               this.series[1].data[25] = this.consultaQtd('52',this.pergunta,'1');
-               this.series[2].data[25] = this.consultaQtd('52',this.pergunta,'2');
-               
-               this.series[0].data[26] = this.consultaQtd('53',this.pergunta,'0');
-               this.series[1].data[26] = this.consultaQtd('53',this.pergunta,'1');
-               this.series[2].data[26] = this.consultaQtd('53',this.pergunta,'2');     */
-
            },
            setas(value){
              if (value == 'prev'){
-               $("a.page-link-previous")[0].click();
+               $(".previous a")[0].click();
                var number = $("#pergunta").val()-1
                $("#tituloPergunta").text("Pergunta: "+number)
              }else{
-               $("a.page-link-next")[0].click();
+               $(".next a")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
                $("#tituloPergunta").text("Pergunta: "+number)            
              }
@@ -1956,12 +1955,14 @@
            });
 
            this.series = [{
-              data: [this.consultaQtd('11',this.pergunta,'0'), 55, 41, 64, 22, 43, 21]
+              data: []
             }, {
-              data: [this.consultaQtd('11',this.pergunta,'1'), 32, 33, 52, 13, 44, 32]
+              data: []
             }, {
-              data: [this.consultaQtd('11',this.pergunta,'2'), 32, 33, 52, 13, 44, 32]
+              data: []
             }];
+
+            this.atualizarGrafico(1);
 
             this.results = washData;
 
