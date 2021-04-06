@@ -66,6 +66,16 @@ export default [
     view: 'ChartsEstadoV2'
   },
   {
+    path: '/exportExcel',
+    name: 'Export Excel',
+    view: 'exportExcel'
+  },
+  {
+    path: '/bigData',
+    name: 'big Data',
+    view: 'bigData'
+  },
+  {
     path: '/ResultsMunicipio',
     name: 'Painel de Resultados de Municípios',
     view: 'ResultsMunicipio'

@@ -17,8 +17,10 @@
   ],
   "dependencies": {
     "@material/data-table": "^10.0.0",
+    "@syncfusion/ej2-vue-grids": "^19.1.54",
     "admin": "^1.4.1",
     "apexcharts": "^3.26.0",
+    "app.vue": "^0.1.10",
     "babel-polyfill": "^6.26.0",
     "chart.js": "^2.9.4",
     "chartist": "0.11.0",
