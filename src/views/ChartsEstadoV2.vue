@@ -39,6 +39,7 @@
                         v-on:input="changeRoute(`${select.src}`)"
                         :hint="`${select.src}`"
                         ></v-select>
+                        <a  id="myBtn2" title="Teste" v-on:click="remax()" >Teste</a>
                   </v-flex>
                </v-layout>
             </v-container>
@@ -98,8 +99,9 @@
                <div class="card text-center m-3" style="margin-left:-224px!important">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">  
-                        <v-form ref="form_research" lazy-validation>
+                        <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
+                           ref="exampleChart"
                            width="1500px" 
                            height="500px" 
                            type="bar" 
@@ -112,7 +114,7 @@
                   </div>
                   <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
-                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" ></jw-pagination>
+                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
                      </p>
                   </div>
@@ -1597,6 +1599,22 @@
    
    
        methods: {
+         atualizarGrafico(pergunta) {
+       
+            this.series = [{
+              data: [this.consultaQtd('11',pergunta,'0'), 55, 41, 64, 22, 43, 21]
+            }, {
+              data: [this.consultaQtd('11',pergunta,'1'), 32, 33, 52, 13, 44, 32]
+            }, {
+              data: [this.consultaQtd('11',pergunta,'2'), 32, 33, 52, 13, 44, 32]
+            }];
+            
+        },
+        random(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
          consultaQtd(info,idpergunta,resp) {
            let valObj = [];
            switch (resp) {
@@ -1646,11 +1664,12 @@
            },
            onChangePage(pageOfItems) {
                // update page of items
-               this.pageOfItems = pageOfItems;
-               let i = 1;
-               let tamanho = 1;
 
-               this.series[0].data[0] = this.consultaQtd('11',this.pergunta,'0');
+               this.pageOfItems = pageOfItems;
+               this.atualizarGrafico(pageOfItems[0].id);
+  
+
+            /*   this.series[0].data[0] = this.consultaQtd('11',this.pergunta,'0');
                this.series[1].data[0] = this.consultaQtd('11',this.pergunta,'1');
                this.series[2].data[0] = this.consultaQtd('11',this.pergunta,'2');
 
@@ -1756,29 +1775,8 @@
                
                this.series[0].data[26] = this.consultaQtd('53',this.pergunta,'0');
                this.series[1].data[26] = this.consultaQtd('53',this.pergunta,'1');
-               this.series[2].data[26] = this.consultaQtd('53',this.pergunta,'2');      
+               this.series[2].data[26] = this.consultaQtd('53',this.pergunta,'2');     */
 
-               for(let i=0;i<=5;i++){
-                 for (let j=1;j<=20;j++){
-                   if (this.grupo==0) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+j+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==1) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+3)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==2) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+7)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==3) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+14)+'"}</style>').appendTo('head');
-                 }
-               }
-               }
-   
            },
            setas(value){
              if (value == 'prev'){
@@ -1913,6 +1911,7 @@
 
               console.log(results);
 
+
        /*      for (let i = 0; i < arrayData.length; i++) {
                 if (arrayData[i].quest != undefined) {
                   ((arrayData[i].quest[0].questions[0].selected == '0')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado0++ : '';
@@ -1955,6 +1954,14 @@
             //  console.log('olha aqui royce:'+JSON.stringify(testeArray))
              return results;
            });
+
+           this.series = [{
+              data: [this.consultaQtd('11',this.pergunta,'0'), 55, 41, 64, 22, 43, 21]
+            }, {
+              data: [this.consultaQtd('11',this.pergunta,'1'), 32, 33, 52, 13, 44, 32]
+            }, {
+              data: [this.consultaQtd('11',this.pergunta,'2'), 32, 33, 52, 13, 44, 32]
+            }];
 
             this.results = washData;
 

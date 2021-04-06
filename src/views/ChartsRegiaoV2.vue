@@ -1669,6 +1669,7 @@
                this.series[0].data[4] = this.consultaQtd('4',this.pergunta,'0');
                this.series[1].data[4] = this.consultaQtd('4',this.pergunta,'1');
                this.series[2].data[4] = this.consultaQtd('4',this.pergunta,'2');
+
             
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
