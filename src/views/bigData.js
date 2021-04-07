@@ -5,6 +5,8 @@
 import { db } from "../firebase";
 
 let data = [];
+let arrayData = [];
+
 db.collection("users").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       var uid = doc.get('uid');
@@ -15,12 +17,26 @@ db.collection("users").get().then((querySnapshot) => {
       var schoolcityname=doc.get('school.city_name');
       var schooluf=doc.get('school.uf');
       var schoolquestcomplete=doc.get('school.quest_complete');
-      var quest1=doc.get('quest arrayContains: "0".questions arrayContains: "0".selected');
+      //var quest=doc.get('quest');
 
 
-      console.log(quest1, " => ", doc.data());
+      /*let values = querySnapshot.docs;
 
-//console.log(uid);
+      for (let i = 0; i < values.length; i++) {
+        let obj = {}
+        let datax = values[i].data();
+        arrayData.push(datax);
+      }*/
+
+     //document.write(JSON.stringify(quest1[0].questions[0].selected))
+      //console.log(quest1, " => ", JSON.stringify(doc.data().quest[0].questions[0].selected));
+
+
+    //grupo: Água
+     var quest1 = doc.data().quest[0].questions[1].selected;
+     var quest2 = doc.data().quest[0].questions[1].selected;
+     var quest3 = doc.data().quest[0].questions[2].selected;
+
 
  data.push({        
            "id":uid,
@@ -32,8 +48,8 @@ db.collection("users").get().then((querySnapshot) => {
            "estado":schooluf,
            "quest_complete":schoolquestcomplete,
            "quest1":quest1,
-           "quest2":1,
-           "quest3":1,
+           "quest2":quest2,
+           "quest3":quest3,
            "quest4":1,
            "quest5":1,
            "quest6":1,
@@ -64,7 +80,7 @@ db.collection("users").get().then((querySnapshot) => {
     
     
     })
-//console.log("aqui: "+JSON.stringify(myArray));
+
 })
 
 export {
