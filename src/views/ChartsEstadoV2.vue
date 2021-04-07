@@ -1598,9 +1598,13 @@
    
    
        methods: {
-         atualizarGrafico(pergunta) {
+        atualizarGrafico(pergunta,resposta1,resposta2,resposta3) {
 
-              this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
+               this.series[0].name = resposta1;
+               this.series[1].name = resposta2;
+               this.series[2].name = resposta3;
+
+               this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
                this.series[1].data[0] = this.consultaQtd('11',pergunta,'1');
                this.series[2].data[0] = this.consultaQtd('11',pergunta,'2');
 
@@ -1612,17 +1616,17 @@
                this.series[1].data[2] = this.consultaQtd('13',pergunta,'1');
                this.series[2].data[2] = this.consultaQtd('13',pergunta,'2');
 
-               this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
+             /*  this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
                this.series[1].data[3] = this.consultaQtd('14',pergunta,'1');
-               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2');
+               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2'); */
 
                this.series[0].data[4] = this.consultaQtd('15',pergunta,'0');
                this.series[1].data[4] = this.consultaQtd('15',pergunta,'1');
                this.series[2].data[4] = this.consultaQtd('15',pergunta,'2');
 
-               this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
+            /*   this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
                this.series[1].data[5] = this.consultaQtd('16',pergunta,'1');
-               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2');
+               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2'); */
             
                this.series[0].data[6] = this.consultaQtd('17',pergunta,'0');
                this.series[1].data[6] = this.consultaQtd('17',pergunta,'1');
@@ -1723,12 +1727,12 @@
             max = Math.floor(max);
             return Math.floor(Math.random() * (max - min + 1)) + min;
         },
-         consultaQtd(info,idpergunta,resp) {
+         consultaQtd(ibge,idpergunta,resp) {
            let valObj = [];
            switch (resp) {
              case '0':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_0);
@@ -1736,7 +1740,7 @@
              break;
              case '1':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_1);
@@ -1744,7 +1748,7 @@
              break;
              case '2':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_2);
@@ -1752,7 +1756,7 @@
              break;
              case 'total':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.total; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.total; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].total);
@@ -1772,9 +1776,10 @@
            },
            onChangePage(pageOfItems) {
                // update page of items
-
+               
+               console.log(pageOfItems);
                this.pageOfItems = pageOfItems;
-               this.atualizarGrafico(pageOfItems[0].id);
+               this.atualizarGrafico(pageOfItems[0].id,pageOfItems[0].response[0].name,pageOfItems[0].response[1].name,pageOfItems[0].response[2].name);
   
            },
            setas(value){
@@ -1812,51 +1817,54 @@
              this.grupo = grupo;
              this.pergunta = pergunta;
          },
-         getResult2(tipo,geral,info,idx,resp) {
-           return(0);
-         },
          async getData() {
 
    /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
            let geoParaConsulta = [
             
-            {filtroGeo: 'school.ibge_uf_id', info: '11'},
-            {filtroGeo: 'school.ibge_uf_id', info: '12'},
-            {filtroGeo: 'school.ibge_uf_id', info: '13'},
-            {filtroGeo: 'school.ibge_uf_id', info: '14'},
-            {filtroGeo: 'school.ibge_uf_id', info: '15'},
-            {filtroGeo: 'school.ibge_uf_id', info: '16'},
-            {filtroGeo: 'school.ibge_uf_id', info: '17'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '11', sg_uf: 'RO'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '12', sg_uf: 'AC'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '13', sg_uf: 'AM'},
+            
+            /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
+          /*  {filtroGeo: 'school.ibge_uf_id', info: '14', sg_uf: 'RR'}, */
 
-            {filtroGeo: 'school.ibge_uf_id', info: '21'},
-            {filtroGeo: 'school.ibge_uf_id', info: '22'},
-            {filtroGeo: 'school.ibge_uf_id', info: '23'},
-            {filtroGeo: 'school.ibge_uf_id', info: '24'},
-            {filtroGeo: 'school.ibge_uf_id', info: '25'},
-            {filtroGeo: 'school.ibge_uf_id', info: '26'},
-            {filtroGeo: 'school.ibge_uf_id', info: '27'},
-            {filtroGeo: 'school.ibge_uf_id', info: '28'},
-            {filtroGeo: 'school.ibge_uf_id', info: '29'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '15', sg_uf: 'PA'},
 
-            {filtroGeo: 'school.ibge_uf_id', info: '31'},
-            {filtroGeo: 'school.ibge_uf_id', info: '32'},
-            {filtroGeo: 'school.ibge_uf_id', info: '33'},
-            {filtroGeo: 'school.ibge_uf_id', info: '35'},
+            /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
+          /*  {filtroGeo: 'school.ibge_uf_id', info: '16', sg_uf: 'AP'}, */
 
-            {filtroGeo: 'school.ibge_uf_id', info: '41'},
-            {filtroGeo: 'school.ibge_uf_id', info: '42'},
-            {filtroGeo: 'school.ibge_uf_id', info: '43'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '17', sg_uf: 'TO'},
 
-            {filtroGeo: 'school.ibge_uf_id', info: '50'},
-            {filtroGeo: 'school.ibge_uf_id', info: '51'},
-            {filtroGeo: 'school.ibge_uf_id', info: '52'},
-            {filtroGeo: 'school.ibge_uf_id', info: '53'}
+            {filtroGeo: 'school.ibge_uf_id', ibge: '21', sg_uf: 'MA'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '22', sg_uf: 'PI'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '23', sg_uf: 'CE'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '24', sg_uf: 'RN'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '25', sg_uf: 'PB'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '26', sg_uf: 'PE'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '27', sg_uf: 'AL'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '28', sg_uf: 'SE'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '29', sg_uf: 'BA'},
+
+            {filtroGeo: 'school.ibge_uf_id', ibge: '31', sg_uf: 'MG'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '32', sg_uf: 'ES'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '33', sg_uf: 'RJ'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '35', sg_uf: 'SP'},
+
+            {filtroGeo: 'school.ibge_uf_id', ibge: '41', sg_uf: 'PR'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '42', sg_uf: 'SC'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '43', sg_uf: 'RS'},
+
+            {filtroGeo: 'school.ibge_uf_id', ibge: '50', sg_uf: 'MS'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '51', sg_uf: 'MT'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '52', sg_uf: 'GO'},
+            {filtroGeo: 'school.ibge_uf_id', ibge: '53', sg_uf: 'DF'}
             ];
 
            let results = [];
             for (let geo of geoParaConsulta) {
 
-            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.info).get().then(function (querySnapshot) {
+            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.ibge).get().then(function (querySnapshot) {
 
              let values = querySnapshot.docs;
              let arrayData = [];
@@ -1877,10 +1885,10 @@
              for (let i = 0; i < arrayData.length; i++) {
                 if (arrayData[i].quest != undefined) {
                   modelo = i;
-                }
+                } else { modelo = 0; }
              }
 
-             if (arrayData[modelo] != undefined) {
+             if (arrayData[modelo].hasOwnProperty('quest')) {
 
              for (let j = 0; j < arrayData[modelo].quest.length; j++) {
                   if (arrayData[modelo].quest[j].questions != undefined) { 
@@ -1895,7 +1903,7 @@
                           ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
                         }
                     }
-                    results.push({info: geo.info, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
+                    results.push({ibge: geo.ibge, sg_uf: geo.sg_uf, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
                     qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
                     consolidado0 = 0;
                     consolidado1 = 0;
@@ -1907,6 +1915,7 @@
               }
 
              }
+             
 
               console.log(results);
 
@@ -1962,7 +1971,8 @@
               data: []
             }];
 
-            this.atualizarGrafico(1);
+            this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name);
+
 
             this.results = washData;
 
