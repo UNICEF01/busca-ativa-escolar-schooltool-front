@@ -76,6 +76,11 @@ export default [
     view: 'bigData'
   },
   {
+    path: '/chartsterritoriov2',
+    name: 'Gráficos Território',
+    view: 'ChartsTerritorioV2'
+  },
+  {
     path: '/ResultsMunicipio',
     name: 'Painel de Resultados de Municípios',
     view: 'ResultsMunicipio'

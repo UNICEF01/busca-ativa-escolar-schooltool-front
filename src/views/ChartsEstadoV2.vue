@@ -101,7 +101,7 @@
                         <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
                            ref="exampleChart"
-                           width="1500px" 
+                           width="100%" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -111,7 +111,7 @@
                         </v-form>
                      </div>
                   </div>
-                  <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                  <div class="social font-weight-light theme--dark" style="height: 30px;border: 1px solid #ddd;position:fixed;bottom:10px;right:0;z-index:20;padding:-10px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
@@ -145,14 +145,62 @@
            arrayTmp: [],
            chartOptions: {
             chart: {
-              id: 'vuechart-example'
+              id: 'vuechart-example',
+              events: {
+                dataPointMouseLeave(event, chartContext, config) {
+                    console.log(chartContext,config)
+                   
+                }
+            }
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: undefined,
+                formatter: function (val, opts) {
+                    return val
+                },
+                textAnchor: 'middle',
+                distributed: false,
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontWeight: 'bold',
+                    colors: undefined
+                },
+                background: {
+                  enabled: true,
+                  foreColor: '#fff',
+                  padding: 6,
+                  borderRadius: 2,
+                  borderWidth: 1,
+                  borderColor: '#fff',
+                  opacity: 0.9,
+                  dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                  }
+                },
+                dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                }
             },
             plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '55%',
+                  columnWidth: '65%',
                   endingShape: 'rounded'
-                },
+                }
             },
             tooltip: {
                 enabled: false,
@@ -170,9 +218,11 @@
 
             },
             xaxis: {
-              categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
+            //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
+            categories: []
             },
-            labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
+            //labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
+            labels: [],
             legend: {
               show: true,
               showForSingleSeries: false,
@@ -232,7 +282,7 @@
              { report: 'Territórios', src: '/resultsterritorio' },
              { report: 'Estado', src: '/resultsescola' }
            ],
-           text: 'Carregando',
+           text: 'Consultando dados, aguarde',
            dark: false,
            classes: null,
            loading: false,
@@ -1598,15 +1648,81 @@
    
    
        methods: {
-        atualizarGrafico(pergunta,resposta1,resposta2,resposta3) {
+        atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
 
                this.series[0].name = resposta1;
                this.series[1].name = resposta2;
                this.series[2].name = resposta3;
 
-               this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
+               let geoParaConsulta = [
+                {ibge: '11', sg_uf: 'RO'},
+                {ibge: '12', sg_uf: 'AC'},
+                {ibge: '13', sg_uf: 'AM'},
+                /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
+                {ibge: '14', sg_uf: 'RR'},
+                {ibge: '15', sg_uf: 'PA'},
+                /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
+                {ibge: '16', sg_uf: 'AP'},
+                {ibge: '17', sg_uf: 'TO'},
+                {ibge: '21', sg_uf: 'MA'},
+                {ibge: '22', sg_uf: 'PI'},
+                {ibge: '23', sg_uf: 'CE'},
+                {ibge: '24', sg_uf: 'RN'},
+                {ibge: '25', sg_uf: 'PB'},
+                {ibge: '26', sg_uf: 'PE'},
+                {ibge: '27', sg_uf: 'AL'},
+                {ibge: '28', sg_uf: 'SE'},
+                {ibge: '29', sg_uf: 'BA'},
+                {ibge: '31', sg_uf: 'MG'},
+                {ibge: '32', sg_uf: 'ES'},
+                {ibge: '33', sg_uf: 'RJ'},
+                {ibge: '35', sg_uf: 'SP'},
+                {ibge: '41', sg_uf: 'PR'},
+                {ibge: '42', sg_uf: 'SC'},
+                {ibge: '43', sg_uf: 'RS'},
+                {ibge: '50', sg_uf: 'MS'},
+                {ibge: '51', sg_uf: 'MT'},
+                {ibge: '52', sg_uf: 'GO'},
+                {ibge: '53', sg_uf: 'DF'}
+                ];
+
+                let arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,pergunta,'0') != undefined) {
+                    let qntResp_0 = this.consultaQtd(geo.ibge,pergunta,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,pergunta,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,pergunta,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                  let i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series[0].data[i] = array.qntResp_0;
+                      this.series[1].data[i] = array.qntResp_1;
+                      this.series[2].data[i] = array.qntResp_2;
+                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+               //this.chartOptions.xaxis.categories = [this.results];
+
+
+
+          /*     this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
                this.series[1].data[0] = this.consultaQtd('11',pergunta,'1');
                this.series[2].data[0] = this.consultaQtd('11',pergunta,'2');
+
+             //  this.chartOptions.xaxis.categories = ['RO'];
+               console.log('aqui leo veio'+this.series[0].data[0]);
 
                this.series[0].data[1] = this.consultaQtd('12',pergunta,'0');
                this.series[1].data[1] = this.consultaQtd('12',pergunta,'1');
@@ -1616,17 +1732,17 @@
                this.series[1].data[2] = this.consultaQtd('13',pergunta,'1');
                this.series[2].data[2] = this.consultaQtd('13',pergunta,'2');
 
-             /*  this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
+               this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
                this.series[1].data[3] = this.consultaQtd('14',pergunta,'1');
-               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2'); */
+               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2'); 
 
                this.series[0].data[4] = this.consultaQtd('15',pergunta,'0');
                this.series[1].data[4] = this.consultaQtd('15',pergunta,'1');
                this.series[2].data[4] = this.consultaQtd('15',pergunta,'2');
 
-            /*   this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
+               this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
                this.series[1].data[5] = this.consultaQtd('16',pergunta,'1');
-               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2'); */
+               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2');
             
                this.series[0].data[6] = this.consultaQtd('17',pergunta,'0');
                this.series[1].data[6] = this.consultaQtd('17',pergunta,'1');
@@ -1710,7 +1826,8 @@
                
                this.series[0].data[26] = this.consultaQtd('53',pergunta,'0');
                this.series[1].data[26] = this.consultaQtd('53',pergunta,'1');
-               this.series[2].data[26] = this.consultaQtd('53',pergunta,'2'); 
+               this.series[2].data[26] = this.consultaQtd('53',pergunta,'2'); */
+             
 
        /*
             this.series = [{
@@ -1777,9 +1894,12 @@
            onChangePage(pageOfItems) {
                // update page of items
                
+              // this.chartOptions.xaxis.categories = [];
+
+             //  this.chartOptions.xaxis.categories=[this.results[0].sg_uf];
                console.log(pageOfItems);
                this.pageOfItems = pageOfItems;
-               this.atualizarGrafico(pageOfItems[0].id,pageOfItems[0].response[0].name,pageOfItems[0].response[1].name,pageOfItems[0].response[2].name);
+               this.atualizarGrafico(pageOfItems[0].id,pageOfItems[0].response[0].name,pageOfItems[0].response[1].name,pageOfItems[0].response[2].name,0);
   
            },
            setas(value){
@@ -1827,12 +1947,12 @@
             {filtroGeo: 'school.ibge_uf_id', ibge: '13', sg_uf: 'AM'},
             
             /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-          /*  {filtroGeo: 'school.ibge_uf_id', info: '14', sg_uf: 'RR'}, */
+            {filtroGeo: 'school.ibge_uf_id', ibge: '14', sg_uf: 'RR'},
 
             {filtroGeo: 'school.ibge_uf_id', ibge: '15', sg_uf: 'PA'},
 
             /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-          /*  {filtroGeo: 'school.ibge_uf_id', info: '16', sg_uf: 'AP'}, */
+            {filtroGeo: 'school.ibge_uf_id', ibge: '16', sg_uf: 'AP'},
 
             {filtroGeo: 'school.ibge_uf_id', ibge: '17', sg_uf: 'TO'},
 
@@ -1872,30 +1992,31 @@
              let consolidado0 = 0;
              let consolidado1 = 0;
              let consolidado2 = 0;
-             let modelo = 0;
+             let modelo = undefined;
              let idPergunta = '';
+             let quest_complete = 'S';
 
              for (let i = 0; i < values.length; i++) {
                let obj = {}
                let data = values[i].data();
-               obj.quest = data.quest;
+               obj = data;
                arrayData.push(obj);
              }
 
              for (let i = 0; i < arrayData.length; i++) {
                 if (arrayData[i].quest != undefined) {
                   modelo = i;
-                } else { modelo = 0; }
+                }
              }
 
-             if (arrayData[modelo].hasOwnProperty('quest')) {
+             if (modelo != undefined) {
 
              for (let j = 0; j < arrayData[modelo].quest.length; j++) {
                   if (arrayData[modelo].quest[j].questions != undefined) { 
                     for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
 
                       for (let i = 0; i < arrayData.length; i++) {
-                        if (arrayData[i].quest != undefined) {
+                        if (arrayData[i].quest != undefined&&arrayData[i].school.quest_complete == 'S') {
                           ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
@@ -1903,13 +2024,15 @@
                           ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
                         }
                     }
-                    results.push({ibge: geo.ibge, sg_uf: geo.sg_uf, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
-                    qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+                   
+                    results.push({ibge: geo.ibge, sg_uf: geo.sg_uf, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, 
+                    total: consolidadoTotal.toString(), qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
                     consolidado0 = 0;
                     consolidado1 = 0;
                     consolidado2 = 0;
                     consolidadoTotal = 0;
                     idPergunta = '';
+                    quest_complete = 'S';
                     }
                   }
               }
@@ -1971,14 +2094,14 @@
               data: []
             }];
 
-            this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name);
-
-
             this.results = washData;
+
+            //this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name);
 
             }
             /*FIM DO PRÉ-CARREGAMENTO DE INFORMAÇÕES*/
-          
+            this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name,1);
+
            this.questions = washData;
    
            let responses = this.users.length;
@@ -2040,7 +2163,7 @@
    position: absolute;
    padding: 6px;
    margin-left:45px;
-   top: 3px; 
+   top: -5px; 
    }
    .page-item.previous {
    visibility:hidden;
@@ -2052,7 +2175,7 @@
    position: absolute;
    padding: 6px;
    margin-left:30px;
-   top: 3px; 
+   top: -5px; 
    }
    .page-item.next {
    visibility:hidden;
@@ -2064,7 +2187,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-12px;
-   top: 3px;  
+   top: -5px;  
    }
    .page-item.last {
    visibility:hidden;
@@ -2076,7 +2199,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-27px;
-   top: 3px;
+   top: -5px;
    }
    #customers {
    font-family: Arial, Helvetica, sans-serif;

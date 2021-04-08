@@ -1655,11 +1655,10 @@
                this.series[2].name = resposta3;
 
                let geoParaConsulta = [
-                {ibge: '1', sg_uf: 'NORTE'},
-                {ibge: '2', sg_uf: 'NORDESTE'},
-                {ibge: '3', sg_uf: 'SUDESTE'},
-                {ibge: '4', sg_uf: 'SUL'},
-                {ibge: '5', sg_uf: 'CENTRO-OESTE'}
+                {ibge: 'TAM', sg_uf: 'TAM'},
+                {ibge: 'PCU', sg_uf: 'PCU'},
+                {ibge: 'SAB', sg_uf: 'SAB'},
+                {ibge: 'Outros', sg_uf: 'Outros'},
                 ];
 
                 let arrayParaOrdenacao = [];
@@ -1917,11 +1916,12 @@
 
    /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
            let geoParaConsulta = [
-            {filtroGeo: 'school.ibge_region_id', ibge: '1', sg_uf: 'NORTE'},
-            {filtroGeo: 'school.ibge_region_id', ibge: '2', sg_uf: 'NORDESTE'},
-            {filtroGeo: 'school.ibge_region_id', ibge: '3', sg_uf: 'SUDESTE'},
-            {filtroGeo: 'school.ibge_region_id', ibge: '4', sg_uf: 'SUL'},
-            {filtroGeo: 'school.ibge_region_id', ibge: '5', sg_uf: 'CENTRO-OESTE'}
+            
+            {filtroGeo: 'school.territory', ibge: 'TAM', sg_uf: 'TAM'},
+            {filtroGeo: 'school.territory', ibge: 'PCU', sg_uf: 'PCU'},
+            {filtroGeo: 'school.territory', ibge: 'SAB', sg_uf: 'SAB'},
+            {filtroGeo: 'school.territory', ibge: 'Outros', sg_uf: 'Outros'},
+           
             ];
 
            let results = [];
