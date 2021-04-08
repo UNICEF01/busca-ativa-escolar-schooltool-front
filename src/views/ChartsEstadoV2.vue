@@ -101,7 +101,7 @@
                         <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
                            ref="exampleChart"
-                           width="1500px" 
+                           width="2000px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -198,7 +198,7 @@
             plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '55%',
+                  columnWidth: '85%',
                   endingShape: 'rounded'
                 }
             },
