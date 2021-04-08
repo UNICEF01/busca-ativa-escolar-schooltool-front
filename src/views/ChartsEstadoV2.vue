@@ -146,51 +146,61 @@
            chartOptions: {
             chart: {
               id: 'vuechart-example',
-              selection: {
-                enabled: true,
-                type: 'x',
-                fill: {
-                  color: '#24292e',
-                  opacity: 0.1
-                },
-                stroke: {
-                  width: 1,
-                  dashArray: 3,
-                  color: '#24292e',
-                  opacity: 0.4
-                },
-                xaxis: {
-                  min: undefined,
-                  max: undefined
-                },
-                yaxis: {
-                  min: undefined,
-                  max: undefined
-                }
-              },
-               zoom: {
-                enabled: true,
-                type: 'x',  
-                autoScaleYaxis: true,  
-                zoomedArea: {
-                  fill: {
-                    color: '#90CAF9',
-                    opacity: 0.4
-                  },
-                  stroke: {
-                    color: '#0D47A1',
-                    opacity: 0.4,
-                    width: 1
-                  }
+              events: {
+                dataPointMouseLeave(event, chartContext, config) {
+                    console.log(chartContext,config)
+                   
                 }
             }
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: undefined,
+                formatter: function (val, opts) {
+                    return val
+                },
+                textAnchor: 'middle',
+                distributed: false,
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontWeight: 'bold',
+                    colors: undefined
+                },
+                background: {
+                  enabled: true,
+                  foreColor: '#fff',
+                  padding: 6,
+                  borderRadius: 2,
+                  borderWidth: 1,
+                  borderColor: '#fff',
+                  opacity: 0.9,
+                  dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                  }
+                },
+                dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                }
             },
             plotOptions: {
                 bar: {
                   horizontal: false,
                   columnWidth: '55%',
                   endingShape: 'rounded'
-                },
+                }
             },
             tooltip: {
                 enabled: false,
