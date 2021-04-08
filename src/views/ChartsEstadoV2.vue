@@ -282,7 +282,7 @@
              { report: 'Territórios', src: '/resultsterritorio' },
              { report: 'Estado', src: '/resultsescola' }
            ],
-           text: 'Carregando',
+           text: 'Consultando dados, aguarde',
            dark: false,
            classes: null,
            loading: false,

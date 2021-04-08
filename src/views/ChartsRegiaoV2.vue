@@ -98,8 +98,9 @@
                <div class="card text-center m-3" style="margin-left:-224px!important">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">  
-                        <v-form ref="form_research" lazy-validation>
+                        <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
+                           ref="exampleChart"
                            width="1500px" 
                            height="500px" 
                            type="bar" 
@@ -112,7 +113,7 @@
                   </div>
                   <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
-                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" ></jw-pagination>
+                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
                      </p>
                   </div>
@@ -144,14 +145,62 @@
            arrayTmp: [],
            chartOptions: {
             chart: {
-              id: 'vuechart-example'
+              id: 'vuechart-example',
+              events: {
+                dataPointMouseLeave(event, chartContext, config) {
+                    console.log(chartContext,config)
+                   
+                }
+            }
+            },
+            dataLabels: {
+                enabled: true,
+                enabledOnSeries: undefined,
+                formatter: function (val, opts) {
+                    return val
+                },
+                textAnchor: 'middle',
+                distributed: false,
+                offsetX: 0,
+                offsetY: 0,
+                style: {
+                    fontSize: '14px',
+                    fontFamily: 'Helvetica, Arial, sans-serif',
+                    fontWeight: 'bold',
+                    colors: undefined
+                },
+                background: {
+                  enabled: true,
+                  foreColor: '#fff',
+                  padding: 6,
+                  borderRadius: 2,
+                  borderWidth: 1,
+                  borderColor: '#fff',
+                  opacity: 0.9,
+                  dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                  }
+                },
+                dropShadow: {
+                    enabled: false,
+                    top: 1,
+                    left: 1,
+                    blur: 1,
+                    color: '#000',
+                    opacity: 0.45
+                }
             },
             plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '55%',
+                  columnWidth: '85%',
                   endingShape: 'rounded'
-                },
+                }
             },
             tooltip: {
                 enabled: false,
@@ -169,9 +218,11 @@
 
             },
             xaxis: {
-              categories: ['Norte', 'Nordeste', 'Sudeste', 'Centro Oeste', 'Sul']
+            //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
+            categories: []
             },
-            labels: ['1', '2', '3', '4', '5'],
+            //labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27'],
+            labels: [],
             legend: {
               show: true,
               showForSingleSeries: false,
@@ -231,7 +282,7 @@
              { report: 'Territórios', src: '/resultsterritorio' },
              { report: 'Estado', src: '/resultsescola' }
            ],
-           text: 'Carregando',
+           text: 'Consultando dados, aguarde',
            dark: false,
            classes: null,
            loading: false,
@@ -1597,12 +1648,184 @@
    
    
        methods: {
-         consultaQtd(info,idpergunta,resp) {
+        atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
+
+               this.series[0].name = resposta1;
+               this.series[1].name = resposta2;
+               this.series[2].name = resposta3;
+
+               let geoParaConsulta = [
+                {ibge: '1', sg_uf: 'NORTE'},
+                {ibge: '2', sg_uf: 'NORDESTE'},
+                {ibge: '3', sg_uf: 'SUDESTE'},
+                {ibge: '4', sg_uf: 'SUL'},
+                {ibge: '5', sg_uf: 'CENTRO-OESTE'}
+                ];
+
+                let arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,pergunta,'0') != undefined) {
+                    let qntResp_0 = this.consultaQtd(geo.ibge,pergunta,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,pergunta,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,pergunta,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                  let i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series[0].data[i] = array.qntResp_0;
+                      this.series[1].data[i] = array.qntResp_1;
+                      this.series[2].data[i] = array.qntResp_2;
+                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+               //this.chartOptions.xaxis.categories = [this.results];
+
+
+
+          /*     this.series[0].data[0] = this.consultaQtd('11',pergunta,'0');
+               this.series[1].data[0] = this.consultaQtd('11',pergunta,'1');
+               this.series[2].data[0] = this.consultaQtd('11',pergunta,'2');
+
+             //  this.chartOptions.xaxis.categories = ['RO'];
+               console.log('aqui leo veio'+this.series[0].data[0]);
+
+               this.series[0].data[1] = this.consultaQtd('12',pergunta,'0');
+               this.series[1].data[1] = this.consultaQtd('12',pergunta,'1');
+               this.series[2].data[1] = this.consultaQtd('12',pergunta,'2');
+
+               this.series[0].data[2] = this.consultaQtd('13',pergunta,'0');
+               this.series[1].data[2] = this.consultaQtd('13',pergunta,'1');
+               this.series[2].data[2] = this.consultaQtd('13',pergunta,'2');
+
+               this.series[0].data[3] = this.consultaQtd('14',pergunta,'0');
+               this.series[1].data[3] = this.consultaQtd('14',pergunta,'1');
+               this.series[2].data[3] = this.consultaQtd('14',pergunta,'2'); 
+
+               this.series[0].data[4] = this.consultaQtd('15',pergunta,'0');
+               this.series[1].data[4] = this.consultaQtd('15',pergunta,'1');
+               this.series[2].data[4] = this.consultaQtd('15',pergunta,'2');
+
+               this.series[0].data[5] = this.consultaQtd('16',pergunta,'0');
+               this.series[1].data[5] = this.consultaQtd('16',pergunta,'1');
+               this.series[2].data[5] = this.consultaQtd('16',pergunta,'2');
+            
+               this.series[0].data[6] = this.consultaQtd('17',pergunta,'0');
+               this.series[1].data[6] = this.consultaQtd('17',pergunta,'1');
+               this.series[2].data[6] = this.consultaQtd('17',pergunta,'2');
+               
+               this.series[0].data[7] = this.consultaQtd('21',pergunta,'0');
+               this.series[1].data[7] = this.consultaQtd('21',pergunta,'1');
+               this.series[2].data[7] = this.consultaQtd('21',pergunta,'2');
+               
+               this.series[0].data[8] = this.consultaQtd('22',pergunta,'0');
+               this.series[1].data[8] = this.consultaQtd('22',pergunta,'1');
+               this.series[2].data[8] = this.consultaQtd('22',pergunta,'2');               
+            
+               this.series[0].data[9] = this.consultaQtd('23',pergunta,'0');
+               this.series[1].data[9] = this.consultaQtd('23',pergunta,'1');
+               this.series[2].data[9] = this.consultaQtd('23',pergunta,'2');
+               
+               this.series[0].data[10] = this.consultaQtd('24',pergunta,'0');
+               this.series[1].data[10] = this.consultaQtd('24',pergunta,'1');
+               this.series[2].data[10] = this.consultaQtd('24',pergunta,'2');
+
+               this.series[0].data[11] = this.consultaQtd('25',pergunta,'0');
+               this.series[1].data[11] = this.consultaQtd('25',pergunta,'1');
+               this.series[2].data[11] = this.consultaQtd('25',pergunta,'2');
+
+               this.series[0].data[12] = this.consultaQtd('26',pergunta,'0');
+               this.series[1].data[12] = this.consultaQtd('26',pergunta,'1');
+               this.series[2].data[12] = this.consultaQtd('26',pergunta,'2');
+               
+               this.series[0].data[13] = this.consultaQtd('27',pergunta,'0');
+               this.series[1].data[13] = this.consultaQtd('27',pergunta,'1');
+               this.series[2].data[13] = this.consultaQtd('27',pergunta,'2');
+               
+               this.series[0].data[14] = this.consultaQtd('28',pergunta,'0');
+               this.series[1].data[14] = this.consultaQtd('28',pergunta,'1');
+               this.series[2].data[14] = this.consultaQtd('28',pergunta,'2');
+               
+               this.series[0].data[15] = this.consultaQtd('29',pergunta,'0');
+               this.series[1].data[15] = this.consultaQtd('29',pergunta,'1');
+               this.series[2].data[15] = this.consultaQtd('29',pergunta,'2');               
+
+               this.series[0].data[16] = this.consultaQtd('31',pergunta,'0');
+               this.series[1].data[16] = this.consultaQtd('31',pergunta,'1');
+               this.series[2].data[16] = this.consultaQtd('31',pergunta,'2');
+               
+               this.series[0].data[17] = this.consultaQtd('32',pergunta,'0');
+               this.series[1].data[17] = this.consultaQtd('32',pergunta,'1');
+               this.series[2].data[17] = this.consultaQtd('32',pergunta,'2');    
+               
+               this.series[0].data[18] = this.consultaQtd('33',pergunta,'0');
+               this.series[1].data[18] = this.consultaQtd('33',pergunta,'1');
+               this.series[2].data[18] = this.consultaQtd('33',pergunta,'2');    
+               
+               this.series[0].data[19] = this.consultaQtd('35',pergunta,'0');
+               this.series[1].data[19] = this.consultaQtd('35',pergunta,'1');
+               this.series[2].data[19] = this.consultaQtd('35',pergunta,'2');    
+               
+               this.series[0].data[20] = this.consultaQtd('41',pergunta,'0');
+               this.series[1].data[20] = this.consultaQtd('41',pergunta,'1');
+               this.series[2].data[20] = this.consultaQtd('41',pergunta,'2');    
+               
+               this.series[0].data[21] = this.consultaQtd('42',pergunta,'0');
+               this.series[1].data[21] = this.consultaQtd('42',pergunta,'1');
+               this.series[2].data[21] = this.consultaQtd('42',pergunta,'2');    
+               
+               this.series[0].data[22] = this.consultaQtd('43',pergunta,'0');
+               this.series[1].data[22] = this.consultaQtd('43',pergunta,'1');
+               this.series[2].data[22] = this.consultaQtd('43',pergunta,'2');    
+               
+               this.series[0].data[23] = this.consultaQtd('50',pergunta,'0');
+               this.series[1].data[23] = this.consultaQtd('50',pergunta,'1');
+               this.series[2].data[23] = this.consultaQtd('50',pergunta,'2');    
+               
+               this.series[0].data[24] = this.consultaQtd('51',pergunta,'0');
+               this.series[1].data[24] = this.consultaQtd('51',pergunta,'1');
+               this.series[2].data[24] = this.consultaQtd('51',pergunta,'2');    
+               
+               this.series[0].data[25] = this.consultaQtd('52',pergunta,'0');
+               this.series[1].data[25] = this.consultaQtd('52',pergunta,'1');
+               this.series[2].data[25] = this.consultaQtd('52',pergunta,'2');
+               
+               this.series[0].data[26] = this.consultaQtd('53',pergunta,'0');
+               this.series[1].data[26] = this.consultaQtd('53',pergunta,'1');
+               this.series[2].data[26] = this.consultaQtd('53',pergunta,'2'); */
+             
+
+       /*
+            this.series = [{
+              data: [this.consultaQtd('11',pergunta,'0'), 55, 41, 64, 22, 43, 21]
+            }, {
+              data: [this.consultaQtd('11',pergunta,'1'), 32, 33, 52, 13, 44, 32]
+            }, {
+              data: [this.consultaQtd('11',pergunta,'2'), 32, 33, 52, 13, 44, 32]
+            }]; */
+            
+        },
+        random(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        },
+         consultaQtd(ibge,idpergunta,resp) {
            let valObj = [];
            switch (resp) {
              case '0':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_0);
@@ -1610,7 +1833,7 @@
              break;
              case '1':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_1);
@@ -1618,7 +1841,7 @@
              break;
              case '2':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].qntResp_2);
@@ -1626,7 +1849,7 @@
              break;
              case 'total':
              valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.total; }
+                if(elem.ibge == ibge&&elem.id_pergunta == idpergunta) { return elem.total; }
               });
              if (valObj[0] != undefined) {
               return(valObj[0].total);
@@ -1646,60 +1869,22 @@
            },
            onChangePage(pageOfItems) {
                // update page of items
+               
+              // this.chartOptions.xaxis.categories = [];
+
+             //  this.chartOptions.xaxis.categories=[this.results[0].sg_uf];
+               console.log(pageOfItems);
                this.pageOfItems = pageOfItems;
-               let i = 1;
-               let tamanho = 1;
-
-               this.series[0].data[0] = this.consultaQtd('1',this.pergunta,'0');
-               this.series[1].data[0] = this.consultaQtd('1',this.pergunta,'1');
-               this.series[2].data[0] = this.consultaQtd('1',this.pergunta,'2');
-
-               this.series[0].data[1] = this.consultaQtd('2',this.pergunta,'0');
-               this.series[1].data[1] = this.consultaQtd('2',this.pergunta,'1');
-               this.series[2].data[1] = this.consultaQtd('2',this.pergunta,'2');
-
-               this.series[0].data[2] = this.consultaQtd('3',this.pergunta,'0');
-               this.series[1].data[2] = this.consultaQtd('3',this.pergunta,'1');
-               this.series[2].data[2] = this.consultaQtd('3',this.pergunta,'2');
-
-               this.series[0].data[3] = this.consultaQtd('5',this.pergunta,'0');
-               this.series[1].data[3] = this.consultaQtd('5',this.pergunta,'1');
-               this.series[2].data[3] = this.consultaQtd('5',this.pergunta,'2');
-
-               this.series[0].data[4] = this.consultaQtd('4',this.pergunta,'0');
-               this.series[1].data[4] = this.consultaQtd('4',this.pergunta,'1');
-               this.series[2].data[4] = this.consultaQtd('4',this.pergunta,'2');
-
-            
-               for(let i=0;i<=5;i++){
-                 for (let j=1;j<=20;j++){
-                   if (this.grupo==0) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+j+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==1) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+3)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==2) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+7)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==3) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+14)+'"}</style>').appendTo('head');
-                 }
-               }
-               }
-   
+               this.atualizarGrafico(pageOfItems[0].id,pageOfItems[0].response[0].name,pageOfItems[0].response[1].name,pageOfItems[0].response[2].name,0);
+  
            },
            setas(value){
              if (value == 'prev'){
-               $("a.page-link-previous")[0].click();
+               $(".previous a")[0].click();
                var number = $("#pergunta").val()-1
                $("#tituloPergunta").text("Pergunta: "+number)
              }else{
-               $("a.page-link-next")[0].click();
+               $(".next a")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
                $("#tituloPergunta").text("Pergunta: "+number)            
              }
@@ -1728,29 +1913,21 @@
              this.grupo = grupo;
              this.pergunta = pergunta;
          },
-         getResult2(tipo,geral,info,idx,resp) {
-           return(0);
-         },
          async getData() {
 
    /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
            let geoParaConsulta = [
-            {filtroGeo: 'school.ibge_region_id', info: '1'},
-           
-            {filtroGeo: 'school.ibge_region_id', info: '2'},
-           
-            {filtroGeo: 'school.ibge_region_id', info: '3'},
-            
-            {filtroGeo: 'school.ibge_region_id', info: '4'},
-           
-            {filtroGeo: 'school.ibge_region_id', info: '5'}
-            
+            {filtroGeo: 'school.ibge_region_id', ibge: '1', sg_uf: 'NORTE'},
+            {filtroGeo: 'school.ibge_region_id', ibge: '2', sg_uf: 'NORDESTE'},
+            {filtroGeo: 'school.ibge_region_id', ibge: '3', sg_uf: 'SUDESTE'},
+            {filtroGeo: 'school.ibge_region_id', ibge: '4', sg_uf: 'SUL'},
+            {filtroGeo: 'school.ibge_region_id', ibge: '5', sg_uf: 'CENTRO-OESTE'}
             ];
 
            let results = [];
             for (let geo of geoParaConsulta) {
 
-            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.info).get().then(function (querySnapshot) {
+            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.ibge).get().then(function (querySnapshot) {
 
              let values = querySnapshot.docs;
              let arrayData = [];
@@ -1758,13 +1935,14 @@
              let consolidado0 = 0;
              let consolidado1 = 0;
              let consolidado2 = 0;
-             let modelo = 0;
+             let modelo = undefined;
              let idPergunta = '';
+             let quest_complete = 'S';
 
              for (let i = 0; i < values.length; i++) {
                let obj = {}
                let data = values[i].data();
-               obj.quest = data.quest;
+               obj = data;
                arrayData.push(obj);
              }
 
@@ -1774,14 +1952,14 @@
                 }
              }
 
-             if (arrayData[modelo] != undefined) {
+             if (modelo != undefined) {
 
              for (let j = 0; j < arrayData[modelo].quest.length; j++) {
                   if (arrayData[modelo].quest[j].questions != undefined) { 
                     for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
 
                       for (let i = 0; i < arrayData.length; i++) {
-                        if (arrayData[i].quest != undefined) {
+                        if (arrayData[i].quest != undefined&&arrayData[i].school.quest_complete == 'S') {
                           ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
@@ -1789,20 +1967,24 @@
                           ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
                         }
                     }
-                    results.push({info: geo.info, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
-                    qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+                   
+                    results.push({ibge: geo.ibge, sg_uf: geo.sg_uf, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, 
+                    total: consolidadoTotal.toString(), qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
                     consolidado0 = 0;
                     consolidado1 = 0;
                     consolidado2 = 0;
                     consolidadoTotal = 0;
                     idPergunta = '';
+                    quest_complete = 'S';
                     }
                   }
               }
 
              }
+             
 
               console.log(results);
+
 
        /*      for (let i = 0; i < arrayData.length; i++) {
                 if (arrayData[i].quest != undefined) {
@@ -1847,11 +2029,22 @@
              return results;
            });
 
+           this.series = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
             this.results = washData;
+
+            //this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name);
 
             }
             /*FIM DO PRÉ-CARREGAMENTO DE INFORMAÇÕES*/
-          
+            this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name,1);
+
            this.questions = washData;
    
            let responses = this.users.length;
