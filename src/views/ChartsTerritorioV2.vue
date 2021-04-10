@@ -111,7 +111,7 @@
                         </v-form>
                      </div>
                   </div>
-                  <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:0px;padding:0px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
@@ -146,6 +146,9 @@
            chartOptions: {
             chart: {
               id: 'vuechart-example',
+            toolbar: {
+              show: false
+            },              
               events: {
                 dataPointMouseLeave(event, chartContext, config) {
                     console.log(chartContext,config)
@@ -202,6 +205,7 @@
                   endingShape: 'rounded'
                 }
             },
+            
             tooltip: {
                 enabled: false,
                 followCursor: true,
@@ -2106,7 +2110,7 @@
    position: absolute;
    padding: 6px;
    margin-left:45px;
-   top: 3px; 
+   top: 0px; 
    }
    .page-item.previous {
    visibility:hidden;
@@ -2118,7 +2122,7 @@
    position: absolute;
    padding: 6px;
    margin-left:30px;
-   top: 3px; 
+   top: 0px; 
    }
    .page-item.next {
    visibility:hidden;
@@ -2130,7 +2134,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-12px;
-   top: 3px;  
+   top: 0px;  
    }
    .page-item.last {
    visibility:hidden;
@@ -2142,7 +2146,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-27px;
-   top: 3px;
+   top: 0px;
    }
    #customers {
    font-family: Arial, Helvetica, sans-serif;
