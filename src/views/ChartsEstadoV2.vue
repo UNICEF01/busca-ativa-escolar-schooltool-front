@@ -101,7 +101,7 @@
                         <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
                            ref="exampleChart"
-                           width="2000px" 
+                           width="120%" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -111,7 +111,7 @@
                         </v-form>
                      </div>
                   </div>
-                  <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:0px;padding:0px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
@@ -146,6 +146,9 @@
            chartOptions: {
             chart: {
               id: 'vuechart-example',
+            toolbar: {
+              show: false
+            },                
               events: {
                 dataPointMouseLeave(event, chartContext, config) {
                     console.log(chartContext,config)
@@ -164,7 +167,7 @@
                 offsetX: 0,
                 offsetY: 0,
                 style: {
-                    fontSize: '14px',
+                    fontSize: '10px',
                     fontFamily: 'Helvetica, Arial, sans-serif',
                     fontWeight: 'bold',
                     colors: undefined
@@ -172,7 +175,7 @@
                 background: {
                   enabled: true,
                   foreColor: '#fff',
-                  padding: 6,
+                  padding: 5,
                   borderRadius: 2,
                   borderWidth: 1,
                   borderColor: '#fff',
@@ -198,7 +201,7 @@
             plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '85%',
+                  columnWidth: '75%',
                   endingShape: 'rounded'
                 }
             },
@@ -2163,7 +2166,7 @@
    position: absolute;
    padding: 6px;
    margin-left:45px;
-   top: 3px; 
+   top: 0px; 
    }
    .page-item.previous {
    visibility:hidden;
@@ -2175,7 +2178,7 @@
    position: absolute;
    padding: 6px;
    margin-left:30px;
-   top: 3px; 
+   top: 0px; 
    }
    .page-item.next {
    visibility:hidden;
@@ -2187,7 +2190,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-12px;
-   top: 3px;  
+   top: 0px;  
    }
    .page-item.last {
    visibility:hidden;
@@ -2199,7 +2202,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-27px;
-   top: 3px;
+   top: 0px;
    }
    #customers {
    font-family: Arial, Helvetica, sans-serif;

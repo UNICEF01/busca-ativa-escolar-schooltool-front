@@ -66,6 +66,16 @@ export default [
     view: 'ChartsEstadoV2'
   },
   {
+    path: '/exportExcel',
+    name: 'Export Excel',
+    view: 'exportExcel'
+  },
+  {
+    path: '/bigData',
+    name: 'big Data',
+    view: 'bigData'
+  },
+  {
     path: '/chartsterritoriov2',
     name: 'Gráficos Território',
     view: 'ChartsTerritorioV2'

@@ -150,6 +150,7 @@
                     v-model="user.relation.other"
                     :rules="[rules.required]"
                   />
+                  
                 </v-flex>
               </v-layout>
             </v-container>
