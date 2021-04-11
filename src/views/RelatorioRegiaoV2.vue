@@ -14,12 +14,12 @@
             <button @click="downloadWithCSS">Download PDF</button>
 
             <template>
-               <div class="card text-center m-4" style="text-align:center!important;width:1414px;top:120px;left:524px">
+               <div class="card text-center m-4" style="margin-left:190px">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            <div
-                              style="width:70%;padding: 5px;margin: 20px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding: 3px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
                                  style="height: 140px;overflow-y:auto !important"
@@ -61,13 +61,13 @@
             lg8>
             <template>
 
-               <div class="card text-center m-3" style="margin-top:240px!important;margin-left:-284px!important">
+               <div class="card text-center m-3" style="margin-top:240px!important;margin-left:-234px!important">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">  
                         <v-form ref="form_research" lazy-validation :key="componentKey">
                            <apexchart
                            ref="exampleChart"
-                           width="1500px" 
+                           width="1300px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -122,6 +122,9 @@
                    
                 }
             }
+            },
+            grid: {
+            show: false
             },
             dataLabels: {
                 enabled: true,
@@ -188,6 +191,7 @@
 
             },
             xaxis: {
+            show: false,
             //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
             categories: []
             },
