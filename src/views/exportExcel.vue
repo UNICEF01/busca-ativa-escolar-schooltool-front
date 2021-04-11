@@ -5,17 +5,17 @@
       <br> <br> <br> <br>
      
         
-        <ejs-grid ref='grid' id='Grid' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
+        <ejs-grid ref='grid' id='Grid' locale='pt-BR' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
           
           <e-columns>
             <e-column field='id' headerText='ID' textAlign='Left' width=120></e-column>
-            <e-column field='nome' headerText='Nome' textAlign='left' width=120></e-column>
-            <e-column field='telefone' headerText='Telefone' textAlign='Left' width=120></e-column>
-            <e-column field='escola' headerText='Escola' textAlign='Left' width=120></e-column>
-            <e-column field='territorio' headerText='Território' textAlign='Left' width=120></e-column>
-            <e-column field='municipio' headerText='Município' textAlign='Left' width=120></e-column>
+            <e-column field='nome' headerText='Nome' textAlign='left' width=140></e-column>
+            <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column>
+            <e-column field='escola' headerText='Escola' textAlign='Left' width=140></e-column>
+            <e-column field='territorio' headerText='Território' textAlign='Left' width=140></e-column>
+            <e-column field='municipio' headerText='Município' textAlign='Left' width=140></e-column>
             <e-column field='estado' headerText='Estado' textAlign='Left' width=120></e-column>
-            <e-column field='quest_complete' headerText='Finalizou respostas' textAlign='Left' width=120></e-column>
+            <e-column field='quest_complete' headerText='Finalizou respostas' textAlign='Left' width=140></e-column>
             <e-column field='quest1' headerText='A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade (banheiros,lavagem de mãos,preparação dos alimentos,beber)' textAlign='Left' width=120></e-column>
             <e-column field='quest2' headerText='Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante,pelo menos,dois dias' textAlign='Left' width=120></e-column>
             <e-column field='quest3' headerText='A água está tratada com cloro (teor mínimo,0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde ou da Organização Mundial da Saúde. A Portaria de Consolidação nº 5,de 28/09/2017/Minist[erio da Saúde determina a obrigatoriedade de se manter,no mínimo,0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede).' textAlign='Left' width=120></e-column>
@@ -56,10 +56,43 @@
 <script>
 import Vue from "vue";
 import { GridPlugin, Page, Sort, Toolbar, ExcelExport, Filter  } from "@syncfusion/ej2-vue-grids";
+import { L10n, setCulture } from '@syncfusion/ej2-base';
 
 import { data } from './bigData.js';
 
 Vue.use(GridPlugin);
+
+setCulture('pt-BR');
+L10n.load({
+    'pt-BR': {
+        'grid': {
+            'EmptyRecord': 'Aguarde, carregando ...'
+        },
+        'pager':{
+            'currentPageInfo': '{0} de {1} páginas',
+            'totalItemsInfo': '({0} items)',
+            'totalItemInfo': '({0} item)',
+            'firstPageTooltip': 'primeira página',
+            'lastPageTooltip': 'última página',
+            'nextPageTooltip': 'próxima página',
+            'previousPageTooltip': 'página anterior',
+            'nextPagerTooltip': 'próxima página',
+            'previousPagerTooltip': 'Go to previous pager',
+            'pagerDropDown': 'Items por página',
+            'pagerAllDropDown': 'Items',
+            'CurrentPageInfo': '{0} de {1} páginas',
+            'TotalItemsInfo': '({0} items)',
+            'FirstPageTooltip': 'primeira página',
+            'LastPageTooltip': 'última página',
+            'NextPageTooltip': 'próxima página',
+            'PreviousPageTooltip': 'página anterior',
+            'NextPagerTooltip': 'Go to next pager',
+            'PreviousPagerTooltip': 'Go to previous pager',
+            'PagerDropDown': 'Items por página',
+            'PagerAllDropDown': 'Items'
+        }
+    }
+});
 
 export default {
  

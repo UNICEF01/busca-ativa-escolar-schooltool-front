@@ -2109,7 +2109,7 @@
    position: absolute;
    padding: 6px;
    margin-left:45px;
-   top: 0px; 
+   top: -1px; 
    }
    .page-item.previous {
    visibility:hidden;
@@ -2121,7 +2121,7 @@
    position: absolute;
    padding: 6px;
    margin-left:30px;
-   top: 0px; 
+   top: -1px; 
    }
    .page-item.next {
    visibility:hidden;
@@ -2133,7 +2133,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-12px;
-   top: 0px;  
+   top: -1px;  
    }
    .page-item.last {
    visibility:hidden;
@@ -2145,7 +2145,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-27px;
-   top: 0px;
+   top: -1px;
    }
    #customers {
    font-family: Arial, Helvetica, sans-serif;
