@@ -1,10 +1,10 @@
 <template>
   <v-app>
-    <core-filter />
+    <core-filter v-show="$route.path!=='/relatorioregiaov2'"/>
 
-    <core-toolbar />
+    <core-toolbar v-show="$route.path!=='/relatorioregiaov2'"/>
 
-    <core-drawer />
+    <core-drawer v-show="$route.path!=='/relatorioregiaov2'"/>
 
     <core-view />
   </v-app>

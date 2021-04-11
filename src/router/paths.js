@@ -62,13 +62,23 @@ export default [
   },
   {
     path: '/chartsestadov2',
-    name: 'Gráficos Estado',
+    name: 'Graficos Estado',
     view: 'ChartsEstadoV2'
   },
   {
     path: '/chartsterritoriov2',
     name: 'Gráficos Território',
     view: 'ChartsTerritorioV2'
+  },
+  {
+    path: '/relatorioestadov2',
+    name: 'Relatório Estado',
+    view: 'RelatorioEstadoV2'
+  },
+  {
+    path: '/relatorioregiaov2',
+    name: 'Relatório Região',
+    view: 'RelatorioRegiaoV2'
   },
   {
     path: '/ResultsMunicipio',
