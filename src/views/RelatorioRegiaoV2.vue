@@ -1802,9 +1802,17 @@
                 doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
                 heightLeft -= pageHeight;
               }
-              doc.save( 'file.pdf');
-
-              
+              const date = new Date();
+              const filename =
+                "relatorioRegiao_" +
+                date.getFullYear() +
+                ("0" + (date.getMonth() + 1)).slice(-2) +
+                ("0" + date.getDate()).slice(-2) +
+                ("0" + date.getHours()).slice(-2) +
+                ("0" + date.getMinutes()).slice(-2) +
+                ("0" + date.getSeconds()).slice(-2) +
+                ".pdf";
+              doc.save(filename);  
               window.location.href = "/chartsestadov2";
             })
             .catch(function(error) {
