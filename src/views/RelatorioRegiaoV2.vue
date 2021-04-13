@@ -15,22 +15,22 @@
 
 <!-- APARECE NO RELATÓRIO -->
             <template>
-              <div ref="content">
-               <div class="card text-center m-4" style="margin-top:30px!important;margin-left:190px" >
+              <div ref="content" >
+               <div  id="html" class="card text-center m-4" style="margin-top:50px!important;margin-left:190px;" >
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            
-                           <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div  
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
+                                 style="height: 140px"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -41,15 +41,15 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
+                                 style="height: 160px"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
                                     ></span>
                                 
                               </v-flex>
@@ -58,7 +58,7 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
                                  style="height: 220px;"
@@ -66,7 +66,7 @@
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
                                     ></span>
                      
                               </v-flex>
@@ -76,11 +76,40 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
-                           height="500px" 
+
                            type="bar" 
                            :options="chartOptions" 
                            :series="series0"
+                           :key="componentKey"
+                           class="graficoPadrao"/>
+                           <div id="html" v-html="setaGrupoPergunta(grupo,group.id)" />
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 140px"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series1"
                            :key="componentKey"
                            class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
@@ -88,15 +117,15 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
+                                 style="height: 140px"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -108,59 +137,27 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series1"
-                           :key="componentKey"
-                           style="margin-left:-200px"/>
-                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
-
-                           <br/>
-
-                           <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
-                              >
-                              <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
-                                 >
-                                 <span
-                                    class="subheading font-weight-light mr-3"
-                                    style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
-                                    ></span>
-                     
-                              </v-flex>
-                         
-
-                           </div>
-
-                           <br/>
-
-                           <apexchart
-                           ref="exampleChart"
-                           width="1300px" 
+                           width="1110px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series2"
                            :key="componentKey"
-                           style="margin-left:-200px"/>
+                           class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
+                                 style="height: 140px"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -172,13 +169,13 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
+                           width="1110px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series3"
                            :key="componentKey"
-                           style="margin-left:-200px"/>
+                           class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                         </v-form>
@@ -217,6 +214,7 @@
    import ufid from "../assets/estado.js";
 
    import jsPDF from 'jspdf' 
+   import html2canvas from 'html2canvas'
    import domtoimage from "dom-to-image";
 
    
@@ -239,6 +237,9 @@
            chartOptions: {
             chart: {
               id: 'vuechart-example',
+              toolbar: {
+                show: false
+              },                
               events: {
                 dataPointMouseLeave(event, chartContext, config) {
                     console.log(chartContext,config)
@@ -249,9 +250,7 @@
             grid: {
             show: false
             },
-            toolbar: {
-              show: false
-            },            
+          
             dataLabels: {
                 enabled: true,
                 enabledOnSeries: undefined,
@@ -316,8 +315,14 @@
                 },
 
             },
+            yaxis: {
+            labels: {
+                  show: false
+              }
+            },
             xaxis: {
-            show: false,
+            show: true,
+         
             //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
             categories: []
             },
@@ -1781,36 +1786,19 @@
 
         downloadWithCSS() {
           /** WITH CSS */
-            domtoimage
-            .toPng(this.$refs.content)
-            .then(function(dataUrl) {
-              var img = new Image();
-              img.src = dataUrl;
-              const doc = new jsPDF({
-                orientation: "portrait",
-                // unit: "pt",
-                format: [600,900]
-              });
-              const imgProps= doc.getImageProperties(img);
-              const pdfWidth = doc.internal.pageSize.getWidth();
-              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-              doc.addImage(img, "JPEG", 0, 0, pdfWidth, pdfHeight);
-              const date = new Date();
-              const filename =
-                "relatorioRegiao_" +
-                date.getFullYear() +
-                ("0" + (date.getMonth() + 1)).slice(-2) +
-                ("0" + date.getDate()).slice(-2) +
-                ("0" + date.getHours()).slice(-2) +
-                ("0" + date.getMinutes()).slice(-2) +
-                ("0" + date.getSeconds()).slice(-2) +
-                ".pdf";
-              doc.save(filename);
-              window.location.href = "/chartsestadov2";
-            })
-            .catch(function(error) {
-              console.error("oops, something went wrong!", error);
-            });
+
+		var pdf = new jsPDF('p', 'pt', 'a4');
+
+		pdf.html(document.getElementById('html'), {
+			callback: function (pdf) {
+				var iframe = document.createElement('iframe');
+				iframe.setAttribute('style', 'position:absolute;right:0; top:0; bottom:0; height:100%; width:500px');
+				document.body.appendChild(iframe);
+				iframe.src = pdf.output('datauristring');
+			}
+		});
+
+
         },
         atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
 
@@ -1940,6 +1928,7 @@
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
+                
 
                //this.chartOptions.xaxis.categories = [this.results];
 
@@ -2525,8 +2514,11 @@
    text-align: center;
    }
    .graficoPadrao {
-     margin-left:-110px!important;
+     margin-left:0px!important;
      margin-right:190px!important;
+     width:900px; 
+     height:500px;
+     page-break-after: always;  
    }
    @keyframes circleanimation {
    from {
@@ -2536,4 +2528,15 @@
    transform: rotateZ(360deg);
    }
    }
+
+table,
+		td {
+			border: 1px solid silver;
+			border-collapse: collapse
+		}
+
+		td {
+			padding: .5em
+		}
+
 </style>
