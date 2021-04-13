@@ -76,7 +76,7 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -108,13 +108,13 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series1"
                            :key="componentKey"
-                           style="margin-left:-200px"/>
+                           class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/>
@@ -140,13 +140,13 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series2"
                            :key="componentKey"
-                           style="margin-left:-200px"/>
+                           class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/>
@@ -172,13 +172,13 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1300px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series3"
                            :key="componentKey"
-                           style="margin-left:-200px"/>
+                           class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                         </v-form>
@@ -1775,34 +1775,36 @@
    
    
        methods: {
-
         downloadWithCSS() {
           /** WITH CSS */
             domtoimage
             .toPng(this.$refs.content)
             .then(function(dataUrl) {
-              var img = new Image();
-              img.src = dataUrl;
-              const doc = new jsPDF({
-                orientation: "portrait",
-                // unit: "pt",
-                format: [600,900]
-              });
-              const imgProps= doc.getImageProperties(img);
-              const pdfWidth = doc.internal.pageSize.getWidth();
-              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-              doc.addImage(img, "JPEG", 0, 0, pdfWidth, pdfHeight);
-              const date = new Date();
-              const filename =
-                "relatorioRegiao_" +
-                date.getFullYear() +
-                ("0" + (date.getMonth() + 1)).slice(-2) +
-                ("0" + date.getDate()).slice(-2) +
-                ("0" + date.getHours()).slice(-2) +
-                ("0" + date.getMinutes()).slice(-2) +
-                ("0" + date.getSeconds()).slice(-2) +
-                ".pdf";
-              doc.save(filename);
+
+              var imgData = new Image();
+              imgData.src = dataUrl;
+              var doc = new jsPDF('p', 'mm');
+
+              const imgProps= doc.getImageProperties(imgData);
+
+              var imgWidth = 210; 
+              var pageHeight = 295;  
+              var imgHeight = imgProps.height * imgWidth / imgProps.width;
+              var heightLeft = imgHeight;
+              var position = 10; // give some top padding to first page
+
+              doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+
+              while (heightLeft >= 0) {
+                position += heightLeft - imgHeight; // top padding for other pages
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+              }
+              doc.save( 'file.pdf');
+
+              
               window.location.href = "/chartsestadov2";
             })
             .catch(function(error) {
@@ -2522,8 +2524,7 @@
    text-align: center;
    }
    .graficoPadrao {
-     margin-left:-110px!important;
-     margin-right:190px!important;
+     margin-left:-160px!important;
    }
    @keyframes circleanimation {
    from {
