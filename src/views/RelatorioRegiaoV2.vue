@@ -80,7 +80,103 @@
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
-                           :series="series"
+                           :series="series0"
+                           :key="componentKey"
+                           class="graficoPadrao"/>
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 140px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1300px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series1"
+                           :key="componentKey"
+                           style="margin-left:-200px"/>
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 140px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1300px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series2"
+                           :key="componentKey"
+                           style="margin-left:-200px"/>
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 140px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1300px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series3"
                            :key="componentKey"
                            style="margin-left:-200px"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
@@ -262,7 +358,37 @@
             }
             }
           },
-          series: [{
+          series0: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+          series1: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series2: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series3: [{
               name: 'Sim',
               data: []
             }, {
@@ -1685,9 +1811,9 @@
         },
         atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
 
-               this.series[0].name = resposta1;
-               this.series[1].name = resposta2;
-               this.series[2].name = resposta3;
+               this.series0[0].name = resposta1;
+               this.series0[1].name = resposta2;
+               this.series0[2].name = resposta3;
 
                let geoParaConsulta = [
                 {ibge: '1', sg_uf: 'NORTE'},
@@ -1697,14 +1823,17 @@
                 {ibge: '5', sg_uf: 'CENTRO-OESTE'}
                 ];
 
+                /*MONTAR UM FOREACH PARA MONTAR TUDO DINAMICAMENTE DE ACORDO COM O TAMANHO DO ARRAY DE CADA GRUPO*/
+
                 let arrayParaOrdenacao = [];
 
                 /*ARRAY PARA ORDENAÇÃO*/
                 for (let geo of geoParaConsulta ) {
-                  if (this.consultaQtd(geo.ibge,pergunta,'0') != undefined) {
-                    let qntResp_0 = this.consultaQtd(geo.ibge,pergunta,'0');
-                    let qntResp_1 = this.consultaQtd(geo.ibge,pergunta,'1');
-                    let qntResp_2 = this.consultaQtd(geo.ibge,pergunta,'2');
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,1,'0'))+parseInt(this.consultaQtd(geo.ibge,2,'0'))+parseInt(this.consultaQtd(geo.ibge,3,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,1,'1'))+parseInt(this.consultaQtd(geo.ibge,2,'1'))+parseInt(this.consultaQtd(geo.ibge,3,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,1,'2'))+parseInt(this.consultaQtd(geo.ibge,2,'2'))+parseInt(this.consultaQtd(geo.ibge,3,'2'));
                     let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
 
                     arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
@@ -1717,9 +1846,94 @@
 
                   let i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series[0].data[i] = array.qntResp_0;
-                      this.series[1].data[i] = array.qntResp_1;
-                      this.series[2].data[i] = array.qntResp_2;
+                      this.series0[0].data[i] = array.qntResp_0;
+                      this.series0[1].data[i] = array.qntResp_1;
+                      this.series0[2].data[i] = array.qntResp_2;
+                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,1,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,1,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,1,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series1[0].data[i] = array.qntResp_0;
+                      this.series1[1].data[i] = array.qntResp_1;
+                      this.series1[2].data[i] = array.qntResp_2;
+                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,2,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,2,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,2,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series2[0].data[i] = array.qntResp_0;
+                      this.series2[1].data[i] = array.qntResp_1;
+                      this.series2[2].data[i] = array.qntResp_2;
+                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,3,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,3,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,3,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series3[0].data[i] = array.qntResp_0;
+                      this.series3[1].data[i] = array.qntResp_1;
+                      this.series3[2].data[i] = array.qntResp_2;
                      if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -2064,7 +2278,31 @@
              return results;
            });
 
-           this.series = [{
+           this.series0 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series1 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series2 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series3 = [{
               data: []
             }, {
               data: []
@@ -2282,6 +2520,10 @@
    color: #808080;
    font-size: 12px;
    text-align: center;
+   }
+   .graficoPadrao {
+     margin-left:-110px!important;
+     margin-right:190px!important;
    }
    @keyframes circleanimation {
    from {
