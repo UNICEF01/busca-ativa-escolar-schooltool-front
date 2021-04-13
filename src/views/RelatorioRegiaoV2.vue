@@ -249,6 +249,9 @@
             grid: {
             show: false
             },
+            toolbar: {
+              show: false
+            },            
             dataLabels: {
                 enabled: true,
                 enabledOnSeries: undefined,
