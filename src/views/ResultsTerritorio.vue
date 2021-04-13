@@ -177,7 +177,7 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[40] }} </td>
+                                    <td style="padding:12px 8px;text-align:center;width:400px">{{ arrayTmp[40] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[50] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[60] }} </td>
                                  </tr>
@@ -197,7 +197,7 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[70] }} </td>
+                                    <td style="padding:12px 8px;text-align:center;width:400px">{{ arrayTmp[70] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[80] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[90] }} </td>
                                  </tr>
@@ -217,7 +217,7 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[100] }} </td>
+                                    <td style="padding:12px 8px;text-align:center;width:400px">{{ arrayTmp[100] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[110] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[120] }} </td>
                                  </tr>
@@ -237,7 +237,7 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center">{{ arrayTmp[130] }} </td>
+                                    <td style="padding:12px 8px;text-align:center;width:400px">{{ arrayTmp[130] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[140] }} </td>
                                     <td style="padding:12px 8px;text-align:center">{{ arrayTmp[150] }} </td>
                                  </tr>
@@ -280,8 +280,6 @@
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Escolas', src: '/resultsescola' },
-             { report: 'Municípios', src: '/resultsmunicipio' },
              { report: 'Região', src: '/results' },
    
            ],

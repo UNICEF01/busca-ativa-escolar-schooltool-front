@@ -121,21 +121,18 @@ export default {
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
-                              { colSpan: 4, value: "1 - Água"},{ style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
+                              { colSpan: 3, value: "1 - Água"},{ style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
+                              { colSpan: 1, value: ""},
+                              { colSpan: 4, value: "2 - Higiene das mãos e menstrual"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
-                              { colSpan: 5, value: "2 - Higiene das mãos e menstrual"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
-                              { colSpan: 1, value: ""},
-                              { colSpan: 1, value: ""},
-                              { colSpan: 1, value: ""},
-                              { colSpan: 8, value: "3 - Saneamento"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
-                              { colSpan: 1, value: ""},
+                              { colSpan: 7, value: "3 - Saneamento"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true } }, 
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
-                              { colSpan: 11, value: "4 - Prevenção e controle de infecções"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true, } }
+                              { colSpan: 14, value: "4 - Prevenção e controle de infecções"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true, } }
                               ] } ,
                         ]
                     }

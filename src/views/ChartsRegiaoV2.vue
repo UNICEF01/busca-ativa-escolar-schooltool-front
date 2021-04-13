@@ -147,8 +147,8 @@
             chart: {
               id: 'vuechart-example',
             toolbar: {
-              show: false
-            },                
+              show: false,
+            }, 
               events: {
                 dataPointMouseLeave(event, chartContext, config) {
                     console.log(chartContext,config)
@@ -156,6 +156,7 @@
                 }
             }
             },
+         
             dataLabels: {
                 enabled: true,
                 enabledOnSeries: undefined,
@@ -214,9 +215,12 @@
                 },
 
                 yaxis: {
+
+                  
                     labels: {
                         formatter: (value) => { return val + "%" },
                     },
+                  
                 },
 
             },

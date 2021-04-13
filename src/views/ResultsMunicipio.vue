@@ -176,7 +176,6 @@
            select: { report: 'Rep1', src: '' },
            items: [
              { report: 'Territórios', src: '/resultsterritorio' },
-             { report: 'Escola', src: '/resultsescola' },
              { report: 'Região', src: '/results' },
            ],   
       text: 'Carregando',
@@ -1773,7 +1772,7 @@
        }
      }
      
-   
+
    
 </script>
 <style>

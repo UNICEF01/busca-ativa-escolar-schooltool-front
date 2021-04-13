@@ -175,7 +175,6 @@
            select: { report: 'Rep1', src: '' },
            items: [
              { report: 'Territórios', src: '/resultsterritorio' },
-             { report: 'Municípios', src: '/resultsmunicipio' },
              { report: 'Região', src: '/results' },
            ],
            text: 'Carregando',

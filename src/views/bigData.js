@@ -22,26 +22,26 @@ db.collection("users").get().then((querySnapshot) => {
       var quest1 = doc.data().quest[0].questions[0].selected;
       var quest2 = doc.data().quest[0].questions[1].selected;
       var quest3 = doc.data().quest[0].questions[2].selected;
-      var quest4 = doc.data().quest[1].questions[0].selected;
 
       //Grupo: 2 - Higiene das mãos e menstrual
+      var quest4 = doc.data().quest[1].questions[0].selected;
       var quest5 = doc.data().quest[1].questions[1].selected;
       var quest6 = doc.data().quest[1].questions[2].selected;
       var quest7 = doc.data().quest[1].questions[3].selected;
-      var quest8 = doc.data().quest[2].questions[0].selected;
-      var quest9 = doc.data().quest[2].questions[1].selected;
 
       //Grupo: 3 - Saneamento
+      var quest8 = doc.data().quest[2].questions[0].selected;
+      var quest9 = doc.data().quest[2].questions[1].selected;
       var quest10 = doc.data().quest[2].questions[2].selected;
       var quest11 = doc.data().quest[2].questions[3].selected;
       var quest12 = doc.data().quest[2].questions[4].selected;
       var quest13 = doc.data().quest[2].questions[5].selected;
       var quest14 = doc.data().quest[2].questions[6].selected;
+     
+      //Grupo: 4 - Prevenção e controle de infecções
       var quest15 = doc.data().quest[3].questions[0].selected;
       var quest16 = doc.data().quest[3].questions[1].selected;
       var quest17 = doc.data().quest[3].questions[2].selected;
-
-      //Grupo: 4 - Prevenção e controle de infecções
       var quest18 = doc.data().quest[3].questions[3].selected;
       var quest19 = doc.data().quest[3].questions[4].selected;
       var quest20 = doc.data().quest[3].questions[5].selected;
