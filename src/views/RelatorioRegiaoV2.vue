@@ -2,7 +2,7 @@
    <v-container
       fill-height
       fluid
-      grid-list-xl ref="content">
+      grid-list-xl>
       <v-layout wrap>
          <v-flex
             sm4
@@ -13,13 +13,16 @@
 
             <button @click="downloadWithCSS">Download PDF</button>
 
+<!-- APARECE NO RELATÓRIO -->
             <template>
-               <div class="card text-center m-4" style="text-align:center!important;width:1414px;top:120px;left:524px">
+              <div ref="content">
+               <div class="card text-center m-4" style="margin-top:30px!important;margin-left:190px" >
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
+                           
                            <div
-                              style="width:70%;padding: 5px;margin: 20px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
                                  style="height: 140px;overflow-y:auto !important"
@@ -29,31 +32,69 @@
                                     style="align-self: center"
                                     v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
-                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id" :key="componentKey">
+                     
                               </v-flex>
-
-
-                            <!--<v-layout wrap>
-                                 <v-flex md4 v-for="item in group.response">
-                                    <v-card style="height: 130px;width:398px"
-                                       class="pa-3"
-                                       outlined
-                                       tile                                
-                                       >
-                                       {{item.name}}
-                                    </v-card>
-                                 </v-flex>
-                              </v-layout>-->
+                         
 
                            </div>
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 140px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
+                                    ></span>
+                                
+                              </v-flex>
+                           </div>
+
+                           <br/>
+
+                           <div
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1300px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series"
+                           :key="componentKey"
+                           style="margin-left:-200px"/>
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+
                         </v-form>
                      </div>
                   </div>
                </div>
+              </div>
             </template>
            
          </v-flex>
 
+<!-- NÃO APARECE NO RELATÓRIO -->
          <v-flex
             sm8
             xs12
@@ -61,22 +102,8 @@
             lg8>
             <template>
 
-               <div class="card text-center m-3" style="margin-top:240px!important;margin-left:-284px!important">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">  
-                        <v-form ref="form_research" lazy-validation :key="componentKey">
-                           <apexchart
-                           ref="exampleChart"
-                           width="1500px" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series"
-                           :key="componentKey"/>
-                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
-                        </v-form>
-                     </div>
-                  </div>
+               <div class="card text-center m-3" style="margin-top:240px!important;margin-left:-234px!important">
+                  
                   <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
@@ -122,6 +149,9 @@
                    
                 }
             }
+            },
+            grid: {
+            show: false
             },
             dataLabels: {
                 enabled: true,
@@ -188,6 +218,7 @@
 
             },
             xaxis: {
+            show: false,
             //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
             categories: []
             },
