@@ -1878,7 +1878,7 @@
                       this.series1[0].data[i] = array.qntResp_0;
                       this.series1[1].data[i] = array.qntResp_1;
                       this.series1[2].data[i] = array.qntResp_2;
-                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
 
@@ -1906,7 +1906,7 @@
                       this.series2[0].data[i] = array.qntResp_0;
                       this.series2[1].data[i] = array.qntResp_1;
                       this.series2[2].data[i] = array.qntResp_2;
-                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
 
@@ -1934,7 +1934,7 @@
                       this.series3[0].data[i] = array.qntResp_0;
                       this.series3[1].data[i] = array.qntResp_1;
                       this.series3[2].data[i] = array.qntResp_2;
-                     if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
 
