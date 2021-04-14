@@ -11,26 +11,31 @@
             lg2>
             <br/>
 
-            <button @click="generateReport">Download PDF</button>
+            <button @click="downloadWithCSS">Download PDF</button>
+            <button @click="createPDF">createPDF</button>
+
+
+
+
 
 <!-- APARECE NO RELATÓRIO -->
             <template>
-              <div ref="content" >
-               <div  id="html" class="card text-center m-4" style="margin-top:50px!important;margin-left:190px;" >
+              <div ref="content">
+               <div id="tab" class="card text-center m-4" style="margin-top:30px!important;margin-left:190px" >
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            
-                           <div  
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                           <div
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px"
+                                 style="height: 140px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -41,15 +46,15 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 160px"
+                                 style="height: 140px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
                                     ></span>
                                 
                               </v-flex>
@@ -58,7 +63,7 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
                                  style="height: 220px;"
@@ -66,7 +71,7 @@
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
                                     ></span>
                      
                               </v-flex>
@@ -76,28 +81,27 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1110px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series0"
                            :key="componentKey"
                            class="graficoPadrao"/>
-                           <div id="html" v-html="setaGrupoPergunta(grupo,group.id)" />
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/>
-                          <div style="page-break-after: always"></div>
 
                            <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px"
+                                 style="height: 140px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -109,7 +113,7 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1110px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -120,15 +124,15 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px"
+                                 style="height: 140px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -151,15 +155,15 @@
                            <br/>
 
                            <div
-                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
+                              style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px"
+                                 style="height: 140px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:14px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
                      
                               </v-flex>
@@ -1436,7 +1440,7 @@
             }
             },
             grid: {
-            show: false
+            show: true
             },
             dataLabels: {
                 enabled: true,
@@ -3234,8 +3238,35 @@
    
    
        methods: {
- 
+
+     createPDF() {
+        var sTable = document.getElementById('tab').innerHTML;
+
+        var style = "<style>";
+        style = style + "table {width: 100%;font: 17px Calibri;}";
+        style = style + "table, th, td {border: solid 1px #DDD; border-collapse: collapse;";
+        style = style + "padding: 2px 3px;text-align: center;}";
+        style = style + "</style>";
+
+        // CREATE A WINDOW OBJECT.
+        var win = window.open('', '', 'height=700,width=700');
+
+        win.document.write('<html><head>');
+        win.document.write('<title>Profile</title>');   // <title> FOR PDF HEADER.
+        win.document.write(style);          // ADD STYLE INSIDE THE HEAD TAG.
+        win.document.write('</head>');
+        win.document.write('<body>');
+        win.document.write(sTable);         // THE TABLE CONTENTS INSIDE THE BODY TAG.
+        win.document.write('</body></html>');
+
+        win.document.close(); 	// CLOSE THE CURRENT WINDOW.
+
+        win.print();    // PRINT THE CONTENTS.
+     },
+
+
         downloadWithCSS() {
+
           /** WITH CSS */
             domtoimage
             .toPng(this.$refs.content)
@@ -3273,7 +3304,7 @@
                 ("0" + date.getSeconds()).slice(-2) +
                 ".pdf";
               doc.save(filename);  
-              window.location.href = "/chartsestadov2";
+           //   window.location.href = "/chartsestadov2";
             })
             .catch(function(error) {
               console.error("oops, something went wrong!", error);
@@ -4191,7 +4222,6 @@
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
-                
 
                //this.chartOptions.xaxis.categories = [this.results];
 
@@ -4800,7 +4830,7 @@
    
          },
    
-       
+       },
        created() {
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
@@ -4822,7 +4852,6 @@
          mybutton.style.display = "none";       
        }
      }
-   
    
    
    
@@ -5003,20 +5032,4 @@
    transform: rotateZ(360deg);
    }
    }
-
-@media print {
-  h2 { 
-    page-break-before: always;
-  }
-  h3, h4 {
-    page-break-after: avoid;
-  }
-  pre, blockquote {
-    page-break-inside: avoid;
-  }
-}
-
-.break-page {break-after: page;} .content {padding: 30px}
-
-
 </style>
