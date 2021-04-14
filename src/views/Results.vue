@@ -24,13 +24,13 @@
             </div>
             <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
             <br>
-            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed">
+            <v-container fluid style="width:11%;margin-bottom:4px;position:fixed">
                <v-layout row wrap>
                   <v-flex xs12>
                      <v-select                
                         :items="items"
                         v-model="select"
-                        label="Tipo de relatório"
+                        label="Painel"
                         single-line
                         item-text="report"
                         item-value="src"
@@ -39,6 +39,31 @@
                         v-on:input="changeRoute(`${select.src}`)"
                         :hint="`${select.src}`"
                         ></v-select>
+                     <v-select                
+                        :items="items2"
+                        v-model="select"
+                        label="Gráficos"
+                        single-line
+                        item-text="report"
+                        item-value="src"
+                        return-object
+                        persistent-hint
+                        v-on:input="changeRoute(`${select.src}`)"
+                        :hint="`${select.src}`"
+                        ></v-select>
+                     <v-select                
+                        :items="items3"
+                        v-model="select"
+                        label="Tipo de Relatórios"
+                        single-line
+                        item-text="report"
+                        item-value="src"
+                        return-object
+                        persistent-hint
+                        v-on:input="changeRoute(`${select.src}`)"
+                        :hint="`${select.src}`"
+                        ></v-select>                        
+
                   </v-flex>
                </v-layout>
             </v-container>
@@ -542,6 +567,17 @@
            items: [
              { report: 'Territórios', src: '/resultsterritorio' },
            ],
+           select: { report: 'Rep2', src: '' },
+           items2: [
+             { report: 'Região', src: '/chartsregiaov2' },
+             { report: 'Estado', src: '/chartsestadov2' },
+             { report: 'Território', src: '/chartsterritoriov2' },
+           ],
+           items3: [
+             { report: 'Região', src: '/relatorioregiaov2' },
+             { report: 'Estado', src: '/relatorioestadov2' },
+             { report: 'Território', src: '/relatorioterritoriov2' },
+           ],                       
            text: 'Carregando',
            dark: false,
            classes: null,
