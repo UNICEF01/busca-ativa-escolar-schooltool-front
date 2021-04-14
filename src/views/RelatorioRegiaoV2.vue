@@ -91,7 +91,7 @@
                            class="graficoPadrao"/>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
-                           <br/>
+                           <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -153,7 +153,7 @@
                            :key="componentKey"
                            class="graficoPadrao"/>
 
-                           <br/>
+                           <br/> <br/> <br/> <br/> <br/>
 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -242,7 +242,7 @@
 
                            </div>
 
-                           <br/>
+                           <br/> <br/> <br/> <br/> <br/>
 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -300,7 +300,7 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/>
+                            <br/> <br/> <br/> <br/> <br/>
 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -358,7 +358,7 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/>
+                            <br/> <br/> <br/> <br/> <br/>
 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -422,7 +422,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -456,7 +456,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -722,6 +722,8 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
+
+                           <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
                           <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[3].group}}</div>
 
 
@@ -794,7 +796,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -828,7 +830,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -896,7 +898,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                            <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -930,7 +932,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
