@@ -11,10 +11,31 @@
             lg2>
             <br/>
 
-            <button @click="downloadWithCSS">Download PDF</button>
+            <button @click="generateReport">Download PDF</button>
 
 <!-- APARECE NO RELATÓRIO -->
             <template>
+              <div>
+            <vue-html2pdf
+                    :show-layout="true"
+                    :float-layout="false"
+                    :enable-download="true"
+                    :preview-modal="true"
+                    :paginate-elements-by-height="1400"
+                    filename="hee hee"
+                    :pdf-quality="2"
+                    :manual-pagination="true"
+                    pdf-format="a4"
+                    pdf-orientation="landscape"
+                    pdf-content-width="800px"
+            
+                    @progress="onProgress($event)"
+                    @hasStartedGeneration="hasStartedGeneration()"
+                    @hasGenerated="hasGenerated($event)"
+                    ref="html2Pdf"
+                >
+
+   <section slot="pdf-content">
               <div ref="content" >
                <div  id="html" class="card text-center m-4" style="margin-top:50px!important;margin-left:190px;" >
                   <div class="card-body">
@@ -76,7 +97,8 @@
 
                            <apexchart
                            ref="exampleChart"
-
+                           width="1110px" 
+                           height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series0"
@@ -85,6 +107,7 @@
                            <div id="html" v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/>
+                          <div style="page-break-after: always"></div>
 
                            <div
                               style="margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:14px;text-align: justify-all!important;"
@@ -107,6 +130,8 @@
 
                            <apexchart
                            ref="exampleChart"
+                           width="1110px" 
+                           height="500px" 
                            type="bar" 
                            :options="chartOptions" 
                            :series="series1"
@@ -137,7 +162,7 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1110px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -169,7 +194,7 @@
 
                            <apexchart
                            ref="exampleChart"
-                           width="1110px" 
+                           width="1200px" 
                            height="500px" 
                            type="bar" 
                            :options="chartOptions" 
@@ -183,6 +208,10 @@
                   </div>
                </div>
               </div>
+              </section>
+    </vue-html2pdf>
+   </div>
+
             </template>
            
          </v-flex>
@@ -216,6 +245,7 @@
    import jsPDF from 'jspdf' 
    import html2canvas from 'html2canvas'
    import domtoimage from "dom-to-image";
+   import VueHtml2pdf from 'vue-html2pdf';
 
    
    localStorage.removeItem("munic")
@@ -1784,21 +1814,67 @@
    
        methods: {
 
+
+        generateReport () {
+            this.$refs.html2Pdf.generatePdf()
+        }
+    },
+ 
+    components: {
+        VueHtml2pdf
+    },
+
         downloadWithCSS() {
           /** WITH CSS */
+            domtoimage
+            .toPng(this.$refs.content)
+            .then(function(dataUrl) {
 
-		var pdf = new jsPDF('p', 'pt', 'a4');
-
-		pdf.html(document.getElementById('html'), {
-			callback: function (pdf) {
-				var iframe = document.createElement('iframe');
-				iframe.setAttribute('style', 'position:absolute;right:0; top:0; bottom:0; height:100%; width:500px');
-				document.body.appendChild(iframe);
-				iframe.src = pdf.output('datauristring');
-			}
-		});
+              var imgData = new Image();
+              imgData.src = dataUrl;
+              var doc = new jsPDF('p', 'mm', 'a4');
 
 
+              doc.page=1;
+              function footer(){ 
+                  doc.text(150,285, 'pag ' + doc.page);
+                  doc.page ++;
+              };
+
+              const imgProps= doc.getImageProperties(imgData);
+
+              var imgWidth = 210; 
+              var pageHeight = 295;  
+              var imgHeight = imgProps.height * imgWidth / imgProps.width;
+              var heightLeft = imgHeight;
+              var position = 10; // give some top padding to first page
+
+              doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+
+              while (heightLeft >= 0) {
+                position += heightLeft - imgHeight; // top padding for other pages
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+              }
+              const date = new Date();
+              const filename =
+                "relatorioRegiao_" +
+                date.getFullYear() +
+                ("0" + (date.getMonth() + 1)).slice(-2) +
+                ("0" + date.getDate()).slice(-2) +
+                ("0" + date.getHours()).slice(-2) +
+                ("0" + date.getMinutes()).slice(-2) +
+                ("0" + date.getSeconds()).slice(-2) +
+                ".pdf";
+              doc.save(filename);  
+              //window.location.href = "/chartsestadov2";
+            })
+            .catch(function(error) {
+              console.error("oops, something went wrong!", error);
+            });
         },
         atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
 
@@ -2321,7 +2397,7 @@
    
          },
    
-       },
+       
        created() {
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
@@ -2514,11 +2590,7 @@
    text-align: center;
    }
    .graficoPadrao {
-     margin-left:0px!important;
-     margin-right:190px!important;
-     width:900px; 
-     height:500px;
-     page-break-after: always;  
+     margin-left:-160px!important;
    }
    @keyframes circleanimation {
    from {
@@ -2529,14 +2601,19 @@
    }
    }
 
-table,
-		td {
-			border: 1px solid silver;
-			border-collapse: collapse
-		}
+@media print {
+  h2 { 
+    page-break-before: always;
+  }
+  h3, h4 {
+    page-break-after: avoid;
+  }
+  pre, blockquote {
+    page-break-inside: avoid;
+  }
+}
 
-		td {
-			padding: .5em
-		}
+.break-page {break-after: page;} .content {padding: 30px}
+
 
 </style>
