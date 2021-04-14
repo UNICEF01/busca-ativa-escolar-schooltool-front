@@ -57,7 +57,7 @@ export default [
   },
   {
     path: '/chartsregiaov2',
-    name: 'Gráficos',
+    name: 'Gráficos Região',
     view: 'ChartsRegiaoV2'
   },
   {
