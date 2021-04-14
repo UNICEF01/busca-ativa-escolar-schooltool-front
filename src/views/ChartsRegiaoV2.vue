@@ -54,7 +54,7 @@
                      <v-select                
                         :items="items3"
                         v-model="select"
-                        label="Tipo de Relatórios"
+                        label="Tipo de Relatório"
                         single-line
                         item-text="report"
                         item-value="src"
