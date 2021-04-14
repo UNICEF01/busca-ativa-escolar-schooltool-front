@@ -13,6 +13,9 @@
 
             <button @click="downloadWithCSS">Download PDF</button>
 
+            <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
+            <div style="position:absolute;top:500px!important;left:800px!important;">Gerando PDF</div>
+            </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
               <div>
@@ -5027,6 +5030,12 @@
    .graficoPadrao {
      margin-left:-160px!important;
    }
+
+   @media print {
+    #divOverlay {
+     display: none!important; 
+    }
+  }
    @keyframes circleanimation {
    from {
    transform: rotateZ(0deg);
