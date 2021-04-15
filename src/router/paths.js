@@ -45,11 +45,7 @@ export default [
     name: 'Gráficos Estado',
     view: 'ChartsEstado'
   },
-  {
-    path: '/results',
-    name: 'Painel de Resultados',
-    view: 'Results'
-  },
+
   {
     path: '/resultsv2',
     name: 'Painel de Resultados',
@@ -67,7 +63,7 @@ export default [
   },
   {
     path: '/exportExcel',
-    name: 'Export Excel',
+    name: 'Exportar Dados Brutos',
     view: 'exportExcel'
   },
   {

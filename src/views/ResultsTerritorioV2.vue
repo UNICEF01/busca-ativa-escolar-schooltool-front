@@ -210,9 +210,7 @@
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'1')" /></td>
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'2')" /></td>
                                  </tr>
-                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                 </tr>
+
                                  <tr>
                                     <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('SAB',pergunta,'0')" /></td>
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'1')" /></td>
@@ -235,7 +233,7 @@
                         <br>
                      </p>
                   </div>
-               </div>
+
             </template>
          </v-flex>
       </v-layout>

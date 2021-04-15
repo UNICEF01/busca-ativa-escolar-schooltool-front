@@ -14,7 +14,7 @@
             
 
             <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
-            <div style="position:absolute;top:500px!important;left:800px!important;">Aguarde, gerando PDF</div>
+            <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
             </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
@@ -4877,7 +4877,12 @@
        }
      }
    
+    function setTopo(){
+      $(window).scrollTop(0);
+    }
+    $(window).bind('scroll', setTopo); 
    
+
    
    
 </script>

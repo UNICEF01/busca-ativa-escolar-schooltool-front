@@ -38,6 +38,10 @@
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="quest()" class="font-weight-light" :class="color">
           Questionário
         </v-btn>
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel()" class="font-weight-light" :class="color">
+          Exportar Dados
+        </v-btn>
+
 
         <v-divider/>
         <!--        <v-list-tile v-if="responsive">-->
@@ -227,7 +231,7 @@
         localStorage.setItem("titulo", "regiao");
         var uf =  localStorage.getItem("estado");
         localStorage.setItem("estado", uf);  
-        this.$router.push({path: '/results'})
+        this.$router.push({path: '/resultsV2'})
       },
       admin(){
         localStorage.setItem("titulo", "admin");
@@ -237,9 +241,8 @@
         localStorage.setItem("titulo", "questionario");
         this.$router.push({path: '/quest'})
       },
-      charts(){
-        localStorage.setItem("titulo", "charts");
-        this.$router.push({path: '/charts'})
+      exportExcel(){
+        this.$router.push({path: '/exportExcel'})
       }
 
 
