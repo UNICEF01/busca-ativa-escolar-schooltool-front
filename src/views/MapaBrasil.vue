@@ -321,6 +321,8 @@
 
 <script>
      import ufid from "../assets/estado.js";
+
+     localStorage.removeItem("estado");
      export default {
        methods: {
 
