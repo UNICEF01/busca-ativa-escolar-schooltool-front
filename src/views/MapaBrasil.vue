@@ -1,7 +1,7 @@
 <template>
 <div>
   <br><br><br><br><br><br>
-  <div id="ufName" style="position:absolute;font-size: 50px!important;color:black!important;margin-left: 100px !important">{{ufName}}</div>
+  <div id="ufName" style="position:absolute;font-size: 50px!important;color:black!important;margin-left: 800px !important">{{ufName}}</div>
   <svg version="1.1" id="svg-map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1250px" height="660px" viewBox="0 0 450 460" enable-background="new 0 0 450 460" xml:space="preserve">
     <g>
       <a xlink:href="#tocantins"  @mouseover="showUf(17)" @mouseleave="clearUf()">
