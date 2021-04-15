@@ -52,6 +52,12 @@ export default [
     view: 'ResultsV2'
   },
   {
+    path: '/results',
+    name: 'Painel de Resultados',
+    view: 'Results'
+  },
+
+  {
     path: '/chartsregiaov2',
     name: 'Gráficos Região',
     view: 'ChartsRegiaoV2'

@@ -1546,8 +1546,8 @@
               offsetX: 0,
               offsetY: 0,
               labels: {
-                  colors: undefined,
-                  useSeriesColors: false
+                  colors: true,
+                  useSeriesColors: true
               },
             markers: {
                 width: 12,
