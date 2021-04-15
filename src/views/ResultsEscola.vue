@@ -199,7 +199,8 @@
            pageOfItems: [],
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Territórios', src: '/resultsterritorio' },
+             { report: 'Região e Estados', src: '/resultsv2' },
+             { report: 'Território', src: '/resultsterritoriov2' },
            ],
            select: { report: 'Rep2', src: '' },
            items2: [
@@ -211,7 +212,7 @@
              { report: 'Região', src: '/relatorioregiaov2' },
              { report: 'Estado', src: '/relatorioestadov2' },
              { report: 'Território', src: '/relatorioterritoriov2' },
-           ], 
+           ],
            text: 'Carregando',
            dark: false,
            classes: null,

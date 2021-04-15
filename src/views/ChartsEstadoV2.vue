@@ -306,9 +306,9 @@
            pageOfItems: [],
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
-           items: [
-             { report: 'Região', src: '/results' },
-             { report: 'Territórios', src: '/resultsterritorio' },
+          items: [
+             { report: 'Região e Estados', src: '/resultsv2' },
+             { report: 'Territórios', src: '/resultsterritoriov2' },
            ],
            select: { report: 'Rep2', src: '' },
            items2: [
@@ -319,7 +319,7 @@
              { report: 'Região', src: '/relatorioregiaov2' },
              { report: 'Estado', src: '/relatorioestadov2' },
              { report: 'Território', src: '/relatorioterritoriov2' },
-           ], 
+           ],
            text: 'Consultando dados, aguarde',
            dark: false,
            classes: null,

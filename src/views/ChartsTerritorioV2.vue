@@ -308,9 +308,8 @@
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Região', src: '/results' },
-             { report: 'Territórios', src: '/resultsterritorio' },
-
+             { report: 'Região e Estados', src: '/resultsv2' },
+             { report: 'Territórios', src: '/resultsterritoriov2' },
            ],
            select: { report: 'Rep2', src: '' },
            items2: [

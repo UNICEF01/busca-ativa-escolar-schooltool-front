@@ -91,6 +91,16 @@ export default [
     view: 'RelatorioRegiaoV2'
   },
   {
+    path: '/relatorioterritoriov2',
+    name: 'Relatório Território',
+    view: 'RelatorioTerritorioV2'
+  },
+  {
+    path: '/resultsterritoriov2',
+    name: 'Painel Território',
+    view: 'ResultsTerritorioV2'
+  },
+  {
     path: '/ResultsMunicipio',
     name: 'Painel de Resultados de Municípios',
     view: 'ResultsMunicipio'
