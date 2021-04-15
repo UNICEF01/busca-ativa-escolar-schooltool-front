@@ -575,7 +575,7 @@
            ],
            items3: [
              { report: 'Região', src: '/relatorioregiaov2' },
-             { report: 'Estado', src: '/relatorioestadov2' },
+             { report: 'Estado', src: '/mapabrasil' },
              { report: 'Território', src: '/relatorioterritoriov2' },
            ],                       
            text: 'Carregando',
