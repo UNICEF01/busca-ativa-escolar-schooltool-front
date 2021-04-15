@@ -2176,7 +2176,6 @@
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
          this.componentKey += 1;
-         console.log('to aqui olha');
        }
        ,
        computed:{
@@ -2190,6 +2189,9 @@
        var mybutton = document.getElementById("myBtn");
        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
          mybutton.style.display = "block";
+   document.ontouchmove = function(e){ 
+     return true; 
+   }
        } else {
          mybutton.style.display = "none";
        }
@@ -2214,7 +2216,9 @@
   if (screen.width == "1024") {
     document.body.style.zoom = "93%"
   } 
-   
+  
+
+
    
 </script>
 <style>

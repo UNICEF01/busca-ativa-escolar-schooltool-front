@@ -69,6 +69,9 @@
             </v-container>
             <br/>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+            <div style="position:absolute;margin-top:-25px;margin-left:-18px;color:black">Respondente</div>
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:-20px;width:247px">
                <div class="card-body">
@@ -96,9 +99,10 @@
                         </v-tooltip>
                      </template>
                   </v-data-table>
-                  </div>
-               </div>
+                  </div>                  
+               </div>               
             </template>
+            <br><div style="font-size: 15px!important;color:black!important">* Podem haver mais de um respondente por escola</div>
          </v-flex>
          <v-flex
             sm8
@@ -146,6 +150,7 @@
                   </div>
                </div>
             </template>
+          
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:1200px">
@@ -179,6 +184,7 @@
       </v-layout>
    </v-container>
 </template>
+
 <script>
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    
