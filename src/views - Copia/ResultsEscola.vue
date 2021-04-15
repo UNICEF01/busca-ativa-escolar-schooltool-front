@@ -11,8 +11,8 @@
             lg2>
             <div id="caixa" style="width: 110px; height: 200px;top: 150px;margin-left:1150px;align:center">
                <!--div class="tertiary--text font-weight-bold" style="margin-top:80px;margin-left: 10px" id="tituloPergunta">Pergunta: 1</div-->
-               <a  id="next"  title="Próximo"  v-on:click="setas('next')"></a>
-               <a  id="prev"  title="Anterior" v-on:click="setas('prev')"></a>
+               <a  id="next"  title="Próximo"  @click="setas('next')"></a>
+               <a  id="prev"  title="Anterior" @click="setas('prev')"></a>
                <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
             </div>
             <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
@@ -22,11 +22,12 @@
                   <p class="loading-text">{{text}}</p>
                </div>
             </div>
-            <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
+            <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1455px;top:0px;margin-left:-20px;background:#EEEEEE"> </div>
             <br>
-            <v-container fluid style="width:11%;margin-bottom:4px;position:fixed">
+            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed">
                <v-layout row wrap>
                   <v-flex xs12>
+
                      <v-select                
                         :items="items"
                         v-model="select"
@@ -62,81 +63,39 @@
                         persistent-hint
                         v-on:input="changeRoute(`${select.src}`)"
                         :hint="`${select.src}`"
-                        ></v-select>   
+                        ></v-select> 
                   </v-flex>
                </v-layout>
             </v-container>
-            
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <br/>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-               <div class="card text-center m-3" >
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">TAM</td>
-                                    <td style="padding:12px;width:40%;text-align:center" :key="componentKey"><div v-html="consultaQtd('TAM',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">PCU</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">SAB</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">OUTROS</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
+               <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:-20px;width:247px">
+               <div class="card-body">
+                  <v-data-table id="customers"
+                     :headers="municipios.headers"
+                     :items="municipios"
+                     hide-actions
+                     >
+                     <template
+                        slot="items"
+                        slot-scope="{ item, index }">
+                        <v-tooltip bottom>
+                           <template v-slot:activator="{ on, attrs }" >
+                              <span 
+                                 v-bind="attrs"
+                                 v-on="on">
+                                 <td  v-if="item.name.length > 21" style="padding-left:18px;padding-right:29px" class="texto"  width="0" height="0" valign="middle">{{ item.name.substring(0,21)}}</td>
+                                 <td  v-else style="width:100%" class="texto"  width="0" height="0" valign="middle">{{ item.name}}</td>
+                                 <td  style="padding-left:18px;padding-right:19px" width="0" height="0" valign="middle" align="left">
+                                    <div v-html="getResultMunicipiosResp(item.ibge_id,true,index,1)" />
+                                 </td>
+                              </span>
+                           </template>
+                           <span>{{ item.name }}</span>
+                        </v-tooltip>
+                     </template>
+                  </v-data-table>
                   </div>
                </div>
             </template>
@@ -190,51 +149,30 @@
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:1200px">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
-                              <thead>
-                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('TAM',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('TAM',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('TAM',pergunta,'2')" /></td>
-                                 </tr>
-                                 <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('PCU',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'2')" /></td>
-                                 </tr>
-                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
-                                 </tr>
-                                 <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('SAB',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'2')" /></td>
-                                 </tr>
-                                 <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('Outros',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'2')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
+               <div class="card-body">
+               <v-data-table id="customers"
+                  :headers="municipios.headers"
+                  :items="municipios"
+                  hide-actions>
+                  <template
+                     slot="items"
+                     slot-scope="{ item, index }">
+                     <td style="padding:12px 8px;">
+                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+10),0)" />
+                     </td>
+                     <td style="padding:12px 8px;">
+                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+15),1)" />
+                     </td>
+                     <td style="padding:12px 8px;"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+20),2)" /></td>
+                  </template>
+               </v-data-table>
+               </div>
                </div>
                <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                   <p align="center">
                      <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
-                        <br>
-                     </p>
-                  </div>
+                     <br>
+                  </p>
                </div>
             </template>
          </v-flex>
@@ -243,31 +181,25 @@
 </template>
 <script>
    import {db, auth, usersCollection, fireSQL} from "../firebase";
-   import ufid from "../assets/estado.js";
-   
-   localStorage.removeItem("munic")
    
    let userAdmin = localStorage.getItem("admin");
    
    //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
    
-   localStorage.setItem("titulo", "regiao");
    
      export default {
        data() {
          return {
            grupo: 0,
-           valObj: [],
-           results: [],
            pergunta: 0,
            index_pergunta: 0,
+           tmpValue: 0,
+           municipios: [],
            combined: [],
            pageOfItems: [],
-           arrayTmp: [],
-           componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Região e Estados', src: '/resultsv2' },
+             { report: 'Territórios', src: '/resultsterritorio' },
            ],
            select: { report: 'Rep2', src: '' },
            items2: [
@@ -277,9 +209,9 @@
            ],
            items3: [
              { report: 'Região', src: '/relatorioregiaov2' },
-             { report: 'Estado', src: '/mapabrasil' },
+             { report: 'Estado', src: '/relatorioestadov2' },
              { report: 'Território', src: '/relatorioterritoriov2' },
-           ],
+           ], 
            text: 'Carregando',
            dark: false,
            classes: null,
@@ -1641,96 +1573,49 @@
                label: 'Escola'
              }
            ],
+           // tabs: 0,
+           // list: {
+           //   0: false,
+           //   1: false,
+           //   2: false
+           // }
          }
        },
-   
-   
        methods: {
-         consultaQtd(info,idpergunta,resp) {
-           let valObj = [];
-           switch (resp) {
-             case '0':
-             valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
-              });
-             if (valObj[0] != undefined) {
-              return(valObj[0].qntResp_0);
-             }
-             break;
-             case '1':
-             valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
-              });
-             if (valObj[0] != undefined) {
-              return(valObj[0].qntResp_1);
-             }
-             break;
-             case '2':
-             valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
-              });
-             if (valObj[0] != undefined) {
-              return(valObj[0].qntResp_2);
-             }
-             break;
-             case 'total':
-             valObj = this.results.filter(function(elem){
-                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.total; }
-              });
-             if (valObj[0] != undefined) {
-              return(valObj[0].total);
-             }
-            break;
-           }
-            
-         },
            myFunction() {
          // `this` inside methods point to the Vue instance
-   
           this.current_page = 2;
-         },
+       },
            changeRoute(a) {
              this.$router.push({path: a })
              console.log(a, this.select.src)
-           },
+           },     
            onChangePage(pageOfItems) {
-               // update page of items
+               this.getData();
                this.pageOfItems = pageOfItems;
                let i = 1;
                let tamanho = 1;
-               
-
+   
                for(let i=0;i<=5;i++){
                  for (let j=1;j<=20;j++){
                    if (this.grupo==0) {
                      $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
                      $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+j+'"}</style>').appendTo('head');
                  }
-                 if (this.grupo==1) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+3)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==2) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+7)+'"}</style>').appendTo('head');
-                 }
-                 if (this.grupo==3) {
-                     $('<style>.page-link'+j+'{visibility:hidden!important}</style>').appendTo('head');
-                     $('<style>.page-link'+j+':before{visibility:visible!important;content:"'+(j+14)+'"}</style>').appendTo('head');
-                 }
                }
+              
                }
-   
            },
            setas(value){
              if (value == 'prev'){
-               $(".previous a")[0].click();
+               $("a.page-link-previous")[0].click();
                var number = $("#pergunta").val()-1
                $("#tituloPergunta").text("Pergunta: "+number)
              }else{
-               $(".next a")[0].click();
+               $("a.page-link-next")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
-               $("#tituloPergunta").text("Pergunta: "+number)            
+               $("#tituloPergunta").text("Pergunta: "+
+               number)            
              }
            },
            scrollFunction() {
@@ -1745,143 +1630,139 @@
              document.body.scrollTop = 0;
              document.documentElement.scrollTop = 0;
            },
-           setUf(value){
-             let uf = ufid.find((item) => item.value == value);
-             setInterval(function () {
-               window.location.reload();
-               localStorage.setItem("estado", "("+uf.text+")");
-             }, 100); 
-               
+           itemRowBackground: function () {
+               return 'style-1' 
            },
-           setaGrupoPergunta(grupo,pergunta)  {
-             this.grupo = grupo;
-             this.pergunta = pergunta;
+   
+           setaGrupoPergunta(leo,leo2)  {
+             this.grupo = leo;
+             this.pergunta = leo2;
          },
-         getResult2(tipo,geral,info,idx,resp) {
-           return(0);
+          getResult(tipo,geral,info,idx,resp) {
+          return(0);     
+   
+         },
+          getResultMunicipiosResp(comunicipioibge,geral,idx,resp) {
+   
+           let users = fireSQL.query(`
+           SELECT \`quest\`
+           FROM users
+           WHERE \`school.ibge_id\`='`+comunicipioibge+`'
+           `);
+           
+         console.log('aqui: '+JSON.stringify(users));
+   
+         let i = 0;
+         let tamanho = 0;
+         let grupo;
+   
+   
+          users.then((users) => {
+           for (let user of users) {
+             for(let j = 0; j<user.quest.length; j++) {
+               tamanho = j;
+               for (let y = 0; y < user.quest[j].questions.length; y++) {
+                 if (user.quest[j].questions[y].id == this.pergunta) { this.grupo = j; }
+               }
+   
+             }
+           }
+          });
+          
+   
+          users.then((users) => {
+           for (let user of users) {
+   
+             console.log('grupo: '+this.grupo);
+           
+             if (!geral) {
+                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
+                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
+                 }
+                 
+                 ((user.quest[this.grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+                 this.i_aux[idx].valor = i;
+              } else {
+                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
+                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
+                 }
+                 
+                 ((user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
+                 this.i_aux[idx].valor = i;
+              }
+   
+           }
+            
+           this.loading = false;
+   
+           });
+   
+           return(this.i_aux[idx].valor);
+         },
+         getResultMunicipios() {
+   
+             var filtroGeo;
+             var info;
+   
+             filtroGeo = '\`school.ibge_id\`';
+   
+             info = this.$route.query.q;
+   
+             let municipios = fireSQL.query(`
+             SELECT school
+             FROM users
+             WHERE `+filtroGeo+`='`+info+`'
+             `);
+   
+   
+             var arr = [];
+   
+             municipios.then((municipios) => {
+               for (let municipio of municipios) {
+   
+                 (this.municipios).push(municipio.school);
+                 }
+   
+             this.removeDups(this.municipios, 'ibge_id');
+             });
+           
+    
+   
+         },
+         removeDups(arr, prop) {
+   
+           // Object to store title of visited members
+           var obj = {};
+           var val;
+   
+           for (var i=0, iLen=arr.length; i<iLen; i++) {
+   
+             // Store a reference to the current member
+             val = arr[i][prop];
+   
+             // If have a match
+             if (obj.hasOwnProperty(val)) {
+   
+               // Add the DIFF property to the previous instance
+               arr[obj[val]].DIFF += arr[i].DIFF;
+   
+               // Remove from array
+               arr.splice(i, 1);
+   
+               // Decrement counter and limit to account for removed member
+               --i;
+               --iLen;
+   
+             // Otherwise, remember the property value and index of the member
+             } else {
+               obj[val] = i;
+             }
+           }
+           return arr;
          },
          async getData() {
-          
-          /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
-           let geoParaConsulta = [
-            {filtroGeo: 'school.territory', info: 'TAM', sg_uf: 'TAM'},
-            {filtroGeo: 'school.territory', info: 'PCU', sg_uf: 'PCU'},
-            {filtroGeo: 'school.territory', info: 'SAB', sg_uf: 'SAB'},
-            {filtroGeo: 'school.territory', info: 'Outros', sg_uf: 'OUTROS'}
-            ];
-
-           let results = [];
-            for (let geo of geoParaConsulta) {
-
-            var washData = await db.collection("users").where(geo.filtroGeo, '==', geo.info).get().then(function (querySnapshot) {
-
-             let values = querySnapshot.docs;
-             let arrayData = [];
-             let consolidadoTotal = 0;
-             let consolidado0 = 0;
-             let consolidado1 = 0;
-             let consolidado2 = 0;
-             let modelo = undefined;
-             let idPergunta = '';
-             let quest_complete = 'S';
-
-             for (let i = 0; i < values.length; i++) {
-               let obj = {}
-               let data = values[i].data();
-               obj = data;
-               arrayData.push(obj);
-             }
-
-             for (let i = 0; i < arrayData.length; i++) {
-                if (arrayData[i].quest != undefined) {
-                  modelo = i;
-                }
-             }
-
-             if (modelo != undefined) {
-
-             for (let j = 0; j < arrayData[modelo].quest.length; j++) {
-                  if (arrayData[modelo].quest[j].questions != undefined) { 
-                    for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
-
-                      for (let i = 0; i < arrayData.length; i++) {
-                        if (arrayData[i].quest != undefined&&arrayData[i].school.quest_complete == 'S') {
-                          ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
-                          ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
-                          ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
-                          ((arrayData[i].quest[j].questions[k].selected != null)) ? consolidadoTotal++ : '';
-                          ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
-                        }
-                    }
-                    results.push({info: geo.info, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
-                    qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
-                    consolidado0 = 0;
-                    consolidado1 = 0;
-                    consolidado2 = 0;
-                    consolidadoTotal = 0;
-                    idPergunta = '';
-                    }
-                  }
-              }
-
-             }
-
-              console.log(results);
-
-       /*      for (let i = 0; i < arrayData.length; i++) {
-                if (arrayData[i].quest != undefined) {
-                  ((arrayData[i].quest[0].questions[0].selected == '0')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado0++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected == '1')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado1++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected == '2')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado2++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected != null)) ? consolidadoTotal++ : '';
-                }
-             }
-
-             results.push({tipo: 'estado', info: '53', grupo: '0', pergunta: '0', total: consolidadoTotal.toString(), 
-             qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
-
-        */     
-
-      /*       for (let i = 0; i < arrayData.length; i++) {
-                if (arrayData[i].quest != undefined) {
-                  ((arrayData[i].quest[0].questions[0].selected == '0')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado0++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected == '1')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado1++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected == '2')&&(arrayData[i].quest[0].questions[0].selected != null)) ? consolidado2++ : '';
-                  ((arrayData[i].quest[0].questions[0].selected != null)) ? consolidadoTotal++ : '';
-                }
-             }
-        
-             results.push({tipo: 'estado', info: '53', grupo: '0', pergunta: '0', total: consolidadoTotal.toString(), 
-             qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
-
-        */     
-
-         /*    for (let i = 0; i < arrayData.length; i++) {
-                if (arrayData[i].quest != undefined) { for (let j = 0; j < arrayData[i].quest.length; j++) {
-                    if (arrayData[i].quest[j].questions != undefined) { for (let k = 0; k < arrayData[i].quest[j].questions.length; k++) {
-                        ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? contador++ : '';
-                      }
-                    }
-                  }
-                }
-             } */
-
-            //  testeArray.push({uf: "sp", resposta: arrayData[0].quest[0].questions[0].selected});
-            //  console.log('olha aqui royce:'+JSON.stringify(testeArray))
-             return results;
-           });
-
-            this.results = washData;
-
-            }
-          
-           this.questions = washData;
    
-           let responses = this.users.length;
-   
-           this.responses = responses.toString();
-   
-           this.loading = false;
+           this.getResultMunicipios();
    
    
          },
@@ -1891,15 +1772,14 @@
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
-         this.componentKey += 1;
-         console.log('to aqui olha');
        }
        ,
        computed:{
          bc(){
            return this.background || (this.dark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)')
          }
-       },    
+       },
+   
      }
    
      window.document.body.onscroll = function() {
@@ -1912,6 +1792,34 @@
      }
    
    
+   var wordLimit = 2;
+   
+   $(function() {
+     
+     //trata o conteúdo na inicialização da página
+     $('.show-summary').each(function() {
+       var post = $(this);
+       var text = post.text();
+       //encontra palavra limite
+       var re = /[\s]+/gm, results = null, count = 0;
+       while ((results = re.exec(text)) !== null && ++count < wordLimit) { }
+       //resume o texto e coloca o link
+       if (results !== null && count >= wordLimit) {
+         var summary = text.substring(0, re.lastIndex - results[0].length);
+         post.text(summary + '...');
+         post.data('original-text', text);
+         post.append('<br/><a href="#" class="read-more">Leia mais</a>');
+       }
+     });
+     
+     //ao clicar num link "Leia mais", mostra o conteúdo original
+     $('.read-more').on('click', function() {
+       var post = $(this).closest('.show-summary');
+       var text = post.data('original-text');
+       post.text(text);
+     });
+     
+   });
    
    
 </script>
@@ -1986,7 +1894,7 @@
    padding: 8px; 
    }
    #customers tr:nth-child(even){background-color: #f2f2f2;}
-   #customers tr:hover {background-color: #ddd;}
+   #customers tr:hover {background-color: rgb(221, 221, 221);}
    #customers th {
    padding-top: 12px;
    padding-bottom: 12px;
@@ -2043,15 +1951,41 @@
    #myBtn:hover {
    content: url('https://api.iconify.design/mdi:arrow-up-bold-circle.svg?height=54&color=blue');
    }
-   #meuMenu {
-   background:#345;
-   width:100%;
-   padding:20px;
-   margin-top: 100px;
+   thead {
+   display:none;
    }
-   .fixar {
-   position:fixed;
-   margin-top: 0px !important;
+   .show-summary {
+   width: 300px;
+   margin: 5px;
+   float: left;
+   }
+   .mostrarmais p {
+   width:200px;
+   overflow:hidden;
+   text-overflow:ellipsis;
+   white-space:nowrap;
+   margin:5px 0 0 0;  
+   }
+   .mostrarmais input {
+   display:none;
+   position:absolute;
+   left:-1000px;
+   }
+   .mostrarmais input:checked + p {
+   white-space:normal;
+   }
+   .mostrarmais input:checked + p + label {
+   display:none;
+   }
+   label {
+   color:#fff;
+   margin:0;
+   }
+   .texto {
+   max-width: 200px; 
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
    }
    .loading-screen {
    display: flex;

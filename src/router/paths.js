@@ -121,7 +121,11 @@ export default [
     name: 'updateSchool',
     view: 'updateSchool'
   },
-
+  {
+    path: '/MapaBrasil',
+    name: 'Relatório Estado',
+    view: 'MapaBrasil'
+  },
 
   {
     path: '/wash',

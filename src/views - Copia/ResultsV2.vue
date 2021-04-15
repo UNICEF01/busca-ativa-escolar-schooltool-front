@@ -24,13 +24,13 @@
             </div>
             <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
             <br>
-            <v-container fluid style="width:11%;margin-bottom:4px;position:fixed">
+            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed">
                <v-layout row wrap>
                   <v-flex xs12>
                      <v-select                
                         :items="items"
                         v-model="select"
-                        label="Painel"
+                        label="Tipo de relatório"
                         single-line
                         item-text="report"
                         item-value="src"
@@ -39,118 +39,14 @@
                         v-on:input="changeRoute(`${select.src}`)"
                         :hint="`${select.src}`"
                         ></v-select>
-                     <v-select                
-                        :items="items2"
-                        v-model="select"
-                        label="Gráficos"
-                        single-line
-                        item-text="report"
-                        item-value="src"
-                        return-object
-                        persistent-hint
-                        v-on:input="changeRoute(`${select.src}`)"
-                        :hint="`${select.src}`"
-                        ></v-select>
-                     <v-select                
-                        :items="items3"
-                        v-model="select"
-                        label="Tipo de Relatório"
-                        single-line
-                        item-text="report"
-                        item-value="src"
-                        return-object
-                        persistent-hint
-                        v-on:input="changeRoute(`${select.src}`)"
-                        :hint="`${select.src}`"
-                        ></v-select>   
                   </v-flex>
                </v-layout>
             </v-container>
-            
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-               <div class="card text-center m-3" >
+               <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">TAM</td>
-                                    <td style="padding:12px;width:40%;text-align:center" :key="componentKey"><div v-html="consultaQtd('TAM',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">PCU</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">SAB</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-            <template>
-               <div class="card text-center m-3">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">
-                        <v-form ref="form_research" lazy-validation>
-                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px">
-                              <tbody>
-                                 <tr>
-                                    <td style="padding:1px 8px;font-size:16px;width:60%">OUTROS</td>
-                                    <td style="padding:12px;width:40%;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'total')" /></td>
-                                 </tr>
-                              </tbody>
-                           </table>
-                        </v-form>
-                     </div>
-                  </div>
-               </div>
-            </template>
-         </v-flex>
-         <v-flex
-            sm8
-            xs12
-            md8
-            lg8>
-            <template>
-               <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
-               <div class="card-body">
-                  <div v-for="group in pageOfItems" :key="group.id">
-                     <div v-html="setaGrupoPergunta(grupo,group.id)" />
                         <v-form ref="form_research" lazy-validation>
                            <material-card 
                               class="card-tabs"
@@ -158,7 +54,7 @@
                               elevation="3"
                               dense
                               fixed
-                              style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:84.9%"
+                              style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:85%"
                               >
                               <v-flex slot="header"
                                  style="height: 140px;overflow-y:auto !important"
@@ -172,7 +68,7 @@
                               </v-flex>
                               <v-layout wrap>
                                  <v-flex md4 v-for="item in group.response">
-                                    <v-card style="height: 130px;width:397px"
+                                    <v-card style="height: 130px;width:398px"
                                        class="pa-3"
                                        outlined
                                        tile                                
@@ -187,9 +83,382 @@
                   </div>
                </div>
             </template>
+            <template >
+               <div class="card text-center m-3" >
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                       <div v-html="setaGrupoPergunta(grupo,group.id)" />
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:100%;margin-left:20px" cellspacing="0" cellpadding="0">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9;">Norte</td>
+                                    <!--<td style="padding:12px;text-align:center;color:white;background-color:#A9A9A9;" :key="componentKey">{{ arrayTmp[180] }}  </td> -->
+                                    <td style="padding:12px;text-align:center;color:white;background-color:#A9A9A9;" :key="componentKey"><div v-html="consultaQtd('1',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: '11'} }">Rondônia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('11',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;"  @click="setUf(12)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 12 } }">Acre</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('12',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(13)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 13 } }">Amazonas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('13',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(14)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 14 } }">Roraima</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('14',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(15)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 15 } }">Pará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('15',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(16)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 16 } }">Amapá</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('16',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(17)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 17 } }">Tocatins</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('17',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Nordeste</td>
+                                    <td style="padding:12px 18px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('2',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('21',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(22)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 22 } }">Piauí</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('22',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(23)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 23 } }">Ceará</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('23',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(24)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 24 } }">Rio Grande do Norte</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('24',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(25)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 25 } }">Paraíba</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('25',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(26)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 26 } }">Pernambuco</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('26',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(27)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 27 } }">Alagoas</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('27',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(28)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 28 } }">Sergipe</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('28',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(29)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 29 } }">Bahia</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('29',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;color:white;background-color:#A9A9A9">Sudeste</td>
+                                    <td style="padding:12px 17px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('3',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('31',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(32)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 32 } }">Espírito Santo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('32',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(33)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 33 } }">Rio de Janeiro</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('33',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(35)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 35 } }">São Paulo</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('35',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Centro Oeste</td>
+                                    <td style="padding:12px 22px;;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('5',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('50',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(51)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 51 } }">Mato Grosso</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('51',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(52)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 52 } }">Goiás</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('52',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(53)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 53 } }">Distrito Federal</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('53',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:16px;color:white;background-color:#A9A9A9">Sul</td>
+                                    <td style="padding:12px 22px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('4',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('41',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(42)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 42 } }">Santa Catarina</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('42',pergunta,'total')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:1px 8px;font-size:14px;" @click="setUf(43)">
+                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 43 } }">Rio Grande do Sul</router-link>
+                                    </td>
+                                    <td style="padding:12px;text-align:center"><div v-html="consultaQtd('43',pergunta,'total')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
+                  </div>
+               </div>
+            </template>
+         </v-flex>
+         <v-flex
+            sm8
+            xs12
+            md8
+            lg8>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
-               <div class="card text-center m-3" style="margin-top:auto;width:1200px">
+               <div class="card text-center m-3">
+                  <div class="card-body">
+                     <div v-for="group in pageOfItems" :key="group.id">
+                        <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="margin-top:auto;background-color:#fff;border-collapse:collapse;width:1200px;">
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('1',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('12',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('13',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('14',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('15',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('16',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('17',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('2',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('2',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('2',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('21',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('22',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('26',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('27',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('28',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('29',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('3',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('3',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('3',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('31',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('32',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('33',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('35',pergunta,'2')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </v-form>
+                     </div>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
+               <div class="card-body">
+                  <div v-for="group in pageOfItems" :key="group.id">
+                     <v-form ref="form_research" lazy-validation>
+                           <table id="customers" class="v-datatable theme--light" style="border-spacing:0;border:0px;margin-top:auto;background-color:#fff;border-collapse:collapse!important;width:1200px;">
+                              <thead>
+                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
+                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('52',pergunta,'2')" /></td>
+                                 </tr>
+                                 <tr>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('53',pergunta,'2')" /></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                     </v-form>
+                     </div>
+                  </div>
+               </div>
+               <div class="card text-center m-3">
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
@@ -201,37 +470,33 @@
                               </thead>
                               <tbody>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('TAM',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('TAM',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('TAM',pergunta,'2')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('4',pergunta,'2')" /></td>
                                  </tr>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('PCU',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('PCU',pergunta,'2')" /></td>
-                                 </tr>
-                                 <tr height="0px" style="font-size:0; margin:0;height:0;background-color:blue;padding:0!important">
-                                    <th v-for="item in group.response" :key="item.id" style="background-color:blue;padding:0!important;">{{item.name}}</th>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('41',pergunta,'2')" /></td>
                                  </tr>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('SAB',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('SAB',pergunta,'2')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'2')" /></td>
                                  </tr>
                                  <tr>
-                                    <td style="padding:12px 8px;text-align:center;width:400px"><div v-html="consultaQtd('Outros',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('Outros',pergunta,'2')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'0')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'2')" /></td>
                                  </tr>
                               </tbody>
                            </table>
                         </v-form>
                      </div>
                   </div>
-               </div>
-               <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
-                  <p align="center">
-                     <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
+                  <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
+                     <p align="center">
+                        <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" ></jw-pagination>
                         <br>
                      </p>
                   </div>
@@ -267,18 +532,8 @@
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Região e Estados', src: '/resultsv2' },
-           ],
-           select: { report: 'Rep2', src: '' },
-           items2: [
-             { report: 'Região', src: '/chartsregiaov2' },
-             { report: 'Estado', src: '/chartsestadov2' },
-             { report: 'Território', src: '/chartsterritoriov2' },
-           ],
-           items3: [
-             { report: 'Região', src: '/relatorioregiaov2' },
-             { report: 'Estado', src: '/mapabrasil' },
-             { report: 'Território', src: '/relatorioterritoriov2' },
+             { report: 'Territórios', src: '/resultsterritorio' },
+             { report: 'Estado', src: '/resultsescola' }
            ],
            text: 'Carregando',
            dark: false,
@@ -1724,11 +1979,11 @@
            },
            setas(value){
              if (value == 'prev'){
-               $(".previous a")[0].click();
+               $("a.page-link-previous")[0].click();
                var number = $("#pergunta").val()-1
                $("#tituloPergunta").text("Pergunta: "+number)
              }else{
-               $(".next a")[0].click();
+               $("a.page-link-next")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
                $("#tituloPergunta").text("Pergunta: "+number)            
              }
@@ -1764,10 +2019,38 @@
           
           /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
            let geoParaConsulta = [
-            {filtroGeo: 'school.territory', info: 'TAM', sg_uf: 'TAM'},
-            {filtroGeo: 'school.territory', info: 'PCU', sg_uf: 'PCU'},
-            {filtroGeo: 'school.territory', info: 'SAB', sg_uf: 'SAB'},
-            {filtroGeo: 'school.territory', info: 'Outros', sg_uf: 'OUTROS'}
+            {filtroGeo: 'school.ibge_region_id', info: '1'},
+            {filtroGeo: 'school.ibge_uf_id', info: '11'},
+            {filtroGeo: 'school.ibge_uf_id', info: '12'},
+            {filtroGeo: 'school.ibge_uf_id', info: '13'},
+            {filtroGeo: 'school.ibge_uf_id', info: '14'},
+            {filtroGeo: 'school.ibge_uf_id', info: '15'},
+            {filtroGeo: 'school.ibge_uf_id', info: '16'},
+            {filtroGeo: 'school.ibge_uf_id', info: '17'},
+            {filtroGeo: 'school.ibge_region_id', info: '2'},
+            {filtroGeo: 'school.ibge_uf_id', info: '21'},
+            {filtroGeo: 'school.ibge_uf_id', info: '22'},
+            {filtroGeo: 'school.ibge_uf_id', info: '23'},
+            {filtroGeo: 'school.ibge_uf_id', info: '24'},
+            {filtroGeo: 'school.ibge_uf_id', info: '25'},
+            {filtroGeo: 'school.ibge_uf_id', info: '26'},
+            {filtroGeo: 'school.ibge_uf_id', info: '27'},
+            {filtroGeo: 'school.ibge_uf_id', info: '28'},
+            {filtroGeo: 'school.ibge_uf_id', info: '29'},
+            {filtroGeo: 'school.ibge_region_id', info: '3'},
+            {filtroGeo: 'school.ibge_uf_id', info: '31'},
+            {filtroGeo: 'school.ibge_uf_id', info: '32'},
+            {filtroGeo: 'school.ibge_uf_id', info: '33'},
+            {filtroGeo: 'school.ibge_uf_id', info: '35'},
+            {filtroGeo: 'school.ibge_region_id', info: '4'},
+            {filtroGeo: 'school.ibge_uf_id', info: '41'},
+            {filtroGeo: 'school.ibge_uf_id', info: '42'},
+            {filtroGeo: 'school.ibge_uf_id', info: '43'},
+            {filtroGeo: 'school.ibge_region_id', info: '5'},
+            {filtroGeo: 'school.ibge_uf_id', info: '50'},
+            {filtroGeo: 'school.ibge_uf_id', info: '51'},
+            {filtroGeo: 'school.ibge_uf_id', info: '52'},
+            {filtroGeo: 'school.ibge_uf_id', info: '53'}
             ];
 
            let results = [];
@@ -1781,14 +2064,13 @@
              let consolidado0 = 0;
              let consolidado1 = 0;
              let consolidado2 = 0;
-             let modelo = undefined;
+             let modelo = 0;
              let idPergunta = '';
-             let quest_complete = 'S';
 
              for (let i = 0; i < values.length; i++) {
                let obj = {}
                let data = values[i].data();
-               obj = data;
+               obj.quest = data.quest;
                arrayData.push(obj);
              }
 
@@ -1798,14 +2080,14 @@
                 }
              }
 
-             if (modelo != undefined) {
+             if (arrayData[modelo] != undefined) {
 
              for (let j = 0; j < arrayData[modelo].quest.length; j++) {
                   if (arrayData[modelo].quest[j].questions != undefined) { 
                     for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
 
                       for (let i = 0; i < arrayData.length; i++) {
-                        if (arrayData[i].quest != undefined&&arrayData[i].school.quest_complete == 'S') {
+                        if (arrayData[i].quest != undefined) {
                           ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
                           ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
