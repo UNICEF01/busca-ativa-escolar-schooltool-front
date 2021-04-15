@@ -60,6 +60,9 @@ import { L10n, setCulture } from '@syncfusion/ej2-base';
 
 import { data } from './bigData.js';
 
+ 
+localStorage.setItem("titulo", "municipio");
+
 Vue.use(GridPlugin);
 
 setCulture('pt-BR');
