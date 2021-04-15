@@ -111,7 +111,7 @@
             :loading="true"
             :search="search"
             item-key="uid"
-            :items-per-page="100"
+            :items-per-page="1"
             :hide-default-footer="true"
             loading-text="Carregando... aguarde por favor"
 

@@ -322,8 +322,8 @@
                               <tbody>
                                  <tr v-if="consultaQtd('1',pergunta,'total') != null">
                                     <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('1',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9"><div v-html="consultaQtd('1',pergunta,'2')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('1',pergunta,'1')" /></td>
+                                    <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;width:398px"><div v-html="consultaQtd('1',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('11',pergunta,'total') != null">
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('11',pergunta,'0')" /></td>
@@ -381,9 +381,9 @@
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('23',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('24',pergunta,'total') != null">
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'2')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'0')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'1')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('24',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('25',pergunta,'total') != null">
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('25',pergunta,'0')" /></td>
@@ -441,9 +441,9 @@
                                     <td style="padding:12px 8px;text-align:center;color:white;background-color:#A9A9A9;"><div v-html="consultaQtd('5',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('50',pergunta,'total') != null">
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'2')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'0')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'1')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('50',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('51',pergunta,'total') != null">
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('51',pergunta,'0')" /></td>
@@ -476,9 +476,9 @@
                                     <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('42',pergunta,'2')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('43',pergunta,'total') != null">
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'0')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'1')" /></td>
-                                    <td style="padding:12px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'2')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'0')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'1')" /></td>
+                                    <td style="padding:14px 8px;text-align:center"><div v-html="consultaQtd('43',pergunta,'2')" /></td>
                                  </tr>
                               </tbody>
                            </table>
@@ -533,7 +533,7 @@
            ],
            items3: [
              { report: 'Região', src: '/relatorioregiaov2' },
-             { report: 'Estado', src: '/relatorioestadov2' },
+             { report: 'Estado', src: '/mapabrasil' },
              { report: 'Território', src: '/relatorioterritoriov2' },
            ],
            text: 'Carregando',
@@ -2195,7 +2195,25 @@
        }
      }
    
-   
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "71%"
+  } 
+  
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  } 
    
    
 </script>

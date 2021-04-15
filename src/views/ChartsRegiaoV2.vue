@@ -157,7 +157,7 @@
    
    //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
    
-   localStorage.setItem("titulo", "regiao");
+   localStorage.setItem("titulo", "charts");
    
      export default {
        data() {
@@ -2121,7 +2121,10 @@
        }
      }
    
-   
+    function setTopo(){
+      $(window).scrollTop(0);
+    }
+    $(window).bind('scroll', setTopo);  
    
    
 </script>

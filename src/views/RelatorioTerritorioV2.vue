@@ -14,11 +14,13 @@
             
 
             <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
-            <div style="position:absolute;top:500px!important;left:800px!important;">Aguarde, gerando PDF</div>
+            <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
+            
+
             </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
-              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Região</div>
+              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Território</div>
 
               <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
              
@@ -63,7 +65,7 @@
 
                            <br/>
 
-                           <div
+                           <div 
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
@@ -124,7 +126,7 @@
 
                            <br/>
 
-                           <div
+                           <div 
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
@@ -1440,7 +1442,7 @@
            valObj: [],
            results: [],
            pergunta: 0,
-           arrayTmp: [],
+           arrayTmp: [],         
            chartOptions: {
             chart: {
               id: 'vuechart-example',
@@ -4876,6 +4878,10 @@
        }
      }
    
+    function setTopo(){
+      $(window).scrollTop(0);
+    }
+    $(window).bind('scroll', setTopo); 
    
    
    
@@ -4905,7 +4911,18 @@
 @media print {
   @page { margin: 0; }
   body { margin: 1.6cm; }
+  .apexcharts-legend-marker:before {
+    content: "\25CF";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    line-height: 12px;
+    font-size: 24px;
+  }
+
 }
+
 
 
 </style>
