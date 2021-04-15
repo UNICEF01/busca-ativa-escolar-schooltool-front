@@ -4911,7 +4911,16 @@
 @media print {
   @page { margin: 0; }
   body { margin: 1.6cm; }
-  
+  .apexcharts-legend-marker:before {
+    content: "\25CF";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    line-height: 12px;
+    font-size: 24px;
+  }
+
 }
 
 
