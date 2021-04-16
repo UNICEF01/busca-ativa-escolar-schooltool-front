@@ -181,7 +181,7 @@
                 }
             }
             },
-            colors: ['#00CC66', '#FFCC00', '#F55A4E'],
+            colors: ['#00CC66', '#FFDC00', '#F55A4E'],
           
             dataLabels: {
 

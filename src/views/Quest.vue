@@ -1,23 +1,24 @@
 <template>
-  <v-container fill-height fluid grid-list-xl>
+  <v-container fill-height fluid grid-list-xl> 
     <v-layout justify-center wrap>
       <v-flex xs12 md8><br><br><br>
         <h5 class="headline">Autoavaliação</h5>
 
-        <p>
-          Conhecer a estrutura de cada escola e saber quais aspectos precisam
+
+          <div style="text-align: justify-all!important">Conhecer a estrutura de cada escola e saber quais aspectos precisam
           ser melhorados ou adaptados para o novo contexto de volta às aulas é
           muito importante. Criamos um questionário que poderá servir como
           referência e indicar onde e como os gestores devem atuar para garantir
           uma situação segura para estudantes, professores e funcionários.
-        </p>
+          </div>
+    
 
         <material-card
           color="cyan"
           title="Preencha o cadastro abaixo e responda o questionário a seguir com atenção. Conheça melhor a sua realidade."
           text=""
         >
-          <v-form ref="form_register" lazy-validation>
+          <v-form ref="form_register" lazy-validation >
             <v-container fluid>
               <!--              <v-img-->
               <!--                lazy-src="img/covide_banner_wash.jpg"-->
@@ -266,13 +267,14 @@ import VueSimpleAlert from "vue-simple-alert";
 Vue.use(VueSimpleAlert);
 
 
-
 export default {
+  
   components: { Estados },
   methods: {
     myFunction: function () {
       return ibgeid;
     },
+    
   },
 
   data() {
@@ -317,6 +319,9 @@ export default {
       quest: [],
     };
   },
+
+
+  
   methods: {
     checkAutenticate() {
       if (auth.currentUser) {
@@ -329,8 +334,13 @@ export default {
       this.user.city = value.city;
     },
 
-    async start() {      
-      if (this.$refs.form_register.validate()) {
+    async start() { 
+        
+          
+   
+       
+    if (this.$refs.form_register.validate()) {
+      this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");  
         let user = auth
           .createUserWithEmailAndPassword(this.login.email, this.login.password)
           .then((user) => {
@@ -394,7 +404,7 @@ export default {
             this.$router.push({ path: "/wash" });
             setInterval(function () {
               window.location.reload();
-            }, 1000);
+            }, 4000);
       
           })
 
@@ -444,6 +454,7 @@ export default {
       this.dialog = false;
       this.recoverPassword = false;
     },
+
     resetPassword() {
       auth.sendPasswordResetEmail(this.login.email).then((user) => {});
       this.$toast.open({
@@ -492,5 +503,6 @@ export default {
     },
   },
 };
-this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");
+
+
 </script>
