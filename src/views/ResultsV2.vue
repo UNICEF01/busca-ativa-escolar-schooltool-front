@@ -2189,9 +2189,6 @@
        var mybutton = document.getElementById("myBtn");
        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
          mybutton.style.display = "block";
-   document.ontouchmove = function(e){ 
-     return true; 
-   }
        } else {
          mybutton.style.display = "none";
        }
