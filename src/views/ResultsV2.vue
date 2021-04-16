@@ -123,43 +123,43 @@
                                  </tr>
                                  <tr v-if="consultaQtd('11',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(11)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: '11'} }">Rondônia</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: '11'} }">Rondônia</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('11',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('12',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;"  @click="setUf(12)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 12 } }">Acre</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 12 } }">Acre</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('12',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('13',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(13)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 13 } }">Amazonas</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 13 } }">Amazonas</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('13',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('14',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(14)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 14 } }">Roraima</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 14 } }">Roraima</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('14',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('15',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(15)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 15 } }">Pará</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 15 } }">Pará</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('15',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('16',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(16)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 16 } }">Amapá</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 16 } }">Amapá</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('16',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('17',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(17)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 17 } }">Tocatins</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 17 } }">Tocatins</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('17',pergunta,'total')" /></td>
                                  </tr>
@@ -169,55 +169,55 @@
                                  </tr>
                                  <tr v-if="consultaQtd('21',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(21)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 21 } }">Maranhão</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 21 } }">Maranhão</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('21',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('22',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(22)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 22 } }">Piauí</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 22 } }">Piauí</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('22',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('23',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(23)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 23 } }">Ceará</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 23 } }">Ceará</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('23',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('24',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(24)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 24 } }">Rio Grande do Norte</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 24 } }">Rio Grande do Norte</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('24',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('25',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(25)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 25 } }">Paraíba</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 25 } }">Paraíba</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('25',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('26',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(26)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 26 } }">Pernambuco</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 26 } }">Pernambuco</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('26',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('27',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(27)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 27 } }">Alagoas</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 27 } }">Alagoas</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('27',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('28',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(28)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 28 } }">Sergipe</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 28 } }">Sergipe</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('28',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('29',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(29)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 29 } }">Bahia</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 29 } }">Bahia</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('29',pergunta,'total')" /></td>
                                  </tr>
@@ -227,25 +227,25 @@
                                  </tr>
                                  <tr v-if="consultaQtd('31',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(31)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 31 } }">Minas Gerais</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 31 } }">Minas Gerais</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('31',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('32',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(32)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 32 } }">Espírito Santo</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 32 } }">Espírito Santo</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('32',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('33',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(33)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 33 } }">Rio de Janeiro</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 33 } }">Rio de Janeiro</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('33',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('35',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(35)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 35 } }">São Paulo</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 35 } }">São Paulo</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('35',pergunta,'total')" /></td>
                                  </tr>
@@ -255,25 +255,25 @@
                                  </tr>
                                  <tr v-if="consultaQtd('50',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(50)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 50 } }">Mato Grosso do Sul</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 50 } }">Mato Grosso do Sul</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('50',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('51',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(51)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 51 } }">Mato Grosso</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 51 } }">Mato Grosso</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('51',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('52',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(52)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 52 } }">Goiás</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 52 } }">Goiás</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('52',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('53',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(53)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 53 } }">Distrito Federal</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 53 } }">Distrito Federal</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('53',pergunta,'total')" /></td>
                                  </tr>
@@ -283,19 +283,19 @@
                                  </tr>
                                  <tr v-if="consultaQtd('41',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(41)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 41 } }">Paraná</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 41 } }">Paraná</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('41',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('42',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(42)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 42 } }">Santa Catarina</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 42 } }">Santa Catarina</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('42',pergunta,'total')" /></td>
                                  </tr>
                                  <tr v-if="consultaQtd('43',pergunta,'total') != null">
                                     <td style="padding:1px 8px;font-size:14px;" @click="setUf(43)">
-                                       <router-link :to="{ path: 'ResultsMunicipio', query: { q: 43 } }">Rio Grande do Sul</router-link>
+                                       <router-link :to="{ path: 'ResultsMunicipioV2', query: { q: 43 } }">Rio Grande do Sul</router-link>
                                     </td>
                                     <td style="padding:12px;text-align:center"><div v-html="consultaQtd('43',pergunta,'total')" /></td>
                                  </tr>
