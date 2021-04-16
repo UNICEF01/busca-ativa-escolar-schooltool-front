@@ -262,6 +262,9 @@ import ibgeid from "../assets/territory.js";
 import Vue from "vue";
 //if(auth.currentUser == null){self.location='/login'}
 
+import VueSimpleAlert from "vue-simple-alert";
+Vue.use(VueSimpleAlert);
+
 
 
 export default {
@@ -326,7 +329,7 @@ export default {
       this.user.city = value.city;
     },
 
-    async start() {
+    async start() {      
       if (this.$refs.form_register.validate()) {
         let user = auth
           .createUserWithEmailAndPassword(this.login.email, this.login.password)
@@ -387,10 +390,12 @@ export default {
               });
             //console.log(user);
 
+   
             this.$router.push({ path: "/wash" });
             setInterval(function () {
               window.location.reload();
             }, 1000);
+      
           })
 
           .catch(function (err) {
@@ -487,4 +492,5 @@ export default {
     },
   },
 };
+this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");
 </script>
