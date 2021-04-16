@@ -16,13 +16,15 @@
                <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
             </div>
             <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
-            <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
+          
+           <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
                <component v-if="customLoader" v-bind:is="customLoader"></component>
                <div v-else>
                   <div class="loading-circle"></div>
                   <p class="loading-text">{{text}}</p>
                </div>
             </div>
+
             <br>
             <v-container fluid style="width:11%;margin-bottom:4px;position:fixed;color:#fff">
                <v-layout row wrap>
@@ -73,22 +75,22 @@
                <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:20px"  >
                <div class="card-body" >
                   <v-data-table id="customers"
-                     :headers="municipios.headers"
-                     :items="municipios"
+                     :headers="escolas.headers"
+                     :items="escolas"
                      hide-actions
                      >
                      <template
                         slot="items"
                         slot-scope="{ item, index }"                 
                         >
-                        <tr v-if="item.quest_complete == 'S'">
-                           <td style="padding:1px 8px;font-size:14px;" @click="setMunic(item.city_name)">
-                              <router-link :to="{ path: 'ResultsEscola', query: { q: item.ibge_id, } }" style="font-size:14px;">{{ item.city_name }}</router-link>
+                      <!--  <tr v-if="consultaQtd(item.name,pergunta,'total') != null">
+                           <td  style="padding:12px">
+                              {{ item.name }}
                            </td>                           
                            <td style="padding:12px">
-                              <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,true,index,1)" />
+                              <div align="center" v-html="consultaQtd(item.name,pergunta,'total')" />
                            </td>
-                        </tr>
+                        </tr> -->
 
 
                      </template>
@@ -148,20 +150,34 @@
                <div class="card text-center m-3" style="margin-top:auto;width:1200px">
                <div class="card-body">
                <v-data-table
-                  :headers="municipios.headers"
-                  :items="municipios"
-                  hide-actions id="customers" >
+                  :headers="escolas.headers"
+                  :items="escolas"
+                  hide-actions id="customers" style="margin-left:-200px!important;width:1380px!important">
                   <template
                      slot="items"
                      slot-scope="{ item, index }">
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'">
-                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+10),0)" />
-                     </td>
-   
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'">
-                        <div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+15),1)" />
-                     </td>
-                     <td style="padding:12px 8px;" v-if="item.quest_complete == 'S'"><div align="center" v-html="getResultMunicipiosResp(item.ibge_id,false,(index+20),2)" /></td>
+
+                     <tr v-if="consultaQtd(item.name,pergunta,'total') != null">
+                        <td  style="width:130px!important;padding:12px">
+                          {{ item.name }}
+                        </td>                           
+                        <td style="width:50px;padding:12px">
+                          <div align="center" v-html="consultaQtd(item.name,pergunta,'total')" />
+                        </td>
+        
+                        <td style="width:448px!important;padding:12px">
+                            <div align="center" v-html="consultaQtd(item.name,pergunta,'0')" />
+                        </td>
+      
+                        <td style="width:460px!important;padding:12px">
+                            <div align="center" v-html="consultaQtd(item.name,pergunta,'1')" />
+                        </td>
+    
+                        <td style="width:480px!important;padding:12px">
+                            <div align="center" v-html="consultaQtd(item.name,pergunta,'2')" />  
+                        </td>
+                      </tr>
+
                   </template>
                </v-data-table>
                </div>
@@ -178,7 +194,7 @@
    </v-container>
 </template>
 <script>
-   import {db, auth, usersCollection, fireSQL} from "./../firebase";
+   import {db, auth, usersCollection, fireSQL} from "../firebase";
    
    let userAdmin = localStorage.getItem("admin");
    
@@ -191,11 +207,13 @@
      export default {
        data() {
          return {
+           geoParaConsulta: [],
+           results: [],
            grupo: 0,
            pergunta: 0,
            index_pergunta: 0,
            tmpValue: 0,
-           municipios: [],
+           escolas: [],
            combined: [],
            pageOfItems: [],
            myloadingvariable: true,
@@ -1585,6 +1603,44 @@
          }
        },
        methods: {
+         consultaQtd(info,idpergunta,resp) {
+           let valObj = [];
+           switch (resp) {
+             case '0':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_0; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_0);
+             }
+             break;
+             case '1':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_1; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_1);
+             }
+             break;
+             case '2':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.qntResp_2; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].qntResp_2);
+             }
+             break;
+             case 'total':
+             valObj = this.results.filter(function(elem){
+                if(elem.info == info&&elem.id_pergunta == idpergunta) { return elem.total; }
+              });
+             if (valObj[0] != undefined) {
+              return(valObj[0].total);
+             }
+            break;
+           }
+            
+         }, 
            myFunction() {
          // `this` inside methods point to the Vue instance
           this.current_page = 2;
@@ -1595,7 +1651,7 @@
            },    
            onChangePage(pageOfItems) {
                // update page of items
-               this.getData();
+              // this.getData();
                this.pageOfItems = pageOfItems;
                let i = 1;
                let tamanho = 1;  
@@ -1613,14 +1669,13 @@
    
            setas(value){
              if (value == 'prev'){
-               $("a.page-link-previous")[0].click();
+               $(".previous a")[0].click();
                var number = $("#pergunta").val()-1
                $("#tituloPergunta").text("Pergunta: "+number)
              }else{
-               $("a.page-link-next")[0].click();
+               $(".next a")[0].click();
                var number = parseInt($("#pergunta").val()*1)+1
-               $("#tituloPergunta").text("Pergunta: "+
-               number)            
+               $("#tituloPergunta").text("Pergunta: "+number)            
              }
            },
            scrollFunction() {
@@ -1641,107 +1696,18 @@
                localStorage.setItem("munic", "("+value+")"); 
              }, 10); 
            },
-   
-   
-   
-           setaGrupoPergunta(leo,leo2)  {
-             this.grupo = leo;
-             this.pergunta = leo2;
+           setaGrupoPergunta(id,id2)  {
+             this.grupo = id;
+             this.pergunta = id2;
          },
           getResult(tipo,geral,info,idx,resp) {
           return(0);     
-   
          },
-          getResultMunicipiosResp(comunicipioibge,geral,idx,resp) {
-   
-
-   
-           let users = fireSQL.query(`
-           SELECT \`quest\`
-           FROM users
-           WHERE \`school.ibge_id\`='`+comunicipioibge+`'
-           `);
-           
-   
-         let i = 0;
-         let tamanho = 0;
-         let grupo;
-   
-          users.then((users) => {
-           for (let user of users) {
-             for(let j = 0; j<user.quest.length; j++) {
-               tamanho = j;
-               for (let y = 0; y < user.quest[j].questions.length; y++) {
-                 if (user.quest[j].questions[y].id == this.pergunta) { this.grupo = j; }
-               }
-   
-             }
-           }
-          });
-   
-          users.then((users) => {
-           for (let user of users) {
-   
-             console.log('grupo: '+this.grupo);
-             
-             if (!geral) {
-                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-                 }
-                 
-                 ((user.quest[this.grupo].questions[this.index_pergunta].selected == resp)&&(user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-                 this.i_aux[idx].valor = i;
-              } else {
-                 for (let y = 0; y < user.quest[this.grupo].questions.length; y++) {
-                   if (user.quest[this.grupo].questions[y].id == this.pergunta) { this.index_pergunta = y; }
-                 }
-                 
-                 ((user.quest[this.grupo].questions[this.index_pergunta].selected != null)) ? i++ : '';
-                 this.i_aux[idx].valor = i;
-              }
-   
-           }
-           });
-           
-           this.loading = false;
-       
-           return(this.i_aux[idx].valor);
-         },
-
+         
           noDataError(nr){
             this.loading = false;
             $("#error"+nr).text("não há dados disponíveis")            
           },
-
-         getResultMunicipios() {
-   
-             var filtroGeo;
-             var info;
-   
-             filtroGeo = '\`school.ibge_uf_id\`';
-   
-             info = this.$route.query.q;
-   
-             let municipios = fireSQL.query(`
-             SELECT school
-             FROM users
-             WHERE `+filtroGeo+`='`+info+`'
-             `);
-   
-   
-             var arr = [];
-   
-             municipios.then((municipios) => {
-               for (let municipio of municipios) {
-   
-                 (this.municipios).push(municipio.school);
-                 }
-   
-             this.removeDups(this.municipios, 'ibge_id');
-             });
-   
-   
-         },
          removeDups(arr, prop) {
    
            // Object to store title of visited members
@@ -1773,33 +1739,123 @@
            }
            return arr;
          },
-   
-         
-         async getData() {
-   
-           this.getResultMunicipios();
-   
-   
-   
-         },
-   
-       },
-       created() {
+     async getEscolasList(municipioId) {
+        let escolaTmp = await db.collection("users").where('school.ibge_id', '==', municipioId).get().then((querySnapshot) => {
+
+          let values = querySnapshot.docs;
+          let arrayData = [];
+          for (let i = 0; i < values.length; i++) {
+            let obj = {}
+            let data = values[i].data();
+            arrayData.push(data);
+          }
+          return arrayData;
+        });
+        return escolaTmp;
+
+      },
+      async getData() {
+
+        let array=[];
+
+        let escolas = await this.getEscolasList(this.$route.query.q).then((response) => {
+
+         for (let i = 0; i < response.length; i++) {
+          if (response[i].school['quest_complete'] == 'S') {
+          array.push(response[i].school);
+          }
+         }
+
+         this.removeDups (array,'name');
+          
+          return array;
+        })
+
+        this.escolas = escolas;
+
+        console.log(this.escolas);
+
+        let results = [];
+        for (let geo of escolas) {
+
+            var washData = await db.collection("users").where('school.name', '==', geo.name).get().then(function (querySnapshot) {
+
+             let values = querySnapshot.docs;
+             let arrayData = [];
+             let consolidadoTotal = 0;
+             let consolidado0 = 0;
+             let consolidado1 = 0;
+             let consolidado2 = 0;
+             let modelo = undefined;
+             let idPergunta = '';
+             let quest_complete = 'S';
+
+             for (let i = 0; i < values.length; i++) {
+               let obj = {}
+               let data = values[i].data();
+               obj = data;
+               arrayData.push(obj);
+             }
+
+             for (let i = 0; i < arrayData.length; i++) {
+                if (arrayData[i].quest != undefined) {
+                  modelo = i;
+                }
+             }
+
+             if (modelo != undefined) {
+
+             for (let j = 0; j < arrayData[modelo].quest.length; j++) {
+                  if (arrayData[modelo].quest[j].questions != undefined) { 
+                    for (let k = 0; k < arrayData[modelo].quest[j].questions.length; k++) {
+
+                      for (let i = 0; i < arrayData.length; i++) {
+                        if (arrayData[i].quest != undefined&&arrayData[i].school.quest_complete == 'S') {
+                          ((arrayData[i].quest[j].questions[k].selected == '0')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado0++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected == '1')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado1++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected == '2')&&(arrayData[i].quest[j].questions[k].selected != null)) ? consolidado2++ : '';
+                          ((arrayData[i].quest[j].questions[k].selected != null)) ? consolidadoTotal++ : '';
+                          ((arrayData[i].quest[j].questions[k].id != null)) ? idPergunta = arrayData[i].quest[j].questions[k].id : '';
+                        }
+                    }
+                    results.push({info: geo.name, grupo: j.toString(), pergunta: k.toString(), id_pergunta: idPergunta, total: consolidadoTotal.toString(), 
+                    qntResp_0: consolidado0.toString(), qntResp_1: consolidado1.toString(), qntResp_2: consolidado2.toString()});
+                    consolidado0 = 0;
+                    consolidado1 = 0;
+                    consolidado2 = 0;
+                    consolidadoTotal = 0;
+                    idPergunta = '';
+                    }
+                  }
+              }
+
+             }
+
+             console.log(results);
+
+             return results;
+           });
+
+            this.results = washData;
+
+        }
+
+      this.loading = false;
+
+      },
+      },
+      created() {
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
-       },
-   
-   computed:{
-    bc(){
-     return this.background || (this.dark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)')
-    }
-   },
-   
-   
-       
+       }
+       ,
+       computed:{
+         bc(){
+           return this.background || (this.dark ? 'rgba(0,0,0,0.8)' : 'rgba(255,255,255,0.8)')
+         }
+       },    
      }
-   
      window.document.body.onscroll = function() {
        var mybutton = document.getElementById("myBtn");
        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {

@@ -103,14 +103,14 @@ export default [
     view: 'ResultsTerritorioV2'
   },
   {
-    path: '/ResultsMunicipio',
+    path: '/ResultsMunicipiov2',
     name: 'Painel de Resultados de Municípios',
-    view: 'ResultsMunicipio'
+    view: 'ResultsMunicipioV2'
   },
   {
-    path: '/ResultsEscola',
+    path: '/ResultsEscolav2',
     name: 'Painel de Resultados de Escolas',
-    view: 'ResultsEscola'
+    view: 'ResultsEscolaV2'
   },  
   {
     path: '/ResultsTerritorio',
