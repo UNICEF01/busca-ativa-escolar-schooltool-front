@@ -181,6 +181,7 @@
                 }
             }
             },
+            colors: ['#00CC66', '#FFDC00', '#F55A4E'],
             dataLabels: {
                 enabled: true,
                 enabledOnSeries: undefined,

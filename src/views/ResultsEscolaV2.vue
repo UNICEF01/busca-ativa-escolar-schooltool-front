@@ -70,7 +70,15 @@
                   </v-flex>
                </v-layout>
             </v-container>
+<<<<<<< HEAD:src/views/ResultsEscolaV2.vue
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+=======
+            <br/>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+            <div style="position:absolute;margin-top:-25px;margin-left:-18px;color:black">Respondente</div>
+>>>>>>> bd94e7abbc84e3c4bc0b3049a7d5b9e5943203e6:src/views/ResultsEscola.vue
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:20px"  >
                <div class="card-body" >
@@ -95,9 +103,10 @@
 
                      </template>
                   </v-data-table>
-                  </div>
-               </div>
+                  </div>                  
+               </div>               
             </template>
+            <br><div style="font-size: 15px!important;color:black!important">* Podem haver mais de um respondente por escola</div>
          </v-flex>
          <v-flex
             sm8
@@ -145,6 +154,7 @@
                   </div>
                </div>
             </template>
+          
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:1200px">
@@ -193,6 +203,7 @@
       </v-layout>
    </v-container>
 </template>
+
 <script>
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    

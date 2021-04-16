@@ -181,7 +181,10 @@
                 }
             }
             },
+            colors: ['#00CC66', '#FFDC00', '#F55A4E'],
+          
             dataLabels: {
+
                 enabled: true,
                 enabledOnSeries: undefined,
                 formatter: function (val, opts) {
@@ -270,6 +273,10 @@
               tooltipHoverFormatter: undefined,
               offsetX: 0,
               offsetY: 0,
+              
+              
+
+
               labels: {
                   colors: undefined,
                   useSeriesColors: false

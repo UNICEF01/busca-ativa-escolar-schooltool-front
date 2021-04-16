@@ -16,7 +16,7 @@ db.collection("users").get().then((querySnapshot) => {
       var quest=doc.get('quest');
 
 
-    if (quest !== undefined){  
+    if (quest !== undefined && schoolquestcomplete == "S" ){  
 
       //Grupo: 1 - Água    
       var quest1 = doc.data().quest[0].questions[0].selected;
@@ -53,10 +53,9 @@ db.collection("users").get().then((querySnapshot) => {
       var quest26 = doc.data().quest[3].questions[11].selected;
       var quest27 = doc.data().quest[3].questions[12].selected;
       var quest28 = doc.data().quest[3].questions[13].selected;
-    }
+  
 
  data.push({        
-           "id":uid,
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,
@@ -94,7 +93,7 @@ db.collection("users").get().then((querySnapshot) => {
            "quest28":quest28
            
         })       
-    
+      }
       }  
     })
 
