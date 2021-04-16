@@ -114,6 +114,7 @@
             xs12
             md8
             lg8>
+
             <template>
                <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
                <div class="card-body">
@@ -163,28 +164,28 @@
                <v-data-table
                   :headers="escolas.headers"
                   :items="escolas"
-                  hide-actions id="customers" style="margin-left:-200px!important;width:1380px!important">
+                  hide-actions id="customers" style="margin-left:-175px!important;width:1377px!important">
                   <template
                      slot="items"
                      slot-scope="{ item, index }">
-
+                     
                      <tr v-if="consultaQtd(item.name,pergunta,'total') != null">
                         <td  style="width:130px!important;padding:12px">
                           {{ item.name }}
                         </td>                           
-                        <td style="width:50px;padding:12px">
+                        <td style="width:45px;padding:12px">
                           <div align="center" v-html="consultaQtd(item.name,pergunta,'total')" />
                         </td>
         
-                        <td style="width:448px!important;padding:12px">
+                        <td style="width:400px!important;padding:12px">
                             <div align="center" v-html="consultaQtd(item.name,pergunta,'0')" />
                         </td>
       
-                        <td style="width:460px!important;padding:12px">
+                        <td style="width:397px!important;padding:12px">
                             <div align="center" v-html="consultaQtd(item.name,pergunta,'1')" />
                         </td>
     
-                        <td style="width:480px!important;padding:12px">
+                        <td style="padding:12px">
                             <div align="center" v-html="consultaQtd(item.name,pergunta,'2')" />  
                         </td>
                       </tr>
@@ -193,6 +194,7 @@
                </v-data-table>
                </div>
                </div>
+               <br><div style="font-size: 15px!important;color:black!important;margin-left:-170px">* Podem haver mais de um respondente por escola</div>
                <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                   <p align="center">
                      <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" circle></jw-pagination>
