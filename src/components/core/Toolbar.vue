@@ -31,6 +31,10 @@ style="
   <i v-if="titulo == 'login'" class="mdi mdi-account-key"> {{title}}</i> 
   <i v-if="titulo == 'charts'" class="mdi mdi-chart-bar"> {{title}}</i> 
 
+
+
+
+
     </h3>
 
     

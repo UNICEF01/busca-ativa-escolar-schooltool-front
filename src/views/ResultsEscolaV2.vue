@@ -78,9 +78,10 @@
 
           
           <div style="position:fixed;top:351px;margin-left:55px;color:black">
-            <table border="0" width="137px" height="59">
+            <table border="0" width="135px" height="59">
               <tr>
-                <td align="center"  style="color:black!important;font-size: 17px!important;border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-top: 1px solid #DDDDDD; padding-left: 4px; padding-right: 4px">&nbsp;&nbsp;&nbsp;Respondente</td>
+                
+                <td align="center"  style="color:black!important;font-size: 18px!important;">&nbsp;&nbsp;&nbsp;Respondente<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="mdi mdi-arrow-down-thick"></i> </td>
               </tr>
                 </table>           
            </div>
