@@ -310,7 +310,7 @@
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Região e Estados', src: '/resultsv2#' },
+             { report: 'Região e Estados', src: '/resultsv2' },
              { report: 'Territórios', src: '/resultsterritoriov2' },
            ],
            select: { report: 'Rep2', src: '' },
@@ -1906,6 +1906,9 @@
           this.current_page = 2;
          },
            changeRoute(a) {
+            setInterval(function () {
+              window.location.reload();
+            }, 100);              
              this.$router.push({path: a })
              console.log(a, this.select.src)
            },
@@ -2112,7 +2115,25 @@
        },    
      }
    
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "65%"
+  } 
   
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  }   
 
    
 

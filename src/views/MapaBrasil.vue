@@ -338,6 +338,26 @@
        }    
      }   
 
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "71%"
+  } 
+  
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  }  
+
 </script>
 
 

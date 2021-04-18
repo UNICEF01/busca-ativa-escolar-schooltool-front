@@ -148,6 +148,27 @@ export default {
     grid: [Toolbar, ExcelExport, Page, Sort,Filter]
   }
 }
+
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "71%"
+  } 
+  
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  } 
+
 </script>
 <style>
 @import '../../node_modules/@syncfusion/ej2-base/styles/material.css';  

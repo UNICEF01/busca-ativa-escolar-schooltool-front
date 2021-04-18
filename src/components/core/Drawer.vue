@@ -231,6 +231,9 @@
         localStorage.setItem("titulo", "regiao");
         var uf =  localStorage.getItem("estado");
         localStorage.setItem("estado", uf);  
+          setInterval(function () {
+            window.location.reload();
+          }, 100);         
         this.$router.push({path: '/resultsV2'})
       },
       admin(){
@@ -242,6 +245,9 @@
         this.$router.push({path: '/quest'})
       },
       exportExcel(){
+        setInterval(function () {
+          window.location.reload();
+        }, 100);          
         this.$router.push({path: '/exportExcel'})
       }
 

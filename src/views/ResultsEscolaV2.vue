@@ -76,8 +76,15 @@
             <br/>
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
-          <!--  <div style="position:absolute;margin-top:-25px;margin-left:-18px;color:black">Respondente</div> -->
-
+          
+          <div style="position:fixed;top:351px;margin-left:55px;color:black">
+            <table border="0" width="137px" height="59">
+              <tr>
+                <td align="center"  style="color:black!important;font-size: 17px!important;border-left: 1px solid #DDDDDD; border-right: 1px solid #DDDDDD; border-top: 1px solid #DDDDDD; padding-left: 4px; padding-right: 4px">&nbsp;&nbsp;&nbsp;Respondente</td>
+              </tr>
+                </table>           
+           </div>
+          
             <template>
                <div class="card text-center m-3" style="margin-top:auto;width:100%;margin-left:20px"  >
                <div class="card-body" >
@@ -115,7 +122,7 @@
             md8
             lg8>
 
-            <template>
+            <template>              
                <div class="card text-center m-3" style="position:fixed;width:1413px;top:120px;left:526px">
                <div class="card-body">
                   <div v-for="group in pageOfItems" :key="group.id">
@@ -156,9 +163,10 @@
                   </div>
                </div>
             </template>
-          
+
             <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
+
                <div class="card text-center m-3" style="margin-top:auto;width:1200px">
                <div class="card-body">
                <v-data-table
@@ -1660,6 +1668,9 @@
           this.current_page = 2;
        },
            changeRoute(a) {
+            setInterval(function () {
+              window.location.reload();
+            }, 100);               
              this.$router.push({path: a })
              console.log(a, this.select.src)
            },    
@@ -1878,7 +1889,26 @@
          mybutton.style.display = "none";
        }
      }
-     
+
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "71%"
+  } 
+  
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  }      
 
    
 </script>

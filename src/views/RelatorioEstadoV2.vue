@@ -13,8 +13,7 @@
 
       
       
-  <h3 class="pag pag1"></h3>
-  <div class="insert"></div>
+
             <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
             <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
             </div>
@@ -22,16 +21,22 @@
             <template>
               <div id="ufName" style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px"></div>
 
+
+
               <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
              
                <div ref="content" class="card text-center m-4" style="margin-top:30px!important;margin-left:190px" >
-                  <div class="card-body">
+
+
+                  <div  class="card-body">
+                    
                      <div v-for="group in pageOfItems" :key="group.id">
+                       
                         <v-form ref="form_research" lazy-validation>
                            
-
-
-                           <div
+                        <div id="content">
+                          <div id="pageFooter"></div>   
+                           <div 
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
@@ -95,9 +100,10 @@
                            class="graficoConsolidado"
                            />
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
-
+                      </div>
                            <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -157,9 +163,10 @@
                            :series="series2"
                            :key="componentKey"
                            class="graficoPadrao"/>
-
+                        </div>
                            <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -246,9 +253,10 @@
                               </v-flex>
 
                            </div>
-
+                        </div>
                            <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -305,9 +313,10 @@
                             :series="series5"
                             :key="componentKey"
                             class="graficoPadrao"/>
-
+                        </div>
                             <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -363,9 +372,10 @@
                             :series="series7"
                             :key="componentKey"
                             class="graficoPadrao"/>
-
+                        </div>
                             <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -427,9 +437,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>dddd
                             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -512,9 +523,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -570,9 +582,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -628,9 +641,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -686,9 +700,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -727,9 +742,11 @@
                             :series="series16"
                             :key="componentKey"
                             class="graficoPadrao"/>
-
+                        </div>
 
                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                        <div id="content">
+                          <div id="pageFooter"></div>                            
                           <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[3].group}}</div>
 
 
@@ -835,9 +852,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -937,9 +955,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -1000,9 +1019,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1058,9 +1078,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1116,9 +1137,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1174,9 +1196,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1232,9 +1255,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1290,9 +1314,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1331,7 +1356,7 @@
                             :series="series29"
                             :key="componentKey"
                             class="graficoPadrao"/>
-
+                        </div>
                             <br/><br/><br/><br/><br/>
 
                             <div
@@ -4909,31 +4934,26 @@
     $(window).bind('scroll', setTopo);
    
 
-var bottom = 0; /* Position of first page number - 0 for bottom of first page */
-	var pagNum = 2; /* First sequence - Second number */
-	$(document).ready(function() {
-	  /* For each 10 paragraphs, this function: clones the h3 with a new page number */
-	  $("p:nth-child(10n)").each(function() {
-	    bottom -= 100;
-	    botString = bottom.toString();
-	    var $counter = $('h3.pag1').clone().removeClass('pag1');
-	    $counter.css("bottom", botString + "vh");
-	    numString = pagNum.toString();
-	    $counter.addClass("pag" + numString);
-	    ($counter).insertBefore('.insert');
-	    pagNum = parseInt(numString);
-	    pagNum++; /* Next number */
-	  });
-	  var pagTotal = $('.pag').length; /* Gets the total amount of pages by total classes of paragraphs */
-	  var pagTotalString = pagTotal.toString();
-	  $("h3[class^=pag]").each(function() {
-	    /* Gets the numbers of each classes and pages */
-	    var numId = this.className.match(/\d+/)[0];
-	    document.styleSheets[0].addRule('h3.pag' + numId + '::before', 'content: "Page ' + numId + ' of ' + pagTotalString + '";');
-	  });
-	});
-
-   
+  if (screen.width == "1980") {
+     document.body.style.zoom = "100%"
+  }
+  if (screen.width == "1680") {
+    document.body.style.zoom = "88%"
+  } 
+  if (screen.width == "1366") {
+    document.body.style.zoom = "65%"
+  } 
+  
+  if (screen.width == "1360") {
+    document.body.style.zoom = "71%"
+  }   
+  if (screen.width == "1280") {
+    document.body.style.zoom = "67%"
+  }
+  if (screen.width == "1024") {
+    document.body.style.zoom = "93%"
+  }  
+ 
    
 
 
@@ -4957,19 +4977,12 @@ var bottom = 0; /* Position of first page number - 0 for bottom of first page */
     #divOverlay {
      display: none!important; 
     }
-    @page { margin: 0; }
+    @page { margin: 0; size: A4; }
     
     body { margin: 1.6cm; }
   }
   
-   @keyframes circleanimation {
-   from {
-   transform: rotateZ(0deg);
-   }
-   to {
-   transform: rotateZ(360deg);
-   }
-   }
+
 
 @media print {
   body { margin: 1.6cm; }
@@ -4993,25 +5006,44 @@ body {
   text-align: justify;
 }
 
-@page {
-  size: A4;
-  margin: 05%;
-  padding: 0 0 10%;
+
+@media screen {
+  div.divFooter {
+    display: none;
+  }
+}
+@media print {
+  div.divFooter {
+    position: fixed;
+    bottom: 0;
+    counter-increment: page;
+    content:"Page " counter(page);
+    margin-left:200px!important;
+   }
+  
+
+body
+{
+    counter-reset: page;
+}
+#pageFooter
+{
+    counter-increment: page;
+}
+#pageFooter:after
+{
+    display: none;
+    text-align: right;
+    content: "Pagina " counter(page);
+    top: 0;
+    position: relative;
+}
+#pageFooter.first.page
+{
+    page-break-before: avoid; 
 }
 
-h3.pag {
-  display: none;
-  position: absolute;
-  page-break-before: always;
-  page-break-after: always;
-  bottom: 0;
-  right: 0;
-}
-
-h3::before {
-  position: relative;
-  bottom: -15px;
-}
+}  
 
 
 
