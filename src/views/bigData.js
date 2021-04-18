@@ -55,7 +55,8 @@ db.collection("users").get().then((querySnapshot) => {
       var quest28 = doc.data().quest[3].questions[13].selected;
   
 
- data.push({        
+ data.push({     
+  "uid":uid,   
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,

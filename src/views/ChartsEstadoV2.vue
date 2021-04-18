@@ -2175,10 +2175,10 @@
        }
      }
    
-    function setTopo(){
+    /*function setTopo(){
       $(window).scrollTop(0);
     }
-    $(window).bind('scroll', setTopo);    
+    $(window).bind('scroll', setTopo);    */
    
    
 </script>

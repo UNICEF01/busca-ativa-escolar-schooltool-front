@@ -194,7 +194,7 @@
                </v-data-table>
                </div>
                </div>
-               <br><div style="font-size: 15px!important;color:black!important;margin-left:-170px">* Podem haver mais de um respondente por escola</div>
+               <br><div style="font-size: 15px!important;color:black!important;margin-left:-170px">* Pode haver mais de um respondente por escola</div>
                <div class="social font-weight-light theme--dark  " style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                   <p align="center">
                      <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage" circle></jw-pagination>

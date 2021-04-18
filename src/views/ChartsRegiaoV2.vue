@@ -310,7 +310,7 @@
            componentKey: 0,
            select: { report: 'Rep1', src: '' },
            items: [
-             { report: 'Região e Estados', src: '/resultsv2' },
+             { report: 'Região e Estados', src: '/resultsv2#' },
              { report: 'Territórios', src: '/resultsterritoriov2' },
            ],
            select: { report: 'Rep2', src: '' },
@@ -2112,20 +2112,10 @@
        },    
      }
    
-     window.document.body.onscroll = function() {
-       var mybutton = document.getElementById("myBtn");
-       if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-         mybutton.style.display = "block";
-       } else {
-         mybutton.style.display = "none";       
-       }
-     }
+  
+
    
-    function setTopo(){
-      $(window).scrollTop(0);
-    }
-    $(window).bind('scroll', setTopo);  
-   
+
    
 </script>
 <style>
@@ -2133,6 +2123,7 @@
    {
    color: #000;
    font-size: 17px;
+   overflow: hidden;
    }
    a:hover {
    color: #2196F3;
@@ -2301,4 +2292,9 @@
    transform: rotateZ(360deg);
    }
    }
+
+html, body {
+ overflow: hidden;
+}
+   
 </style>
