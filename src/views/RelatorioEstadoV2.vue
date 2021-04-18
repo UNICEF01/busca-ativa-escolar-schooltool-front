@@ -437,7 +437,7 @@
                      
                               </v-flex>
                             </div>  
-                        </div>dddd
+                        </div>
                             <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
                         <div id="content">
                           <div id="pageFooter"></div> 
@@ -1316,6 +1316,7 @@
                             </div>  
                         </div>
                             <br/>
+                            
                         <div id="content">
                           <div id="pageFooter"></div> 
                             <apexchart
@@ -1345,7 +1346,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1356,8 +1357,7 @@
                             :series="series29"
                             :key="componentKey"
                             class="graficoPadrao"/>
-                        </div>
-                            <br/><br/><br/><br/><br/>
+                            
 
                             <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
@@ -1373,9 +1373,10 @@
                      
                               </v-flex>
                             </div>  
-
+                        </div>
                             <br/>
-
+                        <div id="content">
+                          <div id="pageFooter"></div> 
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -1415,7 +1416,7 @@
                             :key="componentKey"
                             class="graficoPadrao"
                             @mounted="openPrintWindow"/>
-         
+                        </div>
 
                         </v-form>
                      </div>
