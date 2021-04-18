@@ -11,14 +11,16 @@
             lg2>
             <br/>
 
-            
-
+      
+      
+  <h3 class="pag pag1"></h3>
+  <div class="insert"></div>
             <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
             <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
             </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
-              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Região</div>
+              <div id="ufName" style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px"></div>
 
               <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
              
@@ -27,6 +29,8 @@
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            
+
+
                            <div
                               style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
@@ -173,6 +177,7 @@
 
                            </div>
 
+
                            <br/>
 
                            <apexchart
@@ -184,8 +189,7 @@
                            :series="series3"
                            :key="componentKey"
                            class="graficoPadrao"/>
-
-                           
+                      
                            
                           <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[1].group}}</div>
                            <br/>
@@ -1418,7 +1422,9 @@
          </v-flex>
       </v-layout>
    </v-container>
+   
 </template>
+
 <script>
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    import ufid from "../assets/estado.js";
@@ -1426,13 +1432,13 @@
    import jsPDF from 'jspdf' 
    import domtoimage from "dom-to-image";
 
-   
+   import $ from 'jquery';
    localStorage.removeItem("munic")
    
    let userAdmin = localStorage.getItem("admin");
    
    //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
-   
+
    localStorage.setItem("titulo", "regiao");
    
      export default {
@@ -1504,8 +1510,9 @@
             plotOptions: {
                 bar: {
                   horizontal: false,
-                  columnWidth: '85%',
-                  endingShape: 'rounded'
+                  columnWidth: '35%',
+                  endingShape: 'rounded',
+                  barHeight: '80%'                   
                 }
             },
             tooltip: {
@@ -4533,6 +4540,7 @@
                     consolidado2 = 0;
                     consolidadoTotal = 0;
                     idPergunta = '';
+                    $("#ufName").text("Relatório de Estado ("+geo.sg_uf+")");
                     quest_complete = 'S';
                     }
                   }
@@ -4882,9 +4890,36 @@
     $(window).bind('scroll', setTopo);
    
 
+var bottom = 0; /* Position of first page number - 0 for bottom of first page */
+	var pagNum = 2; /* First sequence - Second number */
+	$(document).ready(function() {
+	  /* For each 10 paragraphs, this function: clones the h3 with a new page number */
+	  $("p:nth-child(10n)").each(function() {
+	    bottom -= 100;
+	    botString = bottom.toString();
+	    var $counter = $('h3.pag1').clone().removeClass('pag1');
+	    $counter.css("bottom", botString + "vh");
+	    numString = pagNum.toString();
+	    $counter.addClass("pag" + numString);
+	    ($counter).insertBefore('.insert');
+	    pagNum = parseInt(numString);
+	    pagNum++; /* Next number */
+	  });
+	  var pagTotal = $('.pag').length; /* Gets the total amount of pages by total classes of paragraphs */
+	  var pagTotalString = pagTotal.toString();
+	  $("h3[class^=pag]").each(function() {
+	    /* Gets the numbers of each classes and pages */
+	    var numId = this.className.match(/\d+/)[0];
+	    document.styleSheets[0].addRule('h3.pag' + numId + '::before', 'content: "Page ' + numId + ' of ' + pagTotalString + '";');
+	  });
+	});
+
    
    
+
+
 </script>
+
 <style>
    
    .graficoPadrao {
@@ -4896,8 +4931,10 @@
      display: none!important; 
     }
     @page { margin: 0; }
+    
     body { margin: 1.6cm; }
   }
+  
    @keyframes circleanimation {
    from {
    transform: rotateZ(0deg);
@@ -4908,7 +4945,6 @@
    }
 
 @media print {
-  @page { margin: 0; }
   body { margin: 1.6cm; }
   .apexcharts-legend-marker:before {
     content: "\25CF";
@@ -4919,8 +4955,40 @@
     line-height: 12px;
     font-size: 24px;
   }
-
+  h3.pag {
+    display: initial;
+  }
+  .print {
+    display: none;
+  }
 }
+body {
+  text-align: justify;
+}
+
+@page {
+  size: A4;
+  margin: 05%;
+  padding: 0 0 10%;
+}
+
+h3.pag {
+  display: none;
+  position: absolute;
+  page-break-before: always;
+  page-break-after: always;
+  bottom: 0;
+  right: 0;
+}
+
+h3::before {
+  position: relative;
+  bottom: -15px;
+}
+
+
+
+
 
 
 </style>
