@@ -2,115 +2,1411 @@
    <v-container
       fill-height
       fluid
-      grid-list-xl>
+      grid-list-xl style="margin-left: -400px;">
       <v-layout wrap>
          <v-flex
             sm4
             xs12
             md4
             lg2>
-            <div id="caixa" style="width: 110px; height: 200px;top: 150px;margin-left:1150px;align:center">
-               <!--div class="tertiary--text font-weight-bold" style="margin-top:80px;margin-left: 10px" id="tituloPergunta">Pergunta: 1</div-->
-               <a  id="next"  title="Próximo"  v-on:click="setas('next')"></a>
-               <a  id="prev"  title="Anterior" v-on:click="setas('prev')"></a>
-               <a  id="myBtn" title="Voltar ao Topo" v-on:click="topFunction()" >Topo</a>         
-            </div>
-            <div class="loading-screen" v-show="loading" v-bind:class="classes" v-bind:style="{backgroundColor:bc}">
-               <component v-if="customLoader" v-bind:is="customLoader"></component>
-               <div v-else>
-                  <div class="loading-circle"></div>
-                  <p class="loading-text">{{text}}</p>
-               </div>
-            </div>
-            <div id="user_content" style="position:fixed;height:406px;margin-bottom:-60px;width:1450px;top:0px;margin-left:0px;background:#EEEEEE"> </div>
-            <br>
-            <v-container fluid style="width:10%;margin-bottom:4px;position:fixed">
-               <v-layout row wrap>
-                  <v-flex xs12>
-                     <v-select                
-                        :items="items"
-                        v-model="select"
-                        label="Tipo de relatório"
-                        single-line
-                        item-text="report"
-                        item-value="src"
-                        return-object
-                        persistent-hint
-                        v-on:input="changeRoute(`${select.src}`)"
-                        :hint="`${select.src}`"
-                        ></v-select>
-                  </v-flex>
-               </v-layout>
-            </v-container>
+            <br/>
+
             
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+            <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
+            <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
+            </div>
+<!-- APARECE NO RELATÓRIO -->
             <template>
-               <div class="card text-center m-3" style="position:fixed;width:1414px;top:120px;left:524px">
+              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Região</div>
+
+              <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
+             
+               <div ref="content" class="card text-center m-4" style="margin-top:30px!important;margin-left:190px" >
                   <div class="card-body">
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
-                           <material-card 
-                              class="card-tabs"
-                              :color="color"
-                              elevation="3"
-                              dense
-                              fixed
-                              style="margin-top:-5px;position:absolute;font-size:18px;text-align: justify-all!important;width:85%"
+                           
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 140px;overflow-y:auto !important"
+                                 style="height: 220px;overflow-y:auto !important"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+group.id+'</center><br></b>'+group.answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
                                     ></span>
-                                 <input type="hidden" id="pergunta" name="pergunta" :value="group.id" :key="componentKey">
+                     
                               </v-flex>
-                              <v-layout wrap>
-                                 <v-flex md4 v-for="item in group.response">
-                                    <v-card style="height: 130px;width:398px"
-                                       class="pa-3"
-                                       outlined
-                                       tile                                
-                                       >
-                                       {{item.name}}
-                                    </v-card>
-                                 </v-flex>
-                              </v-layout>
-                           </material-card>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
+                                    ></span>
+                                
+                              </v-flex>
+                           </div>
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1100px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series0"
+                           :key="componentKey"
+                           class="graficoPadrao"
+                           />
+                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
+
+                           <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[0].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                 
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1100px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series1"
+                           :key="componentKey"
+                           class="graficoPadrao"/>
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1100px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series2"
+                           :key="componentKey"
+                           class="graficoPadrao"/>
+
+                           <br/> <br/> <br/> <br/> <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1100px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series3"
+                           :key="componentKey"
+                           class="graficoPadrao"/>
+
+                           
+                           
+                          <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[1].group}}</div>
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[3].id+'</center><br></b>'+combined[3].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                         
+
+                           </div>
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[4].id+'</center><br></b>'+combined[4].answer"
+                                    ></span>
+                                
+                              </v-flex>
+
+                           </div>
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[5].id+'</center><br></b>'+combined[5].answer"
+                                    ></span>
+                     
+                              </v-flex>
+
+                           </div>
+
+                           <br/> <br/> <br/> <br/> <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 300;"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[6].id+'</center><br></b>'+combined[6].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                           </div>
+
+                           <br/>
+
+                           <apexchart
+                           ref="exampleChart"
+                           width="1100px" 
+                           height="500px" 
+                           type="bar" 
+                           :options="chartOptions" 
+                           :series="series4"
+                           :key="componentKey"
+                           class="graficoPadrao"
+                           />
+
+                           <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[3].id+'</center><br></b>'+combined[3].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series5"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/> <br/> <br/> <br/> <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[4].id+'</center><br></b>'+combined[4].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series6"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[5].id+'</center><br></b>'+combined[5].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series7"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/> <br/> <br/> <br/> <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 300px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[6].id+'</center><br></b>'+combined[6].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series8"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                          <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[2].group}}</div>
+                            <br/>
+
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[7].id+'</center><br></b>'+combined[7].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[8].id+'</center><br></b>'+combined[8].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[9].id+'</center><br></b>'+combined[9].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[10].id+'</center><br></b>'+combined[10].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[11].id+'</center><br></b>'+combined[11].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[12].id+'</center><br></b>'+combined[12].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[13].id+'</center><br></b>'+combined[13].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series9"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[7].id+'</center><br></b>'+combined[7].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series10"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[8].id+'</center><br></b>'+combined[8].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series11"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[9].id+'</center><br></b>'+combined[9].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series12"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[10].id+'</center><br></b>'+combined[10].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series13"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[11].id+'</center><br></b>'+combined[11].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series14"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[12].id+'</center><br></b>'+combined[12].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series15"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[13].id+'</center><br></b>'+combined[13].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series16"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+
+                           <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                          <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[3].group}}</div>
+
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[14].id+'</center><br></b>'+combined[14].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[15].id+'</center><br></b>'+combined[15].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[16].id+'</center><br></b>'+combined[16].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[17].id+'</center><br></b>'+combined[17].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[18].id+'</center><br></b>'+combined[18].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[19].id+'</center><br></b>'+combined[19].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[20].id+'</center><br></b>'+combined[20].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[21].id+'</center><br></b>'+combined[21].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[22].id+'</center><br></b>'+combined[22].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[23].id+'</center><br></b>'+combined[23].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[24].id+'</center><br></b>'+combined[24].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[25].id+'</center><br></b>'+combined[25].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[26].id+'</center><br></b>'+combined[26].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[27].id+'</center><br></b>'+combined[27].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series17"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[14].id+'</center><br></b>'+combined[14].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series18"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[15].id+'</center><br></b>'+combined[15].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series19"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[16].id+'</center><br></b>'+combined[16].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series20"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[17].id+'</center><br></b>'+combined[17].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series21"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[18].id+'</center><br></b>'+combined[18].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series22"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[19].id+'</center><br></b>'+combined[19].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series23"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[20].id+'</center><br></b>'+combined[20].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series24"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[21].id+'</center><br></b>'+combined[21].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series25"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[22].id+'</center><br></b>'+combined[22].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series26"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[23].id+'</center><br></b>'+combined[23].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series26"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[24].id+'</center><br></b>'+combined[24].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series27"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+                         
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[25].id+'</center><br></b>'+combined[25].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series28"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/><br/><br/><br/><br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[26].id+'</center><br></b>'+combined[26].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series29"
+                            :key="componentKey"
+                            class="graficoPadrao"/>
+
+                            <br/>
+
+                            <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              >
+                              <v-flex slot="header"
+                                 style="height: 220px;overflow-y:auto !important"
+                                 >
+                                 <span
+                                    class="subheading font-weight-light mr-3"
+                                    style="align-self: center"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[27].id+'</center><br></b>'+combined[27].answer"
+                                    ></span>
+                     
+                              </v-flex>
+                            </div>  
+
+                            <br/>
+
+                            <apexchart
+                            ref="exampleChart"
+                            width="1100px" 
+                            height="500px" 
+                            type="bar" 
+                            :options="chartOptions" 
+                            :series="series30"
+                            :key="componentKey"
+                            class="graficoPadrao"
+                            @mounted="openPrintWindow"/>
+                                  
+
                         </v-form>
                      </div>
                   </div>
                </div>
+              </div>
             </template>
            
          </v-flex>
 
+<!-- NÃO APARECE NO RELATÓRIO -->
          <v-flex
             sm8
             xs12
             md8
             lg8>
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <template>
 
-               <div class="card text-center m-3" style="margin-left:-224px!important">
-                  <div class="card-body">
-                     <div v-for="group in pageOfItems" :key="group.id">  
-                        <v-form ref="form_research" lazy-validation :key="componentKey">
-                           <apexchart
-                           ref="exampleChart"
-                           width="2000px" 
-                           height="500px" 
-                           type="bar" 
-                           :options="chartOptions" 
-                           :series="series"
-                           :key="componentKey"/>
-                           <div v-html="setaGrupoPergunta(grupo,group.id)" />
-                        </v-form>
-                     </div>
-                  </div>
+               <div class="card text-center m-3" style="display:none;margin-top:240px!important;margin-left:-234px!important">
+                  
                   <div class="social font-weight-light theme--dark" style="border: 1px solid #ddd;position:fixed;bottom:0;right:0;z-index:20;padding:5px;color:white!important;background-color: #EBEBEB">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
@@ -126,6 +1422,10 @@
 <script>
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    import ufid from "../assets/estado.js";
+
+   import jsPDF from 'jspdf' 
+   import domtoimage from "dom-to-image";
+
    
    localStorage.removeItem("munic")
    
@@ -146,12 +1446,17 @@
            chartOptions: {
             chart: {
               id: 'vuechart-example',
+              toolbar:{
+               show: false
+              },
               events: {
                 dataPointMouseLeave(event, chartContext, config) {
                     console.log(chartContext,config)
-                   
                 }
             }
+            },
+            grid: {
+            show: true
             },
             colors: ['#00CC66', '#FFDC00', '#F55A4E'],
             dataLabels: {
@@ -219,6 +1524,7 @@
 
             },
             xaxis: {
+            show: false,
             //  categories: ['Rondônia', 'Acre', 'Amazonas', 'Roraima', 'Pará', 'Amapá', 'Tocantins', 'Maranhão', 'Piauí', 'Ceará', 'Rio Grande do Norte', 'Paraíba', 'Pernambuco', 'Alagoas', 'Sergipe', 'Bahia', 'Minas Gerais', 'Espírito Santo', 'Rio de Janeiro', 'São Paulo', 'Mato Grosso do Sul', 'Mato Grosso', 'Goiás', 'Distrito Federal', 'Paraná', 'Santa Catarina', 'Rio Grande do Sul']
             categories: []
             },
@@ -262,7 +1568,307 @@
             }
             }
           },
-          series: [{
+          series0: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+          series1: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series2: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series3: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series4: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series5: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series6: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series7: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series8: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series9: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series10: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series11: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series12: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series13: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series14: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series15: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series16: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series17: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series18: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series19: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series20: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series21: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series22: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series23: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series24: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series25: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series26: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series27: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series28: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series29: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              data: []
+            }, {
+              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              data: []
+            }],
+            series30: [{
               name: 'Sim',
               data: []
             }, {
@@ -1649,52 +3255,113 @@
    
    
        methods: {
+          openPrintWindow() {
+        //    console.log('chegou aqui royce');
+            setTimeout(function(){ 
+              window.print();
+              history.back();
+             }, 5000);
+          },
+
+      /*  downloadWithCSS() {
+            domtoimage
+            .toPng(this.$refs.content)
+            .then(function(dataUrl) {
+
+              var imgData = new Image();
+              imgData.src = dataUrl;
+              var doc = new jsPDF('p', 'mm');
+
+              const imgProps= doc.getImageProperties(imgData);
+
+              var imgWidth = 210; 
+              var pageHeight = 295;  
+              var imgHeight = imgProps.height * imgWidth / imgProps.width;
+              var heightLeft = imgHeight;
+              var position = 10; // give some top padding to first page
+
+              doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+              heightLeft -= pageHeight;
+
+              while (heightLeft >= 0) {
+                position += heightLeft - imgHeight; // top padding for other pages
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+              }
+              const date = new Date();
+              const filename =
+                "relatorioRegiao_" +
+                date.getFullYear() +
+                ("0" + (date.getMonth() + 1)).slice(-2) +
+                ("0" + date.getDate()).slice(-2) +
+                ("0" + date.getHours()).slice(-2) +
+                ("0" + date.getMinutes()).slice(-2) +
+                ("0" + date.getSeconds()).slice(-2) +
+                ".pdf";
+              doc.save(filename);  
+            //  window.location.href = "/chartsestadov2";
+            })
+            .catch(function(error) {
+              console.error("oops, something went wrong!", error);
+            });
+        }, */
+        downloadWithCSS() {
+          /** WITH CSS */
+            domtoimage
+            .toPng(this.$refs.content)
+            .then(function(dataUrl) {
+              var img = new Image();
+              img.src = dataUrl;
+              const doc = new jsPDF({
+                orientation: "portrait",
+                // unit: "pt",
+                format: [600,900]
+              });
+
+              
+              const imgProps= doc.getImageProperties(img);
+              const pdfWidth = doc.internal.pageSize.getWidth();
+              const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+              doc.addImage(img, "JPEG", 0, 0, pdfWidth, pdfHeight);
+              const date = new Date();
+              const filename =
+                "relatorioRegiao_" +
+                date.getFullYear() +
+                ("0" + (date.getMonth() + 1)).slice(-2) +
+                ("0" + date.getDate()).slice(-2) +
+                ("0" + date.getHours()).slice(-2) +
+                ("0" + date.getMinutes()).slice(-2) +
+                ("0" + date.getSeconds()).slice(-2) +
+                ".pdf";
+              doc.save(filename);
+            //  window.location.href = "/chartsestadov2";
+            })
+            .catch(function(error) {
+              console.error("oops, something went wrong!", error);
+            });
+        },
         atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
 
-               this.series[0].name = resposta1;
-               this.series[1].name = resposta2;
-               this.series[2].name = resposta3;
+               this.series0[0].name = resposta1;
+               this.series0[1].name = resposta2;
+               this.series0[2].name = resposta3;
 
                let geoParaConsulta = [
-                {ibge: '11', sg_uf: 'RO'},
-                {ibge: '12', sg_uf: 'AC'},
-                {ibge: '13', sg_uf: 'AM'},
-                /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-                {ibge: '14', sg_uf: 'RR'},
-                {ibge: '15', sg_uf: 'PA'},
-                /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-                {ibge: '16', sg_uf: 'AP'},
-                {ibge: '17', sg_uf: 'TO'},
-                {ibge: '21', sg_uf: 'MA'},
-                {ibge: '22', sg_uf: 'PI'},
-                {ibge: '23', sg_uf: 'CE'},
-                {ibge: '24', sg_uf: 'RN'},
-                {ibge: '25', sg_uf: 'PB'},
-                {ibge: '26', sg_uf: 'PE'},
-                {ibge: '27', sg_uf: 'AL'},
-                {ibge: '28', sg_uf: 'SE'},
-                {ibge: '29', sg_uf: 'BA'},
-                {ibge: '31', sg_uf: 'MG'},
-                {ibge: '32', sg_uf: 'ES'},
-                {ibge: '33', sg_uf: 'RJ'},
-                {ibge: '35', sg_uf: 'SP'},
-                {ibge: '41', sg_uf: 'PR'},
-                {ibge: '42', sg_uf: 'SC'},
-                {ibge: '43', sg_uf: 'RS'},
-                {ibge: '50', sg_uf: 'MS'},
-                {ibge: '51', sg_uf: 'MT'},
-                {ibge: '52', sg_uf: 'GO'},
-                {ibge: '53', sg_uf: 'DF'}
+                {ibge: this.$route.query.q, sg_uf: this.$route.query.t}
                 ];
+
+                /*MONTAR UM FOREACH PARA MONTAR TUDO DINAMICAMENTE DE ACORDO COM O TAMANHO DO ARRAY DE CADA GRUPO*/
 
                 let arrayParaOrdenacao = [];
 
                 /*ARRAY PARA ORDENAÇÃO*/
                 for (let geo of geoParaConsulta ) {
-                  if (this.consultaQtd(geo.ibge,pergunta,'0') != undefined) {
-                    let qntResp_0 = this.consultaQtd(geo.ibge,pergunta,'0');
-                    let qntResp_1 = this.consultaQtd(geo.ibge,pergunta,'1');
-                    let qntResp_2 = this.consultaQtd(geo.ibge,pergunta,'2');
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,1,'0'))+parseInt(this.consultaQtd(geo.ibge,2,'0'))+parseInt(this.consultaQtd(geo.ibge,3,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,1,'1'))+parseInt(this.consultaQtd(geo.ibge,2,'1'))+parseInt(this.consultaQtd(geo.ibge,3,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,1,'2'))+parseInt(this.consultaQtd(geo.ibge,2,'2'))+parseInt(this.consultaQtd(geo.ibge,3,'2'));
                     let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
 
                     arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
@@ -1707,10 +3374,879 @@
 
                   let i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series[0].data[i] = array.qntResp_0;
-                      this.series[1].data[i] = array.qntResp_1;
-                      this.series[2].data[i] = array.qntResp_2;
+                      this.series0[0].data[i] = array.qntResp_0;
+                      this.series0[1].data[i] = array.qntResp_1;
+                      this.series0[2].data[i] = array.qntResp_2;
                      if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,1,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,1,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,1,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series1[0].data[i] = array.qntResp_0;
+                      this.series1[1].data[i] = array.qntResp_1;
+                      this.series1[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,2,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,2,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,2,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series2[0].data[i] = array.qntResp_0;
+                      this.series2[1].data[i] = array.qntResp_1;
+                      this.series2[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = this.consultaQtd(geo.ibge,3,'0');
+                    let qntResp_1 = this.consultaQtd(geo.ibge,3,'1');
+                    let qntResp_2 = this.consultaQtd(geo.ibge,3,'2');
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series3[0].data[i] = array.qntResp_0;
+                      this.series3[1].data[i] = array.qntResp_1;
+                      this.series3[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,4,'0'))+parseInt(this.consultaQtd(geo.ibge,5,'0'))+parseInt(this.consultaQtd(geo.ibge,6,'0'))+parseInt(this.consultaQtd(geo.ibge,7,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,4,'1'))+parseInt(this.consultaQtd(geo.ibge,5,'1'))+parseInt(this.consultaQtd(geo.ibge,6,'1'))+parseInt(this.consultaQtd(geo.ibge,7,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,4,'2'))+parseInt(this.consultaQtd(geo.ibge,5,'2'))+parseInt(this.consultaQtd(geo.ibge,6,'2'))+parseInt(this.consultaQtd(geo.ibge,7,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series4[0].data[i] = array.qntResp_0;
+                      this.series4[1].data[i] = array.qntResp_1;
+                      this.series4[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                 arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,4,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,4,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,4,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series5[0].data[i] = array.qntResp_0;
+                      this.series5[1].data[i] = array.qntResp_1;
+                      this.series5[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,5,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,5,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,5,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series6[0].data[i] = array.qntResp_0;
+                      this.series6[1].data[i] = array.qntResp_1;
+                      this.series6[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,6,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,6,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,6,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series7[0].data[i] = array.qntResp_0;
+                      this.series7[1].data[i] = array.qntResp_1;
+                      this.series7[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,7,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,7,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,7,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series8[0].data[i] = array.qntResp_0;
+                      this.series8[1].data[i] = array.qntResp_1;
+                      this.series8[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,8,'0'))+parseInt(this.consultaQtd(geo.ibge,9,'0'))+parseInt(this.consultaQtd(geo.ibge,10,'0'))+parseInt(this.consultaQtd(geo.ibge,11,'0'))+parseInt(this.consultaQtd(geo.ibge,12,'0'))+parseInt(this.consultaQtd(geo.ibge,13,'0'))+parseInt(this.consultaQtd(geo.ibge,14,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,8,'1'))+parseInt(this.consultaQtd(geo.ibge,9,'1'))+parseInt(this.consultaQtd(geo.ibge,10,'1'))+parseInt(this.consultaQtd(geo.ibge,11,'1'))+parseInt(this.consultaQtd(geo.ibge,12,'1'))+parseInt(this.consultaQtd(geo.ibge,13,'1'))+parseInt(this.consultaQtd(geo.ibge,14,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,8,'2'))+parseInt(this.consultaQtd(geo.ibge,9,'2'))+parseInt(this.consultaQtd(geo.ibge,10,'2'))+parseInt(this.consultaQtd(geo.ibge,11,'2'))+parseInt(this.consultaQtd(geo.ibge,12,'2'))+parseInt(this.consultaQtd(geo.ibge,13,'2'))+parseInt(this.consultaQtd(geo.ibge,14,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series9[0].data[i] = array.qntResp_0;
+                      this.series9[1].data[i] = array.qntResp_1;
+                      this.series9[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,8,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,8,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,8,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series10[0].data[i] = array.qntResp_0;
+                      this.series10[1].data[i] = array.qntResp_1;
+                      this.series10[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,9,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,9,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,9,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series11[0].data[i] = array.qntResp_0;
+                      this.series11[1].data[i] = array.qntResp_1;
+                      this.series11[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,10,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,10,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,10,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series12[0].data[i] = array.qntResp_0;
+                      this.series12[1].data[i] = array.qntResp_1;
+                      this.series12[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,11,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,11,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,11,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series13[0].data[i] = array.qntResp_0;
+                      this.series13[1].data[i] = array.qntResp_1;
+                      this.series13[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,12,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,12,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,12,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series14[0].data[i] = array.qntResp_0;
+                      this.series14[1].data[i] = array.qntResp_1;
+                      this.series14[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,13,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,13,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,13,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series15[0].data[i] = array.qntResp_0;
+                      this.series15[1].data[i] = array.qntResp_1;
+                      this.series15[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,14,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,14,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,14,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series16[0].data[i] = array.qntResp_0;
+                      this.series16[1].data[i] = array.qntResp_1;
+                      this.series16[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,15,'0'))+parseInt(this.consultaQtd(geo.ibge,16,'0'))+parseInt(this.consultaQtd(geo.ibge,17,'0'))+parseInt(this.consultaQtd(geo.ibge,18,'0'))+parseInt(this.consultaQtd(geo.ibge,19,'0'))+parseInt(this.consultaQtd(geo.ibge,20,'0'))+parseInt(this.consultaQtd(geo.ibge,21,'0'))+parseInt(this.consultaQtd(geo.ibge,22,'0'))+parseInt(this.consultaQtd(geo.ibge,23,'0'))+parseInt(this.consultaQtd(geo.ibge,24,'0'))+parseInt(this.consultaQtd(geo.ibge,25,'0'))+parseInt(this.consultaQtd(geo.ibge,26,'0'))+parseInt(this.consultaQtd(geo.ibge,27,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,15,'1'))+parseInt(this.consultaQtd(geo.ibge,16,'1'))+parseInt(this.consultaQtd(geo.ibge,17,'1'))+parseInt(this.consultaQtd(geo.ibge,18,'1'))+parseInt(this.consultaQtd(geo.ibge,19,'1'))+parseInt(this.consultaQtd(geo.ibge,20,'1'))+parseInt(this.consultaQtd(geo.ibge,21,'1'))+parseInt(this.consultaQtd(geo.ibge,22,'1'))+parseInt(this.consultaQtd(geo.ibge,23,'1'))+parseInt(this.consultaQtd(geo.ibge,24,'1'))+parseInt(this.consultaQtd(geo.ibge,25,'1'))+parseInt(this.consultaQtd(geo.ibge,26,'1'))+parseInt(this.consultaQtd(geo.ibge,27,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,15,'2'))+parseInt(this.consultaQtd(geo.ibge,16,'2'))+parseInt(this.consultaQtd(geo.ibge,17,'2'))+parseInt(this.consultaQtd(geo.ibge,18,'2'))+parseInt(this.consultaQtd(geo.ibge,19,'2'))+parseInt(this.consultaQtd(geo.ibge,20,'2'))+parseInt(this.consultaQtd(geo.ibge,21,'2'))+parseInt(this.consultaQtd(geo.ibge,22,'2'))+parseInt(this.consultaQtd(geo.ibge,23,'2'))+parseInt(this.consultaQtd(geo.ibge,24,'2'))+parseInt(this.consultaQtd(geo.ibge,25,'2'))+parseInt(this.consultaQtd(geo.ibge,26,'2'))+parseInt(this.consultaQtd(geo.ibge,27,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series17[0].data[i] = array.qntResp_0;
+                      this.series17[1].data[i] = array.qntResp_1;
+                      this.series17[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,15,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,15,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,15,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series18[0].data[i] = array.qntResp_0;
+                      this.series18[1].data[i] = array.qntResp_1;
+                      this.series18[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,16,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,16,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,16,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series19[0].data[i] = array.qntResp_0;
+                      this.series19[1].data[i] = array.qntResp_1;
+                      this.series19[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,17,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,17,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,17,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series19[0].data[i] = array.qntResp_0;
+                      this.series19[1].data[i] = array.qntResp_1;
+                      this.series19[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,18,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,18,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,18,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series20[0].data[i] = array.qntResp_0;
+                      this.series20[1].data[i] = array.qntResp_1;
+                      this.series20[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,19,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,19,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,19,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series21[0].data[i] = array.qntResp_0;
+                      this.series21[1].data[i] = array.qntResp_1;
+                      this.series21[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,20,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,20,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,20,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series22[0].data[i] = array.qntResp_0;
+                      this.series22[1].data[i] = array.qntResp_1;
+                      this.series22[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,21,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,21,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,21,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series23[0].data[i] = array.qntResp_0;
+                      this.series23[1].data[i] = array.qntResp_1;
+                      this.series23[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,22,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,22,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,22,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series24[0].data[i] = array.qntResp_0;
+                      this.series24[1].data[i] = array.qntResp_1;
+                      this.series24[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,23,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,23,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,23,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series25[0].data[i] = array.qntResp_0;
+                      this.series25[1].data[i] = array.qntResp_1;
+                      this.series25[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,24,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,24,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,24,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series26[0].data[i] = array.qntResp_0;
+                      this.series26[1].data[i] = array.qntResp_1;
+                      this.series26[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,25,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,25,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,25,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series27[0].data[i] = array.qntResp_0;
+                      this.series27[1].data[i] = array.qntResp_1;
+                      this.series27[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,26,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,26,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,26,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series28[0].data[i] = array.qntResp_0;
+                      this.series28[1].data[i] = array.qntResp_1;
+                      this.series28[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,27,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,27,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,27,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series29[0].data[i] = array.qntResp_0;
+                      this.series29[1].data[i] = array.qntResp_1;
+                      this.series29[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
+                     i++;
+                }
+
+                arrayParaOrdenacao = [];
+
+                /*ARRAY PARA ORDENAÇÃO*/
+                for (let geo of geoParaConsulta ) {
+                  if (this.consultaQtd(geo.ibge,'1','0') != undefined) {
+                    
+                    let qntResp_0 = parseInt(this.consultaQtd(geo.ibge,28,'0'));
+                    let qntResp_1 = parseInt(this.consultaQtd(geo.ibge,28,'1'));
+                    let qntResp_2 = parseInt(this.consultaQtd(geo.ibge,28,'2'));
+                    let total = parseInt(qntResp_0) + parseInt(qntResp_1) + parseInt(qntResp_2);
+
+                    arrayParaOrdenacao.push({total: total, qntResp_0: qntResp_0, qntResp_1: qntResp_1, 
+                    qntResp_2: qntResp_2, sg_uf: geo.sg_uf});
+                  }
+                }
+
+                arrayParaOrdenacao.sort((a, b) => (a.total < b.total) ? 1 : -1)
+
+
+                 i = 0;
+                 for (let array of arrayParaOrdenacao ) {
+                      this.series30[0].data[i] = array.qntResp_0;
+                      this.series30[1].data[i] = array.qntResp_1;
+                      this.series30[2].data[i] = array.qntResp_2;
+                    // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
 
@@ -1942,45 +4478,9 @@
 
    /* INICIO DO PRÉ-CARREGAMENTO DE TODAS AS INFORMAÇÕES */
            let geoParaConsulta = [
-            
-            {filtroGeo: 'school.ibge_uf_id', ibge: '11', sg_uf: 'RO'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '12', sg_uf: 'AC'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '13', sg_uf: 'AM'},
-            
-            /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-            {filtroGeo: 'school.ibge_uf_id', ibge: '14', sg_uf: 'RR'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '15', sg_uf: 'PA'},
-
-            /* ESSE AQUI NÃO TEM QUEST NA PRODUÇÃO */
-            {filtroGeo: 'school.ibge_uf_id', ibge: '16', sg_uf: 'AP'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '17', sg_uf: 'TO'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '21', sg_uf: 'MA'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '22', sg_uf: 'PI'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '23', sg_uf: 'CE'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '24', sg_uf: 'RN'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '25', sg_uf: 'PB'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '26', sg_uf: 'PE'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '27', sg_uf: 'AL'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '28', sg_uf: 'SE'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '29', sg_uf: 'BA'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '31', sg_uf: 'MG'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '32', sg_uf: 'ES'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '33', sg_uf: 'RJ'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '35', sg_uf: 'SP'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '41', sg_uf: 'PR'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '42', sg_uf: 'SC'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '43', sg_uf: 'RS'},
-
-            {filtroGeo: 'school.ibge_uf_id', ibge: '50', sg_uf: 'MS'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '51', sg_uf: 'MT'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '52', sg_uf: 'GO'},
-            {filtroGeo: 'school.ibge_uf_id', ibge: '53', sg_uf: 'DF'}
+            {filtroGeo: 'school.ibge_uf_id', ibge: this.$route.query.q, sg_uf: this.$route.query.t}
             ];
+
 
            let results = [];
             for (let geo of geoParaConsulta) {
@@ -2087,7 +4587,247 @@
              return results;
            });
 
-           this.series = [{
+           this.series0 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series1 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series2 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series3 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series4 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series5 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series6 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series7 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series8 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series9 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series10 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series11 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series12 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series13 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series14 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series15 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series16 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series17 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series18 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series19 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series20 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series21 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series22 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series23 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series24 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series25 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series26 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series27 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series28 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series29 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
+            this.series30 = [{
               data: []
             }, {
               data: []
@@ -2110,7 +4850,6 @@
            this.responses = responses.toString();
    
            this.loading = false;
-   
    
          },
    
@@ -2137,175 +4876,28 @@
        }
      }
    
+    function setTopo(){
+      $(window).scrollTop(0);
+    }
+    $(window).bind('scroll', setTopo);
    
+
    
    
 </script>
 <style>
-   a
-   {
-   color: #000;
-   font-size: 17px;
+   
+   .graficoPadrao {
+     margin-left:-100px!important;
    }
-   a:hover {
-   color: #2196F3;
-   }
-   table tr td {
-   text-align: left;      
-   }
-   .page-item.first {
-   visibility:hidden;
-   margin-left:-135px;
-   }
-   .page-item.first a:after {
-   content: url('https://api.iconify.design/mdi:chevron-double-left.svg?height=27');  
-   visibility: visible;
-   display: block;
-   position: absolute;
-   padding: 6px;
-   margin-left:45px;
-   top: 3px; 
-   }
-   .page-item.previous {
-   visibility:hidden;
-   }
-   .page-item.previous a:after {
-   content: url('https://api.iconify.design/mdi:chevron-left.svg?height=27');
-   visibility: visible;
-   display: block;
-   position: absolute;
-   padding: 6px;
-   margin-left:30px;
-   top: 3px; 
-   }
-   .page-item.next {
-   visibility:hidden;
-   }
-   .page-item.next a:after {
-   content: url('https://api.iconify.design/mdi:chevron-right.svg?height=27');
-   visibility: visible;
-   display: block;
-   position: absolute;
-   padding: 6px;
-   margin-left:-12px;
-   top: 3px;  
-   }
-   .page-item.last {
-   visibility:hidden;
-   }
-   .page-item.last a:after {
-   content: url('https://api.iconify.design/mdi:chevron-double-right.svg?height=27');
-   visibility: visible;
-   display: block;
-   position: absolute;
-   padding: 6px;
-   margin-left:-27px;
-   top: 3px;
-   }
-   #customers {
-   font-family: Arial, Helvetica, sans-serif;
-   border-collapse: collapse;
-   width: 100%;
-   }
-   #customers td, #customers th {
-   border: 1px solid #ddd;
-   padding: 8px; 
-   }
-   #customers tr:nth-child(even){background-color: #f2f2f2;}
-   #customers tr:hover {background-color: #ddd;}
-   #customers th {
-   padding-top: 12px;
-   padding-bottom: 12px;
-   text-align: center;
-   background-color: #4CAF50;
-   color: white;
-   }
-   #caixa {
-   position: fixed;
-   left:600px;
-   }
-   #next {
-   text-align:center;
-   position:absolute;
-   margin-left:20px;
-   top:20px;
-   content: url('https://api.iconify.design/mdi:arrow-right-bold-circle.svg?height=54&color=gray');
-   }
-   #prev {
-   text-align:center;
-   position:absolute;
-   margin-left:20px;
-   top:110px;
-   content: url('https://api.iconify.design/mdi:arrow-left-bold-circle.svg?height=54&color=gray');
-   }
-   #prev:hover {
-   text-align:center;
-   position:absolute;
-   margin-left:20px;
-   top:110px;
-   content: url('https://api.iconify.design/mdi:arrow-left-bold-circle.svg?height=54&color=blue');
-   }
-   #next:hover {
-   text-align:center;
-   position:absolute;
-   margin-left:20px;
-   top:20px;
-   content: url('https://api.iconify.design/mdi:arrow-right-bold-circle.svg?height=54&color=blue');
-   }
-   #myBtn {
-   display: none;
-   position: fixed;
-   bottom: 70px;
-   z-index: 99;
-   font-size: 18px;
-   border: none;
-   outline: none;
-   margin-left:10px;
-   cursor: pointer;
-   padding: 10px;
-   border-radius: 4px;
-   content: url('https://api.iconify.design/mdi:arrow-up-bold-circle.svg?height=54&color=gray');
-   }
-   #myBtn:hover {
-   content: url('https://api.iconify.design/mdi:arrow-up-bold-circle.svg?height=54&color=blue');
-   }
-   #meuMenu {
-   background:#345;
-   width:100%;
-   padding:20px;
-   margin-top: 100px;
-   }
-   .fixar {
-   position:fixed;
-   margin-top: 0px !important;
-   }
-   .loading-screen {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 100vh;
-   width: 100vw;
-   position: fixed;
-   top: 0;
-   left: 0;
-   z-index: 300;
-   flex-direction: column;
-   user-select: none;
-   }
-   .loading-circle {
-   width: 50px;
-   height: 50px;
-   border-radius: 100%;
-   border: 2px solid transparent;
-   border-left-color: #ababab;
-   animation: circleanimation .45s linear infinite
-   }
-   .loading-text {
-   margin-top: 15px;
-   color: #808080;
-   font-size: 12px;
-   text-align: center;
-   }
+
+   @media print {
+    #divOverlay {
+     display: none!important; 
+    }
+    @page { margin: 0; }
+    body { margin: 1.6cm; }
+  }
    @keyframes circleanimation {
    from {
    transform: rotateZ(0deg);
@@ -2314,4 +4906,21 @@
    transform: rotateZ(360deg);
    }
    }
+
+@media print {
+  @page { margin: 0; }
+  body { margin: 1.6cm; }
+  .apexcharts-legend-marker:before {
+    content: "\25CF";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    line-height: 12px;
+    font-size: 24px;
+  }
+
+}
+
+
 </style>
