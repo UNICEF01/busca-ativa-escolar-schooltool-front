@@ -88,7 +88,8 @@
                            :options="chartOptions" 
                            :series="series0"
                            :key="componentKey"
-                           class="graficoPadrao"/>
+                           class="graficoConsolidado"
+                           />
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
                            <br/> <br/> <br/> <br/> <br/> <br/> <br/>
@@ -133,7 +134,7 @@
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[1].id+'</center><br></b>'+combined[1].answer"
                                     ></span>
                      
                               </v-flex>
@@ -164,7 +165,7 @@
                                  <span
                                     class="subheading font-weight-light mr-3"
                                     style="align-self: center"
-                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[0].answer"
+                                    v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
                                     ></span>
                      
                               </v-flex>
@@ -269,7 +270,8 @@
                            :options="chartOptions" 
                            :series="series4"
                            :key="componentKey"
-                           class="graficoPadrao"/>
+                           class="graficoConsolidado"
+                           />
 
                            <br/>
 
@@ -517,7 +519,7 @@
                             :options="chartOptions" 
                             :series="series9"
                             :key="componentKey"
-                            class="graficoPadrao"/>
+                            class="graficoConsolidado"/>
 
                             <br/>
 
@@ -976,7 +978,7 @@
                             :options="chartOptions" 
                             :series="series17"
                             :key="componentKey"
-                            class="graficoPadrao"/>
+                            class="graficoConsolidado"/>
 
                             <br/><br/><br/><br/><br/><br/><br/>
 
@@ -1264,7 +1266,7 @@
                             height="500px" 
                             type="bar" 
                             :options="chartOptions" 
-                            :series="series26"
+                            :series="series27"
                             :key="componentKey"
                             class="graficoPadrao"/>
 
@@ -1293,7 +1295,7 @@
                             height="500px" 
                             type="bar" 
                             :options="chartOptions" 
-                            :series="series27"
+                            :series="series28"
                             :key="componentKey"
                             class="graficoPadrao"/>
                          
@@ -1322,7 +1324,7 @@
                             height="500px" 
                             type="bar" 
                             :options="chartOptions" 
-                            :series="series28"
+                            :series="series29"
                             :key="componentKey"
                             class="graficoPadrao"/>
 
@@ -1351,7 +1353,7 @@
                             height="500px" 
                             type="bar" 
                             :options="chartOptions" 
-                            :series="series29"
+                            :series="series30"
                             :key="componentKey"
                             class="graficoPadrao"/>
 
@@ -1380,17 +1382,16 @@
                             height="500px" 
                             type="bar" 
                             :options="chartOptions" 
-                            :series="series30"
+                            :series="series31"
                             :key="componentKey"
-                            @animationEnd="openPrintWindow"
-                            class="graficoPadrao"/>
-                                  
+                            class="graficoPadrao"
+                            @animationEnd="openPrintWindow"/>
+         
 
                         </v-form>
                      </div>
                   </div>
                </div>
-              </div>
             </template>
            
          </v-flex>
@@ -1566,14 +1567,15 @@
             }
             }
           },
+          /*CONSOLIDADO*/
           series0: [{
-              name: 'Sim',
+              name: '',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: '',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: '',
               data: []
             }],
           series1: [{
@@ -1590,290 +1592,303 @@
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'O armazenamento de água é insuficiente para satisfazer as necessidades da escola.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há armazenamento de água.',
               data: []
             }],
             series3: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Água tratada, mas abaixo do teor mínimo (de 0 a 0,2 mg/l) no momento do estudo.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Nenhum tratamento foi relatado.',
               data: []
             }],
+            /*CONSOLIDADO*/
             series4: [{
-              name: 'Sim',
+              name: '',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: '',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: '',
               data: []
             }],
             series5: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Há pias ou locais para a lavagem de mãos com água na entrada, mas sem sabão.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'A escola não dispõe de pias ou de locais  para a lavagem de mãos em funcionamento nas suas entradas.',
               data: []
             }],
             series6: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Há pias ou locais para a lavagem das mãos, com água, próximas das salas de aula, mas sem sabão.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'As pias ou locais de lavagem das mãos não estão próximos das salas de aula.',
               data: []
             }],
             series7: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'As atividades de lavagem de mãos são organizadas, mas não três vezes por dia e nem todos os dias da semana.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há atividades de lavagem de mãos.',
               data: []
             }],
             series8: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Pelo menos um ou dois, mas não todos; recursos para a higiene menstrual estão disponíveis na escola.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Nenhum dos recursos para a higiene menstrual está disponível na escola.',
               data: []
             }],
+            /*CONSOLIDADO*/
             series9: [{
-              name: 'Sim',
+              name: '',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: '',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: '',
               data: []
             }],
             series10: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'A escola tem um número suficiente de banheiros ou sanitários, mas estes não funcionam.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'A escola não dispõe de banheiros ou sanitários suficientes.',
               data: []
             }],
             series11: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Alguns banheiros estão claramente separados, mas não todos.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há banheiros separados.',
               data: []
             }],
             series12: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'A escola tem um número suficiente de banheiros ou sanitários, mas estes não funcionam.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'A escola não dispõe de banheiros ou sanitários suficientes.',
               data: []
             }],
             series13: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Os sanitários são limpos, mas não todos os dias ou com água e detergente; e não desinfectados com água sanitária.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Os banheiros ou sanitários não são limpos regularmente.',
               data: []
             }],
             series14: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Pias ou locais para lavagem de mãos com água, mas sem sabão ou a mais de 5 metros dos banheiros ou sanitários.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Pias ou locais para lavagem de mãos sem água e sabão ou pias ou locais inexistentes.',
               data: []
             }],
             series15: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Há lixeiras na escola, mas não em cada sala de aula, cada banheiro ou sanitário, ou outros locais importantes ou o lixo não é recolhido todos os dias.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Sem lixeiras nas salas de aula e em outros locais.',
               data: []
             }],
             series16: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Os resíduos sólidos são retirados de forma segura e levados para aterros sanitários, adequadamente.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Os resíduos sólidos são retirados da escola, mas de forma inadequada.',
               data: []
             }],
+            /*CONSOLIDADO*/
             series17: [{
-              name: 'Sim',
+              name: '',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: '',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: '',
               data: []
             }],
             series18: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Há informações sobre a COVID-19 e outras doenças infecciosas disponíveis, mas não em todas as salas de aula.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há informação disponível sobre a COVID-19 e outras doenças infecciosas.',
               data: []
             }],
             series19: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Apenas uma pessoa é capacitada em protocolos de saúde escolar para o COVID-19 e nem sempre está presente na escola.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há pessoas formadas nos protocolos de saneamento.',
               data: []
             }],
             series20: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Há um planejamento claro e detalhando de limpeza, mas não cumprido ou monitorado.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há um planejamento de limpeza.',
               data: []
             }],
             series21: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Sim, estão disponíveis, mas não bem conservados ou não há disponibilidade de material ou equipamento.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Nenhum equipamento ou material de limpeza disponível.',
               data: []
             }],
             series22: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'O distanciamento físico é exercido de forma irregular, quer devido ao espaço limitado em algumas aulas, quer porque não é praticado em todos os momentos.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há espaço suficiente na sala de aula para a distância física ou professores e alunos não a praticam de todo.',
               data: []
             }],
             series23: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'O distanciamento físico é implementado e respeitado de forma irregular.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'O distanciamento físico durante a lavagem das mãos não é totalmente implementado ou respeitado.',
               data: []
             }],
             series24: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'A distância física entre os assentos dos estudantes no refeitório só é implementado às vezes ou desrespeitado.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'A distância física entre os assentos dos estudantes no refeitório não é implementado ou respeitado.',
               data: []
             }],
             series25: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'O pessoal da cozinha não usa máscaras regularmente e não tem água para lavar as mãos, ou produtos desinfectantes para as mãos, com regularidade.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'O pessoal da cozinha não usa máscaras e não tem água para lavar as mãos ou produtos desinfectantes para as mãos.',
               data: []
             }],
             series26: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Não',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: '',
               data: []
             }],
             series27: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Existe um protocolo mas, não é conhecido pelos professores ou pelos estudantes.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há protocolo',
               data: []
             }],
             series28: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Os alunos com sintomas são isolados em espaço aberto enquanto esperam que seus responsáveis os busquem.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Não há espaço designado para estudantes com sintomas de COVID-19.',
               data: []
             }],
             series29: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'A escola não tem uma reserva suficiente de máscaras para os alunos detectados com sintomas de COVID-19.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'A escola não possui uma reserva de máscaras para estudantes detectados com sintomas de COVID-19.',
               data: []
             }],
             series30: [{
               name: 'Sim',
               data: []
             }, {
-              name: 'A água está disponível nas instalações da escola para todas as necessidades, em quantidade suficiente mas não durante todo o ano letivo.',
+              name: 'Alguns estudantes não têm acesso a máscaras.',
               data: []
             }, {
-              name: 'Não há água disponível nas instalações da escola para todas as necessidades, seja em quantidade suficiente, seja por que não está disponível durante o ano letivo.',
+              name: 'Nenhum estudante tem acesso a máscaras.',
+              data: []
+            }],
+            series31: [{
+              name: 'Sim',
+              data: []
+            }, {
+              name: 'Existe uma lista de controle, mas não é utilizada regularmente.',
+              data: []
+            }, {
+              name: 'Não há lista de controle.',
               data: []
             }],
            grupo: 0,
@@ -3337,7 +3352,7 @@
             });
         },
         atualizarGrafico(pergunta,resposta1,resposta2,resposta3,flag_first) {
-
+              
                this.series0[0].name = resposta1;
                this.series0[1].name = resposta2;
                this.series0[2].name = resposta3;
@@ -3934,9 +3949,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series19[0].data[i] = array.qntResp_0;
-                      this.series19[1].data[i] = array.qntResp_1;
-                      this.series19[2].data[i] = array.qntResp_2;
+                      this.series20[0].data[i] = array.qntResp_0;
+                      this.series20[1].data[i] = array.qntResp_1;
+                      this.series20[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -3962,9 +3977,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series20[0].data[i] = array.qntResp_0;
-                      this.series20[1].data[i] = array.qntResp_1;
-                      this.series20[2].data[i] = array.qntResp_2;
+                      this.series21[0].data[i] = array.qntResp_0;
+                      this.series21[1].data[i] = array.qntResp_1;
+                      this.series21[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -3990,9 +4005,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series21[0].data[i] = array.qntResp_0;
-                      this.series21[1].data[i] = array.qntResp_1;
-                      this.series21[2].data[i] = array.qntResp_2;
+                      this.series22[0].data[i] = array.qntResp_0;
+                      this.series22[1].data[i] = array.qntResp_1;
+                      this.series22[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4018,9 +4033,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series22[0].data[i] = array.qntResp_0;
-                      this.series22[1].data[i] = array.qntResp_1;
-                      this.series22[2].data[i] = array.qntResp_2;
+                      this.series23[0].data[i] = array.qntResp_0;
+                      this.series23[1].data[i] = array.qntResp_1;
+                      this.series23[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4046,9 +4061,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series23[0].data[i] = array.qntResp_0;
-                      this.series23[1].data[i] = array.qntResp_1;
-                      this.series23[2].data[i] = array.qntResp_2;
+                      this.series24[0].data[i] = array.qntResp_0;
+                      this.series24[1].data[i] = array.qntResp_1;
+                      this.series24[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4074,9 +4089,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series24[0].data[i] = array.qntResp_0;
-                      this.series24[1].data[i] = array.qntResp_1;
-                      this.series24[2].data[i] = array.qntResp_2;
+                      this.series25[0].data[i] = array.qntResp_0;
+                      this.series25[1].data[i] = array.qntResp_1;
+                      this.series25[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4102,9 +4117,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series25[0].data[i] = array.qntResp_0;
-                      this.series25[1].data[i] = array.qntResp_1;
-                      this.series25[2].data[i] = array.qntResp_2;
+                      this.series26[0].data[i] = array.qntResp_0;
+                      this.series26[1].data[i] = array.qntResp_1;
+                      this.series26[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4130,9 +4145,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series26[0].data[i] = array.qntResp_0;
-                      this.series26[1].data[i] = array.qntResp_1;
-                      this.series26[2].data[i] = array.qntResp_2;
+                      this.series27[0].data[i] = array.qntResp_0;
+                      this.series27[1].data[i] = array.qntResp_1;
+                      this.series27[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4158,9 +4173,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series27[0].data[i] = array.qntResp_0;
-                      this.series27[1].data[i] = array.qntResp_1;
-                      this.series27[2].data[i] = array.qntResp_2;
+                      this.series28[0].data[i] = array.qntResp_0;
+                      this.series28[1].data[i] = array.qntResp_1;
+                      this.series28[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4186,9 +4201,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series28[0].data[i] = array.qntResp_0;
-                      this.series28[1].data[i] = array.qntResp_1;
-                      this.series28[2].data[i] = array.qntResp_2;
+                      this.series29[0].data[i] = array.qntResp_0;
+                      this.series29[1].data[i] = array.qntResp_1;
+                      this.series29[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4214,9 +4229,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series29[0].data[i] = array.qntResp_0;
-                      this.series29[1].data[i] = array.qntResp_1;
-                      this.series29[2].data[i] = array.qntResp_2;
+                      this.series30[0].data[i] = array.qntResp_0;
+                      this.series30[1].data[i] = array.qntResp_1;
+                      this.series30[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4242,9 +4257,9 @@
 
                  i = 0;
                  for (let array of arrayParaOrdenacao ) {
-                      this.series30[0].data[i] = array.qntResp_0;
-                      this.series30[1].data[i] = array.qntResp_1;
-                      this.series30[2].data[i] = array.qntResp_2;
+                      this.series31[0].data[i] = array.qntResp_0;
+                      this.series31[1].data[i] = array.qntResp_1;
+                      this.series31[2].data[i] = array.qntResp_2;
                     // if (flag_first == 1) this.chartOptions.xaxis.categories.push(array.sg_uf);
                      i++;
                 }
@@ -4837,6 +4852,14 @@
               data: []
             }];
 
+            this.series31 = [{
+              data: []
+            }, {
+              data: []
+            }, {
+              data: []
+            }];
+
             this.results = washData;
 
             //this.atualizarGrafico(1,this.pageOfItems[0].response[0].name,this.pageOfItems[0].response[1].name,this.pageOfItems[0].response[2].name);
@@ -4888,11 +4911,19 @@
    
 </script>
 <style>
-   
-   .graficoPadrao {
-     margin-left:-100px!important;
-   }
 
+    .graficoPadrao {
+      margin-left:-100px!important;
+    }
+
+    .graficoConsolidado {
+      margin-left:-100px!important;
+    }
+
+    .graficoConsolidado .apexcharts-legend {
+      display: none!important;
+    }
+   
    @media print {
     #divOverlay {
      display: none!important; 
