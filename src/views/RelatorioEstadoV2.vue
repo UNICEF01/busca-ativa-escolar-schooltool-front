@@ -99,6 +99,7 @@
                            :key="componentKey"
                            class="graficoConsolidado"
                            />
+                           <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>                           
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
                       </div>
                            <br/> <br/> <br/> <br/> <br/> <br/> <br/>
@@ -284,7 +285,7 @@
                            :key="componentKey"
                            class="graficoConsolidado"
                            />
-
+                           <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
                            <br/>
 
                            <div
@@ -536,7 +537,7 @@
                             :series="series9"
                             :key="componentKey"
                             class="graficoConsolidado"/>
-
+                           <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
                             <br/>
 
                             <div
@@ -1002,7 +1003,7 @@
                             :series="series17"
                             :key="componentKey"
                             class="graficoConsolidado"/>
-
+                           <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
                             <br/><br/><br/><br/><br/><br/><br/>
 
                             <div

@@ -1881,8 +1881,7 @@
   } 
   if (screen.width == "1366") {
     document.body.style.zoom = "71%"
-  } 
-  
+  }   
   if (screen.width == "1360") {
     document.body.style.zoom = "71%"
   }   
