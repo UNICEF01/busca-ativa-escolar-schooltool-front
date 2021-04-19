@@ -11,8 +11,6 @@
             lg2>
             <br/>
 
-            
-
             <div id="divOverlay" style="font-size: 50px!important;color:black!important;margin-left: 100px !important;width: 7000px!important;z-index: 2147483647 !important;height: 100% !important;background-color: white !important;position: absolute !important;margin-top: -100px;overflow-y: hidden!important;">
             <div class="fileUploaderBtn" style="position:absolute;top:400px!important;left:700px!important;overflow: hidden!important;">Aguarde, gerando PDF<br><img border="0" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif"></div>
             
@@ -1433,7 +1431,7 @@
    
    let userAdmin = localStorage.getItem("admin");
    
-   //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+   if (!userAdmin || auth.currentUser == null){self.location='/login'}
    
    localStorage.setItem("titulo", "regiao");
    

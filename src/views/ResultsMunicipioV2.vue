@@ -204,8 +204,8 @@
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    
    let userAdmin = localStorage.getItem("admin");
+   if (!userAdmin || auth.currentUser == null){self.location='/login'}
    
-   //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
    let uf = localStorage.getItem("estado");
    
    localStorage.setItem("titulo", "municipio");

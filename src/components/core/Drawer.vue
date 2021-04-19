@@ -41,6 +41,9 @@
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel()" class="font-weight-light" :class="color">
           Exportar Dados
         </v-btn>
+        <v-btn v-if="user.uid == undefined " @click="quest()" class="font-weight-light" :class="color">
+          Questionário
+        </v-btn>        
 
 
         <v-divider/>
@@ -244,10 +247,7 @@
         localStorage.setItem("titulo", "questionario");
         this.$router.push({path: '/quest'})
       },
-      exportExcel(){
-        setInterval(function () {
-          window.location.reload();
-        }, 100);          
+      exportExcel(){       
         this.$router.push({path: '/exportExcel'})
       }
 

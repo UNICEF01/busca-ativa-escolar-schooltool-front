@@ -221,7 +221,7 @@
    
    let userAdmin = localStorage.getItem("admin");
    
-   //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+   if (!userAdmin || auth.currentUser == null){self.location='/login'}
    let uf = localStorage.getItem("estado");
    
    localStorage.setItem("titulo", "municipio");

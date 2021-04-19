@@ -245,9 +245,8 @@
    
    localStorage.removeItem("munic")
    
-   let userAdmin = localStorage.getItem("admin");
-   
-   //if (!userAdmin || auth.currentUser == null){self.location='/quest'}
+   let userAdmin = localStorage.getItem("admin");   
+   if (!userAdmin || auth.currentUser == null){self.location='/login'}
    
    localStorage.setItem("titulo", "regiao");
    

@@ -57,9 +57,11 @@
 import Vue from "vue";
 import { GridPlugin, Page, Sort, Toolbar, ExcelExport, Filter  } from "@syncfusion/ej2-vue-grids";
 import { L10n, setCulture } from '@syncfusion/ej2-base';
+ import { auth } from "../firebase";
+import { data } from '../assets/bigData.js';
 
-import { data } from './bigData.js';
-
+let userAdmin = localStorage.getItem("admin");
+if (!userAdmin || auth.currentUser == null){self.location='/login'}
  
 localStorage.setItem("titulo", "municipio");
 
