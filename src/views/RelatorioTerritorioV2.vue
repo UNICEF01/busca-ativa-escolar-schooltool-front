@@ -18,7 +18,7 @@
             </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
-              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Região</div>
+              <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Território</div>
 
               <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
              

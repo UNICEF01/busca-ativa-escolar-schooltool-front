@@ -320,7 +320,14 @@
 </template>
 
 <script>
-     import ufid from "../assets/estado.js";
+    import ufid from "../assets/estado.js";
+
+    import { auth } from "../firebase";
+
+    let userAdmin = localStorage.getItem("admin");
+    if (!userAdmin || auth.currentUser == null){self.location='/login'}
+
+
 
      localStorage.removeItem("estado");
      export default {

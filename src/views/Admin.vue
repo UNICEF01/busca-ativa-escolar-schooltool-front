@@ -340,7 +340,7 @@ export default {
         // })
 
 
-        let userList = await db.collection("admin-users").where("status", "==", true).get().then(function (querySnapshot) {
+        let userList = await db.collection("admin-users").get().then(function (querySnapshot) {
 
           let values = querySnapshot.docs;
           let arrayData = [];
@@ -411,30 +411,8 @@ export default {
         
         callback: (confirm) => {
           if (confirm ){
-          //db.collection("admin-users").doc(uid).update({status: false});
-
-          
-          //user.delete(uid);
-          //firebase.auth().currentUser.delete().
           
           db.collection("admin-users").doc(uid).delete()
-
-
-         /*admin.auth().deleteUser(uid)
-          .then(function() {
-              alert("Successfully deleted user");
-          })
-          .catch(function(error) {
-              alert("Error deleting user:", error);
-          });
-          this.$toast.open({
-            message: 'Usuário excluido com sucesso!',
-            type: 'error',
-            position: 'top'
-          });
-          setInterval(function () {
-            window.location.reload();
-          }, 1000);           */
 
           }else{
             return false;
