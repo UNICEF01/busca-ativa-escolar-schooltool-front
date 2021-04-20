@@ -1946,6 +1946,9 @@
           this.current_page = 2;
          },
            changeRoute(a) {
+            setInterval(function () {
+              window.location.reload();
+            }, 100);             
              this.$router.push({path: a })
              console.log(a, this.select.src)
            },

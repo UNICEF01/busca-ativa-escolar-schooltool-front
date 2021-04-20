@@ -327,9 +327,9 @@
     let userAdmin = localStorage.getItem("admin");
     if (!userAdmin || auth.currentUser == null){self.location='/login'}
 
-
-
      localStorage.removeItem("estado");
+
+     
      export default {
        methods: {
 

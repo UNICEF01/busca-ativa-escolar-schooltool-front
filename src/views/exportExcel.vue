@@ -63,7 +63,7 @@ import { data } from '../assets/bigData.js';
 let userAdmin = localStorage.getItem("admin");
 if (!userAdmin || auth.currentUser == null){self.location='/login'}
  
-localStorage.setItem("titulo", "municipio");
+localStorage.removeItem("estado")
 
 Vue.use(GridPlugin);
 
