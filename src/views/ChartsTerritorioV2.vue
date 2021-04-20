@@ -136,7 +136,7 @@
                         </v-form>
                      </div>
                   </div>
-                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:0px;padding:0px;color:white!important;background-color: #EBEBEB">
+                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:999;padding:0px;color:white!important;background-color: #80CBC4!important">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
@@ -152,6 +152,7 @@
    import {db, auth, usersCollection, fireSQL} from "../firebase";
    import ufid from "../assets/estado.js";
    
+
    localStorage.removeItem("munic")
    
    let userAdmin = localStorage.getItem("admin");

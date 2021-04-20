@@ -203,10 +203,12 @@
       },
       logout(item) {
         if (item == undefined){
-          this.$router.push({path: '/quest'})
           setInterval(function () {
             window.location.reload();
-          }, 100);           
+          }, 1000); 
+          //this.$router.push({path: '/login'})
+          self.location='/login'
+          
           auth.signOut().then(function () {
 
           }).catch(function (error) {
@@ -222,10 +224,12 @@
         }).catch(function (error) {
           // An error happened.
         });
-        this.$router.push({path: '/login'})
           setInterval(function () {
             window.location.reload();
-          }, 100); 
+          }, 1000); 
+          //this.$router.push({path: '/login'})
+          self.location='/login'
+
         }         
       },
       dashboard(){

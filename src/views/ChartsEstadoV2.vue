@@ -136,7 +136,7 @@
                         </v-form>
                      </div>
                   </div>
-                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:0px;padding:0px;color:white!important;background-color: #EBEBEB">
+                  <div class="social font-weight-light theme--dark" style="padding-right:30px;height: 33px;border: 1px solid #ddd;position:fixed;bottom:3px;right:0;z-index:999;padding:0px;color:white!important;background-color: #80CBC4!important">
                      <p align="center">
                         <jw-pagination :items="combined" :pageSize=1 @changePage="onChangePage"></jw-pagination>
                         <br>
@@ -2216,14 +2216,14 @@
    visibility:hidden;
    margin-left:-135px;
    }
-   .page-item.first a:after {
+      .page-item.first a:after {
    content: url('https://api.iconify.design/mdi:chevron-double-left.svg?height=27');  
    visibility: visible;
    display: block;
    position: absolute;
    padding: 6px;
    margin-left:45px;
-   top: 0px; 
+   top: -1px; 
    }
    .page-item.previous {
    visibility:hidden;
@@ -2235,7 +2235,7 @@
    position: absolute;
    padding: 6px;
    margin-left:30px;
-   top: 0px; 
+   top: -1px; 
    }
    .page-item.next {
    visibility:hidden;
@@ -2247,7 +2247,7 @@
    position: absolute;
    padding: 6px;
    margin-left:-12px;
-   top: 0px;  
+   top: -1px;  
    }
    .page-item.last {
    visibility:hidden;
@@ -2259,9 +2259,9 @@
    position: absolute;
    padding: 6px;
    margin-left:-27px;
-   top: 0px;
+   top: -1px;
    }
-   #customers {
+  #customers {
    font-family: Arial, Helvetica, sans-serif;
    border-collapse: collapse;
    width: 100%;
