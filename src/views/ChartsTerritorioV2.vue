@@ -2152,7 +2152,7 @@
 <style>
    a
    {
-   color: #000;
+   color: #000!important;
    font-size: 17px;
    }
    a:hover {
