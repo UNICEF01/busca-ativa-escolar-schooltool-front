@@ -9,6 +9,7 @@ db.collection("users").get().then((querySnapshot) => {
       var name = doc.get('name');
       var telefone = doc.get('telefone');
       var schoolname=doc.get('school.name');
+      var relation=doc.get('relation.name');
       var schoolterritory=doc.get('school.territory');
       var schoolcityname=doc.get('school.city_name');
       var schooluf=doc.get('school.uf');
@@ -56,9 +57,11 @@ db.collection("users").get().then((querySnapshot) => {
   
 
  data.push({        
+           "id":uid,
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,
+           "relacao":relation,
            "territorio":schoolterritory,
            "municipio":schoolcityname,
            "estado":schooluf,

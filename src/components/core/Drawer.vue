@@ -240,7 +240,7 @@
         localStorage.setItem("estado", uf);  
           setInterval(function () {
             window.location.reload();
-          }, 100);         
+          }, 50);         
         this.$router.push({path: '/resultsV2'})
       },
       admin(){

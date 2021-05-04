@@ -8,17 +8,18 @@
         <ejs-grid ref='grid' id='Grid' locale='pt-BR' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
           
           <e-columns>
-            <!--e-column field='id' headerText='ID' textAlign='Left' width=120></e-column-->
+            <e-column field='id' headerText='ID' textAlign='Left' width=260></e-column>
             <e-column field='nome' headerText='Nome' textAlign='left' width=140></e-column>
             <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column>
             <e-column field='escola' headerText='Escola' textAlign='Left' width=140></e-column>
+            <e-column field='relacao' headerText='Relação c/ Escola' textAlign='Left' width=140></e-column>
             <e-column field='territorio' headerText='Território' textAlign='Left' width=140></e-column>
             <e-column field='municipio' headerText='Município' textAlign='Left' width=140></e-column>
             <e-column field='estado' headerText='Estado' textAlign='Left' width=120></e-column>
             <e-column field='quest_complete' headerText='Finalizou respostas' textAlign='Left' width=140></e-column>
             <e-column field='quest1' headerText='A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade (banheiros,lavagem de mãos,preparação dos alimentos,beber)' textAlign='Left' width=120></e-column>
             <e-column field='quest2' headerText='Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante,pelo menos,dois dias' textAlign='Left' width=120></e-column>
-            <e-column field='quest3' headerText='A água está tratada com cloro (teor mínimo,0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde ou da Organização Mundial da Saúde. A Portaria de Consolidação nº 5,de 28/09/2017/Minist[erio da Saúde determina a obrigatoriedade de se manter,no mínimo,0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede).' textAlign='Left' width=120></e-column>
+            <e-column field='quest3' headerText='A água está tratada com cloro (teor mínimo,0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde ou da Organização Mundial da Saúde. A Portaria de Consolidação no. 05, de 28/09/2017, Anexo XX, do Ministério da Saúde determina a obrigatoriedade de se manter,no mínimo,0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede).' textAlign='Left' width=120></e-column>
             <e-column field='quest4' headerText='Há pias ou locais para a lavagem de mãos com água e sabão na entrada da escola.' textAlign='Left' width=120></e-column>
             <e-column field='quest5' headerText='Há pias ou locais para a lavagem de mãos com água e sabão na frente das salas de aula e a menos de 5 metros de cada banheiro' textAlign='Left' width=120></e-column>
             <e-column field='quest6' headerText='São organizadas atividades de lavagem de mãos para todos os estudantes,pelo menos três vezes por dia na escola' textAlign='Left' width=120></e-column>
@@ -66,6 +67,10 @@ if (!userAdmin || auth.currentUser == null){self.location='/login'}
 localStorage.removeItem("estado")
 
 Vue.use(GridPlugin);
+
+let hoje = new Date()
+const dataHoje = hoje.getDate()+"/"+(hoje.getMonth()+1)+"/"+hoje.getFullYear();
+
 
 setCulture('pt-BR');
 L10n.load({
@@ -118,7 +123,7 @@ export default {
                         headerRows: 1,
                         rows: [
                             { cells: [
-                              { colSpan: 1, value: ""},
+                              { colSpan: 2, value: "Data: "+dataHoje},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},

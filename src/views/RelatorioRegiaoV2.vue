@@ -18,6 +18,9 @@
             </div>
 <!-- APARECE NO RELATÓRIO -->
             <template>
+              <div style="font-size: 20px!important;color:black!;margin-top:-70px!important;margin-left:100px;width:800px">{{dataHoje}}</div>
+
+
               <div style="font-size: 40px!important;color:black!;margin-top:0px!important;margin-left:450px;width:800px">Relatório de Região</div>
 
               <br><div align="center" style="font-size: 40px!important;color:black!;width:1200px">{{quest[0].group}}</div>
@@ -27,11 +30,11 @@
                      <div v-for="group in pageOfItems" :key="group.id">
                         <v-form ref="form_research" lazy-validation>
                            
-                           <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div 
+                              style="-webkit-print-color-adjust: exact;margin-left:auto;height:auto;width:900px;padding-top:auto;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:auto;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto;"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -46,11 +49,11 @@
 
                            <br/>
 
-                           <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div 
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto;"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -64,14 +67,14 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;"
+                                 style="height:auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
-                                    style="align-self: center"
+                                    style="align-self: center;"
                                     v-html="'<b style=\'font-size:18px\'><center>Pergunta: '+combined[2].id+'</center><br></b>'+combined[2].answer"
                                     ></span>
                      
@@ -93,13 +96,13 @@
                            <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
                            <div v-html="setaGrupoPergunta(grupo,group.id)" />
 
-                           <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                           <br/> <br/> <br/> <br/> <br/> <br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -127,10 +130,10 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -155,13 +158,13 @@
                            :key="componentKey"
                            class="graficoPadrao"/>
 
-                           <br/> <br/> <br/> <br/> <br/>
+                           <br/> <br/> <br/> <br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -192,10 +195,10 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -211,10 +214,10 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -229,10 +232,10 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;"
+                                 style="height: auto;"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -244,13 +247,13 @@
 
                            </div>
 
-                           <br/> <br/> <br/> <br/> <br/>
+                           <br/> <br/> <br/> <br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> 
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 300;"
+                                 style="height: auto;"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -276,10 +279,10 @@
                            <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -305,10 +308,10 @@
                             <br/> <br/> <br/> <br/> <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -334,10 +337,10 @@
                             <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -360,13 +363,13 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/> <br/> <br/> <br/> <br/>
+                            <br/> <br/> <br/> <br/> <br/><br/> <br/><br/> <br/><br/> <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 300px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -393,10 +396,10 @@
                             <br/>
 
                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -409,11 +412,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                             <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -424,13 +427,13 @@
                               </v-flex>
                             </div>  
 
-                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                            <br/> 
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -444,10 +447,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -458,13 +461,13 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/> <br/><br/> <br/><br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -478,10 +481,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -494,11 +497,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -523,11 +526,11 @@
                            <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                             <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -538,7 +541,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -552,11 +555,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -581,11 +584,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -596,7 +599,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -610,11 +613,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -639,11 +642,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                               <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -654,7 +657,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -668,11 +671,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -697,11 +700,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                               <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -712,7 +715,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/> <br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -725,17 +728,17 @@
                             class="graficoPadrao"/>
 
 
-                           <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                           <br/> <br/> <br/> <br/> 
                           <br><div align="center" style="font-size: 40px!important;color:black!;width:900px">{{quest[3].group}}</div>
 
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -748,11 +751,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -766,11 +769,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                             <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -783,11 +786,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                               <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -800,11 +803,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -815,13 +818,12 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
-
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                            <br/><br/> <br/><br/>
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -832,13 +834,13 @@
                               </v-flex>
                             </div>  
 
-                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                            <br/> 
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                                    <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -851,11 +853,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -868,11 +870,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -885,11 +887,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -902,11 +904,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -919,11 +921,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -934,13 +936,13 @@
                               </v-flex>
                             </div>  
 
-                            <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+                            <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                               <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -953,11 +955,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -968,7 +970,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                             <apexchart
                             ref="exampleChart"
                             width="1100px" 
@@ -979,13 +981,14 @@
                             :key="componentKey"
                             class="graficoConsolidado"/>
                            <center><div style="width:500px;margin-left:200px;font-size:20px!important;color:black!important">Gráfico consolidado</div></center>
-                            <br/><br/><br/><br/><br/><br/><br/>
+                            
+                            <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1010,11 +1013,11 @@
 
                             <br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1025,7 +1028,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1039,11 +1042,11 @@
 
                             <br/><br/><br/><br/><br/><br/>
 
-                            <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                           <div
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1069,10 +1072,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1083,7 +1086,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1098,10 +1101,10 @@
                             <br/><br/><br/><br/><br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1127,10 +1130,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1141,7 +1144,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1156,10 +1159,10 @@
                             <br/><br/><br/><br/><br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1185,10 +1188,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1199,7 +1202,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1211,13 +1214,13 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/><br/><br/><br/><br/>
+                            <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1243,10 +1246,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1257,7 +1260,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1269,13 +1272,13 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/><br/><br/><br/><br/>
+                            <br/><br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1301,10 +1304,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1315,7 +1318,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -1327,13 +1330,13 @@
                             :key="componentKey"
                             class="graficoPadrao"/>
 
-                            <br/><br/><br/><br/><br/>
+                            <br/><br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1359,10 +1362,10 @@
                             <br/>
 
                             <div
-                              style="-webkit-print-color-adjust: exact;margin-left:220px;width:900px;padding-top: -10px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
+                              style="-webkit-print-color-adjust: exact;margin-left:220px;height:auto;width:900px;padding: 0px;margin: 0px; border-radius:5px!important;color:white;background-color:#00bcd4!important;margin-top:-5px;font-size:18px;text-align: justify-all!important;"
                               >
                               <v-flex slot="header"
-                                 style="height: 220px;overflow-y:auto !important"
+                                 style="height: auto"
                                  >
                                  <span
                                     class="subheading font-weight-light mr-3"
@@ -1373,7 +1376,7 @@
                               </v-flex>
                             </div>  
 
-                            <br/>
+                            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
                             <apexchart
                             ref="exampleChart"
@@ -2019,7 +2022,7 @@
                  },
                  {
                    id: 3,
-                   answer: "<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovado e que segue as especificações do Ministério da Saúde [Portaria nº 2.914/2011 do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)]  ou da Organização Mundial da Saúde (OMS)</span>",
+                   answer: "<span>A água está tratada com cloro (teor mínimo,  0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovado e que segue as especificações do Ministério da Saúde [Portaria de Consolidação no. 05, de 28/09/2017, Anexo XX, do Ministério da Saúde determina a obrigatoriedade de se manter, no mínimo, 0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede)]  ou da Organização Mundial da Saúde (OMS)</span>",
                    selected: null,
                    response: [
                      {
@@ -3344,6 +3347,7 @@
                 ("0" + date.getSeconds()).slice(-2) +
                 ".pdf";
               doc.save(filename);
+ 
             //  window.location.href = "/chartsestadov2";
             })
             .catch(function(error) {
@@ -4877,11 +4881,18 @@
    
          },
    
+
        },
        created() {
          this.combined=[...(this.quest[0].questions), ...(this.quest[1].questions), ...(this.quest[2].questions), ...(this.quest[3].questions)];
          console.log((this.quest[0].questions).concat(this.quest[1].questions));
          this.getData();
+         const date = new Date();
+         const data =
+          "Data: " +
+          ("0" + date.getDate()).slice(-2)+"/"+
+          ("0" + (date.getMonth() + 1)).slice(-2) +"/"+ date.getFullYear();
+         this.dataHoje = data;
        }
        ,
        computed:{
@@ -4953,6 +4964,7 @@
   }
 
 }
+
 
 
 
