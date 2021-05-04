@@ -8,7 +8,7 @@
         <ejs-grid ref='grid' id='Grid' locale='pt-BR' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
           
           <e-columns>
-            <e-column field='id' headerText='ID' textAlign='Left' width=260></e-column>
+            <!--e-column field='id' headerText='ID' textAlign='Left' width=260></e-column-->
             <e-column field='nome' headerText='Nome' textAlign='left' width=140></e-column>
             <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column>
             <e-column field='escola' headerText='Escola' textAlign='Left' width=140></e-column>

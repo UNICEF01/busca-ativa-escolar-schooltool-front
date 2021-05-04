@@ -57,7 +57,6 @@ db.collection("users").get().then((querySnapshot) => {
   
 
  data.push({        
-           "id":uid,
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,
