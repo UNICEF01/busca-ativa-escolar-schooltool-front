@@ -227,15 +227,20 @@
 
 
           localStorage.setItem("admin", getUser[0].perfil);
-          
-          if (getUser[0].perfil === 'admin') {            
-            this.$router.push({path: '/resultsV2'})
-          } else {
-            this.$router.push({path: '/resultsV2'})
-          }
+
+
+          if (getUser[0].perfil === 'admin') {
           setInterval(function () {
             window.location.reload();
-          }, 100);
+          }, 100);    
+          this.$router.push({path: '/resultsV2'})
+          } else {
+          setInterval(function () {
+            window.location.reload();
+          }, 100);             
+            this.$router.push({path: '/resultsV2'})
+          }
+
         }
 
 
