@@ -123,7 +123,8 @@ export default {
                         headerRows: 1,
                         rows: [
                             { cells: [
-                              { colSpan: 2, value: "Data: "+dataHoje},
+                              { colSpan: 8, value: "Data: "+dataHoje},
+                              { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
