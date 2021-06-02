@@ -24,7 +24,12 @@
             <!--/>-->
           </v-card-title>
           <v-data-table
-
+            :headers="headers"
+            :items="alunos"
+            :loading="true"
+            :pagination.sync="pagination"
+            :search="search"
+            item-key="id"
           >
             <template
               slot="headerCell"

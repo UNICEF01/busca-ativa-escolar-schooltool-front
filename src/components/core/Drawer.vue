@@ -35,16 +35,9 @@
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="admin()" class="font-weight-light" :class="color">
           Usuários
         </v-btn>
-        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="quest()" class="font-weight-light" :class="color">
-          Questionário
-        </v-btn>
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel()" class="font-weight-light" :class="color">
           Exportar Dados
         </v-btn>
-        <v-btn v-if="user.uid == undefined " @click="quest()" class="font-weight-light" :class="color">
-          Questionário
-        </v-btn>        
-
 
         <v-divider/>
         <!--        <v-list-tile v-if="responsive">-->
@@ -143,19 +136,16 @@
 
     },
     created() {
-         let userData = db.collection("admin-users").doc(auth.currentUser.uid)
+        if(auth.currentUser){
+          let userData = db.collection("admin-users").doc(auth.currentUser.uid)
           userData.get().then((response) => {
                 if (response.exists) {
                     var perfil=response.get('perfil');
                 }
                
                 this.editedIndex = perfil
-          });      
-
-      
-          
-        
-
+          });
+        }        
 
           /*var data = CircularJSON.stringify(response)
 
