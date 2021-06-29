@@ -91,15 +91,15 @@
                     clearable
                     hide-details
                     hide-selected
-                    item-text="name"
-                    label="Nome da escola"
+                    item-text="id_name"
+                    label="Nome da escola ou o código do INEP"
                     return-object
                     :rules="[rules.required]"
                   >
                     <template v-slot:no-data>
                       <v-list-item>
                         <v-list-item-title>
-                          Escreva o nome da escola
+                          Escreva o nome da escola ou o código do INEP
                         </v-list-item-title>
                       </v-list-item>
                     </template>
@@ -110,6 +110,10 @@
 
                     <template v-slot:item="{ item }">
                       <v-list-item-content>
+                        <v-list-item-title
+                          v-text="item.id"
+                        ></v-list-item-title>
+                        -
                         <v-list-item-title
                           v-text="item.name"
                         ></v-list-item-title>
