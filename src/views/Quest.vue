@@ -82,7 +82,9 @@
 
                 <Estados @childToParent="onChildClick"></Estados>
 
-                <v-flex xs12 md12>
+                
+
+                <v-flex xs11 md11>
                   <v-autocomplete
                     v-model="school"
                     :items="items"
@@ -124,6 +126,22 @@
                       </v-list-item-content>
                     </template>
                   </v-autocomplete>
+                </v-flex>
+                
+                <v-flex xs1 md1> 
+                  <br/> 
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <v-icon color="primary" dark v-on="on">mdi-information</v-icon>
+                    </template>
+                    <span>Selecione o estado e município antes de selecionar a escola. Utilize o nome da instituição ou o código do INEP</span>
+                  </v-tooltip>
+                </v-flex>
+
+                <v-flex xs12 md12> 
+                  <p class="text-info">
+                    Informe o código do INEP ou Parte do nome da escola
+                  </p>
                 </v-flex>
 
                 <v-flex md12>
