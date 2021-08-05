@@ -134,13 +134,13 @@
                     <template v-slot:activator="{ on }">
                       <v-icon color="primary" dark v-on="on">mdi-information</v-icon>
                     </template>
-                    <span>Selecione o estado e município antes de selecionar a escola. Utilize o nome da instituição ou o código do INEP</span>
+                    <span>Depois de selecionar o Estado e o Município, selecione o nome da escola ou o código INEP</span>
                   </v-tooltip>
                 </v-flex>
 
                 <v-flex xs12 md12> 
                   <p class="text-info">
-                    Informe o código do INEP ou Parte do nome da escola
+                    Preencha com o código INEP ou o nome da escola (pode ser apenas uma PARTE do nome)
                   </p>
                 </v-flex>
 
