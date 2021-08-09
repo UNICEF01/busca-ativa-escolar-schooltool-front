@@ -142,6 +142,7 @@
     methods: {
 
       changeUF(event){
+        this.items = [];
         this.isSelectCityDisabled = false;
         this.cidade = '';
         this.$emit('onSelectUF', event);
