@@ -20,13 +20,9 @@
         >
           <v-form ref="form_register" lazy-validation >
             <v-container fluid>
-              <!--              <v-img-->
-              <!--                lazy-src="img/covide_banner_wash.jpg"-->
-              <!--                max-width="300"-->
-              <!--                src="img/covide_banner_wash.jpg"-->
-              <!--              ></v-img>-->
 
               <v-layout wrap>
+
                 <v-flex xs12 md4>
                   <v-text-field
                     label="Nome Completo"
@@ -80,11 +76,10 @@
                   />
                 </v-flex>
 
-                <Estados @childToParent="onChildClick"></Estados>
-
-                
+                <Estados @onSelectCity="onCitySelected" @onSelectUF="onUFSelected"></Estados>
 
                 <v-flex xs11 md11>
+                  
                   <v-autocomplete
                     v-model="school"
                     :items="items"
@@ -97,13 +92,11 @@
                     label="Nome da escola ou o código do INEP"
                     return-object
                     :rules="[rules.required]"
+                    :disabled="isSchoolSelectorDisabled"
                   >
+                  
                     <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Escreva o nome da escola ou o código do INEP
-                        </v-list-item-title>
-                      </v-list-item>
+                      <span>Escreva o nome da escola ou o código do INEP</span>
                     </template>
 
                     <template v-slot:selection="{ attr, on, item, selected }">
@@ -125,7 +118,9 @@
                         ></v-list-item-subtitle>
                       </v-list-item-content>
                     </template>
+
                   </v-autocomplete>
+
                 </v-flex>
                 
                 <v-flex xs1 md1> 
@@ -139,8 +134,10 @@
                 </v-flex>
 
                 <v-flex xs12 md12> 
-                  <p class="text-info">
-                    Preencha com o código INEP ou o nome da escola (pode ser apenas uma PARTE do nome)
+                  <p class="text-warning">
+                    Preencha com o código INEP, ou apenas com o nome da escola (pode ser o nome completo ou apenas parte do nome). Não preencha a categoria da escola antes do nome, seja por extenso ou abreviado (ESCOLA MUNICIPAL, ESCOLA ESTADUAL, E M, E F, etc)
+                    <br/><strong>Ex 1:</strong> E M E F NOVA FLORESTA -> Preencha apenas <strong>NOVA FLORESTA</strong>
+                    <br/><strong>Ex 2:</strong> ESCOLA MUNICIPAL DE ENSINO FUNDAMENTAL EVANDRO VIANA -> Preencha apenas <strong>EVANDRO VIANA</strong>
                   </p>
                 </v-flex>
 
@@ -175,6 +172,7 @@
                   />
                   
                 </v-flex>
+                
               </v-layout>
             </v-container>
 
@@ -292,7 +290,9 @@ Vue.use(VueSimpleAlert);
 export default {
   
   components: { Estados },
+
   methods: {
+
     myFunction: function () {
       return ibgeid;
     },
@@ -339,152 +339,172 @@ export default {
       value: "",
       school: "",
       quest: [],
+      isSchoolSelectorDisabled: true
     };
   },
 
-
-  
   methods: {
-    checkAutenticate() {
-      if (auth.currentUser) {
-        this.$router.push({ path: "/wash" });
-      }
-    },
-    // Triggered when `childToParent` event is emitted by the child.
-    onChildClick(value) {
-      this.user.uf = value.uf;
-      this.user.city = value.city;
-    },
 
-    async start() { 
+      checkAutenticate() {
+        if (auth.currentUser) {
+          this.$router.push({ path: "/wash" });
+        }
+      },
+
+      // Triggered when `onSelectCity` event is emitted by the child.
+      onCitySelected(value) {
+
+        this.user.uf = value.uf;
+        this.user.city = value.city;
         
-          
-   
-       
-    if (this.$refs.form_register.validate()) {
-      this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");  
-        let user = auth
-          .createUserWithEmailAndPassword(this.login.email, this.login.password)
-          .then((user) => {
-            this.user.uid = user.user.uid;
-            this.user.name = this.user.name.trim();
-            this.user.dt_create = new Date();
-            this.user.school = this.school;
+        if(value.city === undefined){
+          this.isSchoolSelectorDisabled = true
+        }else{
+          this.items = [];
+          this.school = "";
+          this.isSchoolSelectorDisabled = false
+        }
 
-            user.user.updateProfile({
-              displayName: this.user.name,
-            });
+      },
 
-            //-------------NOVOS CAMPOS - INÍCIO
+      onUFSelected(value){
+        this.items = [];
+        this.school = "";
+        this.isSchoolSelectorDisabled = true
+      },
 
-            var docRef = db.collection("users").doc(user.user.uid);
+      async start() { 
+        
+          if (this.$refs.form_register.validate()) {
 
-            docRef.get().then(function (doc) {
-              if (doc.exists) {
-                var name = doc.get("city.region");
-                var uff = doc.get("city.uf");
-                var ibge_city_id = doc.get("school.ibge_id");
-                var ibge_region_id=doc.get('city.ibge_region_id');
-                var ibge_uf_id=doc.get('city.ibge_uf_id');                
+            this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");  
+            
+            let user = auth
+              .createUserWithEmailAndPassword(this.login.email, this.login.password)
+              .then((user) => {
+                this.user.uid = user.user.uid;
+                this.user.name = this.user.name.trim();
+                this.user.dt_create = new Date();
+                this.user.school = this.school;
 
-                let region = [
-                  { value: "NO", text: "NORTE" },
-                  { value: "NE", text: "NORDESTE" },
-                  { value: "SU", text: "SUL" },
-                  { value: "SE", text: "SUDESTE" },
-                  { value: "CO", text: "CENTRO-OESTE" },
-                ];
+                user.user.updateProfile({
+                  displayName: this.user.name,
+                });
 
-                let regionName = region.find((item) => item.value == name);
-                let territory = ibgeid.find((item) => item.value == ibge_city_id);
+                //-------------NOVOS CAMPOS - INÍCIO
 
-                db.collection("users").doc(user.user.uid).update({ "school.region_name": regionName.text });
-                db.collection("users").doc(user.user.uid).update({ "school.uf": uff });
-                db.collection("users").doc(user.user.uid).update({ "school.territory": territory.text });
-                db.collection("users").doc(user.user.uid).update({"school.ibge_region_id": ibge_region_id})
-                db.collection("users").doc(user.user.uid).update({"school.ibge_uf_id": ibge_uf_id})
+                var docRef = db.collection("users").doc(user.user.uid);
 
+                docRef.get().then(function (doc) {
+                  if (doc.exists) {
+                    var name = doc.get("city.region");
+                    var uff = doc.get("city.uf");
+                    var ibge_city_id = doc.get("school.ibge_id");
+                    var ibge_region_id=doc.get('city.ibge_region_id');
+                    var ibge_uf_id=doc.get('city.ibge_uf_id');                
 
-              }
-            });
+                    let region = [
+                      { value: "NO", text: "NORTE" },
+                      { value: "NE", text: "NORDESTE" },
+                      { value: "SU", text: "SUL" },
+                      { value: "SE", text: "SUDESTE" },
+                      { value: "CO", text: "CENTRO-OESTE" },
+                    ];
 
-            ////-------------NOVOS CAMPOS - FIM
+                    let regionName = region.find((item) => item.value == name);
+                    let territory = ibgeid.find((item) => item.value == ibge_city_id);
 
-            db.collection("users")
-              .doc(user.user.uid)
-              .set(this.user)
+                    db.collection("users").doc(user.user.uid).update({ "school.region_name": regionName.text });
+                    db.collection("users").doc(user.user.uid).update({ "school.uf": uff });
+                    db.collection("users").doc(user.user.uid).update({ "school.territory": territory.text });
+                    db.collection("users").doc(user.user.uid).update({"school.ibge_region_id": ibge_region_id})
+                    db.collection("users").doc(user.user.uid).update({"school.ibge_uf_id": ibge_uf_id})
+                  }
+                });
 
-              .then(function () {
-                // console.log()
-              })
-              .catch(function (error) {
-                // console.error(error)
-              });
-            //console.log(user);
+                ////-------------NOVOS CAMPOS - FIM
 
-   
-            this.$router.push({ path: "/wash" });
-            setInterval(function () {
-              window.location.reload();
-            }, 4000);
+                db.collection("users")
+                  .doc(user.user.uid)
+                  .set(this.user)
+
+                  .then(function () {
+                    // console.log()
+                  })
+                  .catch(function (error) {
+                    // console.error(error)
+                  });
+                //console.log(user);
+
       
-          })
-
-          .catch(function (err) {
-            if (err.code === "auth/email-already-in-use") {
-              Vue.$toast.open({
-                message:
-                  "E-mail já cadastrado, clique em CONTINUAR DE ONDE PAROU para fazer login",
-                type: "error",
-                position: "top",
+                this.$router.push({ path: "/wash" });
+                setInterval(function () {
+                  window.location.reload();
+                }, 4000);
+          
+              })
+              .catch(function (err) {
+                if (err.code === "auth/email-already-in-use") {
+                  Vue.$toast.open({
+                    message:
+                      "E-mail já cadastrado, clique em CONTINUAR DE ONDE PAROU para fazer login",
+                    type: "error",
+                    position: "top",
+                  });
+                }
               });
-            }
-          });
-      }
-    },
-    loginUser() {
-      if (this.$refs.form_login.validate()) {
-        const user = auth
-          .signInWithEmailAndPassword(this.login.email, this.login.password)
-          .then((user) => {
-            //console.log(user);
-            this.$router.push({ path: "/wash" });
-            setInterval(function () {
-              window.location.reload();
-            }, 1000);
-          })
 
-          . catch (function (err) {
-            if (err.code === "auth/wrong-password") {
-              Vue.$toast.open({
-                message: "Senha não confere.",
-                type: "error",
-                position: "top",
-              });
-            }
-              if (err.code === "auth/user-not-found") {
+          }
+
+      },
+
+      loginUser() {
+
+        if (this.$refs.form_login.validate()) {
+          const user = auth
+            .signInWithEmailAndPassword(this.login.email, this.login.password)
+            .then((user) => {
+              //console.log(user);
+              this.$router.push({ path: "/wash" });
+              setInterval(function () {
+                window.location.reload();
+              }, 1000);
+            })
+
+            . catch (function (err) {
+              if (err.code === "auth/wrong-password") {
                 Vue.$toast.open({
-                  message: "Usuário não encontrado.",
+                  message: "Senha não confere.",
                   type: "error",
                   position: "top",
                 });
               }
-          });
-      }
-    },
-    close() {
-      this.dialog = false;
-      this.recoverPassword = false;
-    },
+                if (err.code === "auth/user-not-found") {
+                  Vue.$toast.open({
+                    message: "Usuário não encontrado.",
+                    type: "error",
+                    position: "top",
+                  });
+                }
+            });
+        }
 
-    resetPassword() {
-      auth.sendPasswordResetEmail(this.login.email).then((user) => {});
-      this.$toast.open({
-        message: "Um e-mail foi enviado para recuperar a senha!",
-        type: "warning",
-        position: "top",
-      });
-    },
+      },
+
+      close() {
+        this.dialog = false;
+        this.recoverPassword = false;
+      },
+
+      resetPassword() {
+        auth.sendPasswordResetEmail(this.login.email).then((user) => {});
+        this.$toast.open({
+          message: "Um e-mail foi enviado para recuperar a senha!",
+          type: "warning",
+          position: "top",
+        });
+      }
+
   },
 
   watch: {

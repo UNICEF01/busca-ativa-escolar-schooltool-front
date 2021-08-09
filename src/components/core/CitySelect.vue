@@ -1,16 +1,19 @@
 <template>
   <v-container class="pa-2">
     <v-layout>
+
       <v-flex xs12 md6>
         <v-select
           v-model="estado"
           :items="estados"
           label="Estado"
           :rules="[rules.required]"
+          @change="changeUF({uf: estado})"
         ></v-select>
       </v-flex>
 
       <v-flex xs12 md6>
+
         <v-autocomplete
           v-model="cidade"
           :items="items"
@@ -24,13 +27,10 @@
           return-object
           :rules="[rules.required]"
           @change="emitToParent({uf: estado, city: cidade})"
+          :disabled="isSelectCityDisabled"
         >
           <template v-slot:no-data>
-            <v-list-item>
-              <v-list-item-title>
-                Escreva o nome do município
-              </v-list-item-title>
-            </v-list-item>
+            <span>Escreva o nome do município</span>
           </template>
 
           <template v-slot:selection="{ attr, on, item, selected }">
@@ -38,15 +38,15 @@
           </template>
 
           <template v-slot:item="{ item }">
-            <v-list-item-content>
-              <v-list-item-title v-text="item.name"></v-list-item-title>
-              -
-              <v-list-item-subtitle v-text="item.uf"></v-list-item-subtitle>
-            </v-list-item-content>
+            <span v-text="item.name"></span> - <span v-text="item.uf"></span>
           </template>
+
         </v-autocomplete>
+        
       </v-flex>
+
     </v-layout>
+
   </v-container>
 </template>
 <style>
@@ -67,9 +67,7 @@
         cidade: '',
         isLoading: false,
         search: null,
-        rules: {
-          required: value => !!value || 'Obrigatório.',
-        },
+        rules: { required: value => !!value || 'Obrigatório.' },
         estados: [
           {value: "AC", text: "Acre"},
           {value: "AL", text: "Alagoas"},
@@ -98,14 +96,17 @@
           {value: "SP", text: "São Paulo"},
           {value: "SE", text: "Sergipe"},
           {value: "TO", text: "Tocantins"}
-        ]
+        ],
+        isSelectCityDisabled: true
       };
     },
     watch: {
+
       cidade(val) {
         if (val != null)
           this.cidade = val;
       },
+
       search(val) {
         //Items have already been loaded
         if (val < 3) return
@@ -134,12 +135,23 @@
             console.log(err)
           })
           .finally(() => (this.isLoading = false))
-      },
-    },
-    methods: {
-      emitToParent(event) {
-        this.$emit('childToParent', event)
       }
+
+    },
+
+    methods: {
+
+      changeUF(event){
+        this.isSelectCityDisabled = false;
+        this.cidade = '';
+        this.$emit('onSelectUF', event);
+      },
+
+      emitToParent(event) {
+        this.$emit('onSelectCity', event);
+      }
+
     }
+
   };
 </script>

@@ -188,5 +188,12 @@ export default [
     path: '/upgrade',
     name: 'Upgrade to PRO',
     view: 'Upgrade'
-  }
+  },
+
+  // {
+  //   path: '/fixerros',
+  //   name: 'Corrigindo erros',
+  //   view: 'FixUfsAndTerritories'
+  // },
+
 ]
