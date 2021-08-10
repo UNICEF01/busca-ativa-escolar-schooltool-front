@@ -486,7 +486,7 @@ export default {
           name: val,
           id: this.user.city.id,
           uf: this.user.uf,
-          city_id: this.user.city.ibge_city_id,
+          city_ibge_id: this.user.city.ibge_city_id,
           $hide_loading_feedback: true,
         }),
       };
