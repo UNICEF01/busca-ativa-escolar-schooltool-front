@@ -37,7 +37,7 @@
     "jquery-min": "0.0.2",
     "jspdf": "^2.3.1",
     "jw-vue-pagination": "^1.0.3",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "printd": "^1.4.2",
     "react": "*",
     "react-dom": "^17.0.1",
