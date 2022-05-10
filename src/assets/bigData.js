@@ -1,10 +1,12 @@
 import { db } from "../firebase";
 
 let data = [];
+var x = 0;
 
-db.collection("users").get().then((querySnapshot) => {
+db.collection("users").get().then((querySnapshot)  => {
     querySnapshot.forEach((doc) => {
-      if (doc.exists) {
+      
+  
       var uid = doc.get('uid');
       var name = doc.get('name');
       var telefone = doc.get('telefone');
@@ -17,9 +19,9 @@ db.collection("users").get().then((querySnapshot) => {
       var quest=doc.get('quest');
 
 
-    if (quest !== undefined && schoolquestcomplete == "S" ){  
+    if (quest !== undefined && schoolquestcomplete == "S"){  
 
-      //Grupo: 1 - Água    
+     /*Grupo: 1 - Água    
       var quest1 = doc.data().quest[0].questions[0].selected;
       var quest2 = doc.data().quest[0].questions[1].selected;
       var quest3 = doc.data().quest[0].questions[2].selected;
@@ -54,19 +56,19 @@ db.collection("users").get().then((querySnapshot) => {
       var quest26 = doc.data().quest[3].questions[11].selected;
       var quest27 = doc.data().quest[3].questions[12].selected;
       var quest28 = doc.data().quest[3].questions[13].selected;
-  
+      x++;*/
 
  data.push({
-          // "id":uid,        
-           "nome":name,
-           "telefone":telefone,
+           "id":uid,        
+           //"nome":name,
+           //"telefone":telefone,
            "escola":schoolname,
            "relacao":relation,
-           "territorio":schoolterritory,
+          // "territorio":schoolterritory,
            "municipio":schoolcityname,
            "estado":schooluf,
-           "quest_complete":schoolquestcomplete,
-           "quest1":quest1,
+           //"quest_complete":schoolquestcomplete
+           /*"quest1":quest1,
            "quest2":quest2,
            "quest3":quest3,
            "quest4":quest4,
@@ -93,11 +95,11 @@ db.collection("users").get().then((querySnapshot) => {
            "quest25":quest25,
            "quest26":quest26,
            "quest27":quest27,
-           "quest28":quest28
+           "quest28":quest28*/
            
         })       
       }
-      }  
+    
     })
 
   

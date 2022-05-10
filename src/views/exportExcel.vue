@@ -8,15 +8,15 @@
         <ejs-grid ref='grid' id='Grid' locale='pt-BR' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
           
           <e-columns>
-            <!--e-column field='id' headerText='ID' textAlign='Left' width=260></e-column-->
+            <!--e-column field='id' headerText='ID' textAlign='Left' width=260></e-column>
             <e-column field='nome' headerText='Nome' textAlign='left' width=140></e-column>
-            <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column>
+            <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column-->
             <e-column field='escola' headerText='Escola' textAlign='Left' width=140></e-column>
             <e-column field='relacao' headerText='Relação c/ Escola' textAlign='Left' width=140></e-column>
-            <e-column field='territorio' headerText='Território' textAlign='Left' width=140></e-column>
+            <!--e-column field='territorio' headerText='Território' textAlign='Left' width=140></e-column-->
             <e-column field='municipio' headerText='Município' textAlign='Left' width=140></e-column>
             <e-column field='estado' headerText='Estado' textAlign='Left' width=120></e-column>
-            <e-column field='quest_complete' headerText='Finalizou respostas' textAlign='Left' width=140></e-column>
+            <!--e-column field='quest_complete' headerText='Finalizou respostas' textAlign='Left' width=140></e-column>
             <e-column field='quest1' headerText='A água está disponível nas instalações da escola sempre e em quantidade suficiente para todos os tipos de necessidade (banheiros,lavagem de mãos,preparação dos alimentos,beber)' textAlign='Left' width=120></e-column>
             <e-column field='quest2' headerText='Existe armazenamento de água e ele é suficiente para satisfazer as necessidades da escola durante,pelo menos,dois dias' textAlign='Left' width=120></e-column>
             <e-column field='quest3' headerText='A água está tratada com cloro (teor mínimo,0,2 - 0,5 mg/L de cloro residual livre) ou com um método comprovada e que siga as especificações do Ministério da Saúde ou da Organização Mundial da Saúde. A Portaria de Consolidação no. 05, de 28/09/2017, Anexo XX, do Ministério da Saúde determina a obrigatoriedade de se manter,no mínimo,0,2 mg/L de cloro residual livre ou 2 mg/L de cloro residual combinado em toda a extensão do sistema de distribuição (reservatório e rede).' textAlign='Left' width=120></e-column>
@@ -44,7 +44,7 @@
             <e-column field='quest25' headerText='A escola dispõe de um espaço privado,designado para o isolamento de estudantes com sintomas de COVID -19,onde possam aguardar que seus responsáveis os busquem' textAlign='Left' width=120></e-column>
             <e-column field='quest26' headerText='A escola tem uma reserva de máscaras para uso dos estudantes,que tenham sido identificados com sintomas de COVID,até que seus responsáveis os busquem' textAlign='Left' width=120></e-column>
             <e-column field='quest27' headerText='Na escola onde se recomenda o uso de máscaras,todos os estudantes têm acesso a máscaras (em particular estudantes de famílias mais vulneráveis)' textAlign='Left' width=120></e-column>
-            <e-column field='quest28' headerText='Há uma lista de controle para uso da equipe de limpeza e funcionários para monitorar os pontos críticos.' textAlign='Left' width=120></e-column>
+            <e-column field='quest28' headerText='Há uma lista de controle para uso da equipe de limpeza e funcionários para monitorar os pontos críticos.' textAlign='Left' width=120></e-column-->
 
             </e-columns>
         </ejs-grid>
@@ -65,7 +65,6 @@ let userAdmin = localStorage.getItem("admin");
 if (!userAdmin || auth.currentUser == null){self.location='/login'}
  
 localStorage.removeItem("estado")
-
 Vue.use(GridPlugin);
 
 let hoje = new Date()
@@ -118,10 +117,10 @@ export default {
       toolbarClick: function(args) {
         if (args.item.id === 'Grid_excelexport') { // 'Grid_excelexport' -> Grid component id + _ + toolbar item name
         let excelExportProperties = {
-                    fileName:"RESPOSTAS.xlsx",
+                    fileName:"RESPOSTAS_WASH.xlsx",
                     header: {
                         headerRows: 1,
-                        rows: [
+                        /*rows: [
                             { cells: [
                               { colSpan: 8, value: "Data: "+dataHoje},
                               { colSpan: 1, value: ""},
@@ -144,7 +143,7 @@ export default {
                               { colSpan: 1, value: ""},
                               { colSpan: 14, value: "4 - Prevenção e controle de infecções"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true, } }
                               ] } ,
-                        ]
+                        ]*/
                     }
         };
 
@@ -153,7 +152,7 @@ export default {
     }
   },
   provide: {
-    grid: [Toolbar, ExcelExport, Page, Sort,Filter]
+    grid: [Toolbar, ExcelExport, Filter]
   }
 }
 
