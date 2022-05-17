@@ -34,7 +34,45 @@
 
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel()" class="font-weight-light" :class="color">
           Exportar Dados Wash
+
         </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NS')" 
+          small
+          color="primary"
+          dark
+        >
+          NORTE e SUL
+        </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('COSE')" 
+          small
+          color="primary"
+          dark
+        >
+          CENTRO-OESTE E SUDESTE
+        </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NE1')" 
+          small
+          color="primary"
+          dark
+        >
+          NORDESTE 1
+        </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NE2')" 
+          small
+          color="primary"
+          dark
+        >
+          NORDESTE 2
+        </v-btn>
+
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcelChecklist()" class="font-weight-light" :class="color">
           Exportar Dados Checklist
         </v-btn>
@@ -209,8 +247,9 @@
         localStorage.setItem("titulo", "questionario");
         this.$router.push({path: '/quest'})
       },
-      exportExcel(){       
-        this.$router.push({path: '/exportExcel'})
+      exportExcel(sigla){  
+        localStorage.setItem("siglaregiao",sigla)
+        this.$router.push({path: '/exportExcel'+sigla})
       },
       exportExcelChecklist(){       
         this.$router.push({path: '/exportExcelChecklist'})
