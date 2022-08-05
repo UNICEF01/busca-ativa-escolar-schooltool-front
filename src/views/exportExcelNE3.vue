@@ -62,7 +62,7 @@ import { GridPlugin, Page, Sort, Toolbar, ExcelExport, Filter  } from "@syncfusi
 import { L10n, setCulture } from '@syncfusion/ej2-base';
 import { auth } from "../firebase";
 
-import { data } from '../assets/bigDataNS.js';
+import { data } from '../assets/bigDataNE3.js';
 
 
 
@@ -123,7 +123,7 @@ export default {
       toolbarClick: function(args) {
         if (args.item.id === 'Grid_excelexport') { // 'Grid_excelexport' -> Grid component id + _ + toolbar item name
         let excelExportProperties = {
-                    fileName:"RESPOSTAS_WASH_NORTE_SUL.xlsx",
+                    fileName:"RESPOSTAS_WASH_NORDESTE_SAB3.xlsx",
                     header: {
                         headerRows: 1,
                         rows: [

@@ -8,10 +8,10 @@
         <ejs-grid ref='grid' id='Grid' locale='pt-BR' :dataSource='data' :toolbar='toolbarOptions' height='572px' :allowFiltering='true' :allowExcelExport='true' :toolbarClick='toolbarClick' :allowPaging="true" :pageSettings='pageSettings' :allowSorting='true' >
           
           <e-columns>
-            <!--e-column field='id' headerText='ID' textAlign='Left' width=260></e-column-->
-            <e-column field='nome' headerText='Nome' textAlign='left' width=140></e-column>
+            <e-column field='id' headerText='ID' textAlign='Left' width=100></e-column>
+            <e-column field='nome' headerText='Nome' textAlign='left' width=340></e-column>
             <e-column field='telefone' headerText='Telefone' textAlign='Left' width=140></e-column>
-            <e-column field='escola' headerText='Escola' textAlign='Left' width=140></e-column>
+            <e-column field='escola' headerText='Escola' textAlign='Left' width=640></e-column>
             <e-column field='relacao' headerText='Relação c/ Escola' textAlign='Left' width=140></e-column>
             <e-column field='territorio' headerText='Território' textAlign='Left' width=140></e-column>
             <e-column field='municipio' headerText='Município' textAlign='Left' width=140></e-column>
@@ -62,7 +62,7 @@ import { GridPlugin, Page, Sort, Toolbar, ExcelExport, Filter  } from "@syncfusi
 import { L10n, setCulture } from '@syncfusion/ej2-base';
 import { auth } from "../firebase";
 
-import { data } from '../assets/bigDataNS.js';
+import { data } from '../assets/bigDataNE5.js';
 
 
 
@@ -114,7 +114,7 @@ export default {
     return {
       data: data,
       toolbarOptions: ['ExcelExport'],
-      pageSettings: { pageSize: 100 }
+      pageSettings: { pageSize: 7490 }
     };
   },
   
@@ -123,8 +123,8 @@ export default {
       toolbarClick: function(args) {
         if (args.item.id === 'Grid_excelexport') { // 'Grid_excelexport' -> Grid component id + _ + toolbar item name
         let excelExportProperties = {
-                    fileName:"RESPOSTAS_WASH_NORTE_SUL.xlsx",
-                    header: {
+                    fileName:"RESPOSTAS_WASH_NORDESTE_TAM_2.xlsx",
+                   /* header: {
                         headerRows: 1,
                         rows: [
                             { cells: [
@@ -150,7 +150,7 @@ export default {
                               { colSpan: 14, value: "4 - Prevenção e controle de infecções"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true, } }
                               ] } ,
                         ]
-                    }
+                    }*/
         };
 
         this.$refs.grid.excelExport(excelExportProperties);

@@ -30,7 +30,7 @@ db.collection("users-protocolos").get().then((querySnapshot) => {
       var quest8 = doc.data().quest[7].questions[0].selected;
       var quest9 = doc.data().quest[8].questions[0].selected;
       var quest10 = doc.data().quest[9].questions[0].selected;
-
+      
  data.push({
            "id":uid,        
            "nome":name,

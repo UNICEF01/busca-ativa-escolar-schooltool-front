@@ -7,7 +7,7 @@ var x = 0;
 
 
 
-db.collection("users").where('uf', 'in', ['AC','AP','AM','PA','RO','RR','TO','PR','RS','SC']).get().then((querySnapshot)  => {
+db.collection("users").where('uf', 'in', ['PR','RS','SC']).get().then((querySnapshot)  => {
     querySnapshot.forEach((doc) => {
       
   
@@ -63,7 +63,7 @@ db.collection("users").where('uf', 'in', ['AC','AP','AM','PA','RO','RR','TO','PR
       x++;
 
  data.push({
-           "id":uid,        
+          // "id":uid,        
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,

@@ -32,10 +32,12 @@
           Usuários
         </v-btn>
 
-        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel()" class="font-weight-light" :class="color">
+        <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcel('ALL')" class="font-weight-light" :class="color">
           Exportar Dados Wash
 
         </v-btn>
+
+        
         <v-btn
           v-if="user.uid !== undefined && editedIndex == 'admin'"
           @click="exportExcel('NS')" 
@@ -43,7 +45,8 @@
           color="primary"
           dark
         >
-          NORTE e SUL
+          SUL <br/>
+          (PR RS SC)
         </v-btn>
         <v-btn
           v-if="user.uid !== undefined && editedIndex == 'admin'"
@@ -52,7 +55,8 @@
           color="primary"
           dark
         >
-          CENTRO-OESTE E SUDESTE
+          CENTRO-OESTE E SUDESTE<br/>
+          (DF ES GO MS RJ SP)
         </v-btn>
         <v-btn
           v-if="user.uid !== undefined && editedIndex == 'admin'"
@@ -61,7 +65,8 @@
           color="primary"
           dark
         >
-          NORDESTE 1
+          NORDESTE SAB 1 <br/>
+          (CE PI RN)
         </v-btn>
         <v-btn
           v-if="user.uid !== undefined && editedIndex == 'admin'"
@@ -70,8 +75,40 @@
           color="primary"
           dark
         >
-          NORDESTE 2
+          NORDESTE SAB 2<br/>
+          (AL PE PB)
         </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NE3')" 
+          small
+          color="primary"
+          dark
+        >
+          NORDESTE/SUDESTE SAB 3<br/>
+          (BA MG SE)
+        </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NE4')" 
+          small
+          color="primary"
+          dark
+        >
+          NORDESTE/NORTE/CENTRO-OESTE TAM 1<br/>
+          (AC AM AP MA MT)
+        </v-btn>
+        <v-btn
+          v-if="user.uid !== undefined && editedIndex == 'admin'"
+          @click="exportExcel('NE5')" 
+          small
+          color="primary"
+          dark
+        >
+          NORDESTE/NORTE/CENTRO-OESTE TAM 2<br/>
+          (PA RO RR TO)
+        </v-btn>
+
 
         <v-btn v-if="user.uid !== undefined && editedIndex == 'admin'" @click="exportExcelChecklist()" class="font-weight-light" :class="color">
           Exportar Dados Checklist

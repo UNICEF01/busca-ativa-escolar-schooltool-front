@@ -92,7 +92,7 @@ export default {
     return {
       data: data,
       toolbarOptions: ['ExcelExport'],
-      pageSettings: { pageSize: 100 }
+      pageSettings: { pageSize: 100}
     };
   },
 
@@ -106,7 +106,7 @@ export default {
                         rows: [
                             { cells: [
                               { colSpan: 8, value: "Data: "+dataHoje},
-                             /* { colSpan: 1, value: ""},
+                              { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
@@ -125,7 +125,7 @@ export default {
                               { colSpan: 1, value: ""},
                               { colSpan: 1, value: ""},
                               { colSpan: 14, value: "4 - Prevenção e controle de infecções"},{style: { fontColor: '#C67878', fontSize: 15, hAlign: 'Center', bold: true, } }
-                              */
+                              
                               ] } ,
                         ]
                     }

@@ -71,6 +71,11 @@ export default [
     view: 'ChartsEstadoV2'
   },
   {
+    path: '/exportExcelAll',
+    name: 'Exportar Dados Brutos Todas Regiões',
+    view: 'exportExcelAll'
+  },  
+  {
     path: '/exportExcelNS',
     name: 'Exportar Dados Brutos Norte e Sul',
     view: 'exportExcelNS'
@@ -82,14 +87,29 @@ export default [
   },
   {
     path: '/exportExcelNE1',
-    name: 'Exportar Dados Brutos Nordeste 1',
+    name: 'Exportar Dados Brutos Nordeste SAB 1',
     view: 'exportExcelNE1'
   }, 
   {
     path: '/exportExcelNE2',
-    name: 'Exportar Dados Brutos Nordeste 2',
+    name: 'Exportar Dados Brutos Nordeste SAB 2',
     view: 'exportExcelNE2'
   },     
+  {
+    path: '/exportExcelNE3',
+    name: 'Exportar Dados Brutos Nordeste SAB 3',
+    view: 'exportExcelNE3'
+  },
+  {
+    path: '/exportExcelNE4',
+    name: 'Exportar Dados Brutos Nordeste TAM 1',
+    view: 'exportExcelNE4'
+  },  
+  {
+    path: '/exportExcelNE5',
+    name: 'Exportar Dados Brutos Nordeste TAM 2',
+    view: 'exportExcelNE5'
+  },   
   
   {
     path: '/exportExcelChecklist',
