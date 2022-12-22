@@ -20,8 +20,7 @@ var userId = ["Hut0OQxBtvfLJLRm1GXyDiv4seA2","1Wuv0q5d7YeInJMKouU5zgZ7Vur1","9sP
 
 
 //BANCO PRODUÇÃO
-//["111111111111111","111111111111111","111111111111111","111111111111111","111111111111111","111111111111111","111111111111111","111111111111111","111111111111111"];
-var userIdx = ["A3p1HkqmrmYXBHt5pMeM1R7O7vb2","CGikMKAA9scqYcNzEeih2JlkbC13","EiukBTAoSjOSdRcVcpohptvM0M03","FXYpjLVoAUWsPw9AXbXKSoa47wF3","GB6xX06C2BNTE1ownoE9Dn6m8Nl1","QzqXpk4dhDRo9lpvJCpcVmoygDn2","WTltFBJXNJOLOTZtU2tfc2nE17P2","gZJLenZ1CpgMmnTexMyFhru3BOp2","oyiKdYs3JkMl4FORRLtWh71izqP2","qzC6hJn1ezOvJ2ZNjAnvi7JxFLK2","tWt0jnHx9faNlc3ymY1Tz85iW5l2","uML1BAVPXRPCHIJXHGr0lXqyVOW2"];
+var userIdx = ["JGh36cCIM9chyvaW91buVZ61ROa2","QzqXpk4dhDRo9lpvJCpcVmoygDn2","a2XklpTcM3aexIGfQksDOT0eQSG2","bj5DVYoCHrXsd3ahDcLXNtp4TC73","eKQYRWfKRsUujfiiFpbavUMhaVx1","gZJLenZ1CpgMmnTexMyFhru3BOp2","l8EeazBa94bj4KyNDrGzYz3fUfj2","qkRLKsEj8yS3eujWMI0PbN0jbTQ2","qzC6hJn1ezOvJ2ZNjAnvi7JxFLK2","sBQcLsVHjUT3xOC8egenN0egF2d2","w5iZgewbNAeej2u97YqogwRe0uT2"];
 
 var userId1 = ["05tgCwBi8RSXjyWg30hZwllU1Q12","05uMnN2fj3VWFVR4SSudL0ytXWB2","0UqBZPoaoHOj3BZXjf0xGtJv68o1","0ixdPECbCBbv7o9LgVlWl70vaqq1","0jJ2llOgaYZ7KX9ZxumHMdCPK5I2","0p3OiNQe33UmXYl2g2uzw3E5UU32","12V0qodBe2ZuJDnIpcw9lz75Wo22","1DvVm9m8K6ZqachJzVwTuEegm4o1","1TutPmA7stTIh6TRb0DjJzLq1OJ3","1hTG7LvaC3gl5BPxkvM6dW9Q4qD2","1uQH3QWkajMGaYNhgObPGR55J6X2","1y8qiGWmQhfWTpwO2JxFxnDslYW2","2BtDITovtGWuTNkd1JgaXC8vjjc2","2Kt4iUkFTHU1jSd9xLhGZF5PkDb2","2NYKQKecWlU36ynzlI8zrKyq8sp2","2lBVqy4REKW5WFPg7B7ZQPgCIAp2","2qryeMQCNPfOxQn4Z6YeX0SKbIi1","39JR2wyiQpPL8QvXqnlsPD8KgU52","3CX1trAcq1b6DjuFXGPXyzUNQhk1","3cx0rjvZE0M7eqbuuHygObpwYPv1","3hjrtYx50jba6drZp4MRdj3m2Q22","3if1IvapMhUuCbsdBZ9PoE0vewJ3","3nVEkX14WRQFO4ft14R3a8ZIfWI2","3o0lVt0Vg5QlhbaC2vMRIkicc9f1","3oIwaEZUfrau0trm2M1udUgRyxB3","3oKuEdMIKQZQUit8JpUh6SU8j9g1","3oiZ4Q7nT9XwZSHeqOxewxWKfpR2","42bKKkVn7mNkiisoTfz0MzpJcnI3","4RCiBRm5GMe3Pnqq8mgzFh2dtvj2","4RXKDLCjTzZFzDGTnvteE6VlWGw2","4S2QUqIE9aRoVvPFxrfGvRcpmsw1","4dmPX6r74BSNI9mBe2bMYstdCP22","4oJ7UknWlZZPXFMOmaCxSOHvt9d2","4w0jpbm6TXZglq3z9k6PUEaeCim1","51ZNTybnOfMReC6OkKPUhMtnp6Q2","53Tv93MKNKh6whpJF1BiINN2zHr1","5BDDkeTi0ncf3hizdqYUlIgDMGi1","5FjKNG0enfPvqFF5PZCWqYDdd9N2","5RXIKIRVPmhFiFnyICEKOE5yNqg2","5ZYzuBA5Chh2cAmNs1NyC3H4Jqe2","5bsIxHZqqFOJETlfFQR4sm4wrlE3","5cTlF4jNtpeYzzEd1xq8CZxUlWp2","5xtOyNfvKUaSsCsU2lVbSCohlJM2","64QIjz4X9QReNb9wTzPf5vLcWch1","65oTNUpWcHWxKemwNfqM7v54geD2","68A1UJHlmgULmHxeFxxWdhtl4tr2","6HklJ9wrJ8eI2X1Wn53EYP3gOch2","6Kni9MBVuaYoKWRsyEpltmSIFg92","6j1CAo6sP1Zsied48mUHCMEXp4A3","6kVLjZ7YVse949L88P8ajK6salQ2"];
 
@@ -50,7 +49,7 @@ userIdx.forEach(myFunction); //MUDAR userid AQUI
 
 function myFunction(uid) {
 
-    var docRef = db.collection("users").doc(uid)
+    var docRef = db.collection("users-protocolos").doc(uid)
 
     docRef.get().then(function(doc) {
     if (doc.exists) {
@@ -70,9 +69,9 @@ function myFunction(uid) {
         let regionName = region.find(item => item.value == name);
         let territory = ibgeid.find(item => item.value == ibge_city_id);
 
-        db.collection("users").doc(uid).update({"school.region_name": regionName.text})
-        db.collection("users").doc(uid).update({"school.uf": uff})
-        db.collection("users").doc(uid).update({"school.territory": territory.text})
+        db.collection("users-protocolos").doc(uid).update({"school.region_name": regionName.text})
+        db.collection("users-protocolos").doc(uid).update({"school.uf": uff})
+        db.collection("users-protocolos").doc(uid).update({"school.territory": territory.text})
     }
 
     });

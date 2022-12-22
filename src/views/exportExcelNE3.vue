@@ -55,17 +55,21 @@
     </div>
 </template>
 <script>
+var sigla = localStorage.getItem("siglaregiao");
+
 import Vue from "vue";
 import { GridPlugin, Page, Sort, Toolbar, ExcelExport, Filter  } from "@syncfusion/ej2-vue-grids";
 import { L10n, setCulture } from '@syncfusion/ej2-base';
 import { auth } from "../firebase";
-import { data } from '../assets/bigData.js';
+
+import { data } from '../assets/bigDataNE3.js';
+
+
 
 let userAdmin = localStorage.getItem("admin");
 if (!userAdmin || auth.currentUser == null){self.location='/login'}
  
 localStorage.removeItem("estado")
-
 Vue.use(GridPlugin);
 
 let hoje = new Date()
@@ -113,12 +117,13 @@ export default {
       pageSettings: { pageSize: 100 }
     };
   },
+  
 
   methods: {
       toolbarClick: function(args) {
         if (args.item.id === 'Grid_excelexport') { // 'Grid_excelexport' -> Grid component id + _ + toolbar item name
         let excelExportProperties = {
-                    fileName:"RESPOSTAS.xlsx",
+                    fileName:"RESPOSTAS_WASH_NORDESTE_SAB3.xlsx",
                     header: {
                         headerRows: 1,
                         rows: [
@@ -153,7 +158,7 @@ export default {
     }
   },
   provide: {
-    grid: [Toolbar, ExcelExport, Page, Sort,Filter]
+    grid: [Toolbar, ExcelExport,  Page, Sort, Filter]
   }
 }
 

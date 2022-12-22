@@ -1,17 +1,7 @@
 <template>
   <v-container fill-height fluid grid-list-xl> 
     <v-layout justify-center wrap>
-      <v-flex xs12 md8><br><br><br>
-        <h5 class="headline">Autoavaliação</h5>
-
-
-          <div style="text-align: justify-all!important">Conhecer a estrutura de cada escola e saber quais aspectos precisam
-          ser melhorados ou adaptados para o novo contexto de volta às aulas é
-          muito importante. Criamos um questionário que poderá servir como
-          referência e indicar onde e como os gestores devem atuar para garantir
-          uma situação segura para estudantes, professores e funcionários.
-          </div>
-    
+      <v-flex xs12 md8>
 
         <material-card
           color="cyan"
@@ -277,22 +267,18 @@
 </template>
 
 <script>
+import Vue from "vue";
 import Estados from "../components/core/CitySelect";
 import { db, auth, usersCollection } from "./../firebase";
 import ibgeid from "../assets/territory.js";
-import Vue from "vue";
-//if(auth.currentUser == null){self.location='/login'}
-
 import VueSimpleAlert from "vue-simple-alert";
 Vue.use(VueSimpleAlert);
-
 
 export default {
   
   components: { Estados },
 
   methods: {
-
     myFunction: function () {
       return ibgeid;
     },
@@ -339,178 +325,240 @@ export default {
       value: "",
       school: "",
       quest: [],
+      userLogin:{ uid: null },
+      uri: null,
       isSchoolSelectorDisabled: true
     };
   },
 
+  created(){
+    if (this.$route.query){
+      this.uri = this.$route.query.redirect ? this.$route.query.redirect : '/pesquisas';
+    }else{
+      this.$route.query.redirect = '/pesquisas';
+    }
+    console.log(this.uri);
+  },
+  
   methods: {
 
-      checkAutenticate() {
-        if (auth.currentUser) {
-          this.$router.push({ path: "/wash" });
-        }
-      },
+    checkAutenticate() {
+      if (auth.currentUser) {
+        this.$router.push({ path: "/pesquisas" });
+      }
+    },
+    
+    // Triggered when `onSelectCity` event is emitted by the child.
+    onCitySelected(value) {
 
-      // Triggered when `onSelectCity` event is emitted by the child.
-      onCitySelected(value) {
-
-        this.user.uf = value.uf;
-        this.user.city = value.city;
-        
-        if(value.city === undefined){
-          this.isSchoolSelectorDisabled = true
-        }else{
-          this.items = [];
-          this.school = "";
-          this.isSchoolSelectorDisabled = false
-        }
-
-      },
-
-      onUFSelected(value){
+      this.user.uf = value.uf;
+      this.user.city = value.city;
+      
+      if(value.city === undefined){
+        this.isSchoolSelectorDisabled = true
+      }else{
         this.items = [];
         this.school = "";
-        this.isSchoolSelectorDisabled = true
-      },
+        this.isSchoolSelectorDisabled = false
+      }
 
-      async start() { 
+    },
+
+    onUFSelected(value){
+      this.items = [];
+      this.school = "";
+      this.isSchoolSelectorDisabled = true
+    },
+
+    async start() { 
+
+      if (this.$refs.form_register.validate()) {
         
-          if (this.$refs.form_register.validate()) {
+        let user = auth
+          .createUserWithEmailAndPassword(this.login.email, this.login.password)
+          .then((user) => {
+            this.user.uid = user.user.uid;
+            this.user.name = this.user.name.trim();
+            this.user.dt_create = new Date();
+            this.user.school = this.school;
 
-            this.$alert("As recomendações só serão mostradas depois que o questionário for TOTALMENTE respondido !!","Atenção!!","warning");  
-            
-            let user = auth
-              .createUserWithEmailAndPassword(this.login.email, this.login.password)
-              .then((user) => {
-                this.user.uid = user.user.uid;
-                this.user.name = this.user.name.trim();
-                this.user.dt_create = new Date();
-                this.user.school = this.school;
+            user.user.updateProfile({ displayName: this.user.name });
 
-                user.user.updateProfile({
-                  displayName: this.user.name,
-                });
-
-                //-------------NOVOS CAMPOS - INÍCIO
-
-                var docRef = db.collection("users").doc(user.user.uid);
-
-                docRef.get().then(function (doc) {
-                  if (doc.exists) {
-                    var name = doc.get("city.region");
-                    var uff = doc.get("city.uf");
-                    var ibge_city_id = doc.get("school.ibge_id");
-                    var ibge_region_id=doc.get('city.ibge_region_id');
-                    var ibge_uf_id=doc.get('city.ibge_uf_id');                
-
-                    let region = [
-                      { value: "NO", text: "NORTE" },
-                      { value: "NE", text: "NORDESTE" },
-                      { value: "SU", text: "SUL" },
-                      { value: "SE", text: "SUDESTE" },
-                      { value: "CO", text: "CENTRO-OESTE" },
-                    ];
-
-                    let regionName = region.find((item) => item.value == name);
-                    let territory = ibgeid.find((item) => item.value == ibge_city_id);
-
-                    db.collection("users").doc(user.user.uid).update({ "school.region_name": regionName.text });
-                    db.collection("users").doc(user.user.uid).update({ "school.uf": uff });
-                    db.collection("users").doc(user.user.uid).update({ "school.territory": territory.text });
-                    db.collection("users").doc(user.user.uid).update({"school.ibge_region_id": ibge_region_id})
-                    db.collection("users").doc(user.user.uid).update({"school.ibge_uf_id": ibge_uf_id})
-                  }
-                });
-
-                ////-------------NOVOS CAMPOS - FIM
-
-                db.collection("users")
-                  .doc(user.user.uid)
-                  .set(this.user)
-
-                  .then(function () {
-                    // console.log()
-                  })
-                  .catch(function (error) {
-                    // console.error(error)
-                  });
-                //console.log(user);
-
-      
-                this.$router.push({ path: "/wash" });
-                setInterval(function () {
-                  window.location.reload();
-                }, 4000);
-          
+            //CRIA O DOCUMENTO USUÁRIO EM USUARIOS FIREBASE
+            db.collection("usuarios")
+              .doc(auth.currentUser.uid)
+              .set(this.user)
+              .then(function () {
+                // DOCUMENTO DA PESQUISA CRIADO
               })
-              .catch(function (err) {
-                if (err.code === "auth/email-already-in-use") {
-                  Vue.$toast.open({
-                    message:
-                      "E-mail já cadastrado, clique em CONTINUAR DE ONDE PAROU para fazer login",
-                    type: "error",
-                    position: "top",
-                  });
-                }
+              .catch(function (error) {
+                // ERRO NA CRIACAO DOCUMENTO DA PESQUISA 
               });
 
-          }
+            //FAZ O UPDATE DO USUARIO COM DADOS ESSENCIAIS
+            var docUser = db.collection("usuarios").doc(auth.currentUser.uid);
 
-      },
+            docUser.get().then(function (doc) {
+            
+              if (doc.exists) {
 
-      loginUser() {
+                var name = doc.get("city.region");
+                var uff = doc.get("city.uf");
+                var ibge_city_id = doc.get("school.ibge_id");
+                var ibge_region_id=doc.get('city.ibge_region_id');
+                var ibge_uf_id=doc.get('city.ibge_uf_id');                
 
-        if (this.$refs.form_login.validate()) {
-          const user = auth
-            .signInWithEmailAndPassword(this.login.email, this.login.password)
-            .then((user) => {
-              //console.log(user);
-              this.$router.push({ path: "/wash" });
-              setInterval(function () {
-                window.location.reload();
-              }, 1000);
-            })
+                let region = [
+                  { value: "NO", text: "NORTE" },
+                  { value: "NE", text: "NORDESTE" },
+                  { value: "SU", text: "SUL" },
+                  { value: "SE", text: "SUDESTE" },
+                  { value: "CO", text: "CENTRO-OESTE" },
+                ];
 
-            . catch (function (err) {
-              if (err.code === "auth/wrong-password") {
+                let regionName = region.find((item) => item.value == name);
+                let territory = ibgeid.find((item) => item.value == ibge_city_id);
+
+                db.collection("usuarios").doc(auth.currentUser.uid).update({ "school.region_name": regionName.text });
+                db.collection("usuarios").doc(auth.currentUser.uid).update({ "school.uf": uff });
+                db.collection("usuarios").doc(auth.currentUser.uid).update({ "school.territory": territory.text });
+                db.collection("usuarios").doc(auth.currentUser.uid).update({"school.ibge_region_id": ibge_region_id});
+                db.collection("usuarios").doc(auth.currentUser.uid).update({"school.ibge_uf_id": ibge_uf_id});
+
+              }
+
+            });
+  
+            this.$router.push({ path: this.uri });
+            setInterval(function () {
+              window.location.reload();
+            }, 4000);
+      
+          })
+
+          .catch(function (err) {
+            if (err.code === "auth/email-already-in-use") {
+              Vue.$toast.open({
+                message: "E-mail já cadastrado, clique em CONTINUAR DE ONDE PAROU para fazer login",
+                type: "error",
+                position: "top",
+              });
+            }
+          });
+      }
+
+    },
+
+    loginUser() {
+      if (this.$refs.form_login.validate()) {
+        
+        const user = auth
+          .signInWithEmailAndPassword(this.login.email, this.login.password)
+          .then((user) => {
+            
+            this.createColecaoUsuario(user.user.uid);
+            
+            this.$router.push({ path: this.uri });
+            setInterval(function () {
+              window.location.reload();
+            }, 1000);
+
+          })
+
+          . catch (function (err) {
+            if (err.code === "auth/wrong-password") {
+              Vue.$toast.open({
+                message: "Senha não confere.",
+                type: "error",
+                position: "top",
+              });
+            }
+              if (err.code === "auth/user-not-found") {
                 Vue.$toast.open({
-                  message: "Senha não confere.",
+                  message: "Usuário não encontrado.",
                   type: "error",
                   position: "top",
                 });
               }
-                if (err.code === "auth/user-not-found") {
-                  Vue.$toast.open({
-                    message: "Usuário não encontrado.",
-                    type: "error",
-                    position: "top",
-                  });
-                }
-            });
-        }
-
-      },
-
-      close() {
-        this.dialog = false;
-        this.recoverPassword = false;
-      },
-
-      resetPassword() {
-        auth.sendPasswordResetEmail(this.login.email).then((user) => {});
-        this.$toast.open({
-          message: "Um e-mail foi enviado para recuperar a senha!",
-          type: "warning",
-          position: "top",
-        });
+          });
       }
+
+    },
+
+    close() {
+      this.dialog = false;
+      this.recoverPassword = false;
+    },
+
+    resetPassword() {
+      auth.sendPasswordResetEmail(this.login.email).then((user) => {});
+      this.$toast.open({
+        message: "Um e-mail foi enviado para recuperar a senha!",
+        type: "warning",
+        position: "top",
+      });
+    },
+
+    async createColecaoUsuario(uid){
+      //USUARIO QUE CONSEGUE FAZER LOGIN TEM O CADASTRO NA COLECAO USERS,
+      //POREM PODE NAO TER EM USUARIOS
+
+      //LOGIN EFETUADO. VERIFICA A EXISTENCIA DO USER NA COLECAO USUARIOS:
+      var docUsuarios = db.collection("usuarios").doc(uid);
+
+      docUsuarios.get().then(function (doc) {
+        if (!doc.exists) {
+
+          //LOCALIZA O USER NA COLECAO USERS PARA UPDATE DA COLECAO USUARIOS
+          var docUsers = db.collection("users").doc(uid);
+          
+          docUsers.get().then(function (docUser) { 
+            if (docUser.exists) {
+              //REMOVE O QUEST
+              var data = docUser.data();
+              delete data.quest
+
+              //CRIA O DOCUMENTO USUÁRIO EM USUARIOS FIREBASE
+              db.collection("usuarios")
+              .doc(uid)
+              .set(data)
+              .then(function () {
+                // DOCUMENTO DO USUÁRIO CRIADO
+              })
+              .catch(function (error) {
+                // ERRO NA CRIACAO DA COLECAO USUARIO
+                auth.signOut().then(function () {
+                  self.location='/login-usuario'
+                }).catch(function (error) {
+                  
+                });
+              });            
+            }else{
+              alert("Usuário registrado na plataforma, porém não existem dados relacionados a pesquisa. Entre em contato com o suporte e informe seu email");
+              auth.signOut().then(function () {
+                self.location='/login-usuario'
+              }).catch(function (error) {
+                
+              });
+            }
+          });
+          
+        }
+      });
+    },
+
+    loginAdmin(){
+      this.$router.push({path: '/login'})
+    }
 
   },
 
   watch: {
+
     school(val) {
       if (val != null) this.school = val;
     },
+
     search(val) {
       //Items have already been loaded
       if (val.length < 3) return;
@@ -543,7 +591,10 @@ export default {
         })
         .finally(() => (this.isLoading = false));
     },
+    
   },
+
+
 };
 
 

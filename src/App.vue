@@ -1,8 +1,15 @@
 <template>
   <v-app>
-    <core-filter v-show="$route.path!=='/relatorioregiaov2'&&$route.path!=='/relatorioterritoriov2'&&$route.path!=='/relatorioestadov2'"/>
 
-    <core-toolbar v-show="$route.path!=='/relatorioregiaov2'&&$route.path!=='/relatorioterritoriov2'&&$route.path!=='/relatorioestadov2'"/>
+    <core-toolbar 
+      v-show="$route.path!=='/relatorioregiaov2'
+      &&$route.path!=='/relatorioterritoriov2'
+      &&$route.path!=='/relatorioestadov2'
+      &&$route.path!=='/login'
+      &&$route.path!=='/login-usuario'
+      &&$route.path!=='/pesquisas'
+      &&$route.path!=='/protocolos'
+      &&$route.path!=='/wash'"/>
 
     <core-drawer v-show="$route.path!=='/relatorioregiaov2'&&$route.path!=='/relatorioterritoriov2'&&$route.path!=='/relatorioestadov2'"/>
 

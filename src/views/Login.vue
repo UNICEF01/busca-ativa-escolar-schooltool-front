@@ -232,13 +232,13 @@
           if (getUser[0].perfil === 'admin') {
           setInterval(function () {
             window.location.reload();
-          }, 100);    
-          this.$router.push({path: '/resultsV2'})
+          }, 1500);    
+          this.$router.push({path: '/'})
           } else {
           setInterval(function () {
             window.location.reload();
-          }, 100);             
-            this.$router.push({path: '/resultsV2'})
+          }, 1500);             
+            this.$router.push({path: '/'})
           }
 
         }

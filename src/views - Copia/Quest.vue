@@ -96,11 +96,7 @@
                     :rules="[rules.required]"
                   >
                     <template v-slot:no-data>
-                      <v-list-item>
-                        <v-list-item-title>
-                          Escreva o nome da escola
-                        </v-list-item-title>
-                      </v-list-item>
+                      Escreva o nome da escola
                     </template>
 
                     <template v-slot:selection="{ attr, on, item, selected }">

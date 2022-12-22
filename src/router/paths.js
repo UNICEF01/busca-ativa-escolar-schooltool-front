@@ -5,28 +5,33 @@
  */
 
 export default [
+
+  {
+    path: '/',
+    name: 'Pesquisas - UNICEF',
+    view: 'Researchs',
+    meta: {
+      requiresAuth: true
+    }
+  },
+
   {
     path: '/dashboard',
     name: 'Painel de Resultados',
     view: 'Dashboard'
   },
   {
-    path: '/user-profile',
-    name: 'User Profile',
-    view: 'UserProfile'
+    path: '/quest', // faz o mesmo que /login-usuario Mantendo para não perder links encaminhados antes
+    name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
+    view: 'Quest'
   },
   {
-    path: '/',
-    name: 'Crianças/Adolecentes',
-    view: 'ChildList'
+    path: '/login-usuario',
+    name: 'login_usuario',
+    view: 'Quest'
   },
   {
-    path: '/tablelist',
-    name: 'Crianças/Adolecentes',
-    view: 'TableList'
-  },
-  {
-    path: '/quest',
+    path: '/login-usuario',
     name: 'Questionário de autoavaliação sobre a condição de água, esgotamento sanitário e práticas de higiene na escola',
     view: 'Quest'
   },
@@ -45,7 +50,6 @@ export default [
     name: 'Gráficos Estado',
     view: 'ChartsEstado'
   },
-
   {
     path: '/resultsv2',
     name: 'Painel de Resultados',
@@ -56,7 +60,6 @@ export default [
     name: 'Painel de Resultados',
     view: 'Results'
   },
-
   {
     path: '/chartsregiaov2',
     name: 'Gráficos Região',
@@ -68,15 +71,52 @@ export default [
     view: 'ChartsEstadoV2'
   },
   {
-    path: '/exportExcel',
-    name: 'Exportar Dados Brutos',
-    view: 'exportExcel'
+    path: '/exportExcelAll',
+    name: 'Exportar Dados Brutos Todas Regiões',
+    view: 'exportExcelAll'
+  },  
+  {
+    path: '/exportExcelNS',
+    name: 'Exportar Dados Brutos Norte e Sul',
+    view: 'exportExcelNS'
   },
   {
-    path: '/bigData',
-    name: 'big Data',
-    view: 'bigData'
+    path: '/exportExcelCOSE',
+    name: 'Exportar Dados Brutos Centro-oeste e Sudeste',
+    view: 'exportExcelCOSE'
   },
+  {
+    path: '/exportExcelNE1',
+    name: 'Exportar Dados Brutos Nordeste SAB 1',
+    view: 'exportExcelNE1'
+  }, 
+  {
+    path: '/exportExcelNE2',
+    name: 'Exportar Dados Brutos Nordeste SAB 2',
+    view: 'exportExcelNE2'
+  },     
+  {
+    path: '/exportExcelNE3',
+    name: 'Exportar Dados Brutos Nordeste SAB 3',
+    view: 'exportExcelNE3'
+  },
+  {
+    path: '/exportExcelNE4',
+    name: 'Exportar Dados Brutos Nordeste TAM 1',
+    view: 'exportExcelNE4'
+  },  
+  {
+    path: '/exportExcelNE5',
+    name: 'Exportar Dados Brutos Nordeste TAM 2',
+    view: 'exportExcelNE5'
+  },   
+  
+  {
+    path: '/exportExcelChecklist',
+    name: 'Exportar Dados Brutos Checklist',
+    view: 'exportExcelChecklist'
+  },
+
   {
     path: '/chartsterritoriov2',
     name: 'Gráficos Território',
@@ -137,30 +177,57 @@ export default [
       requiresAuth: true
     }
   },
+
+  {
+    path: '/protocolos',
+    name: 'Checklist sobre a implementação de protocolos seguros nas escolas',
+    view: 'ResearchProtocol',
+    meta: {
+      requiresAuth: true
+    }
+  },
+
+  {
+    path: '/pesquisas',
+    name: 'Pesquisas - UNICEF',
+    view: 'Researchs',
+    meta: {
+      requiresAuth: true
+    }
+  },
+
   {
     path: '/login',
     // Relative to /src/views,
     name: 'Acesso',
     view: 'Login'
   },
-{
-  path: '/updateQuest',
-  // Relative to /src/views,
-  name: 'updateQuest',
-  view: 'updateQuest'
-},
-{
-  path: '/updateQuestComplete',
-  // Relative to /src/views,
-  name: 'updateQuestComplete',
-  view: 'updateQuestComplete'
-},
-{
-  path: '/findQuestComplete',
-  // Relative to /src/views,
-  name: 'findQuestComplete',
-  view: 'findQuestComplete'
-},
+  
+  {
+    path: '/updateQuest',
+    // Relative to /src/views,
+    name: 'updateQuest',
+    view: 'updateQuest'
+  },
+  {
+    path: '/updateQuestChecklist',
+    // Relative to /src/views,
+    name: 'updateQuestChecklist',
+    view: 'updateQuestChecklist'
+  },
+
+  {
+    path: '/updateQuestComplete',
+    // Relative to /src/views,
+    name: 'updateQuestComplete',
+    view: 'updateQuestComplete'
+  },
+  {
+    path: '/findQuestComplete',
+    // Relative to /src/views,
+    name: 'findQuestComplete',
+    view: 'findQuestComplete'
+  },
 
   {
     path: '/admin',
@@ -173,27 +240,10 @@ export default [
     view: 'Typography'
   },
   {
-    path: '/icons',
-    view: 'Icons'
-  },
-  {
-    path: '/maps',
-    view: 'Maps'
-  },
-  {
-    path: '/notifications',
-    view: 'Notifications'
-  },
-  {
-    path: '/upgrade',
-    name: 'Upgrade to PRO',
-    view: 'Upgrade'
-  },
+    path: '/api',
+    name: 'API',
+    view: 'api'
+  }
 
-  // {
-  //   path: '/fixerros',
-  //   name: 'Corrigindo erros',
-  //   view: 'FixUfsAndTerritories'
-  // },
-
+      
 ]

@@ -7,7 +7,7 @@ var x = 0;
 
 
 
-db.collection("users").get().then((querySnapshot)  => {
+db.collection("users").where('uf', 'in', ['MA','AM','RR','AC','AP']).get().then((querySnapshot)  => {
     querySnapshot.forEach((doc) => {
       
   

@@ -5,9 +5,7 @@ var x = 0;
 
 
 
-
-
-db.collection("users").get().then((querySnapshot)  => {
+db.collection("users").where('uf', 'in', ['RN','CE','PI']).get().then((querySnapshot)  => {
     querySnapshot.forEach((doc) => {
       
   
@@ -63,7 +61,7 @@ db.collection("users").get().then((querySnapshot)  => {
       x++;
 
  data.push({
-          // "id":uid,        
+           //"id":uid,        
            "nome":name,
            "telefone":telefone,
            "escola":schoolname,

@@ -12,6 +12,7 @@ import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 import { auth } from './../firebase.js'
+import {mapMutations, mapState} from 'vuex';
 
 
 // Routes
@@ -62,9 +63,8 @@ if (process.env.GOOGLE_ANALYTICS) {
 
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-
   if (requiresAuth && !auth.currentUser) {
-    next('/quest')
+    router.push({ name: 'login_usuario', query: { redirect: to.path } });
   } else {
     next()
   }
