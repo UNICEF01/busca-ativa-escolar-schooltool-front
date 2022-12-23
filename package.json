@@ -27,7 +27,7 @@
     "circular-json": "^0.5.9",
     "dom-to-image": "^2.6.0",
     "firebase": "^7.24.0",
-    "firebase-admin": "^9.5.0",
+    "firebase-admin": "^11.4.1",
     "firebase-functions": "^3.13.1",
     "firesql": "^2.0.2",
     "handle-firebase-error": "^1.1.0",
