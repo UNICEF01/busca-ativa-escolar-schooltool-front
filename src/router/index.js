@@ -8,17 +8,13 @@
 
 // Lib imports
 import Vue from 'vue'
-import VueAnalytics from 'vue-analytics'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
-import { auth } from './../firebase.js'
-import {mapMutations, mapState} from 'vuex';
-
 
 // Routes
 import paths from './paths'
 
-function route (path, view, name, meta) {
+function route(path, view, name, meta) {
   return {
     name: name || view,
     path,
@@ -35,7 +31,7 @@ const router = new Router({
   routes: paths
     .map(path => route(path.path, path.view, path.name, path.meta))
     .concat([{ path: '*', redirect: '/' }]),
-  scrollBehavior (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
       return savedPosition
     }
@@ -47,27 +43,5 @@ const router = new Router({
 })
 
 Vue.use(Meta)
-
-// Bootstrap Analytics
-// Set in .env
-// https://github.com/MatteoGabriele/vue-analytics
-if (process.env.GOOGLE_ANALYTICS) {
-  Vue.use(VueAnalytics, {
-    id: process.env.GOOGLE_ANALYTICS,
-    router,
-    autoTracking: {
-      page: process.env.NODE_ENV !== 'development'
-    }
-  })
-}
-
-router.beforeEach((to, from, next) => {
-  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
-  if (requiresAuth && !auth.currentUser) {
-    router.push({ name: 'login_usuario', query: { redirect: to.path } });
-  } else {
-    next()
-  }
-})
 
 export default router

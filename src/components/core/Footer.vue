@@ -14,15 +14,18 @@
       <!--</span>-->
     </div>
     <v-spacer />
-
     <span class="font-weight-light copyright">
-      
+      &copy;
+      {{ new Date().getFullYear() }}
       <a
         href="https://www.unicef.org/brazil"
-        target="_blank">UNICEF</a> {{ new Date().getFullYear() }}
-
+        target="_blank">UNICEF TEAM</a>,
+        made with
+      <v-icon
+        color="tertiary"
+        size="17">mdi-heart</v-icon>
+      for a better web
     </span>
-
   </v-footer>
 </template>
 

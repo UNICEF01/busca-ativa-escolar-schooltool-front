@@ -1,5 +1,6 @@
 export default {
   drawer: null,
-  color: 'blue',
-  image: 'img/4.jpg',
+  color: 'cyan',
+  image:
+    'img/4.jpg'
 }
