@@ -42,6 +42,14 @@ const router = new Router({
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if (to.redirectedFrom == "/protocolos" || to.redirectedFrom == "/wash" || to.redirectedFrom == "/login") {
+    window.location.href = "https://wash.pesquisas.unicef.org.br";
+  } else {
+    next();
+  }
+})
+
 Vue.use(Meta)
 
 export default router
